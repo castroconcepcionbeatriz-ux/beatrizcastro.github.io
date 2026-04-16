@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beatriz Castro — El Palacio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Inter:wght@100;200;300;400;500&family=Roboto+Mono:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+    --control-dark: #0A0A0A;
+    --sapphire: #0F52BA;
+    --amber: #FDB927;
+    --matter-light: #E8D8C3;
+    --matter-base: #D6B8A3;
+    --transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+html, body, div, section, iframe, * { box-sizing: border-box; margin: 0; padding: 0; -ms-overflow-style: none !important; scrollbar-width: none !important; }
+*::-webkit-scrollbar { display: none !important; width: 0 !important; height: 0 !important; }
+
+html, body {
+    width: 100%; height: 100%; overflow: hidden !important;
+    background: var(--control-dark); color: var(--matter-light);
+    font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased;
+    cursor: none;
+}
+
+#stage { position: fixed; inset: 0; overflow: hidden; z-index: 2; }
+
+#technical-grid {
+    position: fixed; inset: 0;
+    background-image: linear-gradient(to right, rgba(15,82,186,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,82,186,0.03) 1px, transparent 1px);
+    background-size: 60px 60px; pointer-events: none; z-index: 1;
+}
+
+/* ── TRANSICIÓN REDUCIDA A 0.4s ── */
+.view {
+    position: absolute; inset: 0; opacity: 0; pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    overflow-y: auto; overflow-x: hidden;
+}
+.view.active { opacity: 1; pointer-events: all; }
+.view.out { transform: translateY(-20px); filter: blur(8px); }
+
+/* ── CURSOR ── */
+#cursor {
+    position: fixed; width: 34px; height: 34px; border: 1px solid var(--sapphire);
+    border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%);
+    mix-blend-mode: screen; transition: width 0.3s, height 0.3s, border-color 0.3s;
+}
+#cursor.drag { width: 50px; height: 50px; background: rgba(15,82,186,0.1); border-color: var(--amber); }
+
+@media (max-width: 768px) { #cursor { display: none; } * { cursor: auto !important; } }
+
+/* ── LOBBY ── */
+#lobby { display: flex; align-items: center; position: relative; overflow: hidden; height: 100vh; }
+
+.l-header {
+    position: absolute; top: 0; left: 0; right: 0;
+    padding: 40px 8%; display: flex; justify-content: space-between; align-items: flex-start; z-index: 10;
+}
+.l-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 5vw, 56px); font-weight: 300; line-height: 0.85; }
+.l-name em { font-style: italic; color: var(--sapphire); }
+.l-tagline { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--sapphire); letter-spacing: 0.4em; text-transform: uppercase; margin-top: 12px; display: block; }
+
+/* BIO MÍNIMA EN LOBBY */
+.l-bio {
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 300;
+    color: var(--matter-light); opacity: 0.5; margin-top: 10px;
+    letter-spacing: 0.05em; display: block;
+}
+.l-available {
+    display: inline-block; font-family: 'Roboto Mono', monospace; font-size: 8px;
+    color: #1D9E75; border: 1px solid rgba(29,158,117,0.4); padding: 3px 8px;
+    margin-top: 8px; letter-spacing: 0.15em;
+}
+
+/* DRAG HINT */
+.drag-hint {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--sapphire);
+    letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.6;
+    display: flex; align-items: center; gap: 12px; pointer-events: none;
+    animation: hint-fade 3s ease-in-out infinite;
+}
+.drag-hint-arrow {
+    display: inline-block;
+    animation: hint-slide 1.8s ease-in-out infinite;
+}
+@keyframes hint-slide { 0%,100%{transform:translateX(0)} 50%{transform:translateX(12px)} }
+@keyframes hint-fade { 0%,100%{opacity:0.3} 50%{opacity:0.7} }
+
+/* LOBBY PANELS */
+.track-container { width: 100%; height: 100vh; display: flex; align-items: center; overflow: hidden; }
+.track { display: flex; align-items: center; gap: 80px; padding: 0 12vw; will-change: transform; transition: transform 0.1s ease-out; }
+.panel { flex-shrink: 0; position: relative; transition: transform 0.5s; cursor: pointer; }
+.panel:hover { transform: translateY(-12px); }
+.panel-lg { width: clamp(380px, 38vw, 580px); height: 78vh; }
+.panel-sm { width: clamp(280px, 28vw, 420px); height: 60vh; margin-top: 80px; opacity: 0.6; }
+.panel-frame { width: 100%; height: 100%; overflow: hidden; position: relative; border: 1px solid rgba(15,82,186,0.2); background: #050505; }
+.panel-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.55; transition: 1.2s var(--transition); }
+.panel:hover .panel-img { opacity: 1; transform: scale(1.03); }
+.panel-data { position: absolute; top: 24px; right: 24px; text-align: right; color: var(--sapphire); font-family: 'Roboto Mono', monospace; }
+.data-val { font-size: 36px; font-weight: 100; display: block; line-height: 1; }
+.data-lab { font-size: 8px; text-transform: uppercase; opacity: 0.5; letter-spacing: 0.2em; }
+.panel-info { position: absolute; bottom: 30px; left: 30px; right: 30px; pointer-events: none; }
+.panel-num { font-family: 'Roboto Mono', monospace; font-size: 10px; color: var(--sapphire); margin-bottom: 10px; display: block; }
+.panel-ttl { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 3.5vw, 44px); line-height: 1; color: var(--matter-light); }
+
+/* ── PANEL SLIDESHOW ── */
+.panel-slides { position: absolute; inset: 0; }
+.panel-slide {
+    position: absolute; inset: 0;
+    opacity: 0; transition: opacity 1.2s ease;
+    overflow: hidden;
+}
+.panel-slide.active { opacity: 1; }
+.panel-slide img {
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 0.55; transition: transform 6s ease;
+}
+.panel-slide.active img { transform: scale(1.04); }
+.panel:hover .panel-slide img { opacity: 0.9; }
+
+/* DOTS indicadores */
+.panel-dots {
+    position: absolute; bottom: 16px; right: 16px; z-index: 10;
+    display: flex; gap: 5px; align-items: center;
+}
+.panel-dot {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--matter-light); opacity: 0.3; transition: opacity 0.4s, width 0.4s;
+}
+.panel-dot.active { opacity: 0.9; background: var(--amber); width: 14px; border-radius: 2px; }
+
+/* LABEL de proyecto activo en el panel */
+.panel-slide-label {
+    position: absolute; top: 16px; left: 16px; z-index: 10;
+    font-family: 'Roboto Mono', monospace; font-size: 7px;
+    color: var(--matter-light); opacity: 0; letter-spacing: 0.2em;
+    text-transform: uppercase; transition: opacity 0.4s;
+    background: rgba(10,10,10,0.5); padding: 3px 8px;
+}
+.panel-slide.active .panel-slide-label { opacity: 0.6; }
+
+/* FEATURED BADGE */
+.panel-featured {
+    position: absolute; top: 24px; left: 24px; z-index: 10;
+    font-family: 'Roboto Mono', monospace; font-size: 8px;
+    background: var(--amber); color: #000; padding: 4px 10px;
+    letter-spacing: 0.15em; font-weight: 500;
+}
+
+/* NOVEDADES BAR */
+.novedades-bar { position: absolute; right: 40px; bottom: 40px; z-index: 20; }
+.news-item {
+    font-family: 'Roboto Mono', monospace; font-size: 10px; color: inherit; text-decoration: none;
+    border-bottom: 1px solid rgba(15,82,186,0.3); padding: 8px 0; min-width: 200px;
+    display: flex; justify-content: space-between; gap: 20px; transition: 0.3s; cursor: pointer;
+}
+.news-item:hover { color: var(--amber); border-bottom-color: var(--amber); }
+
+/* ── SALAS ── */
+.room-view { background: var(--control-dark); padding: 100px 8% 200px; overflow-x: hidden !important; }
+
+.sala-header { margin-bottom: 60px; padding-bottom: 30px; border-bottom: 1px solid rgba(253,185,39,0.1); }
+.sala-code { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--amber); letter-spacing: 0.5em; display: block; margin-bottom: 16px; }
+.sala-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 7vw, 86px); font-weight: 300; line-height: 0.85; color: var(--matter-light); }
+.sala-desc { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--matter-light); opacity: 0.45; margin-top: 20px; max-width: 500px; line-height: 1.7; }
+
+/* HAB */
+.hab { border-bottom: 1px solid rgba(15,82,186,0.1); margin-bottom: 10px; transition: opacity 0.4s, filter 0.4s; overflow: hidden; }
+.hab.hidden { opacity: 0; pointer-events: none; height: 0; margin: 0; border: none; }
+.hab-header { display: flex; justify-content: space-between; align-items: center; padding: 30px 0; cursor: pointer; transition: 0.3s; }
+.hab-header:hover { color: var(--amber); }
+.hab-meta { display: flex; flex-direction: column; gap: 5px; }
+.hab-code { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--sapphire); letter-spacing: 0.3em; }
+.hab-code.amber { color: var(--amber); }
+.hab-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 2.2vw, 32px); font-weight: 300; }
+.hab-controls { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+.hab-label-tag {
+    font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--amber);
+    border: 1px solid rgba(253,185,39,0.3); padding: 5px 12px; letter-spacing: 0.1em;
+    opacity: 0.8; text-decoration: none; transition: 0.3s; background: transparent; z-index: 10;
+}
+.hab-label-tag:hover { background: var(--amber); color: #000; opacity: 1; }
+.hab-plus { font-size: 22px; color: var(--sapphire); transition: 0.4s; flex-shrink: 0; }
+.hab.focused .hab-plus { transform: rotate(45deg); color: var(--amber); }
+.hab-content { max-height: 0; overflow: hidden; transition: max-height 0.8s cubic-bezier(0.2,1,0.3,1); }
+.hab.focused .hab-content { max-height: 6000px; padding-bottom: 100px; }
+
+/* FEATURED HAB */
+.hab.featured-hab { border: 1px solid rgba(253,185,39,0.2); background: rgba(253,185,39,0.02); border-bottom: 1px solid rgba(253,185,39,0.2); }
+.featured-hab-badge {
+    font-family: 'Roboto Mono', monospace; font-size: 7px; background: var(--amber);
+    color: #000; padding: 2px 8px; letter-spacing: 0.15em; margin-right: 10px;
+}
+
+/* VISION SYSTEM */
+.vision-system { margin-top: 20px; margin-bottom: 35px; padding-left: 20px; border-left: 1px solid var(--amber); }
+.vision-concept { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-style: italic; color: var(--matter-light); margin-bottom: 12px; letter-spacing: 0.05em; text-transform: uppercase; }
+.vision-logic { display: flex; flex-wrap: wrap; gap: 24px; font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--matter-light); opacity: 0.55; text-transform: uppercase; letter-spacing: 0.2em; }
+.vision-logic span { position: relative; }
+.vision-logic span::before { content: '•'; position: absolute; left: -14px; color: var(--amber); }
+.vision-role { margin-bottom: 40px; padding-left: 20px; border-left: 1px solid var(--sapphire); }
+.vision-role span { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--sapphire); letter-spacing: 0.3em; display: block; margin-bottom: 8px; text-transform: uppercase; }
+.vision-role p { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; opacity: 0.75; line-height: 1.6; color: var(--matter-light); }
+
+/* MOODBOARD */
+.moodboard-grid { display: grid; grid-template-columns: 1fr 1.2fr 0.15fr 1fr; gap: 16px; width: 100%; }
+.mb-slot { position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); background: #050505; display: flex; align-items: center; justify-content: center; transition: border 0.3s; }
+.mb-slot:hover { border-color: rgba(253,185,39,0.5); }
+.mb-slot img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.5s; }
+.mb-slot:hover img { opacity: 1; transform: scale(1.03); }
+.mb-label { position: absolute; top: 12px; left: 12px; font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--matter-light); opacity: 0.35; text-transform: uppercase; letter-spacing: 0.2em; z-index: 5; pointer-events: none; }
+.mb-credit-tag { position: absolute; bottom: 12px; right: 12px; font-family: 'Roboto Mono', monospace; font-size: 7px; color: var(--amber); border: 1px solid rgba(253,185,39,0.2); padding: 3px 7px; background: rgba(0,0,0,0.6); text-decoration: none; z-index: 10; }
+.mb-credit-tag:hover { background: var(--amber); color: #000; }
+.mb-texture-1 { grid-column: 1; grid-row: 1; aspect-ratio: 1; }
+.mb-insp-1    { grid-column: 2; grid-row: 1; aspect-ratio: 1.2; }
+.mb-life-1    { grid-column: 4; grid-row: 1; aspect-ratio: 1; }
+.mb-life-2    { grid-column: 1; grid-row: 2 / span 2; aspect-ratio: 0.7; }
+.mb-feature   { grid-column: 2; grid-row: 2; aspect-ratio: 0.8; }
+.mb-color-v   { grid-column: 3; grid-row: 2 / span 2; background: transparent; }
+.mb-etc       { grid-column: 4; grid-row: 2; aspect-ratio: 1; }
+.mb-insp-2    { grid-column: 2; grid-row: 3; aspect-ratio: 1.2; }
+.mb-texture-2 { grid-column: 4; grid-row: 3; aspect-ratio: 1; }
+.mb-ig-frame  { width: 100%; height: 100%; border: none; }
+
+/* NOVEDADES */
+#novedades-screen { background: var(--control-dark); display: flex; flex-direction: column; }
+.log-header { padding: 100px 8% 40px; }
+.log-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 7vw, 72px); font-weight: 300; color: var(--amber); }
+.news-infinite-container { flex: 1; display: flex; align-items: center; overflow: hidden; }
+.news-track { display: flex; align-items: center; gap: 40px; will-change: transform; }
+.news-cover { flex: 0 0 320px; aspect-ratio: 2/3; border: 1px solid rgba(253,185,39,0.15); position: relative; overflow: hidden; cursor: pointer; }
+.news-cover img { width: 100%; height: 100%; object-fit: cover; opacity: 0.55; transition: 0.4s; }
+.news-cover:hover img { opacity: 1; transform: scale(1.02); }
+.news-cover-label { position: absolute; bottom: 16px; left: 16px; font-family: 'Roboto Mono', monospace; font-size: 9px; background: var(--amber); color: black; padding: 4px 10px; font-weight: 500; }
+
+/* DETALLE */
+.detail-overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(10,10,10,0.5); backdrop-filter: blur(30px); display: flex; opacity: 0; pointer-events: none; transition: opacity 0.4s; }
+.detail-overlay.active { opacity: 1; pointer-events: all; }
+.detail-main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px; }
+.detail-main img { max-height: 85vh; border: 1px solid rgba(15,82,186,0.2); }
+.detail-sidebar { width: 420px; border-left: 1px solid rgba(253,185,39,0.1); padding: 60px 50px; display: flex; flex-direction: column; }
+
+/* ARCHIVO */
+#archive-view { background: var(--control-dark); padding: 100px 8% 150px; }
+.archive-header { margin-bottom: 60px; border-left: 2px solid var(--amber); padding-left: 30px; }
+.archive-tag-display { font-family: 'Roboto Mono', monospace; font-size: 12px; color: var(--amber); letter-spacing: 0.5em; text-transform: uppercase; margin-bottom: 16px; display: block; }
+.archive-title { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; line-height: 0.9; }
+.archive-results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+.archive-item { aspect-ratio: 2/3; border: 1px solid rgba(255,255,255,0.05); overflow: hidden; position: relative; cursor: pointer; transition: 0.3s; }
+.archive-item:hover { border-color: var(--amber); transform: translateY(-8px); }
+.archive-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.5s; }
+.archive-item:hover img { opacity: 1; }
+.archive-item-info { position: absolute; bottom: 16px; left: 16px; right: 16px; }
+.archive-item-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--matter-light); }
+
+/* ── SOBRE MÍ ── */
+#sobre-mi { background: var(--control-dark); padding: 100px 8% 200px; overflow-y: auto; }
+.sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 60px; }
+.sobre-bio-block { }
+.sobre-bio-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 64px); font-weight: 300; line-height: 0.9; color: var(--matter-light); margin-bottom: 30px; }
+.sobre-bio-name em { color: var(--sapphire); font-style: italic; }
+.sobre-role-tag { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--amber); border: 1px solid rgba(253,185,39,0.3); padding: 6px 14px; display: inline-block; margin-bottom: 30px; letter-spacing: 0.15em; }
+.sobre-text { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300; line-height: 1.8; color: var(--matter-light); opacity: 0.75; max-width: 480px; }
+.sobre-skills { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 10px; }
+.skill-tag { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--sapphire); border: 1px solid rgba(15,82,186,0.3); padding: 5px 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+.sobre-data-col { border-left: 1px solid rgba(15,82,186,0.15); padding-left: 50px; }
+.sobre-section-label { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--amber); letter-spacing: 0.4em; text-transform: uppercase; margin-bottom: 20px; display: block; }
+.sobre-item { margin-bottom: 35px; padding-bottom: 35px; border-bottom: 1px solid rgba(15,82,186,0.08); }
+.sobre-item:last-child { border-bottom: none; }
+.sobre-item-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--matter-light); margin-bottom: 4px; }
+.sobre-item-sub { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--sapphire); opacity: 0.7; letter-spacing: 0.1em; }
+.sobre-item-year { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--amber); opacity: 0.6; margin-top: 4px; display: block; }
+
+/* ── CONTACTO ── */
+#contacto { background: var(--control-dark); padding: 100px 8% 200px; overflow-y: auto; }
+.contacto-header { margin-bottom: 80px; }
+.contacto-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 7vw, 86px); font-weight: 300; line-height: 0.9; color: var(--matter-light); }
+.contacto-title em { color: var(--amber); }
+.contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.contacto-links { display: flex; flex-direction: column; gap: 0; }
+.c-link {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 0; border-bottom: 1px solid rgba(15,82,186,0.1);
+    text-decoration: none; color: var(--matter-light); transition: 0.3s; cursor: pointer;
+}
+.c-link:hover { color: var(--amber); border-bottom-color: var(--amber); }
+.c-link-label { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--sapphire); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 6px; display: block; }
+.c-link-value { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 2vw, 28px); font-weight: 300; }
+.c-link-arrow { font-size: 18px; opacity: 0.4; transition: 0.3s; flex-shrink: 0; }
+.c-link:hover .c-link-arrow { opacity: 1; transform: translateX(6px); }
+.contacto-qr-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 10px; }
+.contacto-qr-img { width: 200px; height: 200px; object-fit: contain; filter: invert(1); opacity: 0.85; border: 1px solid rgba(15,82,186,0.15); padding: 16px; background: rgba(255,255,255,0.02); }
+.contacto-qr-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--sapphire); letter-spacing: 0.3em; margin-top: 12px; text-align: center; opacity: 0.6; }
+.contacto-form { margin-top: 60px; border-top: 1px solid rgba(15,82,186,0.1); padding-top: 50px; }
+.contacto-form-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--matter-light); margin-bottom: 30px; }
+.c-form-group { margin-bottom: 24px; }
+.c-form-label { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--sapphire); letter-spacing: 0.3em; text-transform: uppercase; display: block; margin-bottom: 10px; }
+.c-form-input {
+    width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(15,82,186,0.2);
+    color: var(--matter-light); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300;
+    padding: 12px 0; outline: none; transition: border-color 0.3s; cursor: text;
+}
+.c-form-input:focus { border-bottom-color: var(--amber); }
+.c-form-input::placeholder { opacity: 0.3; color: var(--matter-light); }
+textarea.c-form-input { resize: none; min-height: 100px; }
+.c-form-btn {
+    font-family: 'Roboto Mono', monospace; font-size: 10px; color: var(--amber);
+    border: 1px solid rgba(253,185,39,0.4); padding: 14px 32px; background: transparent;
+    letter-spacing: 0.2em; cursor: pointer; transition: 0.3s; margin-top: 10px;
+}
+.c-form-btn:hover { background: var(--amber); color: #000; }
+
+/* UI NAV FIJA */
+#ui-nav { position: fixed; inset: 0; pointer-events: none; z-index: 1000; }
+.back-btn {
+    position: absolute; top: 36px; left: 36px; pointer-events: all;
+    font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--sapphire);
+    border: 1px solid rgba(15,82,186,0.4); padding: 10px 20px; text-decoration: none;
+    opacity: 0; transition: opacity 0.3s;
+}
+.back-btn.visible { opacity: 1; }
+
+/* NAV BOTTOM PERSISTENTE EN SALAS */
+#bottom-nav {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 500;
+    background: rgba(10,10,10,0.9); backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(15,82,186,0.08);
+    display: none; justify-content: center; gap: 0; padding: 0;
+}
+#bottom-nav.visible { display: flex; }
+.bnav-item {
+    font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--matter-light);
+    opacity: 0.4; padding: 16px 20px; cursor: pointer; transition: 0.3s;
+    letter-spacing: 0.2em; text-transform: uppercase; border: none; background: none; text-decoration: none;
+}
+.bnav-item:hover, .bnav-item.active { opacity: 1; color: var(--amber); }
+.bnav-item.active { border-top: 1px solid var(--amber); margin-top: -1px; }
+
+/* SCROLL VERTICAL PARA MÓVIL */
+@media (max-width: 768px) {
+    .room-view { padding: 80px 5% 150px; }
+    .sobre-grid { grid-template-columns: 1fr; gap: 50px; }
+    .sobre-data-col { border-left: none; padding-left: 0; border-top: 1px solid rgba(15,82,186,0.15); padding-top: 40px; }
+    .contacto-grid { grid-template-columns: 1fr; gap: 40px; }
+    .moodboard-grid { grid-template-columns: 1fr 1fr; }
+    .mb-slot { grid-column: span 1 !important; grid-row: auto !important; aspect-ratio: 1 !important; }
+    .panel-lg { width: 85vw; height: 65vh; }
+    .panel-sm { width: 70vw; height: 50vh; }
+    .track { padding: 0 5vw; gap: 24px; }
+    .bnav-item { padding: 14px 12px; font-size: 7px; }
+}
+</style>
+</head>
+<body>
+
+<div id="technical-grid"></div>
+<div id="cursor"></div>
+
+<div id="ui-nav">
+    <a href="#" class="back-btn" id="btn-back" onclick="navTo('lobby'); resetHabs();">← PALACIO</a>
+</div>
+
+<!-- BOTTOM NAV PERSISTENTE -->
+<nav id="bottom-nav">
+    <a class="bnav-item" onclick="navTo('oficio')" data-nav="oficio">I · La Corte</a>
+    <a class="bnav-item" onclick="navTo('vision')" data-nav="vision">II · La Exposición</a>
+    <a class="bnav-item" onclick="navTo('mundos')" data-nav="mundos">III · La Cámara</a>
+    <a class="bnav-item" onclick="navTo('sobre-mi')" data-nav="sobre-mi">Sobre mí</a>
+    <a class="bnav-item" onclick="navTo('contacto')" data-nav="contacto">Contacto</a>
+    <span style="flex:1"></span>
+    <a class="bnav-item" href="https://wa.me/qr/R3B4SBXIKHAQE1" target="_blank" rel="noopener" style="color:#25D366;opacity:0.7;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">WA</a>
+    <a class="bnav-item" href="https://www.instagram.com/beatrizcastro9798" target="_blank" rel="noopener" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.4'">IG</a>
+    <a class="bnav-item" href="https://www.linkedin.com/in/beatriz-castro-967529210/" target="_blank" rel="noopener" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.4'">LI</a>
+</nav>
+
+<div id="stage">
+
+<!-- ═══════════════════════════════════════════
+     LOBBY
+═══════════════════════════════════════════ -->
+<div class="view active" id="lobby">
+    <header class="l-header">
+        <div>
+            <h1 class="l-name">Beatriz <em>Castro</em></h1>
+            <span class="l-tagline">Digital Fashion Designer · CLO3D · AI · Madrid</span>
+            <span class="l-bio">3D Garment Development · Fashion Product · Creative Direction</span>
+            <span class="l-available">● Disponible para proyectos</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+            <!-- Redes sociales compactas -->
+            <a href="https://wa.me/qr/R3B4SBXIKHAQE1" target="_blank" rel="noopener"
+               title="WhatsApp"
+               style="font-family:'Roboto Mono',monospace;font-size:8px;color:#25D366;border:1px solid rgba(37,211,102,0.3);padding:6px 12px;text-decoration:none;transition:0.3s;letter-spacing:0.1em;"
+               onmouseover="this.style.background='rgba(37,211,102,0.1)'" onmouseout="this.style.background='transparent'">WA</a>
+            <a href="https://www.instagram.com/beatrizcastro9798" target="_blank" rel="noopener"
+               title="Instagram"
+               style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--matter-light);border:1px solid rgba(232,216,195,0.2);padding:6px 12px;text-decoration:none;transition:0.3s;letter-spacing:0.1em;opacity:0.6;"
+               onmouseover="this.style.opacity='1';this.style.borderColor='var(--matter-light)'" onmouseout="this.style.opacity='0.6';this.style.borderColor='rgba(232,216,195,0.2)'">IG</a>
+            <a href="https://www.linkedin.com/in/beatriz-castro-967529210/" target="_blank" rel="noopener"
+               title="LinkedIn"
+               style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--sapphire);border:1px solid rgba(15,82,186,0.3);padding:6px 12px;text-decoration:none;transition:0.3s;letter-spacing:0.1em;"
+               onmouseover="this.style.background='rgba(15,82,186,0.1)'" onmouseout="this.style.background='transparent'">LI</a>
+            <a onclick="navTo('sobre-mi')"
+               style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(15,82,186,0.3);padding:8px 16px;text-decoration:none;transition:0.3s;cursor:pointer;"
+               onmouseover="this.style.background='rgba(15,82,186,0.1)'" onmouseout="this.style.background='transparent'">SOBRE MÍ</a>
+            <a onclick="navTo('contacto')"
+               style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--amber);border:1px solid rgba(253,185,39,0.4);padding:8px 16px;text-decoration:none;transition:0.3s;cursor:pointer;"
+               onmouseover="this.style.background='var(--amber)';this.style.color='#000'" onmouseout="this.style.background='transparent';this.style.color='var(--amber)'">CONTACTO</a>
+        </div>
+    </header>
+
+    <div class="track-container">
+        <div class="track" id="lobby-track">
+            <div style="flex-shrink:0;padding-right:100px;">
+                <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3vw,34px);font-style:italic;color:var(--sapphire);line-height:1.2;">"La estructura es<br>el control."</p>
+                <div style="width:40px;height:1px;background:var(--amber);margin-top:28px;box-shadow:0 0 12px rgba(253,185,39,0.3);"></div>
+            </div>
+
+            <!-- PANEL ST_01: Sala I — slideshow -->
+            <div class="panel panel-lg" id="panel-01" onclick="navTo('oficio');">
+                <div class="panel-data"><span class="data-val" style="color:var(--amber);">92%</span><span class="data-lab">Estructura</span></div>
+                <div class="panel-frame">
+                    <div class="panel-slides" id="slides-01">
+                        <div class="panel-slide active"><span class="panel-slide-label">Mayle Vázquez · Patronaje</span><img src="Santo Domingo Dress.jpg" alt=""></div>
+                        <div class="panel-slide"><span class="panel-slide-label">El Pozo Jacket</span><img src="El pozo Jacket- completo .png" alt=""></div>
+                        <div class="panel-slide"><span class="panel-slide-label">Caribe Coat</span><img src="Caribe Coat.png" alt=""></div>
+                        <div class="panel-slide"><span class="panel-slide-label">Leonel Lirio · RW 2024</span><img src="DSC07835.jpg" alt=""></div>
+                        <div class="panel-slide"><span class="panel-slide-label">Elisa Morato · RW 2024</span><img src="DSC_0070.jpg" alt=""></div>
+                    </div>
+                    <div class="panel-dots" id="dots-01"></div>
+                    <div class="panel-info">
+                        <span class="panel-num">ST_01</span>
+                        <h3 class="panel-ttl" id="panel-ttl-01">La Sala de<br><em>la Corte</em></h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL ST_02: Sala II — slideshow -->
+            <div class="panel panel-sm" id="panel-02" onclick="navTo('vision');">
+                <div class="panel-data"><span class="data-val">02</span><span class="data-lab">Visión</span></div>
+                <div class="panel-frame" style="border:1px solid rgba(15,82,186,0.3);">
+                    <div class="panel-slides" id="slides-02">
+                        <div class="panel-slide active" style="background:rgba(15,82,186,0.08);"><span class="panel-slide-label">Desfile Oscar de la Renta</span><img src="DSC07604.jpg" alt="" onerror="this.style.display='none'"></div>
+                        <div class="panel-slide" style="background:rgba(15,82,186,0.05);"><span class="panel-slide-label">Concurso Foto-Portada</span><img src="DSC_0013 (1).jpg" alt="" onerror="this.style.display='none'"></div>
+                        <div class="panel-slide" style="background:rgba(15,82,186,0.03);"><span class="panel-slide-label">Dirección Creativa</span><img src="DSC07835.jpg" alt="" onerror="this.style.display='none'"></div>
+                    </div>
+                    <div class="panel-dots" id="dots-02"></div>
+                    <div class="panel-info">
+                        <span class="panel-num" style="color:var(--amber);">ST_02</span>
+                        <h3 class="panel-ttl" id="panel-ttl-02">La Sala de<br><em>la Exposición</em></h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL ST_03: La Cámara Oscura — FEATURED + slideshow -->
+            <div class="panel panel-lg" id="panel-03" onclick="navTo('mundos');">
+                <span class="panel-featured">FEATURED</span>
+                <div class="panel-data"><span class="data-val">2026</span><span class="data-lab" style="color:var(--amber);">Experimental</span></div>
+                <div class="panel-frame">
+                    <div class="panel-slides" id="slides-03">
+                        <div class="panel-slide active"><span class="panel-slide-label">VITRIOL · 3D Sculpture</span><img src="vitriol_01.jpg" alt="" onerror="this.style.display='none'"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">EVOLVER SKIN · Packaging</span><img src="evolver_02.jpg" alt="" onerror="this.style.display='none'"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">LOVELY · DAZ 3D Avatar</span><img src="lovely_01.jpg" alt="" onerror="this.style.display='none'"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">FRACTUM · Blender + CLO3D</span><img src="fractum_01.jpg" alt="" onerror="this.style.display='none'"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">MILEE · AI Campaign</span><img src="milee_01.jpg" alt="" onerror="this.style.display='none'"></div>
+                    </div>
+                    <div class="panel-dots" id="dots-03"></div>
+                    <div class="panel-info">
+                        <span class="panel-num">ST_03</span>
+                        <h3 class="panel-ttl">La Cámara<br><em>Oscura</em></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DRAG HINT -->
+    <div class="drag-hint">
+        <span>drag to explore</span>
+        <span class="drag-hint-arrow">→ → →</span>
+    </div>
+
+    <div class="novedades-bar">
+        <a class="news-item" onclick="navTo('novedades-screen')">
+            <span>Log de Novedades</span>
+            <span style="color:var(--amber);">SYS_LOG_V.4</span>
+        </a>
+    </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     NOVEDADES
+═══════════════════════════════════════════ -->
+<div class="view" id="novedades-screen">
+    <header class="log-header"><h2 class="log-title">Architecture Log</h2></header>
+    <div class="news-infinite-container">
+        <div class="news-track" id="news-infinite-track">
+            <div class="news-cover" onclick="navTo('oficio');focusHab('hab-mayle');"><img src="Santo Domingo Dress.jpg"><span class="news-cover-label">MAYLE_24</span></div>
+            <div class="news-cover" onclick="navTo('oficio');focusHab('hab-leonel');"><img src="DSC07835.jpg"><span class="news-cover-label">RW_ARCHIVE</span></div>
+            <div class="news-cover" onclick="navTo('oficio');focusHab('hab-eliza');"><img src="DSC_0070.jpg"><span class="news-cover-label">ELISA_24</span></div>
+            <div class="news-cover" onclick="navTo('mundos');focusHab('hab-vitriol');"><img src="vitriol_01.jpg" onerror="this.style.background='#111'"><span class="news-cover-label">VITRIOL</span></div>
+            <div class="news-cover" onclick="navTo('mundos');focusHab('hab-lovely');"><img src="lovely_01.jpg" onerror="this.style.background='#111'"><span class="news-cover-label">LOVELY_DAZ</span></div>
+            <div class="news-cover" onclick="navTo('mundos');focusHab('hab-evolver');"><img src="evolver_02.jpg" onerror="this.style.background='#111'"><span class="news-cover-label">EVOLVER_SKIN</span></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SALA I: EL OFICIO
+═══════════════════════════════════════════ -->
+<div class="view room-view" id="oficio">
+    <div class="sala-header">
+        <span class="sala-code">ST_01 // PATRONAJE · FOTOGRAFÍA · PRODUCCIÓN · CORTE</span>
+        <h1 class="sala-title">La Sala de<br><em style="color:var(--sapphire);">la Corte</em></h1>
+        <p class="sala-desc">El corte como primer acto irreversible. Patronaje industrial, fotografía de moda y producción de colección.</p>
+    </div>
+
+    <!-- HAB: Mayle — ABIERTO POR DEFECTO -->
+    <div class="hab focused" id="hab-mayle" data-tag="BEATRIZ CASTRO">
+        <div class="hab-header" onclick="focusHab('hab-mayle')">
+            <div class="hab-meta">
+                <span class="hab-code">OF_01 · PATRONAJE INDUSTRIAL · DIGITAL PATTERN</span>
+                <h2 class="hab-title">Mayle Vázquez — Patronaje & Product Development</h2>
+            </div>
+            <div class="hab-controls">
+                <a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a>
+                <span class="hab-plus">+</span>
+            </div>
+        </div>
+        <div class="hab-content">
+            <div class="vision-role"><span>ROL</span><p>Desarrollo de patrones industriales y optimización de fit. Gestión de archivo técnico y digitalización de patronaje. Colaboración directa en el proceso de producción.</p></div>
+            <div class="moodboard-grid">
+                <div class="mb-slot mb-texture-1" data-tag="BEATRIZ CASTRO" onclick="openDetail('Texture','92% ALGODÓN','8% LANA','Santo Domingo Dress.jpg')"><span class="mb-label">Texture</span><img src="Santo Domingo Dress.jpg"></div>
+                <div class="mb-slot mb-feature" data-tag="BEATRIZ CASTRO" onclick="openDetail('Feature','INDUSTRIAL','PRECISION','El pozo Jacket- completo .png')"><span class="mb-label">Feature Image</span><img src="El pozo Jacket- completo .png"></div>
+                <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO"><img src="Caribe Coat.png"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hab" id="hab-leonel" data-tag="BEATRIZ CASTRO">
+        <div class="hab-header" onclick="focusHab('hab-leonel')">
+            <div class="hab-meta">
+                <span class="hab-code">OF_02 · FOTOGRAFÍA DE MODA · RW 2024</span>
+                <h2 class="hab-title">Leonel Lirio — RW 2024</h2>
+            </div>
+            <div class="hab-controls">
+                <a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a>
+                <span class="hab-plus">+</span>
+            </div>
+        </div>
+        <div class="hab-content">
+            <div class="moodboard-grid">
+                <div class="mb-slot mb-feature" data-tag="BEATRIZ CASTRO"><img src="DSC07835.jpg"></div>
+                <div class="mb-slot mb-texture-1" data-tag="BEATRIZ CASTRO"><img src="DSC07604.jpg"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hab" id="hab-eliza" data-tag="BEATRIZ CASTRO">
+        <div class="hab-header" onclick="focusHab('hab-eliza')">
+            <div class="hab-meta">
+                <span class="hab-code">OF_03 · FOTOGRAFÍA · WUATAN STUDIO · RW 2024</span>
+                <h2 class="hab-title">Elisa Morato — RW 2024</h2>
+            </div>
+            <div class="hab-controls">
+                <a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a>
+                <span class="hab-plus">+</span>
+            </div>
+        </div>
+        <div class="hab-content">
+            <div class="moodboard-grid">
+                <div class="mb-slot mb-texture-1" data-tag="WUATAN STUDIO"><span class="mb-label">Photography</span><img src="DSC_0013 (1).jpg"><a href="#" class="mb-credit-tag" onclick="navigateToTag('WUATAN STUDIO',event)">WUATAN STUDIO</a></div>
+                <div class="mb-slot mb-feature" data-tag="WUATAN STUDIO"><span class="mb-label">Photography</span><img src="DSC_0070.jpg"><a href="#" class="mb-credit-tag" onclick="navigateToTag('WUATAN STUDIO',event)">WUATAN STUDIO</a></div>
+                <div class="mb-slot mb-insp-1"><iframe class="mb-ig-frame" src="https://www.instagram.com/p/DBWUCZ4OTHc/embed" scrolling="no"></iframe></div>
+                <div class="mb-slot mb-life-1"><iframe class="mb-ig-frame" src="https://www.instagram.com/p/DBL8oz1OK4h/embed" scrolling="no"></iframe></div>
+                <div class="mb-slot mb-life-2"><iframe class="mb-ig-frame" src="https://www.instagram.com/p/DBL7YiUOzjR/embed" scrolling="no"></iframe></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SALA II: LA VISIÓN
+═══════════════════════════════════════════ -->
+<div class="view room-view" id="vision">
+    <div class="sala-header">
+        <span class="sala-code">ST_02 // ESTILISMO · DIRECCIÓN CREATIVA · FOTOGRAFÍA</span>
+        <h1 class="sala-title">La Sala de<br><em style="color:var(--sapphire);">la Exposición</em></h1>
+        <p class="sala-desc">El tiempo de exposición decide lo que permanece. Estilismo, dirección creativa y fotografía.</p>
+    </div>
+
+    <!-- HAB abierto por defecto -->
+    <div class="hab focused" id="hab-oscar" data-tag="WUATAN STUDIO">
+        <div class="hab-header" onclick="focusHab('hab-oscar')">
+            <div class="hab-meta">
+                <span class="hab-code amber">VS_01 · DIRECCIÓN DE ESTILISMO · WUATAN STUDIO</span>
+                <h2 class="hab-title">Desfile Homenaje a Oscar de la Renta</h2>
+            </div>
+            <div class="hab-controls">
+                <a href="#" class="hab-label-tag" onclick="navigateToTag('WUATAN STUDIO',event)">WUATAN STUDIO</a>
+                <span class="hab-plus">+</span>
+            </div>
+        </div>
+        <div class="hab-content">
+            <div class="vision-role"><span>ROL</span><p>Styling Direction · Visual Narrative · Wardrobe Construction</p></div>
+            <div class="vision-system"><p class="vision-concept">CONTROL VS INOCENCIA</p><div class="vision-logic"><span>Silhouette Constraint</span><span>Material Contrast</span><span>Modular Construction</span></div></div>
+            <div class="moodboard-grid"><div class="mb-slot mb-feature" data-tag="WUATAN STUDIO" style="min-height:300px;"><span class="mb-label">Imágenes próximamente</span></div></div>
+        </div>
+    </div>
+
+    <div class="hab" id="hab-infantil" data-tag="WUATAN STUDIO">
+        <div class="hab-header" onclick="focusHab('hab-infantil')">
+            <div class="hab-meta"><span class="hab-code amber">VS_02 · STYLING · WUATAN STUDIO</span><h2 class="hab-title">Colección infantil — La niña que no deben apurar</h2></div>
+            <div class="hab-controls"><a href="#" class="hab-label-tag" onclick="navigateToTag('WUATAN STUDIO',event)">WUATAN STUDIO</a><span class="hab-plus">+</span></div>
+        </div>
+        <div class="hab-content"><div class="vision-role"><span>ROL</span><p>Styling Direction · Visual Narrative · Photo Direction Support</p></div></div>
+    </div>
+
+    <div class="hab" id="hab-concurso" data-tag="WUATAN STUDIO">
+        <div class="hab-header" onclick="focusHab('hab-concurso')">
+            <div class="hab-meta"><span class="hab-code amber">VS_03 · 2º LUGAR · FOTO-PORTADA MODA</span><h2 class="hab-title">Concurso Foto-Portada de Moda — 2º lugar</h2></div>
+            <div class="hab-controls"><a href="#" class="hab-label-tag" onclick="navigateToTag('WUATAN STUDIO',event)">WUATAN STUDIO</a><span class="hab-plus">+</span></div>
+        </div>
+        <div class="hab-content"><div class="vision-role"><span>ROL</span><p>Styling Direction · Visual Narrative · Photo Direction Support</p></div></div>
+    </div>
+
+    <div class="hab" id="hab-propio" data-tag="WUATAN PHOTOGRAPHY">
+        <div class="hab-header" onclick="focusHab('hab-propio')">
+            <div class="hab-meta"><span class="hab-code">VS_04 · 3º LUGAR · DIRECCIÓN CREATIVA</span><h2 class="hab-title">Concurso Foto-Portada de Moda — 3º lugar</h2></div>
+            <div class="hab-controls"><a href="#" class="hab-label-tag" onclick="navigateToTag('WUATAN PHOTOGRAPHY',event)">WUATAN PHOTOGRAPHY</a><span class="hab-plus">+</span></div>
+        </div>
+        <div class="hab-content"><div class="vision-role"><span>ROL</span><p>Creative Direction · Styling · Photo Direction</p></div></div>
+    </div>
+
+    <div class="hab" id="hab-consultor" data-tag="BEATRIZ CASTRO">
+        <div class="hab-header" onclick="focusHab('hab-consultor')">
+            <div class="hab-meta"><span class="hab-code">VS_05 · CONSULTORÍA DE MODA · DIGITAL</span><h2 class="hab-title">Consultoría de Moda — Contenido & Digital</h2></div>
+            <div class="hab-controls"><a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a><span class="hab-plus">+</span></div>
+        </div>
+        <div class="hab-content"><div class="vision-system"><p class="vision-concept">ESTRATEGIA COMO DISEÑO</p><div class="vision-logic"><span>Content Strategy</span><span>Brand Direction</span><span>Digital Fashion</span></div></div></div>
+    </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SALA III: LA CÁMARA OSCURA
+═══════════════════════════════════════════ -->
+<div class="view room-view" id="mundos">
+    <div class="sala-header">
+        <span class="sala-code">ST_03 // EXPERIMENTAL · 3D · DIRECCIÓN CREATIVA · IA</span>
+        <h1 class="sala-title">La Cámara<br><em style="color:var(--amber);">Oscura</em></h1>
+        <p class="sala-desc">Donde la forma se disuelve y la identidad resiste. Diseño digital, world-building y dirección de obra propia.</p>
+    </div>
+
+    <!-- VITRIOL — FEATURED, ABIERTO POR DEFECTO -->
+    <div class="hab focused featured-hab" id="hab-vitriol" data-tag="BEATRIZ CASTRO">
+        <div class="hab-header" onclick="focusHab('hab-vitriol')">
+            <div class="hab-meta">
+                <div style="display:flex;align-items:center;gap:0;">
+                    <span class="featured-hab-badge">FEATURED</span>
+                </div>
+                <span class="hab-code amber" style="margin-top:4px;">CD_01 · DIRECCIÓN CREATIVA · 3D CHARACTER DESIGN</span>
+                <h2 class="hab-title">VITRIOL — Where form dissolves and identity resists</h2>
+            </div>
+            <div class="hab-controls">
+                <a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a>
+                <span class="hab-plus">+</span>
+            </div>
+        </div>
+        <div class="hab-content">
+            <div class="vision-system"><p class="vision-concept">CORROSIÓN COMO MÉTODO</p><div class="vision-logic"><span>3D Character Design</span><span>Visual Narrative</span><span>Concept Direction</span><span>Digital Sculpture</span></div></div>
+            <div class="vision-role"><span>CONCEPTO</span><p>La pedrería no decora, coloniza. Los ojos no son detalle: son evidencia de conciencia dentro del caos. En alquimia, el vitriolo es el ácido que corroe la materia hasta que solo queda lo esencial.</p></div>
+            <div class="moodboard-grid">
+                <div class="mb-slot mb-texture-1" data-tag="BEATRIZ CASTRO" onclick="openDetail('VITRIOL · Serie I','MORFOLOGÍA','DEL DESEO','vitriol_01.jpg')"><span class="mb-label">Serie I</span><img src="vitriol_01.jpg" onerror="this.style.minHeight='200px'"></div>
+                <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO" onclick="openDetail('VITRIOL · Serie II','MORFOLOGÍA','OMNISCIENTE','vitriol_02.jpg')"><span class="mb-label">Serie II</span><img src="vitriol_02.jpg"></div>
+                <div class="mb-slot mb-life-1" data-tag="BEATRIZ CASTRO"><span class="mb-label">Detail</span><img src="vitriol_03.jpg"></div>
+                <div class="mb-slot mb-etc" style="flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:24px;background:rgba(15,82,186,0.03);border:1px solid rgba(15,82,186,0.1)!important;">
+                    <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--sapphire);letter-spacing:0.2em;text-transform:uppercase;display:block;margin-bottom:12px;">STATEMENT</span>
+                    <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--matter-light);line-height:1.5;opacity:0.9;">"VITRIOL is not about what repels or attracts. It is about the moment you realize you cannot tell the difference."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EVOLVER SKIN — FEATURED -->
+    <div class="hab featured-hab" id="hab-evolver" data-tag="BEATRIZ CASTRO">
+        <div class="hab-header" onclick="focusHab('hab-evolver')">
+            <div class="hab-meta">
+                <div><span class="featured-hab-badge">FEATURED</span></div>
+                <span class="hab-code" style="margin-top:4px;">CD_04 · DIGITAL FASHION · PRODUCT CONCEPT</span>
+                <h2 class="hab-title">EVOLVER SKIN — Digital Second Skin System</h2>
+            </div>
+            <div class="hab-controls">
+                <a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a>
+                <span class="hab-plus">+</span>
+            </div>
+        </div>
+        <div class="hab-content">
+            <div class="vision-system"><p class="vision-concept">IDENTIDAD BIOMÉTRICA COMO MATERIA</p><div class="vision-logic"><span>Digital Product Design</span><span>3D Rendering</span><span>Concept Development</span><span>Packaging Direction</span></div></div>
+            <div class="vision-role"><span>CONCEPTO</span><p>Sistema modular inspirado en la exuvia biológica. Funciona como segunda piel: regenera la superficie dérmica y actúa como filtro biométrico que protege los datos de identidad. Cosmética anatómica inteligente.</p></div>
+            <div class="moodboard-grid">
+                <div class="mb-slot mb-feature" data-tag="BEATRIZ CASTRO" onclick="openDetail('EVOLVER SKIN','3D','RENDER','evolver_01.jpg')"><span class="mb-label">3D Design</span><img src="evolver_01.jpg" onerror="this.style.background='rgba(253,185,39,0.05)'"></div>
+                <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO" onclick="openDetail('EVOLVER SKIN · Packaging','PRODUCTO','FINAL','evolver_02.jpg')"><span class="mb-label">Packaging</span><img src="evolver_02.jpg" onerror="this.style.background='rgba(253,185,39,0.03)'"></div>
+                <div class="mb-slot mb-etc" style="flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:24px;background:rgba(253,185,39,0.02);border:1px solid rgba(253,185,39,0.08)!important;">
+                    <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--amber);letter-spacing:0.2em;display:block;margin-bottom:12px;">CATEGORÍA</span>
+                    <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--matter-light);line-height:1.4;">"Cosmética anatómica inteligente"</p>
+                    <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:6px;">
+                        <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--amber);border:1px solid rgba(253,185,39,0.2);padding:3px 8px;">EXUVIA</span>
+                        <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--amber);border:1px solid rgba(253,185,39,0.2);padding:3px 8px;">BIOMÉTRICO</span>
+                        <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--amber);border:1px solid rgba(253,185,39,0.2);padding:3px 8px;">MODULAR</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hab" id="hab-lovely" data-tag="BEATRIZ CASTRO">
+        <div class="hab-header" onclick="focusHab('hab-lovely')">
+            <div class="hab-meta"><span class="hab-code">CD_02 · AVATAR DIRECTION · DAZ 3D</span><h2 class="hab-title">LOVELY — Avatar & Digital Identity Direction</h2></div>
+            <div class="hab-controls"><a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a><span class="hab-plus">+</span></div>
+        </div>
+        <div class="hab-content">
+            <div class="vision-system"><p class="vision-concept">CARGA Y SOPORTE SIMULTÁNEOS</p><div class="vision-logic"><span>DAZ 3D</span><span>Avatar Design</span><span>Visual Narrative</span><span>Music Interpretation</span></div></div>
+            <div class="vision-role"><span>CONCEPTO</span><p>Reinterpretación de una identidad musical (Billie Eilish — Lovely) a través de un avatar 3D. La cadena como peso y ancla. El cubo como prisión y refugio.</p></div>
+            <div class="moodboard-grid">
+                <div class="mb-slot mb-feature" data-tag="BEATRIZ CASTRO"><span class="mb-label">Character Design</span><img src="lovely_01.jpg" onerror="this.style.background='rgba(15,82,186,0.05)'"></div>
+                <div class="mb-slot mb-texture-1" data-tag="BEATRIZ CASTRO"><span class="mb-label">Scene</span><img src="lovely_02.jpg" onerror="this.style.background='rgba(15,82,186,0.03)'"></div>
+                <div class="mb-slot mb-life-1" data-tag="BEATRIZ CASTRO"><span class="mb-label">Portrait</span><img src="lovely_03.jpg" onerror="this.style.background='rgba(15,82,186,0.03)'"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hab" id="hab-fractum" data-tag="BEATRIZ CASTRO">
+        <div class="hab-header" onclick="focusHab('hab-fractum')">
+            <div class="hab-meta"><span class="hab-code amber">CD_03 · BLENDER · CLO3D · WORLD-BUILDING</span><h2 class="hab-title">FRACTUM — 3D World & Garment Direction</h2></div>
+            <div class="hab-controls"><a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a><span class="hab-plus">+</span></div>
+        </div>
+        <div class="hab-content">
+            <div class="vision-system"><p class="vision-concept">WORLD-BUILDING DIGITAL</p><div class="vision-logic"><span>Blender</span><span>CLO3D</span><span>Avatar Integration</span><span>Scene Direction</span></div></div>
+            <div class="vision-role"><span>DISCIPLINAS</span><p>Integración de prendas CLO3D con entornos volumétricos en Blender. El avatar como puente entre diseño técnico y narrativa cinematográfica.</p></div>
+            <div class="moodboard-grid">
+                <div class="mb-slot mb-texture-1" data-tag="BEATRIZ CASTRO"><span class="mb-label">Environment</span><img src="fractum_01.jpg" onerror="this.style.background='rgba(15,82,186,0.05)'"></div>
+                <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO"><span class="mb-label">Avatar & Garment</span><img src="fractum_02.jpg" onerror="this.style.background='rgba(15,82,186,0.03)'"></div>
+                <div class="mb-slot mb-feature" data-tag="BEATRIZ CASTRO"><span class="mb-label">Textile Detail</span><img src="fractum_03.jpg" onerror="this.style.background='rgba(15,82,186,0.03)'"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hab" id="hab-milee" data-tag="BEATRIZ CASTRO">
+        <div class="hab-header" onclick="focusHab('hab-milee')">
+            <div class="hab-meta"><span class="hab-code amber">CD_05 · AI CAMPAIGN DIRECTION · SUSTAINABLE FASHION</span><h2 class="hab-title">MILEE Collection — AI Campaign Direction</h2></div>
+            <div class="hab-controls"><a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a><span class="hab-plus">+</span></div>
+        </div>
+        <div class="hab-content">
+            <div class="vision-system"><p class="vision-concept">HERENCIA VISUAL COMO ACTO POLÍTICO</p><div class="vision-logic"><span>AI Art Direction</span><span>Campaign Concept</span><span>Cultura Dominicana</span><span>Moda Sostenible</span></div></div>
+            <div class="vision-role"><span>CONCEPTO</span><p>Campaña visual generada con IA que fusiona identidad cultural dominicana con moda sostenible (Milee Collection). Referencia: Balmain Spring 2023, Look 2.</p></div>
+            <div class="moodboard-grid">
+                <div class="mb-slot mb-feature" data-tag="BEATRIZ CASTRO"><span class="mb-label">Campaign Visual</span><img src="milee_01.jpg" onerror="this.style.background='rgba(253,185,39,0.05)'"></div>
+                <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO"><span class="mb-label">Campaign Visual 02</span><img src="milee_02.jpg" onerror="this.style.background='rgba(253,185,39,0.03)'"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hab" id="hab-eschaton" data-tag="BEATRIZ CASTRO">
+        <div class="hab-header" onclick="focusHab('hab-eschaton')">
+            <div class="hab-meta"><span class="hab-code">CD_06 · CLO3D · DIGITAL GARMENT COLLECTION</span><h2 class="hab-title">ESCHATON.EXE — Digital Garment Collection</h2></div>
+            <div class="hab-controls"><a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a><span class="hab-plus">+</span></div>
+        </div>
+        <div class="hab-content">
+            <div class="vision-system"><p class="vision-concept">FIN DE SISTEMA COMO PUNTO DE PARTIDA</p><div class="vision-logic"><span>CLO3D</span><span>3D Pattern Engineering</span><span>Digital Collection</span><span>Virtual Sampling</span></div></div>
+            <div class="vision-role"><span>ROL</span><p>Diseño y desarrollo completo de colección digital en CLO3D: desde concepto hasta prototipo virtual. Patronaje técnico, simulación de tejidos y dirección estética.</p></div>
+            <div class="moodboard-grid">
+                <div class="mb-slot mb-feature" data-tag="BEATRIZ CASTRO"><span class="mb-label">CLO3D Simulation</span><img src="image_7dcdb3.jpg"></div>
+                <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO"><span class="mb-label">Pattern Development</span><img src="eschaton_01.jpg" onerror="this.src='image_7dcdb3.jpg'"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SOBRE MÍ
+═══════════════════════════════════════════ -->
+<div class="view" id="sobre-mi">
+    <div style="padding:100px 8% 200px;">
+        <div class="sala-header">
+            <span class="sala-code">SYS_PROFILE // IDENTIDAD · EXPERIENCIA · HERRAMIENTAS</span>
+            <h1 class="sala-title">Beatriz<br><em style="color:var(--sapphire);">Castro</em></h1>
+        </div>
+
+        <div class="sobre-grid">
+            <!-- BIO -->
+            <div class="sobre-bio-block">
+                <span class="sobre-role-tag">Digital Fashion Designer · CLO3D · AI · Madrid</span>
+                <p class="sobre-text">Diseñadora de moda digital especializada en el desarrollo de indumentaria 3D, dirección creativa y la integración de inteligencia artificial en los procesos de diseño y producción de moda.</p>
+                <p class="sobre-text" style="margin-top:16px;">Con experiencia en patronaje técnico industrial, estilismo, dirección fotográfica y desarrollo de campañas visuales, opero en la intersección entre el oficio tradicional y las herramientas digitales del presente.</p>
+                <p class="sobre-text" style="margin-top:16px;">Formación especializada en moda digital (IED Madrid). Experiencia en RD Fashion Week y proyectos editoriales independientes en España.</p>
+
+                <div class="sobre-skills">
+                    <span class="skill-tag">CLO3D</span><span class="skill-tag">Blender</span><span class="skill-tag">DAZ 3D</span>
+                    <span class="skill-tag">AI Art Direction</span><span class="skill-tag">Adobe Suite</span>
+                    <span class="skill-tag">Patronaje Digital</span><span class="skill-tag">Styling</span>
+                    <span class="skill-tag">Photo Direction</span><span class="skill-tag">3D Garment Dev.</span>
+                    <span class="skill-tag">Virtual Sampling</span>
+                </div>
+
+                <!-- DISPONIBILIDAD -->
+                <div style="margin-top:40px;padding:24px;border:1px solid rgba(29,158,117,0.2);background:rgba(29,158,117,0.03);">
+                    <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:#1D9E75;letter-spacing:0.3em;text-transform:uppercase;display:block;margin-bottom:10px;">● DISPONIBLE</span>
+                    <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--matter-light);opacity:0.8;line-height:1.6;">Abierta a proyectos freelance, colaboraciones en moda digital y posiciones en equipos de diseño o producto de moda. Madrid · Europa · Remoto.</p>
+                    <a onclick="navTo('contacto')" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--amber);text-decoration:none;display:inline-block;margin-top:16px;border-bottom:1px solid rgba(253,185,39,0.3);padding-bottom:2px;cursor:pointer;">CONTACTAR →</a>
+                </div>
+            </div>
+
+            <!-- EXPERIENCIA + HERRAMIENTAS -->
+            <div class="sobre-data-col">
+                <span class="sobre-section-label">Experiencia</span>
+
+                <div class="sobre-item">
+                    <div class="sobre-item-title">Wuatan Studio</div>
+                    <div class="sobre-item-sub">Estilismo · Dirección Creativa · Fotografía de Moda</div>
+                    <span class="sobre-item-year">2023 — 2024</span>
+                </div>
+                <div class="sobre-item">
+                    <div class="sobre-item-title">Mayle Vázquez</div>
+                    <div class="sobre-item-sub">Digital Pattern Maker · Product Development</div>
+                    <span class="sobre-item-year">2023 — 2024</span>
+                </div>
+                <div class="sobre-item">
+                    <div class="sobre-item-title">RD Fashion Week</div>
+                    <div class="sobre-item-sub">Styling Direction · Backstage Production</div>
+                    <span class="sobre-item-year">2024</span>
+                </div>
+                <div class="sobre-item">
+                    <div class="sobre-item-title">Consultoría Independiente</div>
+                    <div class="sobre-item-sub">Moda Digital · Contenido · Estrategia</div>
+                    <span class="sobre-item-year">2023 — Presente</span>
+                </div>
+
+                <span class="sobre-section-label" style="margin-top:40px;">Formación</span>
+                <div class="sobre-item">
+                    <div class="sobre-item-title">IED Madrid</div>
+                    <div class="sobre-item-sub">Máster en Moda Digital</div>
+                    <span class="sobre-item-year">2023 — 2024</span>
+                </div>
+
+                <span class="sobre-section-label" style="margin-top:40px;">Logros</span>
+                <div class="sobre-item">
+                    <div class="sobre-item-title">2º lugar — Concurso Foto-Portada</div>
+                    <div class="sobre-item-sub">Estilismo y Dirección Fotográfica</div>
+                </div>
+                <div class="sobre-item">
+                    <div class="sobre-item-title">3º lugar — Concurso Foto-Portada</div>
+                    <div class="sobre-item-sub">Dirección Creativa</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     CONTACTO
+═══════════════════════════════════════════ -->
+<div class="view" id="contacto">
+    <div style="padding:100px 8% 200px;">
+        <div class="contacto-header">
+            <span class="sala-code">SYS_CONTACT // TRABAJEMOS JUNTOS</span>
+            <h1 class="contacto-title">Hablemos<br><em>de tu proyecto.</em></h1>
+        </div>
+
+        <div class="contacto-grid">
+            <div>
+                <div class="contacto-links">
+
+                    <!-- WHATSAPP — primer lugar, más directo -->
+                    <a class="c-link" href="https://wa.me/qr/R3B4SBXIKHAQE1" target="_blank" rel="noopener"
+                       style="border-bottom-color:rgba(37,211,102,0.2);"
+                       onmouseover="this.style.color='#25D366';this.style.borderBottomColor='#25D366'"
+                       onmouseout="this.style.color='';this.style.borderBottomColor='rgba(37,211,102,0.2)'">
+                        <div>
+                            <span class="c-link-label" style="color:#25D366;">WHATSAPP</span>
+                            <span class="c-link-value">+34 603 508 827</span>
+                        </div>
+                        <span class="c-link-arrow">→</span>
+                    </a>
+
+                    <a class="c-link" href="mailto:castroconcepcionbeatriz@gmail.com">
+                        <div>
+                            <span class="c-link-label">EMAIL PRINCIPAL</span>
+                            <span class="c-link-value">castroconcepcionbeatriz@gmail.com</span>
+                        </div>
+                        <span class="c-link-arrow">→</span>
+                    </a>
+
+                    <a class="c-link" href="mailto:wuotanstudio@gmail.com">
+                        <div>
+                            <span class="c-link-label">EMAIL ESTUDIO</span>
+                            <span class="c-link-value">wuotanstudio@gmail.com</span>
+                        </div>
+                        <span class="c-link-arrow">→</span>
+                    </a>
+
+                    <a class="c-link" href="tel:+34603508827">
+                        <div>
+                            <span class="c-link-label">TELÉFONO</span>
+                            <span class="c-link-value">+34 603 508 827</span>
+                        </div>
+                        <span class="c-link-arrow">→</span>
+                    </a>
+
+                    <a class="c-link" href="https://www.linkedin.com/in/beatriz-castro-967529210/" target="_blank" rel="noopener">
+                        <div>
+                            <span class="c-link-label">LINKEDIN</span>
+                            <span class="c-link-value">linkedin.com/in/beatriz-castro-967529210</span>
+                        </div>
+                        <span class="c-link-arrow">→</span>
+                    </a>
+
+                    <a class="c-link" href="https://www.instagram.com/beatrizcastro9798" target="_blank" rel="noopener">
+                        <div>
+                            <span class="c-link-label">INSTAGRAM</span>
+                            <span class="c-link-value">@beatrizcastro9798</span>
+                        </div>
+                        <span class="c-link-arrow">→</span>
+                    </a>
+
+                    <!-- PORTFOLIO — enlace a la web -->
+                    <a class="c-link" href="index.html" target="_blank" rel="noopener"
+                       style="border-bottom-color:rgba(253,185,39,0.2);"
+                       onmouseover="this.style.color='var(--amber)';this.style.borderBottomColor='var(--amber)'"
+                       onmouseout="this.style.color='';this.style.borderBottomColor='rgba(253,185,39,0.2)'">
+                        <div>
+                            <span class="c-link-label" style="color:var(--amber);">PORTFOLIO</span>
+                            <span class="c-link-value">beatrizcastro.com · El Palacio</span>
+                        </div>
+                        <span class="c-link-arrow">→</span>
+                    </a>
+
+                </div>
+
+                <!-- FORMULARIO -->
+                <div class="contacto-form">
+                    <h3 class="contacto-form-title">Enviar mensaje</h3>
+                    <div class="c-form-group">
+                        <label class="c-form-label">Nombre</label>
+                        <input type="text" class="c-form-input" placeholder="Tu nombre" id="cf-nombre">
+                    </div>
+                    <div class="c-form-group">
+                        <label class="c-form-label">Email</label>
+                        <input type="email" class="c-form-input" placeholder="tu@email.com" id="cf-email">
+                    </div>
+                    <div class="c-form-group">
+                        <label class="c-form-label">Mensaje</label>
+                        <textarea class="c-form-input" placeholder="Cuéntame sobre tu proyecto..." id="cf-msg"></textarea>
+                    </div>
+                    <button class="c-form-btn" onclick="sendContactForm()">ENVIAR MENSAJE →</button>
+                    <p id="cf-status" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--amber);margin-top:12px;opacity:0;transition:opacity 0.3s;"></p>
+                </div>
+            </div>
+
+            <!-- QR COLUMN — Instagram + WhatsApp -->
+            <div class="contacto-qr-col">
+
+                <!-- QR Instagram -->
+                <a href="https://www.instagram.com/beatrizcastro9798" target="_blank" rel="noopener" style="text-decoration:none;">
+                    <img src="beatrizcastro9798_qr.png" class="contacto-qr-img" alt="QR Instagram @beatrizcastro9798"
+                         style="transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
+                </a>
+                <span class="contacto-qr-label">@BEATRIZCASTRO9798 · INSTAGRAM</span>
+
+                <!-- QR WhatsApp -->
+                <a href="https://wa.me/qr/R3B4SBXIKHAQE1" target="_blank" rel="noopener"
+                   style="text-decoration:none;margin-top:36px;">
+                    <img src="whatsapp_qr.png"
+                         style="width:200px;height:200px;object-fit:contain;border:1px solid rgba(37,211,102,0.2);padding:16px;background:rgba(37,211,102,0.03);transition:opacity 0.3s;opacity:0.85;"
+                         alt="QR WhatsApp Beatriz Castro"
+                         onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
+                </a>
+                <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:#25D366;letter-spacing:0.3em;margin-top:12px;text-align:center;opacity:0.7;">+34 603 508 827 · WHATSAPP</span>
+
+                <!-- Disponibilidad -->
+                <div style="margin-top:40px;width:100%;border-top:1px solid rgba(15,82,186,0.1);padding-top:30px;">
+                    <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--amber);letter-spacing:0.4em;display:block;margin-bottom:16px;">DISPONIBILIDAD</span>
+                    <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--matter-light);opacity:0.65;line-height:1.8;">
+                        Freelance · Colaboraciones<br>
+                        Moda Digital · CLO3D<br>
+                        Dirección Creativa · IA<br><br>
+                        Madrid · Europa · Remoto
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     ARCHIVO (TAGS)
+═══════════════════════════════════════════ -->
+<div class="view" id="archive-view">
+    <div style="padding:100px 8% 150px;">
+        <div class="archive-header">
+            <span class="archive-tag-display" id="active-tag-name">LABEL</span>
+            <h2 class="archive-title">System Archive</h2>
+            <a href="#" style="font-family:'Roboto Mono';font-size:9px;color:var(--sapphire);text-decoration:none;margin-top:16px;display:inline-block;" onclick="navTo('lobby')">✕ BACK_TO_PALACIO</a>
+        </div>
+        <div class="archive-results-grid" id="archive-results"></div>
+    </div>
+</div>
+
+</div><!-- /stage -->
+
+
+<!-- DETALLE -->
+<div class="detail-overlay" id="detail-overlay">
+    <div class="detail-main"><img src="" id="d-img"></div>
+    <div class="detail-sidebar">
+        <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--amber);letter-spacing:0.3em;">ANALYSIS</span>
+        <h2 id="d-name" style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;margin:16px 0;color:var(--matter-light);"></h2>
+        <div style="display:flex;gap:32px;margin-top:20px;">
+            <div><span id="d-val1" style="font-size:44px;font-weight:100;color:var(--sapphire);display:block;line-height:1;">—</span><span id="d-lab1" style="font-family:'Roboto Mono',monospace;font-size:8px;opacity:0.5;letter-spacing:0.2em;color:var(--matter-light);"></span></div>
+            <div><span id="d-val2" style="font-size:44px;font-weight:100;color:var(--amber);display:block;line-height:1;">—</span><span id="d-lab2" style="font-family:'Roboto Mono',monospace;font-size:8px;opacity:0.5;letter-spacing:0.2em;color:var(--matter-light);"></span></div>
+        </div>
+        <a href="#" onclick="closeDetail()" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(15,82,186,0.4);padding:10px 20px;text-decoration:none;display:inline-block;margin-top:auto;">CLOSE_ANALYSIS</a>
+    </div>
+</div>
+
+
+<script>
+let currentView = 'lobby';
+let isLocked = false;
+
+function navTo(id) {
+    const from = document.getElementById(currentView);
+    const to = document.getElementById(id);
+    if (!from || !to || id === currentView || isLocked) return;
+    isLocked = true;
+    from.classList.add('out');
+    const isInRoom = id !== 'lobby' && id !== 'novedades-screen';
+    document.getElementById('btn-back').classList.toggle('visible', id !== 'lobby');
+    document.getElementById('bottom-nav').classList.toggle('visible', isInRoom);
+    // Update active nav
+    document.querySelectorAll('.bnav-item').forEach(i => {
+        i.classList.toggle('active', i.dataset.nav === id);
+    });
+    setTimeout(() => {
+        from.classList.remove('active','out');
+        to.classList.add('active');
+        currentView = id;
+        // Scroll to top
+        to.scrollTop = 0;
+        setTimeout(() => isLocked = false, 500);
+    }, 400);
+}
+
+function navigateToTag(tag, event) {
+    if (event) event.stopPropagation();
+    const container = document.getElementById('archive-results');
+    document.getElementById('active-tag-name').innerText = tag;
+    container.innerHTML = '';
+    document.querySelectorAll(`[data-tag="${tag}"]`).forEach(match => {
+        const img = match.querySelector('img');
+        const title = match.closest('.hab')?.querySelector('.hab-title')?.innerText || 'Fragment';
+        if (img && img.src && !img.src.endsWith('/')) {
+            const item = document.createElement('div');
+            item.className = 'archive-item';
+            item.innerHTML = `<img src="${img.src}"><div class="archive-item-info"><span class="archive-item-name">${title}</span></div>`;
+            container.appendChild(item);
+        }
+    });
+    if (!container.innerHTML) container.innerHTML = `<p style="font-family:'Roboto Mono';opacity:0.3;">[ NO_VISUAL_DATA ]</p>`;
+    navTo('archive-view');
+}
+
+// LOBBY DRAG
+const lobbyTrack = document.getElementById('lobby-track');
+let isLobbyDown = false, lobbyStartX, lobbyXOffset = 0;
+document.addEventListener('mousedown', e => {
+    if (currentView === 'lobby') { isLobbyDown = true; lobbyStartX = e.pageX - lobbyXOffset; document.getElementById('cursor').classList.add('drag'); }
+});
+window.addEventListener('mouseup', () => { isLobbyDown = false; document.getElementById('cursor').classList.remove('drag'); });
+window.addEventListener('mousemove', e => {
+    const c = document.getElementById('cursor');
+    c.style.left = e.clientX + 'px'; c.style.top = e.clientY + 'px';
+    if (!isLobbyDown || currentView !== 'lobby') return;
+    lobbyXOffset = e.pageX - lobbyStartX;
+    const maxScroll = -(lobbyTrack.scrollWidth - window.innerWidth + 200);
+    lobbyXOffset = Math.max(maxScroll, Math.min(0, lobbyXOffset));
+    lobbyTrack.style.transform = `translateX(${lobbyXOffset}px)`;
+});
+
+// TOUCH DRAG para móvil
+let touchStartX = 0;
+lobbyTrack.parentElement.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX - lobbyXOffset; }, { passive: true });
+lobbyTrack.parentElement.addEventListener('touchmove', e => {
+    if (currentView !== 'lobby') return;
+    lobbyXOffset = e.touches[0].clientX - touchStartX;
+    const maxScroll = -(lobbyTrack.scrollWidth - window.innerWidth + 200);
+    lobbyXOffset = Math.max(maxScroll, Math.min(0, lobbyXOffset));
+    lobbyTrack.style.transform = `translateX(${lobbyXOffset}px)`;
+}, { passive: true });
+
+function focusHab(id) {
+    const all = document.querySelectorAll('.hab');
+    const target = document.getElementById(id);
+    if (!target) return;
+    if (target.classList.contains('focused')) { resetHabs(); return; }
+    all.forEach(h => {
+        if (h.id === id) { h.classList.add('focused'); h.classList.remove('hidden'); }
+        else { h.classList.add('hidden'); h.classList.remove('focused'); }
+    });
+    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+}
+function resetHabs() { document.querySelectorAll('.hab').forEach(h => h.classList.remove('focused','hidden')); }
+
+function openDetail(name, val1, val2, img) {
+    document.getElementById('d-name').innerText = name;
+    document.getElementById('d-val1').innerText = val1;
+    document.getElementById('d-val2').innerText = val2;
+    document.getElementById('d-img').src = img;
+    document.getElementById('detail-overlay').classList.add('active');
+}
+function closeDetail() { document.getElementById('detail-overlay').classList.remove('active'); }
+
+// FORMULARIO DE CONTACTO
+function sendContactForm() {
+    const nombre = document.getElementById('cf-nombre').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const msg = document.getElementById('cf-msg').value.trim();
+    const status = document.getElementById('cf-status');
+    if (!nombre || !email || !msg) { status.textContent = '[ COMPLETA TODOS LOS CAMPOS ]'; status.style.opacity = '1'; return; }
+    const mailto = `mailto:castroconcepcionbeatriz@gmail.com?subject=Contacto desde portfolio — ${encodeURIComponent(nombre)}&body=${encodeURIComponent('De: ' + nombre + '\nEmail: ' + email + '\n\n' + msg)}`;
+    window.location.href = mailto;
+    status.textContent = '[ ABRIENDO TU CLIENTE DE EMAIL ]';
+    status.style.opacity = '1';
+    setTimeout(() => status.style.opacity = '0', 3000);
+}
+
+// NOVEDADES INFINITO
+function setupInfiniteNews() {
+    const track = document.getElementById('news-infinite-track');
+    if (!track) return;
+    track.innerHTML += track.innerHTML;
+    let pos = 0;
+    (function move() {
+        if (currentView === 'novedades-screen') {
+            pos -= 0.7;
+            if (Math.abs(pos) >= track.scrollWidth / 2) pos = 0;
+            track.style.transform = `translateX(${pos}px)`;
+        }
+        requestAnimationFrame(move);
+    })();
+}
+
+// HINT DESAPARECE AL PRIMER DRAG
+document.addEventListener('mousedown', () => {
+    const hint = document.querySelector('.drag-hint');
+    if (hint && currentView === 'lobby') hint.style.opacity = '0';
+});
+
+// ── PANEL SLIDESHOW ──
+const slideshowConfig = [
+    { id: 'slides-01', dots: 'dots-01', interval: 3200 },
+    { id: 'slides-02', dots: 'dots-02', interval: 4000 },
+    { id: 'slides-03', dots: 'dots-03', interval: 2800 },
+];
+
+function initSlideshows() {
+    slideshowConfig.forEach(cfg => {
+        const container = document.getElementById(cfg.id);
+        const dotsEl = document.getElementById(cfg.dots);
+        if (!container || !dotsEl) return;
+        const slides = Array.from(container.querySelectorAll('.panel-slide'));
+        if (slides.length < 2) return;
+
+        // Build dots
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.className = 'panel-dot' + (i === 0 ? ' active' : '');
+            dotsEl.appendChild(dot);
+        });
+
+        let current = 0;
+        function goTo(n) {
+            slides[current].classList.remove('active');
+            dotsEl.children[current].classList.remove('active');
+            current = (n + slides.length) % slides.length;
+            slides[current].classList.add('active');
+            dotsEl.children[current].classList.add('active');
+        }
+
+        // Auto-advance — only when lobby is visible
+        let timer = setInterval(() => {
+            if (currentView === 'lobby') goTo(current + 1);
+        }, cfg.interval);
+    });
+}
+
+window.onload = () => {
+    setupInfiniteNews();
+    initSlideshows();
+};
+</script>
+</body>
+</html>
