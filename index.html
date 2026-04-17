@@ -427,7 +427,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <!-- Redes sociales compactas -->
             <a href="https://wa.me/qr/R3B4SBXIKHAQE1" target="_blank" rel="noopener"
                title="WhatsApp"
-               style="font-family:'Roboto Mono',monospace;font-size:8px;color:#25D366;border:1px solid rgba(37,211,102,0.3);padding:6px 12px;text-decoration:none;transition:0.3s;letter-spacing:0.1em;"
+               style="font-family:'Roboto Mono',monospace;font-size:8px;color:#252ed3;border:1px solid rgba(37, 57, 211, 0.3);padding:6px 12px;text-decoration:none;transition:0.3s;letter-spacing:0.1em;"
                onmouseover="this.style.background='rgba(37,211,102,0.1)'" onmouseout="this.style.background='transparent'">WA</a>
             <a href="https://www.instagram.com/beatrizcastro9798" target="_blank" rel="noopener"
                title="Instagram"
@@ -685,42 +685,26 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 <!-- ═══════════════════════════════════════════
      SALA III: LA CÁMARA OSCURA
 ═══════════════════════════════════════════ -->
-<div class="view room-view" id="mundos">
-    <div class="sala-header">
-        <span class="sala-code">ST_03 // EXPERIMENTAL · 3D · DIRECCIÓN CREATIVA · IA</span>
-        <h1 class="sala-title">La Cámara<br><em style="color:var(--amber);">Oscura</em></h1>
-        <p class="sala-desc">Donde la forma se disuelve y la identidad resiste. Diseño digital, world-building y dirección de obra propia.</p>
+<!-- Busca id="mundos" y cambia su header por este -->
+<section class="room-hero">
+    <div class="room-hero-bg">
+        <video autoplay loop muted playsinline poster="vitriol_01.jpg">
+            <source src="portada vitrial.mp4" type="video/mp4">
+        </video>
     </div>
+    
+    <div class="hero-content">
+        <span class="hero-code" style="font-family:'Roboto Mono'; color:var(--amber); letter-spacing:0.5em;">ST_03 // EXPERIMENTAL</span>
+        <h2 style="font-family:'Cormorant Garamond'; font-size: clamp(48px, 10vw, 120px); line-height: 0.85; margin: 24px 0;">La Cámara<br><em>Oscura</em></h2>
+        <p style="opacity:0.8; font-size: 14px; max-width: 480px; line-height: 1.8; font-weight: 300;">Donde la forma se disuelve y la identidad resiste. VITRIOL representa el punto donde la arquitectura digital encuentra su propia conciencia.</p>
+        <a class="hero-scroll-trigger" onclick="document.getElementById('sala-3-content').scrollIntoView({behavior:'smooth'})">DESCENDER AL ARCHIVO ↓</a>
+    </div>
+</section>
 
-    <!-- VITRIOL — FEATURED, ABIERTO POR DEFECTO -->
-    <div class="hab focused featured-hab" id="hab-vitriol" data-tag="BEATRIZ CASTRO">
-        <div class="hab-header" onclick="focusHab('hab-vitriol')">
-            <div class="hab-meta">
-                <div style="display:flex;align-items:center;gap:0;">
-                    <span class="featured-hab-badge">FEATURED</span>
-                </div>
-                <span class="hab-code amber" style="margin-top:4px;">CD_01 · DIRECCIÓN CREATIVA · 3D CHARACTER DESIGN</span>
-                <h2 class="hab-title">VITRIOL — Where form dissolves and identity resists</h2>
-            </div>
-            <div class="hab-controls">
-                <a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a>
-                <span class="hab-plus">+</span>
-            </div>
-        </div>
-        <div class="hab-content">
-            <div class="vision-system"><p class="vision-concept">CORROSIÓN COMO MÉTODO</p><div class="vision-logic"><span>3D Character Design</span><span>Visual Narrative</span><span>Concept Direction</span><span>Digital Sculpture</span></div></div>
-            <div class="vision-role"><span>CONCEPTO</span><p>La pedrería no decora, coloniza. Los ojos no son detalle: son evidencia de conciencia dentro del caos. En alquimia, el vitriolo es el ácido que corroe la materia hasta que solo queda lo esencial.</p></div>
-            <div class="moodboard-grid">
-                <div class="mb-slot mb-texture-1" data-tag="BEATRIZ CASTRO" onclick="openDetail('VITRIOL · Serie I','MORFOLOGÍA','DEL DESEO','vitriol_01.jpg')"><span class="mb-label">Serie I</span><img src="vitriol_01.jpg" onerror="this.style.minHeight='200px'"></div>
-                <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO" onclick="openDetail('VITRIOL · Serie II','MORFOLOGÍA','OMNISCIENTE','vitriol_02.jpg')"><span class="mb-label">Serie II</span><img src="vitriol_02.jpg"></div>
-                <div class="mb-slot mb-life-1" data-tag="BEATRIZ CASTRO"><span class="mb-label">Detail</span><img src="vitriol_03.jpg"></div>
-                <div class="mb-slot mb-etc" style="flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:24px;background:rgba(15,82,186,0.03);border:1px solid rgba(15,82,186,0.1)!important;">
-                    <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--sapphire);letter-spacing:0.2em;text-transform:uppercase;display:block;margin-bottom:12px;">STATEMENT</span>
-                    <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--matter-light);line-height:1.5;opacity:0.9;">"VITRIOL is not about what repels or attracts. It is about the moment you realize you cannot tell the difference."</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- IMPORTANTE: Envuelve tus proyectos actuales en un <div id="sala-3-content"> justo debajo -->
+<div class="room-section" id="sala-3-content" style="padding: 100px 8%;">
+    <!-- Aquí van tus proyectos actuales (VITRIOL, EVOLVER, etc.) -->
+</div>
 
     <!-- EVOLVER SKIN — FEATURED -->
     <div class="hab featured-hab" id="hab-evolver" data-tag="BEATRIZ CASTRO">
@@ -1242,5 +1226,26 @@ window.onload = () => {
     initSlideshows();
 };
 </script>
+function navTo(id) {
+    const from = document.getElementById(currentView);
+    const to = document.getElementById(id);
+    if (!from || !to || id === currentView) return;
+
+    // Oculta la sala actual
+    from.classList.remove('active');
+    
+    setTimeout(() => {
+        // Muestra la nueva sala
+        to.classList.add('active');
+        currentView = id;
+        
+        // Actualiza el botón de volver y el menú
+        document.getElementById('btn-back').classList.toggle('visible', id !== 'lobby');
+        
+        // Scroll al inicio de la nueva vista
+        to.scrollTop = 0;
+    }, 150); // El tiempo coincide con la transición CSS
+}
+
 </body>
 </html>
