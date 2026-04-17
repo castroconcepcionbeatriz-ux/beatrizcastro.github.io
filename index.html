@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Beatriz Castro  — El Palacio</title>
+<title>Beatriz Castro — El Palacio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Inter:wght@100;200;300;400;500&family=Roboto+Mono:wght@200;300;400&display=swap" rel="stylesheet">
@@ -36,14 +36,45 @@ html, body {
 }
 
 /* ── TRANSICIÓN REDUCIDA A 0.4s ── */
+/* 1. Busca la clase .view y reemplázala por esta para lograr el aislamiento total */
 .view {
-    position: absolute; inset: 0; opacity: 0; pointer-events: none;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    overflow-y: auto; overflow-x: hidden;
+    position: absolute; 
+    inset: 0; 
+    opacity: 0; 
+    pointer-events: none; 
+    visibility: hidden; /* Esto asegura que las salas no se pisen */
+    transition: 0.8s cubic-bezier(0.2, 1, 0.3, 1); 
+    overflow-y: auto; 
+    z-index: 5;
+    background: var(--control-dark);
 }
-.view.active { opacity: 1; pointer-events: all; }
-.view.out { transform: translateY(-20px); filter: blur(8px); }
+.view.active { opacity: 1; pointer-events: all; visibility: visible; }
 
+/* 2. Pega esto justo debajo para la nueva portada de video */
+.room-hero {
+    height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    padding: 0 8%; 
+    position: relative; 
+    overflow: hidden;
+}
+.room-hero-bg {
+    position: absolute; 
+    inset: 0; 
+    z-index: -1;
+    filter: brightness(0.6) contrast(1.1);
+}
+.room-hero-bg video { width: 100%; height: 100%; object-fit: cover; }
+.hero-content { max-width: 800px; position: relative; z-index: 2; }
+.hero-scroll-trigger { 
+    font-family: 'Roboto Mono', monospace; font-size: 9px; 
+    color: var(--amber); border: 1px solid var(--amber);
+    padding: 14px 28px; text-decoration: none; display: inline-block;
+    margin-top: 40px; transition: 0.3s; cursor: pointer;
+    background: rgba(0,0,0,0.3); backdrop-filter: blur(8px);
+}
 /* ── CURSOR ── */
 #cursor {
     position: fixed; width: 34px; height: 34px; border: 1px solid var(--sapphire);
