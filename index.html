@@ -3,7 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Beatriz Castro — El Palacio</title>
+<title>Beatriz Castro — Digital Fashion Designer · CLO3D · Madrid</title>
+<meta name="description" content="Portfolio de Beatriz Castro, diseñadora de moda digital especializada en CLO3D, Blender, patronaje industrial y dirección creativa. Santo Domingo · Madrid.">
+<meta name="keywords" content="diseñadora moda digital, CLO3D, patronaje industrial, digital fashion designer, Blender, DAZ 3D, moda 3D Madrid, tech-pack, virtual sampling">
+<meta name="author" content="Beatriz Castro">
+<meta property="og:title" content="Beatriz Castro — Digital Fashion Designer">
+<meta property="og:description" content="Del patrón físico al avatar digital. Patronaje industrial, CLO3D, dirección creativa. Santo Domingo · Madrid.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="fotos/elizafacetoface.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Beatriz Castro — Digital Fashion Designer">
+<meta name="twitter:description" content="Del patrón físico al avatar digital. CLO3D · Blender · Patronaje Industrial.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Inter:wght@100;200;300;400;500&family=Roboto+Mono:wght@200;300;400&display=swap" rel="stylesheet">
@@ -124,7 +134,7 @@ html, body {
 @keyframes hint-fade { 0%,100%{opacity:0.3} 50%{opacity:0.7} }
 
 /* LOBBY PANELS */
-.track-container { width: 100%; height: 100vh; display: flex; align-items: center; overflow: hidden; }
+.track-container { width: 100%; height: 100vh; display: flex; align-items: center; overflow: hidden; touch-action: pan-x; }
 .track { display: flex; align-items: center; gap: 80px; padding: 0 12vw; will-change: transform; transition: transform 0.1s ease-out; }
 .panel { flex-shrink: 0; position: relative; transition: transform 0.5s; cursor: pointer; }
 .panel:hover { transform: translateY(-12px); }
@@ -383,12 +393,180 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     .panel-lg { width: 85vw; height: 65vh; }
     .panel-sm { width: 70vw; height: 50vh; }
     .track { padding: 0 5vw; gap: 24px; }
-    .bnav-item { padding: 14px 12px; font-size: 7px; }
+    .bnav-item { padding: 14px 10px; font-size: 7px; }
+    #bottom-nav .bnav-social-hide { display: none; }
+    #bottom-nav span[style*="flex:1"] { display: none; }
 }
-387:  }          ← última línea del CSS que ya existe
-388:  ← NUEVA LÍNEA — pega aquí el CSS de Mayle (desde #hab-mayle { ... hasta el último })
-...
-???:  </style>   ← esto se desplaza hacia abajo automáticamente
+
+/* ══════════════════════════════════════
+   SALA MAYLE — Sistema e-commerce técnico
+   Fondo lino cálido, aislado del dark theme
+══════════════════════════════════════ */
+#hab-mayle {
+  --m-bg: #EDE3D4;
+  --m-bg-card: #F5EFE6;
+  --m-ink: #1A1208;
+  --m-ink-2: #4A3C2A;
+  --m-amber: #C17D2A;
+  --m-blue: #0F52BA;
+  --m-border: rgba(90,60,20,0.12);
+  --m-overlay: rgba(15,10,4,0.82);
+}
+#hab-mayle { background: transparent; border-bottom: 1px solid rgba(90,60,20,0.15); }
+#hab-mayle .hab-header { background: var(--m-bg); border-bottom: 1px solid var(--m-border); padding: 30px 40px; }
+#hab-mayle .hab-header:hover { color: var(--m-amber); }
+#hab-mayle .hab-code { color: var(--m-blue); }
+#hab-mayle .hab-title { color: var(--m-ink); }
+#hab-mayle .hab-plus { color: var(--m-blue); }
+#hab-mayle.focused .hab-plus { color: var(--m-amber); }
+#hab-mayle .hab-label-tag { color: var(--m-amber); border-color: rgba(193,125,42,0.35); }
+#hab-mayle .hab-label-tag:hover { background: var(--m-amber); color: #fff; }
+.mayle-room { background: var(--m-bg); padding: 48px 40px 64px; }
+.mayle-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 52px; padding-bottom: 40px; border-bottom: 1px solid var(--m-border); }
+.mayle-role-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--m-blue); letter-spacing: 0.4em; text-transform: uppercase; display: block; margin-bottom: 14px; }
+.mayle-role-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--m-ink-2); line-height: 1.75; }
+.mayle-stats { display: flex; gap: 28px; flex-wrap: wrap; align-items: flex-start; padding-top: 8px; }
+.mayle-stat { display: flex; flex-direction: column; gap: 5px; }
+.mayle-stat-val { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 300; color: var(--m-amber); line-height: 1; }
+.mayle-stat-lab { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--m-ink-2); opacity: 0.6; letter-spacing: 0.2em; text-transform: uppercase; }
+.mayle-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+.mayle-card { background: var(--m-bg-card); border: 1px solid var(--m-border); cursor: pointer; position: relative; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s; }
+.mayle-card:hover { box-shadow: 0 12px 40px rgba(90,60,20,0.15); transform: translateY(-4px); }
+.mayle-card-img-wrap { aspect-ratio: 3/4; overflow: hidden; position: relative; background: #E8DDD0; }
+.mayle-card-img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.6s ease, opacity 0.4s; opacity: 0.85; display: block; }
+.mayle-card:hover .mayle-card-img { transform: scale(1.06); opacity: 1; }
+.mayle-card-overlay { position: absolute; inset: 0; background: var(--m-overlay); opacity: 0; transition: opacity 0.35s ease; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px 20px; pointer-events: none; }
+.mayle-card:hover .mayle-card-overlay { opacity: 1; }
+.mayle-overlay-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: #F5EFE6; font-weight: 300; margin-bottom: 12px; line-height: 1.2; }
+.mayle-overlay-metrics { display: flex; flex-direction: column; gap: 7px; }
+.mayle-metric-pill { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--m-amber); letter-spacing: 0.15em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+.mayle-metric-pill::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--m-amber); flex-shrink: 0; }
+.mayle-card-cta { font-family: 'Roboto Mono', monospace; font-size: 8px; color: #F5EFE6; border: 1px solid rgba(245,239,230,0.3); padding: 6px 14px; text-align: center; margin-top: 14px; letter-spacing: 0.2em; }
+.mayle-card-meta { padding: 14px 16px 18px; border-top: 1px solid var(--m-border); }
+.mayle-card-code { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--m-blue); letter-spacing: 0.25em; text-transform: uppercase; display: block; margin-bottom: 5px; }
+.mayle-card-name { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 300; color: var(--m-ink); line-height: 1.15; margin-bottom: 8px; }
+.mayle-card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.mayle-card-tag { font-family: 'Roboto Mono', monospace; font-size: 7px; color: var(--m-amber); border: 1px solid rgba(193,125,42,0.25); padding: 2px 7px; letter-spacing: 0.1em; text-transform: uppercase; }
+.mayle-modal-bg { position: fixed; inset: 0; background: rgba(15,10,4,0.88); z-index: 3000; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.35s; backdrop-filter: blur(8px); }
+.mayle-modal-bg.open { opacity: 1; pointer-events: all; }
+.mayle-modal { background: var(--m-bg-card); max-width: 880px; width: 100%; max-height: 90vh; overflow-y: auto; display: grid; grid-template-columns: 1fr 1.1fr; position: relative; }
+@media (max-width: 700px) { .mayle-modal { grid-template-columns: 1fr; } }
+.mayle-modal-img-col { background: #E0D4C4; min-height: 400px; overflow: hidden; position: relative; }
+.mayle-modal-img-col img { width: 100%; height: 100%; object-fit: cover; object-position: top center; opacity: 0.9; }
+.mayle-modal-badge { position: absolute; top: 20px; left: 20px; font-family: 'Roboto Mono', monospace; font-size: 7px; background: var(--m-amber); color: #fff; padding: 4px 10px; letter-spacing: 0.2em; text-transform: uppercase; }
+.mayle-modal-info { padding: 36px 32px 40px; overflow-y: auto; background: var(--m-bg-card); }
+.mayle-modal-close { position: absolute; top: 16px; right: 16px; background: transparent; border: 1px solid var(--m-border); color: var(--m-ink); font-family: 'Roboto Mono', monospace; font-size: 9px; padding: 6px 12px; cursor: pointer; z-index: 10; transition: 0.2s; }
+.mayle-modal-close:hover { background: var(--m-ink); color: var(--m-bg); }
+.mayle-modal-code { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--m-blue); letter-spacing: 0.35em; text-transform: uppercase; display: block; margin-bottom: 10px; }
+.mayle-modal-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; color: var(--m-ink); line-height: 1.1; margin-bottom: 24px; }
+.mayle-modal-subtitle { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--m-amber); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.mayle-modal-subtitle::after { content: ''; flex: 1; height: 1px; background: rgba(193,125,42,0.25); }
+.mayle-spec-block { margin-bottom: 22px; }
+.mayle-spec-key { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--m-blue); letter-spacing: 0.25em; text-transform: uppercase; display: block; margin-bottom: 5px; }
+.mayle-spec-val { font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 300; color: var(--m-ink-2); line-height: 1.65; }
+.mayle-spec-val strong { font-weight: 500; color: var(--m-ink); }
+.mayle-modal-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--m-border); }
+.mayle-modal-tag { font-family: 'Roboto Mono', monospace; font-size: 7px; color: var(--m-amber); border: 1px solid rgba(193,125,42,0.3); padding: 3px 9px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* ══════════════════════════════════════
+   EDITORIAL ROOM — Leonel & Elisa
+   Narrativa de backstage tipo reportaje
+══════════════════════════════════════ */
+.editorial-room { background: var(--control-dark); }
+
+.ed-act { padding: 56px 40px; border-bottom: 1px solid rgba(15,82,186,0.08); }
+.ed-act--dark { background: #0D0D14; border-bottom: 1px solid rgba(15,82,186,0.15); }
+
+.ed-act-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; padding-bottom: 16px; border-bottom: 1px solid rgba(253,185,39,0.12); }
+.ed-act-num { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; color: rgba(253,185,39,0.15); line-height: 1; }
+.ed-act-label { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--amber); letter-spacing: 0.4em; text-transform: uppercase; }
+
+.ed-act-body { display: grid; gap: 48px; align-items: start; }
+.ed-act-body--text-first { grid-template-columns: 1fr 1fr; }
+.ed-act-body--img-first { grid-template-columns: 1fr 1fr; }
+
+.ed-pull-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 2.5vw, 32px); font-weight: 300; font-style: italic; color: var(--matter-light); line-height: 1.3; margin-bottom: 24px; padding-left: 20px; border-left: 2px solid var(--amber); }
+.ed-body-text { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300; color: var(--matter-light); opacity: 0.75; line-height: 1.8; }
+.ed-role-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.ed-pill { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--sapphire); border: 1px solid rgba(15,82,186,0.3); padding: 4px 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+.ed-img-block { position: relative; }
+.ed-img-block img { width: 100%; aspect-ratio: 2/3; object-fit: cover; object-position: top; opacity: 0.8; display: block; filter: contrast(1.05); }
+.ed-img-caption { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--matter-light); opacity: 0.35; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-top: 10px; }
+
+/* CRISIS GRID */
+.ed-crisis-block { padding: 8px 0; }
+.ed-crisis-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--sapphire); letter-spacing: 0.35em; text-transform: uppercase; margin-bottom: 28px; opacity: 0.6; }
+.ed-crisis-grid { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 16px; align-items: start; }
+.ed-crisis-item { background: rgba(15,82,186,0.04); border: 1px solid rgba(15,82,186,0.1); padding: 24px 20px; }
+.ed-crisis-icon { font-size: 20px; display: block; margin-bottom: 10px; color: var(--amber); font-style: normal; font-family: monospace; }
+.ed-crisis-step { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--amber); letter-spacing: 0.25em; text-transform: uppercase; display: block; margin-bottom: 12px; }
+.ed-crisis-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--matter-light); opacity: 0.7; line-height: 1.7; }
+.ed-crisis-arrow { font-family: 'Roboto Mono', monospace; font-size: 20px; color: rgba(253,185,39,0.3); align-self: center; padding-top: 24px; }
+
+/* TIMELINE */
+.ed-timeline { margin-top: 28px; border-left: 1px solid rgba(15,82,186,0.2); padding-left: 20px; display: flex; flex-direction: column; gap: 14px; }
+.ed-tl-item { display: flex; align-items: flex-start; gap: 12px; }
+.ed-tl-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--amber); flex-shrink: 0; margin-top: 5px; }
+.ed-tl-text { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--matter-light); opacity: 0.55; letter-spacing: 0.1em; line-height: 1.6; }
+
+/* GALERÍA FINAL */
+.ed-gallery { padding: 40px 40px 56px; }
+.ed-gallery-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--sapphire); letter-spacing: 0.4em; text-transform: uppercase; margin-bottom: 20px; opacity: 0.5; }
+.ed-gallery-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.ed-gallery-item img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; opacity: 0.7; display: block; transition: opacity 0.4s; filter: contrast(1.05) brightness(0.95); }
+.ed-gallery-item img:hover { opacity: 1; }
+.ed-gallery-item--tall img { aspect-ratio: 2/3; }
+
+@media (max-width: 768px) {
+    .ed-act-body--text-first,
+    .ed-act-body--img-first { grid-template-columns: 1fr; }
+    .ed-crisis-grid { grid-template-columns: 1fr; }
+    .ed-crisis-arrow { display: none; }
+    .ed-gallery-grid { grid-template-columns: 1fr 1fr; }
+    .ed-act { padding: 40px 20px; }
+    .ed-gallery { padding: 32px 20px 48px; }
+}
+
+/* PLACEHOLDERS DE FOTO */
+.ed-photo-placeholder {
+    width: 100%; aspect-ratio: 2/3;
+    background: rgba(15,82,186,0.04);
+    border: 1px dashed rgba(15,82,186,0.25);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px;
+}
+.ed-photo-placeholder--grid {
+    aspect-ratio: unset; width: 100%; height: 100%; min-height: 160px;
+}
+.ed-placeholder-icon {
+    font-family: 'Roboto Mono', monospace; font-size: 13px;
+    color: var(--sapphire); opacity: 0.5; letter-spacing: 0.2em;
+}
+.ed-placeholder-text {
+    font-family: 'Roboto Mono', monospace; font-size: 8px;
+    color: var(--matter-light); opacity: 0.3; letter-spacing: 0.1em;
+    text-align: center; line-height: 1.7;
+}
+
+/* GRID DE CONCEPTO */
+.ed-concept-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.ed-concept-item {
+    border: 1px solid rgba(15,82,186,0.1); padding: 24px 20px;
+    background: rgba(15,82,186,0.03);
+}
+.ed-concept-label {
+    font-family: 'Roboto Mono', monospace; font-size: 8px;
+    color: var(--amber); letter-spacing: 0.25em; text-transform: uppercase;
+    display: block; margin-bottom: 12px;
+}
+.ed-concept-text {
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300;
+    color: var(--matter-light); opacity: 0.65; line-height: 1.7;
+}
+@media (max-width: 768px) { .ed-concept-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -402,15 +580,15 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
 <!-- BOTTOM NAV PERSISTENTE -->
 <nav id="bottom-nav">
-    <a class="bnav-item" onclick="navTo('oficio')" data-nav="oficio">I · La Corte</a>
-    <a class="bnav-item" onclick="navTo('vision')" data-nav="vision">II · La Exposición</a>
-    <a class="bnav-item" onclick="navTo('mundos')" data-nav="mundos">III · La Cámara</a>
+    <a class="bnav-item" onclick="navTo('oficio')" data-nav="oficio">I · La Corte <span style="opacity:0.4;font-size:6px;">PATRONAJE</span></a>
+    <a class="bnav-item" onclick="navTo('vision')" data-nav="vision">II · La Exposición <span style="opacity:0.4;font-size:6px;">DISEÑO</span></a>
+    <a class="bnav-item" onclick="navTo('mundos-content')" data-nav="mundos-content">III · La Cámara <span style="opacity:0.4;font-size:6px;">DIGITAL</span></a>
     <a class="bnav-item" onclick="navTo('sobre-mi')" data-nav="sobre-mi">Sobre mí</a>
     <a class="bnav-item" onclick="navTo('contacto')" data-nav="contacto">Contacto</a>
     <span style="flex:1"></span>
-    <a class="bnav-item" href="https://wa.me/qr/R3B4SBXIKHAQE1" target="_blank" rel="noopener" style="color:#25D366;opacity:0.7;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">WA</a>
-    <a class="bnav-item" href="https://www.instagram.com/beatrizcastro9798" target="_blank" rel="noopener" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.4'">IG</a>
-    <a class="bnav-item" href="https://www.linkedin.com/in/beatriz-castro-967529210/" target="_blank" rel="noopener" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.4'">LI</a>
+    <a class="bnav-item bnav-social-hide" href="https://wa.me/qr/R3B4SBXIKHAQE1" target="_blank" rel="noopener" style="color:#25D366;opacity:0.7;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">WA</a>
+    <a class="bnav-item bnav-social-hide" href="https://www.instagram.com/beatrizcastro9798" target="_blank" rel="noopener" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.4'">IG</a>
+    <a class="bnav-item bnav-social-hide" href="https://www.linkedin.com/in/beatriz-castro-967529210/" target="_blank" rel="noopener" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.4'">LI</a>
 </nav>
 
 <div id="stage">
@@ -422,8 +600,10 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <header class="l-header">
         <div>
             <h1 class="l-name">Beatriz <em>Castro</em></h1>
+            <span style="font-family:'Roboto Mono',monospace;font-size:10px;color:var(--matter-light);opacity:0.5;letter-spacing:0.05em;display:block;margin-bottom:6px;">Del patrón físico al avatar digital — sin renunciar a ninguno.</span>
             <span class="l-tagline">Digital Fashion Designer · CLO3D · AI · Madrid</span>
             <span class="l-bio">3D Garment Development · Fashion Product · Creative Direction</span>
+            <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--sapphire);opacity:0.5;letter-spacing:0.25em;display:block;margin-top:6px;">SANTO DOMINGO · MADRID</span>
             <span class="l-available">● Disponible para proyectos</span>
         </div>
         <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
@@ -461,11 +641,11 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="panel-data"><span class="data-val" style="color:var(--amber);">92%</span><span class="data-lab">Estructura</span></div>
                 <div class="panel-frame">
                     <div class="panel-slides" id="slides-01">
-                        <div class="panel-slide active"><span class="panel-slide-label">Mayle Vázquez · Patronaje</span><img src="fotos\santo-domingo-dress.png" alt=""></div>
-                        <div class="panel-slide"><span class="panel-slide-label">El Pozo Jacket</span><img src="fotos\el pozo jacket- completo .png" alt=""></div>
-                        <div class="panel-slide"><span class="panel-slide-label">Caribe Coat</span><img src="fotos\caribe coat- completo .png" alt=""></div>
-                        <div class="panel-slide"><span class="panel-slide-label">Leonel Lirio · RW 2024</span><img src="fotos\lionellirio2.jpg" alt=""></div>
-                        <div class="panel-slide"><span class="panel-slide-label">Elisa Morato · RW 2024</span><img src="fotos\elizafacetoface.jpg" alt=""></div>
+                        <div class="panel-slide active"><span class="panel-slide-label">Mayle Vázquez · Patronaje</span><img loading="lazy" src="fotos/santo-domingo-dress.png" alt=""></div>
+                        <div class="panel-slide"><span class="panel-slide-label">El Pozo Jacket</span><img loading="lazy" src="fotos/el pozo jacket- completo .png" alt=""></div>
+                        <div class="panel-slide"><span class="panel-slide-label">Caribe Coat</span><img loading="lazy" src="fotos/caribe coat- completo .png" alt=""></div>
+                        <div class="panel-slide"><span class="panel-slide-label">Leonel Lirio · RW 2024</span><img loading="lazy" src="fotos/lionellirio2.jpg" alt=""></div>
+                        <div class="panel-slide"><span class="panel-slide-label">Elisa Morato · RW 2024</span><img loading="lazy" src="fotos/elizafacetoface.jpg" alt=""></div>
                     </div>
                     <div class="panel-dots" id="dots-01"></div>
                     <div class="panel-info">
@@ -480,9 +660,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="panel-data"><span class="data-val">02</span><span class="data-lab">Visión</span></div>
                 <div class="panel-frame" style="border:1px solid rgba(15,82,186,0.3);">
                     <div class="panel-slides" id="slides-02">
-                        <div class="panel-slide active" style="background:rgba(15,82,186,0.08);"><span class="panel-slide-label">Desfile Oscar de la Renta</span><img src="fotos\oscardelarenta.png" alt="" onerror="this.style.display='none'"></div>
-                        <div class="panel-slide" style="background:rgba(15,82,186,0.05);"><span class="panel-slide-label">Concurso Foto-Portada</span><img src="fotos\ozoriamodelo1.jpg" alt="" onerror="this.style.display='none'"></div>
-                        <div class="panel-slide" style="background:rgba(15,82,186,0.03);"><span class="panel-slide-label">Dirección Creativa</span><img src="fotos\leonel35.jpg" alt="" onerror="this.style.display='none'"></div>
+                        <div class="panel-slide active" style="background:rgba(15,82,186,0.08);"><span class="panel-slide-label">Desfile Oscar de la Renta</span><img loading="lazy" src="fotos/oscardelarenta.png" alt="" onerror="this.style.display='none'"></div>
+                        <div class="panel-slide" style="background:rgba(15,82,186,0.05);"><span class="panel-slide-label">Concurso Foto-Portada</span><img loading="lazy" src="fotos/ozoriamodelo1.jpg" alt="" onerror="this.style.display='none'"></div>
+                        <div class="panel-slide" style="background:rgba(15,82,186,0.03);"><span class="panel-slide-label">Dirección Creativa</span><img loading="lazy" src="fotos/leonel35.jpg" alt="" onerror="this.style.display='none'"></div>
                     </div>
                     <div class="panel-dots" id="dots-02"></div>
                     <div class="panel-info">
@@ -493,16 +673,16 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             </div>
 
             <!-- PANEL ST_03: La Cámara Oscura — FEATURED + slideshow -->
-            <div class="panel panel-lg" id="panel-03" onclick="navTo('mundos');">
+            <div class="panel panel-lg" id="panel-03" onclick="navTo('mundos-content');">
                 <span class="panel-featured">FEATURED</span>
                 <div class="panel-data"><span class="data-val">2026</span><span class="data-lab" style="color:var(--amber);">Experimental</span></div>
                 <div class="panel-frame">
                     <div class="panel-slides" id="slides-03">
-                        <div class="panel-slide active"><span class="panel-slide-label">VITRIOL · 3D Sculpture</span><img src="fotos\18.png" alt="" onerror="this.style.display='none'"></div>
-                        <div class="panel-slide"><span class="panel-slide-label">EVOLVER SKIN · Packaging</span><img src="fotos\logo evolver skin.png" alt="" onerror="this.style.display='none'"></div>
-                        <div class="panel-slide"><span class="panel-slide-label">LOVELY · DAZ 3D Avatar</span><img src="fotos\bea 1.png" alt="" onerror="this.style.display='none'"></div>
-                        <div class="panel-slide"><span class="panel-slide-label">FRACTUM · Blender + CLO3D</span><img src="fotos\0144.png" alt="" onerror="this.style.display='none'"></div>
-                        <div class="panel-slide"><span class="panel-slide-label">MILEE · AI Campaign</span><img src="milee_01.jpg" alt="" onerror="this.style.display='none'"></div>
+                        <div class="panel-slide active"><span class="panel-slide-label">VITRIOL · 3D Sculpture</span><img loading="lazy" src="fotos/18.png" alt="" onerror="this.style.display='none'"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">EVOLVER SKIN · Packaging</span><img loading="lazy" src="fotos/logo evolver skin.png" alt="" onerror="this.style.display='none'"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">LOVELY · DAZ 3D Avatar</span><img loading="lazy" src="fotos/bea 1.png" alt="" onerror="this.style.display='none'"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">FRACTUM · Blender + CLO3D</span><img loading="lazy" src="fotos/0144.png" alt="" onerror="this.style.display='none'"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">MILEE · AI Campaign</span><img loading="lazy" src="milee_01.jpg" alt="" onerror="this.style.display='none'"></div>
                     </div>
                     <div class="panel-dots" id="dots-03"></div>
                     <div class="panel-info">
@@ -522,8 +702,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
     <div class="novedades-bar">
         <a class="news-item" onclick="navTo('novedades-screen')">
-            <span>Log de Novedades</span>
-            <span style="color:var(--amber);">SYS_LOG_V.4</span>
+            <span>Proyectos Recientes</span>
+            <span style="color:var(--amber);">VER ARCHIVO →</span>
         </a>
     </div>
 </div>
@@ -536,12 +716,12 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <header class="log-header"><h2 class="log-title">Architecture Log</h2></header>
     <div class="news-infinite-container">
         <div class="news-track" id="news-infinite-track">
-            <div class="news-cover" onclick="navTo('oficio');focusHab('hab-mayle');"><img src="fotos\santo-domingo-dress.png"><span class="news-cover-label">MAYLE_24</span></div>
-            <div class="news-cover" onclick="navTo('oficio');focusHab('hab-leonel');"><img src="fotos\leonel35.jpg"><span class="news-cover-label">RW_ARCHIVE</span></div>
-            <div class="news-cover" onclick="navTo('oficio');focusHab('hab-eliza');"><img src="fotos/elisamorato4.jpg"><span class="news-cover-label">ELISA_24</span></div>
-            <div class="news-cover" onclick="navTo('mundos');focusHab('hab-vitriol');"><img src="fotos\2.jpg" onerror="this.style.background='#111'"><span class="news-cover-label">VITRIOL</span></div>
-            <div class="news-cover" onclick="navTo('mundos');focusHab('hab-lovely');"><img src="fotos\bea 1.png" onerror="this.style.background='#111'"><span class="news-cover-label">LOVELY_DAZ</span></div>
-            <div class="news-cover" onclick="navTo('mundos');focusHab('hab-evolver');"><img src="logo evolver skin.png" onerror="this.style.background='#111'"><span class="news-cover-label">EVOLVER_SKIN</span></div>
+            <div class="news-cover" onclick="navTo('oficio');focusHab('hab-mayle');"><img loading="lazy" src="fotos/santo-domingo-dress.png"><span class="news-cover-label">MAYLE_24</span></div>
+            <div class="news-cover" onclick="navTo('oficio');focusHab('hab-leonel');"><img loading="lazy" src="fotos/leonel35.jpg"><span class="news-cover-label">RW_ARCHIVE</span></div>
+            <div class="news-cover" onclick="navTo('oficio');focusHab('hab-eliza');"><img loading="lazy" src="fotos/elisamorato4.jpg"><span class="news-cover-label">ELISA_24</span></div>
+            <div class="news-cover" onclick="navTo('mundos-content');focusHab('hab-vitriol');"><img loading="lazy" src="fotos/2.jpg" onerror="this.style.background='#111'"><span class="news-cover-label">VITRIOL</span></div>
+            <div class="news-cover" onclick="navTo('mundos-content');focusHab('hab-lovely');"><img loading="lazy" src="fotos/bea 1.png" onerror="this.style.background='#111'"><span class="news-cover-label">LOVELY_DAZ</span></div>
+            <div class="news-cover" onclick="navTo('mundos-content');focusHab('hab-evolver');"><img loading="lazy" src="fotos/logo evolver skin.png" onerror="this.style.background='#111'"><span class="news-cover-label">EVOLVER_SKIN</span></div>
         </div>
     </div>
 </div>
@@ -561,7 +741,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <div class="hab focused" id="hab-mayle" data-tag="BEATRIZ CASTRO">
         <div class="hab-header" onclick="focusHab('hab-mayle')">
             <div class="hab-meta">
-                <span class="hab-code">OF_01 · PATRONAJE INDUSTRIAL · DIGITAL PATTERN</span>
+                <span class="hab-code">OF_01 · PATRONAJE INDUSTRIAL · DIGITAL PATTERN · PRODUCT DEVELOPMENT</span>
                 <h2 class="hab-title">Mayle Vázquez — Patronaje & Product Development</h2>
             </div>
             <div class="hab-controls">
@@ -570,24 +750,178 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             </div>
         </div>
         <div class="hab-content">
-            <div class="vision-role"><span>ROL</span><p>Desarrollo de patrones industriales y optimización de fit. Gestión de archivo técnico y digitalización de patronaje. Colaboración directa en el proceso de producción.</p></div>
-            <div class="moodboard-grid">
-                <div class="mb-slot mb-texture-1" data-tag="BEATRIZ CASTRO" onclick="openDetail('ESTUDIO TÉCNICO: VESTIDO ESTRUCTURADO','Concepto:','Enfoque:','fotos\santo-domingo-dress.png')"><span class="mb-label">Texture</span><img src="fotos\santo-domingo-dress.png"></div>
-                <div class="mb-slot mb-feature" data-tag="BEATRIZ CASTRO" onclick="openDetail('Feature','INDUSTRIAL','PRECISION','fotos\el pozo jacket- completo .png')"><span class="mb-label">Feature Image</span><img src="fotos\el pozo jacket- completo .png"></div>
-                <div class="mb-slot mb-feature" data-tag="BEATRIZ CASTRO" onclick="openDetail('Feature','INDUSTRIAL','PRECISION','fotos\chaqueta 2 sin manga.png')"><span class="mb-label">Feature Image</span><img src="fotos\chaqueta 2 sin manga.png"></div>
-                <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO"><img src="fotos/caribe coat.png"></div>
-                 <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO"><img src="fotos\chaqueta1.png"></div>
-                <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO"><img src="fotos\convent vest.png"></div> 
-                <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO"><img src="fotos\el pozo jacket.png"></div> 
+            <div class="mayle-room">
+                <!-- INTRO ROL + STATS -->
+                <div class="mayle-intro">
+                    <div>
+                        <span class="mayle-role-label">Rol · Responsabilidades</span>
+                        <p class="mayle-role-text">Desarrollo de patrones industriales y optimización de fit. Gestión de archivo técnico y digitalización de patronaje. Colaboración directa en el proceso de producción: desde el boceto técnico hasta el prototipo físico listo para fábrica.</p>
+                        <p class="mayle-role-text" style="margin-top:12px;">Especialización en marcadas de alta eficiencia, escalado digital bajo normativas industriales y documentación tipo Tech-Pack lista para envío a manufactura.</p>
+                    </div>
+                    <div>
+                        <span class="mayle-role-label">Métricas Clave</span>
+                        <div class="mayle-stats">
+                            <div class="mayle-stat">
+                                <span class="mayle-stat-val">88%</span>
+                                <span class="mayle-stat-lab">Aprovechamiento<br>de tejido</span>
+                            </div>
+                            <div class="mayle-stat">
+                                <span class="mayle-stat-val">−15%</span>
+                                <span class="mayle-stat-lab">Reducción tiempo<br>de confección</span>
+                            </div>
+                            <div class="mayle-stat">
+                                <span class="mayle-stat-val">&lt;8%</span>
+                                <span class="mayle-stat-lab">Coef. embebido<br>de copa</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- GRID DE PRENDAS -->
+                <div class="mayle-grid">
+                    <div class="mayle-card" onclick="openMayleModal('mayle-modal-1')">
+                        <div class="mayle-card-img-wrap">
+                            <img loading="lazy" class="mayle-card-img" src="fotos/santo-domingo-dress.png" alt="Vestido Santo Domingo">
+                            <div class="mayle-card-overlay">
+                                <p class="mayle-overlay-title">Vestido "Santo Domingo"</p>
+                                <div class="mayle-overlay-metrics">
+                                    <span class="mayle-metric-pill">Holgura negativa controlada</span>
+                                    <span class="mayle-metric-pill">88% aprovechamiento tejido</span>
+                                    <span class="mayle-metric-pill">Sostenibilidad · reducción mermas</span>
+                                </div>
+                                <div class="mayle-card-cta">VER ESPECIFICACIÓN TÉCNICA →</div>
+                            </div>
+                        </div>
+                        <div class="mayle-card-meta">
+                            <span class="mayle-card-code">OF_01.A · Alta Complejidad</span>
+                            <div class="mayle-card-name">Vestido "Santo Domingo"</div>
+                            <div class="mayle-card-tags"><span class="mayle-card-tag">Fitting</span><span class="mayle-card-tag">Marcada</span><span class="mayle-card-tag">Sostenible</span></div>
+                        </div>
+                    </div>
+                    <div class="mayle-card" onclick="openMayleModal('mayle-modal-2')">
+                        <div class="mayle-card-img-wrap">
+                            <img loading="lazy" class="mayle-card-img" src="fotos/caribe coat.png" alt="Abrigo Caribe">
+                            <div class="mayle-card-overlay">
+                                <p class="mayle-overlay-title">Abrigo "Caribe"</p>
+                                <div class="mayle-overlay-metrics">
+                                    <span class="mayle-metric-pill">Manga globo expansión radial</span>
+                                    <span class="mayle-metric-pill">Stay tape · error cero en solapa</span>
+                                    <span class="mayle-metric-pill">Escalado S→XL equilibrado</span>
+                                </div>
+                                <div class="mayle-card-cta">VER ESPECIFICACIÓN TÉCNICA →</div>
+                            </div>
+                        </div>
+                        <div class="mayle-card-meta">
+                            <span class="mayle-card-code">OF_01.B · Sastrería Industrial</span>
+                            <div class="mayle-card-name">Abrigo "Caribe"</div>
+                            <div class="mayle-card-tags"><span class="mayle-card-tag">Serie</span><span class="mayle-card-tag">Escalado</span><span class="mayle-card-tag">Automatización</span></div>
+                        </div>
+                    </div>
+                    <div class="mayle-card" onclick="openMayleModal('mayle-modal-2')">
+                        <div class="mayle-card-img-wrap">
+                            <img loading="lazy" class="mayle-card-img" src="fotos/chaqueta1.png" alt="Chaqueta 1">
+                            <div class="mayle-card-overlay">
+                                <p class="mayle-overlay-title">Chaqueta 1</p>
+                                <div class="mayle-overlay-metrics">
+                                    <span class="mayle-metric-pill">Línea de quiebre + piquetes</span>
+                                    <span class="mayle-metric-pill">Producción en serie optimizada</span>
+                                    <span class="mayle-metric-pill">Volumen uniforme S→XL</span>
+                                </div>
+                                <div class="mayle-card-cta">VER ESPECIFICACIÓN TÉCNICA →</div>
+                            </div>
+                        </div>
+                        <div class="mayle-card-meta">
+                            <span class="mayle-card-code">OF_01.B · Sastrería Industrial</span>
+                            <div class="mayle-card-name">Chaqueta 1</div>
+                            <div class="mayle-card-tags"><span class="mayle-card-tag">Volumen</span><span class="mayle-card-tag">Roll Line</span><span class="mayle-card-tag">Serie</span></div>
+                        </div>
+                    </div>
+                    <div class="mayle-card" onclick="openMayleModal('mayle-modal-3')">
+                        <div class="mayle-card-img-wrap">
+                            <img loading="lazy" class="mayle-card-img" src="fotos/el pozo jacket- completo .png" alt="Chaqueta El Pozo">
+                            <div class="mayle-card-overlay">
+                                <p class="mayle-overlay-title">Chaqueta "El Pozo"</p>
+                                <div class="mayle-overlay-metrics">
+                                    <span class="mayle-metric-pill">−15% tiempo de confección</span>
+                                    <span class="mayle-metric-pill">Tablones CNC integrados</span>
+                                    <span class="mayle-metric-pill">Cuello mao anatómico</span>
+                                </div>
+                                <div class="mayle-card-cta">VER ESPECIFICACIÓN TÉCNICA →</div>
+                            </div>
+                        </div>
+                        <div class="mayle-card-meta">
+                            <span class="mayle-card-code">OF_01.C · Optimización COGS</span>
+                            <div class="mayle-card-name">Chaqueta "El Pozo"</div>
+                            <div class="mayle-card-tags"><span class="mayle-card-tag">COGS</span><span class="mayle-card-tag">CNC</span><span class="mayle-card-tag">Eficiencia</span></div>
+                        </div>
+                    </div>
+                    <div class="mayle-card" onclick="openMayleModal('mayle-modal-3')">
+                        <div class="mayle-card-img-wrap">
+                            <img loading="lazy" class="mayle-card-img" src="fotos/el pozo jacket.png" alt="El Pozo detalle">
+                            <div class="mayle-card-overlay">
+                                <p class="mayle-overlay-title">Chaqueta "El Pozo" — Detalle</p>
+                                <div class="mayle-overlay-metrics">
+                                    <span class="mayle-metric-pill">Manga campana compensada</span>
+                                    <span class="mayle-metric-pill">Lino / mezclas inestables</span>
+                                    <span class="mayle-metric-pill">Primera prueba = cierre exacto</span>
+                                </div>
+                                <div class="mayle-card-cta">VER ESPECIFICACIÓN TÉCNICA →</div>
+                            </div>
+                        </div>
+                        <div class="mayle-card-meta">
+                            <span class="mayle-card-code">OF_01.C · Detalle Constructivo</span>
+                            <div class="mayle-card-name">El Pozo — Vista Detalle</div>
+                            <div class="mayle-card-tags"><span class="mayle-card-tag">Construcción</span><span class="mayle-card-tag">Lino</span><span class="mayle-card-tag">Montaje</span></div>
+                        </div>
+                    </div>
+                    <div class="mayle-card" onclick="openMayleModal('mayle-modal-4')">
+                        <div class="mayle-card-img-wrap">
+                            <img loading="lazy" class="mayle-card-img" src="fotos/chaqueta 2 sin manga.png" alt="Vestido Santa María Ozama">
+                            <div class="mayle-card-overlay">
+                                <p class="mayle-overlay-title">Vestido "Santa María" / "Ozama"</p>
+                                <div class="mayle-overlay-metrics">
+                                    <span class="mayle-metric-pill">Compensación elasticidad residual</span>
+                                    <span class="mayle-metric-pill">Pinzas al foco de torsión</span>
+                                    <span class="mayle-metric-pill">Dobladillo industrial invisible</span>
+                                </div>
+                                <div class="mayle-card-cta">VER ESPECIFICACIÓN TÉCNICA →</div>
+                            </div>
+                        </div>
+                        <div class="mayle-card-meta">
+                            <span class="mayle-card-code">OF_01.D · Materiales Dinámicos</span>
+                            <div class="mayle-card-name">Vestido "Santa María" & "Ozama"</div>
+                            <div class="mayle-card-tags"><span class="mayle-card-tag">Plisado</span><span class="mayle-card-tag">Metalizado</span><span class="mayle-card-tag">Industrial</span></div>
+                        </div>
+                    </div>
+                    <div class="mayle-card" onclick="openMayleModal('mayle-modal-5')">
+                        <div class="mayle-card-img-wrap">
+                            <img loading="lazy" class="mayle-card-img" src="fotos/convent vest.png" alt="Convent Vest">
+                            <div class="mayle-card-overlay">
+                                <p class="mayle-overlay-title">Convent Vest</p>
+                                <div class="mayle-overlay-metrics">
+                                    <span class="mayle-metric-pill">Tech-Pack listo para fábrica</span>
+                                    <span class="mayle-metric-pill">Aplomos de control</span>
+                                    <span class="mayle-metric-pill">Escalado digital</span>
+                                </div>
+                                <div class="mayle-card-cta">VER CAPACIDADES GLOBALES →</div>
+                            </div>
+                        </div>
+                        <div class="mayle-card-meta">
+                            <span class="mayle-card-code">OF_01 · Capacidades Globales</span>
+                            <div class="mayle-card-name">Convent Vest</div>
+                            <div class="mayle-card-tags"><span class="mayle-card-tag">Tech-Pack</span><span class="mayle-card-tag">Escalado</span><span class="mayle-card-tag">Reclutamiento</span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- ══ HAB: LEONEL LIRIO — Editorial narrativo ══ -->
     <div class="hab" id="hab-leonel" data-tag="BEATRIZ CASTRO">
         <div class="hab-header" onclick="focusHab('hab-leonel')">
             <div class="hab-meta">
-                <span class="hab-code">OF_02 · FOTOGRAFÍA DE MODA · RW 2024</span>
-                <h2 class="hab-title">Leonel Lirio — RW 2024</h2>
+                <span class="hab-code">OF_02 · ASISTENCIA CREATIVA · PRODUCCIÓN · RW 2024</span>
+                <h2 class="hab-title">Leonel Lirio — Behind the Show</h2>
             </div>
             <div class="hab-controls">
                 <a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a>
@@ -595,22 +929,106 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             </div>
         </div>
         <div class="hab-content">
-            <div class="moodboard-grid">
-                <div class="mb-slot mb-feature" data-tag="BEATRIZ CASTRO"><img src="fotos\leonellirio.jpg"></div>
-                <div class="mb-slot mb-texture-1" data-tag="BEATRIZ CASTRO"><img src="fotos\leonel04.jpg"></div>
-                <div class="mb-slot mb-texture-1" data-tag="BEATRIZ CASTRO"><img src="fotos/lionellirio2.jpg"></div>
-                <div class="mb-slot mb-texture-1" data-tag="BEATRIZ CASTRO"><img src="fotos\leonellirio1.jpg"></div>
-                <div class="mb-slot mb-texture-1" data-tag="BEATRIZ CASTRO"><img src="fotos\leonel04.jpg"></div>
-                <div class="mb-slot mb-texture-1" data-tag="BEATRIZ CASTRO"><img src="fotos\leonel.jpg"></div>
+            <div class="editorial-room">
+                <!-- ACTO 1: El rol -->
+                <div class="ed-act">
+                    <div class="ed-act-header">
+                        <span class="ed-act-num">01</span>
+                        <span class="ed-act-label">El Rol</span>
+                    </div>
+                    <div class="ed-act-body ed-act-body--text-first">
+                        <div class="ed-text-block">
+                            <p class="ed-pull-quote">"Diseñar no termina en el patrón.<br>Termina cuando la modelo sale a pasarela."</p>
+                            <p class="ed-body-text">Trabajé junto a Leonel Lirio como asistente de confianza y colaboradora creativa: participé en el proceso de diseño, construcción de prendas de fantasía y acabados de confección. También fui su enlace directo con clientas, encargándome de vestirlas y asegurar el ajuste perfecto de cada look.</p>
+                            <div class="ed-role-pills">
+                                <span class="ed-pill">Confección</span>
+                                <span class="ed-pill">Prendas de fantasía</span>
+                                <span class="ed-pill">Acabados</span>
+                                <span class="ed-pill">Gestión de clientas</span>
+                                <span class="ed-pill">Asistencia creativa</span>
+                                <span class="ed-pill">Coordinación vestuario</span>
+                                <span class="ed-pill">Producción fotográfica</span>
+                            </div>
+                        </div>
+                        <div class="ed-img-block">
+                            <img loading="lazy" src="fotos/leonellirio.jpg" alt="Leonel Lirio RW 2024">
+                            <span class="ed-img-caption">RW 2024 · Look final en pasarela</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ACTO 2: La crisis resuelta -->
+                <div class="ed-act ed-act--dark">
+                    <div class="ed-act-header">
+                        <span class="ed-act-num">02</span>
+                        <span class="ed-act-label">La Decisión de Último Minuto</span>
+                    </div>
+                    <div class="ed-crisis-block">
+                        <div class="ed-crisis-label">PROBLEMA → ACCIÓN → RESULTADO</div>
+                        <div class="ed-crisis-grid">
+                            <div class="ed-crisis-item">
+                                <span class="ed-crisis-icon">!</span>
+                                <span class="ed-crisis-step">Problema</span>
+                                <p class="ed-crisis-text">El día del desfile, el equipo de fotografía no estaba cubierto. Sin documentación visual, el trabajo de meses quedaba sin registro.</p>
+                            </div>
+                            <div class="ed-crisis-arrow">→</div>
+                            <div class="ed-crisis-item">
+                                <span class="ed-crisis-icon">⚡</span>
+                                <span class="ed-crisis-step">Acción</span>
+                                <p class="ed-crisis-text">Contacté y coordiné a un fotógrafo colega de mi red de confianza. Gestión rápida: brief, accesos, posiciones y sincronización con los tiempos del desfile.</p>
+                            </div>
+                            <div class="ed-crisis-arrow">→</div>
+                            <div class="ed-crisis-item">
+                                <span class="ed-crisis-icon">✓</span>
+                                <span class="ed-crisis-step">Resultado</span>
+                                <p class="ed-crisis-text">Cobertura fotográfica completa del desfile. Las imágenes que ves aquí existen gracias a esa decisión tomada en el momento.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ACTO 3: Backstage + fotos -->
+                <div class="ed-act">
+                    <div class="ed-act-header">
+                        <span class="ed-act-num">03</span>
+                        <span class="ed-act-label">La Producción en Vivo</span>
+                    </div>
+                    <div class="ed-act-body ed-act-body--img-first">
+                        <div class="ed-img-block">
+                            <img loading="lazy" src="fotos/lionellirio2.jpg" alt="Leonel Lirio RW 2024">
+                            <span class="ed-img-caption">Coordinación de vestuario · Backstage RW 2024</span>
+                        </div>
+                        <div class="ed-text-block">
+                            <p class="ed-body-text">En backstage asumí la coordinación completa del cambio de vestuario: vestir y desvestir modelos en los intervalos cronometrados entre salidas, manteniendo cada prenda en orden para su siguiente uso.</p>
+                            <p class="ed-body-text" style="margin-top:16px;">La presión del tiempo real en un desfile no admite improvisación — pero sí requiere adaptación instantánea. Cada problema se resuelve sin que el público lo vea.</p>
+                            <div class="ed-timeline">
+                                <div class="ed-tl-item"><span class="ed-tl-dot"></span><span class="ed-tl-text">Fase pre-desfile: revisión y organización de looks por orden de salida</span></div>
+                                <div class="ed-tl-item"><span class="ed-tl-dot"></span><span class="ed-tl-text">Durante: cambios rápidos, ajuste de prendas, coordinación con floor manager</span></div>
+                                <div class="ed-tl-item"><span class="ed-tl-dot"></span><span class="ed-tl-text">Post-desfile: recogida, catalogación y devolución del archivo de vestuario</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GALERÍA FINAL -->
+                <div class="ed-gallery">
+                    <div class="ed-gallery-label">ARCHIVO · RW 2024 · LEONEL LIRIO</div>
+                    <div class="ed-gallery-grid">
+                        <div class="ed-gallery-item ed-gallery-item--tall"><img loading="lazy" src="fotos/leonellirio1.jpg" alt=""></div>
+                        <div class="ed-gallery-item"><img loading="lazy" src="fotos/leonel04.jpg" alt=""></div>
+                        <div class="ed-gallery-item"><img loading="lazy" src="fotos/leonel.jpg" alt=""></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- ══ HAB: ELISA MORATO — Editorial narrativo ══ -->
     <div class="hab" id="hab-eliza" data-tag="BEATRIZ CASTRO">
         <div class="hab-header" onclick="focusHab('hab-eliza')">
             <div class="hab-meta">
-                <span class="hab-code">OF_03 · FOTOGRAFÍA · WUATAN STUDIO · RW 2024</span>
-                <h2 class="hab-title">Elisa Morato — RW 2024</h2>
+                <span class="hab-code">OF_03 · PRODUCCIÓN · BACKSTAGE · WUATAN STUDIO · RW 2024</span>
+                <h2 class="hab-title">Elisa Morato — Behind the Show</h2>
             </div>
             <div class="hab-controls">
                 <a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a>
@@ -618,77 +1036,653 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             </div>
         </div>
         <div class="hab-content">
-            <div class="moodboard-grid">
-                <div class="mb-slot mb-texture" data-tag="WUATAN STUDIO"><span class="mb-label">Photography</span><img src="fotos\elisamorato3.jpg"><a href="#" class="mb-credit-tag" onclick="navigateToTag('WUATAN STUDIO',event)">WUATAN STUDIO</a></div>
-                <div class="mb-slot mb-feature" data-tag="WUATAN STUDIO"><span class="mb-label">Photography</span><img src="fotos\elisamorato4.jpg"><a href="#" class="mb-credit-tag" onclick="navigateToTag('WUATAN STUDIO',event)">WUATAN STUDIO</a></div>
-                <div class="mb-slot mb-feature" data-tag="WUATAN STUDIO"><span class="mb-label">Photography</span><img src="fotos\elisamorato5.png"><a href="#" class="mb-credit-tag" onclick="navigateToTag('WUATAN STUDIO',event)">WUATAN STUDIO</a></div>
-                <div class="mb-slot mb-feature" data-tag="WUATAN STUDIO"><span class="mb-label">Photography</span><img src="fotos\elisamoratolook1.png"><a href="#" class="mb-credit-tag" onclick="navigateToTag('WUATAN STUDIO',event)">WUATAN STUDIO</a></div>
-                <div class="mb-slot mb-feature" data-tag="WUATAN STUDIO"><span class="mb-label">Photography</span><img src="fotos\elizafacetoface.jpg"><a href="#" class="mb-credit-tag" onclick="navigateToTag('WUATAN STUDIO',event)">WUATAN STUDIO</a></div>
+            <div class="editorial-room">
+                <!-- ACTO 1: El rol -->
+                <div class="ed-act">
+                    <div class="ed-act-header">
+                        <span class="ed-act-num">01</span>
+                        <span class="ed-act-label">El Rol</span>
+                    </div>
+                    <div class="ed-act-body ed-act-body--text-first">
+                        <div class="ed-text-block">
+                            <p class="ed-pull-quote">"Cuando el equipo no alcanza,<br>tú te conviertes en el equipo."</p>
+                            <p class="ed-body-text">En el proyecto de Elisa Morato con Wuatan Studio participé desde la fase creativa —aportando ideas de diseño, construyendo prendas de fantasía y aplicando acabados de confección— hasta la producción total del día del desfile.</p>
+                            <p class="ed-body-text" style="margin-top:12px;">Además, fui responsable de la documentación fotográfica de backstage: capturé el proceso completo antes de que las modelos salieran a pasarela.</p>
+                            <div class="ed-role-pills">
+                                <span class="ed-pill">Diseño & confección</span>
+                                <span class="ed-pill">Fotografía backstage</span>
+                                <span class="ed-pill">Coordinación vestuario</span>
+                                <span class="ed-pill">Maquillaje & peluquería</span>
+                                <span class="ed-pill">Gestión de recursos</span>
+                            </div>
+                        </div>
+                        <div class="ed-img-block">
+                            <img loading="lazy" src="fotos/elizafacetoface.jpg" alt="Elisa Morato RW 2024">
+                            <span class="ed-img-caption">RW 2024 · Resultado final · Foto: Beatriz Castro</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ACTO 2: La crisis resuelta -->
+                <div class="ed-act ed-act--dark">
+                    <div class="ed-act-header">
+                        <span class="ed-act-num">02</span>
+                        <span class="ed-act-label">Cuando el Equipo No Llegó</span>
+                    </div>
+                    <div class="ed-crisis-block">
+                        <div class="ed-crisis-label">PROBLEMA → ACCIÓN → RESULTADO</div>
+                        <div class="ed-crisis-grid">
+                            <div class="ed-crisis-item">
+                                <span class="ed-crisis-icon">!</span>
+                                <span class="ed-crisis-step">Problema</span>
+                                <p class="ed-crisis-text">El equipo de maquillaje estaba desbordado: tiempo insuficiente, manos insuficientes. Las modelos no estarían listas para la hora de salida.</p>
+                            </div>
+                            <div class="ed-crisis-arrow">→</div>
+                            <div class="ed-crisis-item">
+                                <span class="ed-crisis-icon">⚡</span>
+                                <span class="ed-crisis-step">Acción</span>
+                                <p class="ed-crisis-text">Asumí peluquería y desmaquillaje. Identifiqué los productos que faltaban, los conseguí sobre la marcha y agilicé el flujo de modelos para cumplir con los tiempos.</p>
+                            </div>
+                            <div class="ed-crisis-arrow">→</div>
+                            <div class="ed-crisis-item">
+                                <span class="ed-crisis-icon">✓</span>
+                                <span class="ed-crisis-step">Resultado</span>
+                                <p class="ed-crisis-text">Todas las modelos salieron a tiempo, con el look completo. El desfile no acusó ningún retraso. El equipo principal pudo centrarse en los looks más complejos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ACTO 3: Producción en vivo + fotos -->
+                <div class="ed-act">
+                    <div class="ed-act-header">
+                        <span class="ed-act-num">03</span>
+                        <span class="ed-act-label">La Producción en Vivo</span>
+                    </div>
+                    <div class="ed-act-body ed-act-body--img-first">
+                        <div class="ed-img-block">
+                            <img loading="lazy" src="fotos/elisamorato4.jpg" alt="Elisa Morato backstage">
+                            <span class="ed-img-caption">Backstage · Coordinación vestuario · Foto: Beatriz Castro</span>
+                        </div>
+                        <div class="ed-text-block">
+                            <p class="ed-body-text">Gestioné la transición completa de los looks: entrada y salida de modelos, control de tiempos de cambio, y recogida organizada del vestuario post-desfile.</p>
+                            <p class="ed-body-text" style="margin-top:16px;">En paralelo mantuve la cobertura fotográfica de backstage — documentando el proceso que normalmente no ve el público, pero que es el corazón de cada colección.</p>
+                            <div class="ed-timeline">
+                                <div class="ed-tl-item"><span class="ed-tl-dot"></span><span class="ed-tl-text">Fase creativa: diseño, prendas de fantasía y acabados de confección</span></div>
+                                <div class="ed-tl-item"><span class="ed-tl-dot"></span><span class="ed-tl-text">Pre-desfile: maquillaje, peluquería, vestuario y fotografía backstage</span></div>
+                                <div class="ed-tl-item"><span class="ed-tl-dot"></span><span class="ed-tl-text">Durante: cambios de vestuario, ajustes y coordinación en tiempo real</span></div>
+                                <div class="ed-tl-item"><span class="ed-tl-dot"></span><span class="ed-tl-text">Post-desfile: desmaquillaje, recogida y archivo del vestuario completo</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GALERÍA FINAL -->
+                <div class="ed-gallery">
+                    <div class="ed-gallery-label">ARCHIVO · RW 2024 · ELISA MORATO · WUATAN STUDIO</div>
+                    <div class="ed-gallery-grid">
+                        <div class="ed-gallery-item ed-gallery-item--tall"><img loading="lazy" src="fotos/elisamoratolook1.png" alt=""></div>
+                        <div class="ed-gallery-item"><img loading="lazy" src="fotos/elisamorato3.jpg" alt=""></div>
+                        <div class="ed-gallery-item"><img loading="lazy" src="fotos/elisamorato5.png" alt=""></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 
+
+
 <!-- ═══════════════════════════════════════════
-     SALA II: LA VISIÓN
+     SALA II: LA EXPOSICIÓN
 ═══════════════════════════════════════════ -->
+
+<!-- CSS atmósferas por habitación -->
+<style>
+/* ── OSCAR DE LA RENTA — Negro marfil, pasarela internacional ── */
+#hab-oscar {
+  --odr-bg: #0C0C0E;
+  --odr-bg-2: #13131A;
+  --odr-ivory: #F2EDE4;
+  --odr-gold: #C9A96E;
+  --odr-border: rgba(201,169,110,0.15);
+}
+#hab-oscar .hab-header { background: var(--odr-bg); border-bottom: 1px solid var(--odr-border); padding: 30px 40px; }
+#hab-oscar .hab-code { color: var(--odr-gold); }
+#hab-oscar .hab-title { color: var(--odr-ivory); font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 2.5vw, 34px); }
+#hab-oscar .hab-plus { color: var(--odr-gold); }
+#hab-oscar.focused .hab-plus { color: var(--odr-ivory); }
+#hab-oscar .hab-label-tag { color: var(--odr-gold); border-color: rgba(201,169,110,0.4); }
+#hab-oscar .hab-label-tag:hover { background: var(--odr-gold); color: #000; }
+
+.odr-room { background: var(--odr-bg); }
+
+/* Runway strip — pasarela */
+.odr-runway {
+  position: relative;
+  background: var(--odr-bg-2);
+  border-top: 1px solid var(--odr-border);
+  border-bottom: 1px solid var(--odr-border);
+  overflow: hidden;
+}
+.odr-runway-strip {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  min-height: 70vh;
+}
+.odr-runway-side {
+  position: relative; overflow: hidden;
+  filter: brightness(0.5) contrast(1.1);
+}
+.odr-runway-side img { width:100%; height:100%; object-fit:cover; object-position: top; }
+.odr-runway-center {
+  position: relative; overflow: hidden;
+  border-left: 1px solid var(--odr-border);
+  border-right: 1px solid var(--odr-border);
+}
+.odr-runway-center img { width:100%; height:100%; object-fit:cover; object-position: top center; filter: contrast(1.05); }
+.odr-runway-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 40px 28px 28px;
+  background: linear-gradient(to top, rgba(12,12,14,0.95) 0%, transparent 100%);
+  text-align: center;
+}
+.odr-runway-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 300; font-style: italic;
+  color: var(--odr-ivory); line-height: 1.1;
+  display: block; margin-bottom: 8px;
+}
+.odr-runway-subtitle {
+  font-family: 'Roboto Mono', monospace; font-size: 8px;
+  color: var(--odr-gold); letter-spacing: 0.5em; text-transform: uppercase;
+}
+.odr-info {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; border-top: 1px solid var(--odr-border);
+}
+.odr-info-col { padding: 40px; border-right: 1px solid var(--odr-border); }
+.odr-info-col:last-child { border-right: none; }
+.odr-info-label {
+  font-family: 'Roboto Mono', monospace; font-size: 8px;
+  color: var(--odr-gold); letter-spacing: 0.4em; text-transform: uppercase;
+  display: block; margin-bottom: 16px;
+}
+.odr-info-text {
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300;
+  color: var(--odr-ivory); opacity: 0.7; line-height: 1.8;
+}
+.odr-jury {
+  background: var(--odr-bg-2); border-top: 1px solid var(--odr-border);
+  padding: 32px 40px;
+  display: flex; gap: 0; flex-wrap: wrap;
+}
+.odr-jury-item {
+  flex: 1; min-width: 160px; padding: 16px 20px;
+  border-right: 1px solid var(--odr-border);
+}
+.odr-jury-item:last-child { border-right: none; }
+.odr-jury-role { font-family: 'Roboto Mono', monospace; font-size: 7px; color: var(--odr-gold); letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 5px; opacity: 0.6; }
+.odr-jury-name { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 300; color: var(--odr-ivory); }
+.odr-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 20px; }
+.odr-pill { font-family: 'Roboto Mono', monospace; font-size: 7px; color: var(--odr-gold); border: 1px solid rgba(201,169,110,0.25); padding: 3px 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* ── COLECCIÓN INFANTIL — Verde/amarillo/rosa, pasarela alegre ── */
+#hab-infantil {
+  --inf-bg: #F7F9F2;
+  --inf-bg-2: #EEF4E4;
+  --inf-green: #5A7A2E;
+  --inf-yellow: #D4A017;
+  --inf-pink: #D4607A;
+  --inf-ink: #1A2410;
+  --inf-border: rgba(90,122,46,0.15);
+}
+#hab-infantil .hab-header { background: var(--inf-bg); border-bottom: 1px solid var(--inf-border); padding: 30px 40px; }
+#hab-infantil .hab-code { color: var(--inf-green); }
+#hab-infantil .hab-title { color: var(--inf-ink); }
+#hab-infantil .hab-plus { color: var(--inf-green); }
+#hab-infantil.focused .hab-plus { color: var(--inf-yellow); }
+#hab-infantil .hab-label-tag { color: var(--inf-pink); border-color: rgba(212,96,122,0.35); }
+#hab-infantil .hab-label-tag:hover { background: var(--inf-pink); color: #fff; }
+
+.inf-room { background: var(--inf-bg); }
+.inf-manifesto {
+  padding: 56px 40px 48px;
+  border-bottom: 3px solid var(--inf-yellow);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+}
+.inf-manifesto-text {}
+.inf-manifesto-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--inf-pink); letter-spacing: 0.4em; text-transform: uppercase; display: block; margin-bottom: 16px; }
+.inf-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 3vw, 40px); font-weight: 300; font-style: italic; color: var(--inf-ink); line-height: 1.2; margin-bottom: 20px; }
+.inf-body { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--inf-ink); opacity: 0.75; line-height: 1.8; }
+.inf-color-palette { display: flex; gap: 8px; margin-top: 20px; align-items: center; }
+.inf-swatch { width: 28px; height: 28px; border-radius: 50%; }
+.inf-swatch-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--inf-ink); opacity: 0.4; letter-spacing: 0.15em; margin-left: 4px; }
+
+/* Runway infantil */
+.inf-runway { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid var(--inf-border); }
+.inf-runway-slot { position: relative; overflow: hidden; background: var(--inf-bg-2); aspect-ratio: 2/3; }
+.inf-runway-slot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.6s ease; }
+.inf-runway-slot:hover img { transform: scale(1.04); }
+.inf-runway-slot-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 24px 16px 16px;
+  background: linear-gradient(to top, rgba(247,249,242,0.95), transparent);
+  font-family: 'Roboto Mono', monospace; font-size: 8px;
+  color: var(--inf-green); letter-spacing: 0.2em; text-transform: uppercase;
+}
+.inf-concept { padding: 40px; background: var(--inf-bg-2); border-top: 1px solid var(--inf-border); display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background-color: var(--inf-border); }
+.inf-concept-cell { background: var(--inf-bg); padding: 28px 24px; }
+.inf-concept-key { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--inf-pink); letter-spacing: 0.25em; text-transform: uppercase; display: block; margin-bottom: 10px; }
+.inf-concept-val { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--inf-ink); opacity: 0.7; line-height: 1.7; }
+.inf-pills { display: flex; flex-wrap: wrap; gap: 7px; padding: 28px 40px; background: var(--inf-bg); border-top: 1px solid var(--inf-border); }
+.inf-pill { font-family: 'Roboto Mono', monospace; font-size: 7px; color: var(--inf-green); border: 1px solid rgba(90,122,46,0.3); padding: 3px 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* ── PRETTY COLOR — Vibrante portada de revista ── */
+#hab-concurso {
+  --pc-bg: #FAFAFA;
+  --pc-red: #D33243;
+  --pc-green: #2D7A3A;
+  --pc-orange: #D4601A;
+  --pc-yellow: #E8B800;
+  --pc-teal: #2A7A74;
+  --pc-ink: #111;
+  --pc-border: rgba(211,50,67,0.15);
+}
+#hab-concurso .hab-header { background: var(--pc-bg); border-bottom: 3px solid var(--pc-red); padding: 30px 40px; }
+#hab-concurso .hab-code { color: var(--pc-red); }
+#hab-concurso .hab-title { color: var(--pc-ink); }
+#hab-concurso .hab-plus { color: var(--pc-green); }
+#hab-concurso.focused .hab-plus { color: var(--pc-red); transform: rotate(45deg); }
+#hab-concurso .hab-label-tag { color: var(--pc-red); border-color: rgba(211,50,67,0.4); }
+#hab-concurso .hab-label-tag:hover { background: var(--pc-red); color: #fff; }
+
+.pc-room { background: var(--pc-bg); }
+.pc-cover-spread {
+  display: grid; grid-template-columns: 1fr 1fr; min-height: 75vh;
+  border-bottom: 1px solid var(--pc-border);
+}
+.pc-cover-img { position: relative; overflow: hidden; background: #f0f0f0; }
+.pc-cover-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.pc-cover-text {
+  padding: 52px 44px; display: flex; flex-direction: column; justify-content: space-between;
+  background: var(--pc-bg); border-left: 1px solid var(--pc-border);
+}
+.pc-cover-issue { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--pc-red); letter-spacing: 0.5em; text-transform: uppercase; margin-bottom: 32px; display: block; }
+.pc-cover-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 5vw, 72px); font-weight: 300; line-height: 0.9; color: var(--pc-ink); margin-bottom: 24px; }
+.pc-cover-title em { color: var(--pc-red); font-style: italic; }
+.pc-cover-body { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--pc-ink); opacity: 0.65; line-height: 1.8; margin-bottom: 28px; }
+.pc-color-blocks { display: flex; gap: 0; height: 8px; margin-bottom: 28px; }
+.pc-color-block { flex: 1; }
+.pc-credits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pc-credit { }
+.pc-credit-role { font-family: 'Roboto Mono', monospace; font-size: 7px; color: var(--pc-teal); letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 3px; opacity: 0.7; }
+.pc-credit-name { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 400; color: var(--pc-ink); }
+.pc-award { display: inline-flex; align-items: center; gap: 10px; background: var(--pc-red); color: #fff; padding: 8px 16px; font-family: 'Roboto Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 20px; }
+.pc-gallery { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid var(--pc-border); }
+.pc-gallery-slot { position: relative; overflow: hidden; aspect-ratio: 3/4; background: #f5f5f5; }
+.pc-gallery-slot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 0.5s; }
+.pc-gallery-slot:hover img { transform: scale(1.04); }
+.pc-gallery-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 16px 14px; background: linear-gradient(to top, rgba(250,250,250,0.95), transparent); font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--pc-red); letter-spacing: 0.2em; text-transform: uppercase; }
+
+/* ── LOOK LITE / DUNE — Terracota, arena, místico ── */
+#hab-propio {
+  --dune-bg: #1A1410;
+  --dune-bg-2: #231C15;
+  --dune-sand: #C8A06A;
+  --dune-terra: #9B4A1E;
+  --dune-cream: #F0E8D8;
+  --dune-border: rgba(200,160,106,0.12);
+}
+#hab-propio .hab-header { background: var(--dune-bg); border-bottom: 1px solid var(--dune-border); padding: 30px 40px; }
+#hab-propio .hab-code { color: var(--dune-sand); }
+#hab-propio .hab-title { color: var(--dune-cream); font-family: 'Cormorant Garamond', serif; }
+#hab-propio .hab-plus { color: var(--dune-sand); }
+#hab-propio.focused .hab-plus { color: var(--dune-terra); }
+#hab-propio .hab-label-tag { color: var(--dune-sand); border-color: rgba(200,160,106,0.35); }
+#hab-propio .hab-label-tag:hover { background: var(--dune-sand); color: #000; }
+
+.dune-room { background: var(--dune-bg); }
+.dune-hero { position: relative; min-height: 80vh; display: grid; grid-template-columns: 1.2fr 1fr 1fr; }
+.dune-hero-main { position: relative; overflow: hidden; }
+.dune-hero-main img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: contrast(1.08) saturate(0.85); }
+.dune-hero-side { position: relative; overflow: hidden; border-left: 1px solid var(--dune-border); }
+.dune-hero-side img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: contrast(1.05) brightness(0.7) saturate(0.8); }
+.dune-hero-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 60px 32px 32px;
+  background: linear-gradient(to top, rgba(26,20,16,0.96) 0%, transparent 100%);
+}
+.dune-hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 64px); font-weight: 300; font-style: italic; color: var(--dune-cream); line-height: 1; display: block; margin-bottom: 8px; }
+.dune-hero-sub { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--dune-sand); letter-spacing: 0.4em; text-transform: uppercase; opacity: 0.7; }
+.dune-info { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--dune-border); }
+.dune-info-col { padding: 40px; border-right: 1px solid var(--dune-border); }
+.dune-info-col:last-child { border-right: none; }
+.dune-info-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--dune-sand); letter-spacing: 0.4em; text-transform: uppercase; display: block; margin-bottom: 14px; }
+.dune-info-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--dune-cream); opacity: 0.65; line-height: 1.8; }
+.dune-strip { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--dune-border); }
+.dune-strip-slot { overflow: hidden; aspect-ratio: 4/3; position: relative; }
+.dune-strip-slot img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: contrast(1.06) saturate(0.9); transition: transform 0.6s; }
+.dune-strip-slot:hover img { transform: scale(1.03); }
+.dune-strip-slot:last-child { border-left: 1px solid var(--dune-border); }
+.dune-award { background: var(--dune-bg-2); border-top: 1px solid var(--dune-border); padding: 24px 40px; display: flex; gap: 32px; align-items: center; flex-wrap: wrap; }
+.dune-award-badge { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--dune-bg); background: var(--dune-sand); padding: 8px 16px; letter-spacing: 0.2em; text-transform: uppercase; }
+.dune-award-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--dune-cream); opacity: 0.6; }
+.dune-pills { display: flex; flex-wrap: wrap; gap: 7px; padding: 24px 40px; border-top: 1px solid var(--dune-border); background: var(--dune-bg-2); }
+.dune-pill { font-family: 'Roboto Mono', monospace; font-size: 7px; color: var(--dune-sand); border: 1px solid rgba(200,160,106,0.2); padding: 3px 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+@media (max-width: 768px) {
+  .odr-runway-strip { grid-template-columns: 1fr; }
+  .odr-runway-side { display: none; }
+  .odr-info { grid-template-columns: 1fr; }
+  .odr-jury { flex-direction: column; }
+  .inf-manifesto { grid-template-columns: 1fr; }
+  .inf-runway { grid-template-columns: 1fr 1fr; }
+  .inf-concept { grid-template-columns: 1fr; }
+  .pc-cover-spread { grid-template-columns: 1fr; }
+  .pc-gallery { grid-template-columns: 1fr 1fr; }
+  .dune-hero { grid-template-columns: 1fr; }
+  .dune-hero-side { display: none; }
+  .dune-info { grid-template-columns: 1fr; }
+  .dune-strip { grid-template-columns: 1fr; }
+}
+</style>
+
 <div class="view room-view" id="vision">
     <div class="sala-header">
-        <span class="sala-code">ST_02 // ESTILISMO · DIRECCIÓN CREATIVA · FOTOGRAFÍA</span>
+        <span class="sala-code">ST_02 // DISEÑO · ESTILISMO · DIRECCIÓN CREATIVA · FOTOGRAFÍA</span>
         <h1 class="sala-title">La Sala de<br><em style="color:var(--sapphire);">la Exposición</em></h1>
-        <p class="sala-desc">El tiempo de exposición decide lo que permanece. Estilismo, dirección creativa y fotografía.</p>
+        <p class="sala-desc">El tiempo de exposición decide lo que permanece. Diseño de autor, dirección creativa y producción editorial.</p>
     </div>
 
-    <!-- HAB abierto por defecto -->
-    <div class="hab focused" id="hab-oscar" data-tag="WUATAN STUDIO">
+    <!-- ══ VS_01: OSCAR DE LA RENTA — Pasarela internacional ══ -->
+    <div class="hab focused" id="hab-oscar" data-tag="BEATRIZ CASTRO">
         <div class="hab-header" onclick="focusHab('hab-oscar')">
             <div class="hab-meta">
-                <span class="hab-code amber">VS_01 · DIRECCIÓN DE ESTILISMO · WUATAN STUDIO</span>
-                <h2 class="hab-title">Desfile Homenaje a Oscar de la Renta</h2>
+                <span class="hab-code">VS_01 · DISEÑO & CONFECCIÓN · RD FASHION WEEK · 2022</span>
+                <h2 class="hab-title">Homenaje a Oscar de la Renta — RDFW XIII</h2>
             </div>
             <div class="hab-controls">
-                <a href="#" class="hab-label-tag" onclick="navigateToTag('WUATAN STUDIO',event)">WUATAN STUDIO</a>
+                <a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a>
                 <span class="hab-plus">+</span>
             </div>
         </div>
         <div class="hab-content">
-            <div class="vision-role"><span>ROL</span><p>Styling Direction · Visual Narrative · Wardrobe Construction</p></div>
-            <div class="vision-system"><p class="vision-concept">CONTROL VS INOCENCIA</p><div class="vision-logic"><span>Silhouette Constraint</span><span>Material Contrast</span><span>Modular Construction</span></div></div>
-            <div class="moodboard-grid"><div class="mb-slot mb-feature" data-tag="WUATAN STUDIO" style="min-height:300px;"><span class="mb-label">Imágenes próximamente</span></div></div>
+            <div class="odr-room">
+                <div class="odr-runway">
+                    <div class="odr-runway-strip">
+                        <div class="odr-runway-side">
+                            <img loading="lazy" src="fotos/oscardelarenta.png" alt="Oscar de la Renta referencia">
+                        </div>
+                        <div class="odr-runway-center">
+                            <img loading="lazy" src="fotos/Imagen_de_WhatsApp_2025-02-08_a_las_19_08_07_8bf00935__1_.jpg" alt="Look Homenaje Oscar de la Renta · Beatriz Castro">
+                            <div class="odr-runway-label">
+                                <span class="odr-runway-title">Homenaje a<br>Oscar de la Renta</span>
+                                <span class="odr-runway-subtitle">RDFW 2022 · Santo Domingo · Diseño: Beatriz Castro</span>
+                            </div>
+                        </div>
+                        <div class="odr-runway-side">
+                            <img loading="lazy" src="fotos/Imagen_de_WhatsApp_2025-02-08_a_las_19_08_07_8bf00935__1_.jpg" alt="Look detalle">
+                        </div>
+                    </div>
+                </div>
+                <div class="odr-info">
+                    <div class="odr-info-col">
+                        <span class="odr-info-label">El Reto</span>
+                        <p class="odr-info-text">En la 13ª edición de RD Fashion Week 2022, cada diseñador emergente del país recibió una fotografía icónica de Oscar de la Renta. El encargo: crear un look que, sin copiar, dijera inequívocamente — <em style="color:#C9A96E;">esto lo hizo Oscar de la Renta.</em></p>
+                        <p class="odr-info-text" style="margin-top:12px;">Diseñé, patroné y confeccioné el look completo. Las fotografías finales también son de mi autoría.</p>
+                        <div class="odr-pills">
+                            <span class="odr-pill">Diseño de autor</span>
+                            <span class="odr-pill">Confección</span>
+                            <span class="odr-pill">Patronaje</span>
+                            <span class="odr-pill">Fotografía</span>
+                        </div>
+                    </div>
+                    <div class="odr-info-col">
+                        <span class="odr-info-label">El Jurado</span>
+                        <div class="odr-jury" style="padding:0;background:transparent;border:none;flex-direction:column;gap:12px;">
+                            <div class="odr-jury-item" style="padding:10px 0;border-right:none;border-bottom:1px solid rgba(201,169,110,0.1);">
+                                <span class="odr-jury-role">Editor en Jefe</span>
+                                <span class="odr-jury-name">José Forteza — Vogue Latinoamérica</span>
+                            </div>
+                            <div class="odr-jury-item" style="padding:10px 0;border-right:none;border-bottom:1px solid rgba(201,169,110,0.1);">
+                                <span class="odr-jury-role">Directora de Moda</span>
+                                <span class="odr-jury-name">Kika Rocha — People en Español</span>
+                            </div>
+                            <div class="odr-jury-item" style="padding:10px 0;border-right:none;border-bottom:1px solid rgba(201,169,110,0.1);">
+                                <span class="odr-jury-role">Presentadora</span>
+                                <span class="odr-jury-name">Claudia Torres — HOLA TV</span>
+                            </div>
+                            <div class="odr-jury-item" style="padding:10px 0;border-right:none;">
+                                <span class="odr-jury-role">Academia</span>
+                                <span class="odr-jury-name">Catedráticos — Instituto Marangoni</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="hab" id="hab-infantil" data-tag="WUATAN STUDIO">
+    <!-- ══ VS_02: COLECCIÓN INFANTIL — Pasarela verde/amarillo/rosa ══ -->
+    <div class="hab" id="hab-infantil" data-tag="BEATRIZ CASTRO">
         <div class="hab-header" onclick="focusHab('hab-infantil')">
-            <div class="hab-meta"><span class="hab-code amber">VS_02 · STYLING · WUATAN STUDIO</span><h2 class="hab-title">Colección infantil — La niña que no deben apurar</h2></div>
-            <div class="hab-controls"><a href="#" class="hab-label-tag" onclick="navigateToTag('WUATAN STUDIO',event)">WUATAN STUDIO</a><span class="hab-plus">+</span></div>
+            <div class="hab-meta">
+                <span class="hab-code amber">VS_02 · DISEÑO & CONFECCIÓN · COLECCIÓN CÁPSULA</span>
+                <h2 class="hab-title">¡Mami Quiero Ser Adulta! — Colección Infantil</h2>
+            </div>
+            <div class="hab-controls">
+                <a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a>
+                <span class="hab-plus">+</span>
+            </div>
         </div>
-        <div class="hab-content"><div class="vision-role"><span>ROL</span><p>Styling Direction · Visual Narrative · Photo Direction Support</p></div></div>
+        <div class="hab-content">
+            <div class="inf-room">
+                <div class="inf-manifesto">
+                    <div class="inf-manifesto-text">
+                        <span class="inf-manifesto-label">Manifiesto · Colección Cápsula</span>
+                        <p class="inf-quote">"Las niñas merecen ropa<br>que las deje ser niñas."</p>
+                        <p class="inf-body">Colección cápsula presentada en desfile para dos escuelas de modelaje infantil. <em>¡Mami Quiero Ser Adulta!</em> es una llamada de atención a los padres que contribuyen a la destrucción de la niñez a través del vestuario.</p>
+                        <p class="inf-body" style="margin-top:12px;">Referencia conceptual: la arquitecta Zaha Hadid, que reinterpretó el estilo neoclásico aplicándolo a la vivienda contemporánea. La colección recupera el diseño atemporal con un pie en el pasado — no para copiar otra época, sino para reivindicar lo que la moda infantil debería ser.</p>
+                        <div class="inf-color-palette">
+                            <div class="inf-swatch" style="background:#5A7A2E;"></div>
+                            <div class="inf-swatch" style="background:#D4A017;"></div>
+                            <div class="inf-swatch" style="background:#D4607A;"></div>
+                            <div class="inf-swatch" style="background:#F5C5D0;"></div>
+                            <span class="inf-swatch-label">Paleta de colección</span>
+                        </div>
+                    </div>
+                    <div style="position:relative;overflow:hidden;aspect-ratio:3/4;">
+                        <img loading="lazy" src="fotos/foto_portada_1.jpg" alt="Colección infantil · Zona Colonial" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+                    </div>
+                </div>
+
+                <!-- PASARELA — 3 fotos en runway -->
+                <div class="inf-runway">
+                    <div class="inf-runway-slot">
+                        <img loading="lazy" src="fotos/JATV_22122.jpg" alt="Look rosa · Pasarela">
+                        <span class="inf-runway-slot-label">Look I · Rosa · Yapor Fashion Academy</span>
+                    </div>
+                    <div class="inf-runway-slot">
+                        <img loading="lazy" src="fotos/JATV_22127.jpg" alt="Look verde/amarillo · Pasarela">
+                        <span class="inf-runway-slot-label">Look II · Verde & Amarillo</span>
+                    </div>
+                    <div class="inf-runway-slot">
+                        <img loading="lazy" src="fotos/JATV_22135.jpg" alt="Look rosa estampado · Pasarela">
+                        <span class="inf-runway-slot-label">Look III · Rosa estampado</span>
+                    </div>
+                </div>
+
+                <!-- Foto editorial de la colección -->
+                <div style="overflow:hidden;position:relative;aspect-ratio:21/9;border-top:1px solid var(--inf-border);">
+                    <img loading="lazy" src="fotos/foto_portada_2.jpg" alt="Color Blocks · Zona Colonial" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(247,249,242,0.7) 0%,transparent 50%);display:flex;align-items:flex-end;padding:32px 40px;">
+                        <div>
+                            <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--inf-green);letter-spacing:0.4em;text-transform:uppercase;display:block;margin-bottom:8px;">Editorial · Zona Colonial · Santo Domingo</span>
+                            <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,36px);font-weight:300;color:var(--inf-ink);line-height:1.1;">La colección fuera de la pasarela</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inf-concept">
+                    <div class="inf-concept-cell">
+                        <span class="inf-concept-key">Referencia</span>
+                        <p class="inf-concept-val">Zaha Hadid — arquitectura neoclásica reinterpretada. Estructuras atemporales que dialogan con lo contemporáneo sin rendirse a él.</p>
+                    </div>
+                    <div class="inf-concept-cell">
+                        <span class="inf-concept-key">Paleta & Materiales</span>
+                        <p class="inf-concept-val">Verde oliva, amarillo solar, rosa clásico. Lino y mezclas naturales. Siluetas propias de la infancia — sin miniaturizar la moda adulta.</p>
+                    </div>
+                    <div class="inf-concept-cell">
+                        <span class="inf-concept-key">El Mensaje</span>
+                        <p class="inf-concept-val">Reinterpretar la moda infantil no es solo una decisión estética. Es una posición: diseño que protege la niñez en vez de apresurarla.</p>
+                    </div>
+                </div>
+                <div class="inf-pills">
+                    <span class="inf-pill">Diseño de colección</span>
+                    <span class="inf-pill">Confección completa</span>
+                    <span class="inf-pill">Patronaje</span>
+                    <span class="inf-pill">Dirección creativa</span>
+                    <span class="inf-pill">Moda con mensaje social</span>
+                    <span class="inf-pill">Yapor Fashion Academy</span>
+                    <span class="inf-pill">Santo Domingo · RD</span>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="hab" id="hab-concurso" data-tag="WUATAN STUDIO">
+    <!-- ══ VS_03: PRETTY COLOR — Portada de revista, color blocks ══ -->
+    <div class="hab" id="hab-concurso" data-tag="BEATRIZ CASTRO">
         <div class="hab-header" onclick="focusHab('hab-concurso')">
-            <div class="hab-meta"><span class="hab-code amber">VS_03 · 2º LUGAR · FOTO-PORTADA MODA</span><h2 class="hab-title">Concurso Foto-Portada de Moda — 2º lugar</h2></div>
-            <div class="hab-controls"><a href="#" class="hab-label-tag" onclick="navigateToTag('WUATAN STUDIO',event)">WUATAN STUDIO</a><span class="hab-plus">+</span></div>
+            <div class="hab-meta">
+                <span class="hab-code" style="color:#D33243;">VS_03 · 2º LUGAR · ESTILISMO & DIRECCIÓN CREATIVA · BIG MODELS MGMT RD</span>
+                <h2 class="hab-title" style="color:#111;">Pretty Color — Color Blocks Editorial</h2>
+            </div>
+            <div class="hab-controls">
+                <a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)" style="color:#D33243;border-color:rgba(211,50,67,0.4);">BEATRIZ CASTRO</a>
+                <span class="hab-plus">+</span>
+            </div>
         </div>
-        <div class="hab-content"><div class="vision-role"><span>ROL</span><p>Styling Direction · Visual Narrative · Photo Direction Support</p></div></div>
+        <div class="hab-content">
+            <div class="pc-room">
+                <div class="pc-cover-spread">
+                    <div class="pc-cover-img">
+                        <img loading="lazy" src="fotos/ozoriamodelo1.jpg" alt="Pretty Color · Zona Colonial · Foto: Junior Ozoria">
+                    </div>
+                    <div class="pc-cover-text">
+                        <div>
+                            <span class="pc-cover-issue">Pretty Color · Abril 2024 · Zona Colonial, Santo Domingo</span>
+                            <h3 class="pc-cover-title">Color<br><em>Blocks</em><br>Editorial</h3>
+                            <div class="pc-color-blocks">
+                                <div class="pc-color-block" style="background:#D33243;"></div>
+                                <div class="pc-color-block" style="background:#E07C8E;"></div>
+                                <div class="pc-color-block" style="background:#D4A017;"></div>
+                                <div class="pc-color-block" style="background:#2D7A3A;"></div>
+                                <div class="pc-color-block" style="background:#2A7A74;"></div>
+                                <div class="pc-color-block" style="background:#A0D8CD;"></div>
+                            </div>
+                            <p class="pc-cover-body">Shoot editorial inspirado en Benetton — color como arquitectura compositiva. Fotografiado en la Zona Colonial de Santo Domingo bajo luz natural, con modelos de diversas edades como reflejo de la identidad dominicana.</p>
+                            <p class="pc-cover-body">El proyecto nació de una colaboración con el fotógrafo Junior Ozoria, quien no tenía experiencia previa en moda editorial. La dirección creativa, estilismo y guía fotográfica fueron responsabilidad íntegra de Beatriz Castro.</p>
+                        </div>
+                        <div>
+                            <div class="pc-credits-grid">
+                                <div class="pc-credit"><span class="pc-credit-role">Dirección Creativa</span><span class="pc-credit-name">Beatriz Castro</span></div>
+                                <div class="pc-credit"><span class="pc-credit-role">Estilismo</span><span class="pc-credit-name">Beatriz Castro</span></div>
+                                <div class="pc-credit"><span class="pc-credit-role">Dirección Fotográfica</span><span class="pc-credit-name">Beatriz Castro</span></div>
+                                <div class="pc-credit"><span class="pc-credit-role">Fotografía & Edición</span><span class="pc-credit-name">Junior Ozoria</span></div>
+                            </div>
+                            <div class="pc-award">2º Lugar · Big Models Management RD</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pc-gallery">
+                    <div class="pc-gallery-slot">
+                        <img loading="lazy" src="fotos/foto_portada_1.jpg" alt="Pretty Color grupo 1">
+                        <span class="pc-gallery-label">Zona Colonial · Grupo I</span>
+                    </div>
+                    <div class="pc-gallery-slot">
+                        <img loading="lazy" src="fotos/fotoportadabeatriz.png" alt="Pretty Color grupo 2">
+                        <span class="pc-gallery-label">Pared Naranja · Grupo II</span>
+                    </div>
+                    <div class="pc-gallery-slot">
+                        <img loading="lazy" src="fotos/foto_portada_2.jpg" alt="Pretty Color individual">
+                        <span class="pc-gallery-label">Zona Colonial · Detalle</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="hab" id="hab-propio" data-tag="WUATAN PHOTOGRAPHY">
+    <!-- ══ VS_04: LOOK LITE / DUNE — Terracota, arena, místico ══ -->
+    <div class="hab" id="hab-propio" data-tag="BEATRIZ CASTRO">
         <div class="hab-header" onclick="focusHab('hab-propio')">
-            <div class="hab-meta"><span class="hab-code">VS_04 · 3º LUGAR · DIRECCIÓN CREATIVA</span><h2 class="hab-title">Concurso Foto-Portada de Moda — 3º lugar</h2></div>
-            <div class="hab-controls"><a href="#" class="hab-label-tag" onclick="navigateToTag('WUATAN PHOTOGRAPHY',event)">WUATAN PHOTOGRAPHY</a><span class="hab-plus">+</span></div>
+            <div class="hab-meta">
+                <span class="hab-code">VS_04 · 3º LUGAR · VESTUARIO & DIRECCIÓN CREATIVA · BIG MODELS MGMT RD</span>
+                <h2 class="hab-title">Look Lite — Editorial · 3º Lugar</h2>
+            </div>
+            <div class="hab-controls">
+                <a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a>
+                <span class="hab-plus">+</span>
+            </div>
         </div>
-        <div class="hab-content"><div class="vision-role"><span>ROL</span><p>Creative Direction · Styling · Photo Direction</p></div></div>
-    </div>
-
-    <div class="hab" id="hab-consultor" data-tag="BEATRIZ CASTRO">
-        <div class="hab-header" onclick="focusHab('hab-consultor')">
-            <div class="hab-meta"><span class="hab-code">VS_05 · CONSULTORÍA DE MODA · DIGITAL</span><h2 class="hab-title">Consultoría de Moda — Contenido & Digital</h2></div>
-            <div class="hab-controls"><a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a><span class="hab-plus">+</span></div>
+        <div class="hab-content">
+            <div class="dune-room">
+                <div class="dune-hero">
+                    <div class="dune-hero-main">
+                        <img loading="lazy" src="fotos/DSCF5430-2.jpg" alt="Look Lite · Dirección: Beatriz Castro">
+                        <div class="dune-hero-overlay">
+                            <span class="dune-hero-title">Look Lite</span>
+                            <span class="dune-hero-sub">Vestuario, estilismo & dirección · Beatriz Castro · Foto: Josephphoto</span>
+                        </div>
+                    </div>
+                    <div class="dune-hero-side">
+                        <img loading="lazy" src="fotos/DSCF1966.jpg" alt="Look Lite detalle">
+                    </div>
+                    <div class="dune-hero-side">
+                        <img loading="lazy" src="fotos/DSCF1917.jpg" alt="Look Lite proceso">
+                    </div>
+                </div>
+                <div class="dune-info">
+                    <div class="dune-info-col">
+                        <span class="dune-info-label">El Concepto</span>
+                        <p class="dune-info-text">Editorial inspirado en <strong style="color:#C8A06A;">Dune (2024)</strong> — la paleta de tierras, ocres y arenas áridas del desierto de Arrakis traducida a moda. El misticismo visual de la película como referencia estética: texturas rugosas, volúmenes envolventes, una feminidad que resiste y sobrevive.</p>
+                        <p class="dune-info-text" style="margin-top:12px;">Publicado como <em style="color:#C8A06A;">"En Ruinas Pero a la Moda"</em> por la organización del concurso. Nombre original del proyecto: <strong style="color:#C8A06A;">Look Lite.</strong></p>
+                    </div>
+                    <div class="dune-info-col">
+                        <span class="dune-info-label">Créditos</span>
+                        <div style="display:flex;flex-direction:column;gap:14px;">
+                            <div><span style="font-family:'Roboto Mono',monospace;font-size:7px;color:#C8A06A;letter-spacing:0.2em;text-transform:uppercase;display:block;margin-bottom:3px;opacity:0.6;">Vestuario & Estilismo</span><span style="font-family:'Inter',sans-serif;font-size:13px;color:#F0E8D8;">Beatriz Castro</span></div>
+                            <div><span style="font-family:'Roboto Mono',monospace;font-size:7px;color:#C8A06A;letter-spacing:0.2em;text-transform:uppercase;display:block;margin-bottom:3px;opacity:0.6;">Dirección Creativa & Pose</span><span style="font-family:'Inter',sans-serif;font-size:13px;color:#F0E8D8;">Beatriz Castro</span></div>
+                            <div><span style="font-family:'Roboto Mono',monospace;font-size:7px;color:#C8A06A;letter-spacing:0.2em;text-transform:uppercase;display:block;margin-bottom:3px;opacity:0.6;">Fotografía & Edición</span><span style="font-family:'Inter',sans-serif;font-size:13px;color:#F0E8D8;">Josephphoto</span></div>
+                            <div><span style="font-family:'Roboto Mono',monospace;font-size:7px;color:#C8A06A;letter-spacing:0.2em;text-transform:uppercase;display:block;margin-bottom:3px;opacity:0.6;">Resultado</span><span style="font-family:'Inter',sans-serif;font-size:13px;color:#F0E8D8;">3º Lugar · Big Models Management RD</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dune-strip">
+                    <div class="dune-strip-slot">
+                        <img loading="lazy" src="fotos/DSCF1917.jpg" alt="Look Lite escena 1">
+                    </div>
+                    <div class="dune-strip-slot">
+                        <img loading="lazy" src="fotos/DSCF1966.jpg" alt="Look Lite escena 2">
+                    </div>
+                </div>
+                <div class="dune-award">
+                    <span class="dune-award-badge">3º Lugar</span>
+                    <span class="dune-award-text">Big Models Management RD · Concurso de Fotografía de Moda</span>
+                </div>
+                <div class="dune-pills">
+                    <span class="dune-pill">Diseño de vestuario</span>
+                    <span class="dune-pill">Estilismo</span>
+                    <span class="dune-pill">Dirección de pose</span>
+                    <span class="dune-pill">Dirección creativa</span>
+                    <span class="dune-pill">Referencia Dune 2024</span>
+                    <span class="dune-pill">Paleta terracota</span>
+                    <span class="dune-pill">3º lugar</span>
+                </div>
+            </div>
         </div>
-        <div class="hab-content"><div class="vision-system"><p class="vision-concept">ESTRATEGIA COMO DISEÑO</p><div class="vision-logic"><span>Content Strategy</span><span>Brand Direction</span><span>Digital Fashion</span></div></div></div>
     </div>
 </div>
 
@@ -696,34 +1690,257 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 <!-- ═══════════════════════════════════════════
      SALA III: LA CÁMARA OSCURA
 ═══════════════════════════════════════════ -->
-<!-- Busca id="mundos" y cambia su header por este -->
-<section class="room-hero">
+
+<style>
+/* ── CÁMARA OSCURA — Sistema base ── */
+.camara-view { background: var(--control-dark); }
+
+/* ── VITRIOL — Negro absoluto, alquimia, joyas-ojo ── */
+#hab-vitriol {
+  --vit-bg: #050508;
+  --vit-bg2: #0A0A10;
+  --vit-gold: #E8C87A;
+  --vit-acid: #8FFF5A;
+  --vit-cream: #F0EAE0;
+  --vit-border: rgba(232,200,122,0.1);
+}
+#hab-vitriol .hab-header { background: var(--vit-bg); border-bottom: 1px solid var(--vit-border); padding: 30px 40px; }
+#hab-vitriol .hab-code { color: var(--vit-gold); }
+#hab-vitriol .hab-title { color: var(--vit-cream); font-family: 'Cormorant Garamond', serif; font-size: clamp(20px,2.8vw,36px); }
+#hab-vitriol .hab-plus { color: var(--vit-gold); }
+#hab-vitriol.focused .hab-plus { color: var(--vit-acid); transform: rotate(45deg); }
+#hab-vitriol .hab-label-tag { color: var(--vit-gold); border-color: rgba(232,200,122,0.3); }
+#hab-vitriol .hab-label-tag:hover { background: var(--vit-gold); color: #000; }
+
+.vit-room { background: var(--vit-bg); }
+.vit-hero { min-height: 85vh; display: grid; grid-template-columns: 1.1fr 1fr; }
+.vit-hero-img { position: relative; overflow: hidden; background: #02020A; }
+.vit-hero-img img { width:100%; height:100%; object-fit:cover; object-position:center top; filter: contrast(1.15) brightness(0.85); }
+.vit-hero-text {
+  padding: 60px 48px; display: flex; flex-direction: column; justify-content: center;
+  border-left: 1px solid var(--vit-border); background: var(--vit-bg2);
+}
+.vit-overline { font-family:'Roboto Mono',monospace; font-size:8px; color:var(--vit-gold); letter-spacing:0.5em; text-transform:uppercase; display:block; margin-bottom:24px; }
+.vit-title { font-family:'Cormorant Garamond',serif; font-size:clamp(52px,7vw,96px); font-weight:300; color:var(--vit-cream); line-height:0.85; margin-bottom:24px; }
+.vit-subtitle { font-family:'Roboto Mono',monospace; font-size:9px; color:var(--vit-gold); letter-spacing:0.3em; text-transform:uppercase; opacity:0.5; margin-bottom:32px; }
+.vit-manifesto { font-family:'Cormorant Garamond',serif; font-size:clamp(16px,1.6vw,22px); font-style:italic; color:var(--vit-cream); opacity:0.8; line-height:1.6; border-left:1px solid var(--vit-gold); padding-left:20px; margin-bottom:32px; }
+.vit-body { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--vit-cream); opacity:0.55; line-height:1.8; }
+.vit-acid-line { font-family:'Roboto Mono',monospace; font-size:8px; color:var(--vit-acid); letter-spacing:0.3em; margin-top:28px; opacity:0.7; }
+
+/* Grid de series VITRIOL */
+.vit-series { border-top:1px solid var(--vit-border); display:grid; grid-template-columns:1fr 1fr; }
+.vit-serie-block { padding:48px 40px; border-right:1px solid var(--vit-border); }
+.vit-serie-block:last-child { border-right:none; }
+.vit-serie-num { font-family:'Cormorant Garamond',serif; font-size:72px; font-weight:300; color:rgba(232,200,122,0.08); line-height:1; display:block; margin-bottom:-16px; }
+.vit-serie-name { font-family:'Roboto Mono',monospace; font-size:9px; color:var(--vit-gold); letter-spacing:0.35em; text-transform:uppercase; display:block; margin-bottom:16px; }
+.vit-serie-title { font-family:'Cormorant Garamond',serif; font-size:clamp(22px,2.5vw,32px); font-weight:300; color:var(--vit-cream); margin-bottom:16px; }
+.vit-serie-text { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--vit-cream); opacity:0.5; line-height:1.8; }
+
+/* Gallery VITRIOL */
+.vit-gallery { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; border-top:1px solid var(--vit-border); }
+.vit-gallery-slot { position:relative; overflow:hidden; background:var(--vit-bg2); }
+.vit-gallery-slot img { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top center; display:block; filter:contrast(1.1) brightness(0.8); transition:filter 0.5s,transform 0.5s; }
+.vit-gallery-slot:hover img { filter:contrast(1.2) brightness(1); transform:scale(1.04); }
+.vit-gallery-slot:first-child { grid-row: span 2; }
+.vit-gallery-slot:first-child img { aspect-ratio:unset; height:100%; }
+.vit-pills { display:flex; flex-wrap:wrap; gap:7px; padding:24px 40px; background:var(--vit-bg2); border-top:1px solid var(--vit-border); }
+.vit-pill { font-family:'Roboto Mono',monospace; font-size:7px; color:var(--vit-gold); border:1px solid rgba(232,200,122,0.2); padding:3px 10px; letter-spacing:0.1em; text-transform:uppercase; }
+
+/* ── EVOLVER SKIN — Terracota orgánico, biomimética ── */
+#hab-evolver {
+  --ev-bg: #0E0A08;
+  --ev-bg2: #160F0A;
+  --ev-terra: #C17040;
+  --ev-skin: #D4956A;
+  --ev-cream: #F0E4D4;
+  --ev-border: rgba(193,112,64,0.12);
+}
+#hab-evolver .hab-header { background: var(--ev-bg); border-bottom: 1px solid var(--ev-border); padding: 30px 40px; }
+#hab-evolver .hab-code { color: var(--ev-terra); }
+#hab-evolver .hab-title { color: var(--ev-cream); font-family:'Cormorant Garamond',serif; font-size:clamp(20px,2.8vw,36px); }
+#hab-evolver .hab-plus { color: var(--ev-terra); }
+#hab-evolver.focused .hab-plus { color: var(--ev-skin); transform:rotate(45deg); }
+#hab-evolver .hab-label-tag { color:var(--ev-terra); border-color:rgba(193,112,64,0.4); }
+#hab-evolver .hab-label-tag:hover { background:var(--ev-terra); color:#fff; }
+#hab-evolver .featured-hab-badge { background:var(--ev-terra); }
+
+.ev-room { background:var(--ev-bg); }
+.ev-hero { display:grid; grid-template-columns:1fr 1fr; min-height:75vh; }
+.ev-hero-img { position:relative; overflow:hidden; background:#100A06; }
+.ev-hero-img img { width:100%; height:100%; object-fit:cover; object-position:center; filter:contrast(1.1) saturate(0.9); }
+.ev-hero-text { padding:56px 48px; display:flex; flex-direction:column; justify-content:center; border-left:1px solid var(--ev-border); background:var(--ev-bg2); }
+.ev-overline { font-family:'Roboto Mono',monospace; font-size:8px; color:var(--ev-terra); letter-spacing:0.5em; text-transform:uppercase; display:block; margin-bottom:20px; }
+.ev-title { font-family:'Cormorant Garamond',serif; font-size:clamp(40px,5vw,68px); font-weight:300; color:var(--ev-cream); line-height:0.9; margin-bottom:8px; }
+.ev-tagline { font-family:'Roboto Mono',monospace; font-size:9px; color:var(--ev-skin); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:28px; opacity:0.7; }
+.ev-concept { font-family:'Cormorant Garamond',serif; font-size:clamp(16px,1.6vw,21px); font-style:italic; color:var(--ev-cream); opacity:0.75; line-height:1.6; border-left:1px solid var(--ev-terra); padding-left:20px; margin-bottom:24px; }
+.ev-body { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--ev-cream); opacity:0.55; line-height:1.8; }
+.ev-specs { border-top:1px solid var(--ev-border); display:grid; grid-template-columns:repeat(3,1fr); }
+.ev-spec { padding:32px 28px; border-right:1px solid var(--ev-border); }
+.ev-spec:last-child { border-right:none; }
+.ev-spec-key { font-family:'Roboto Mono',monospace; font-size:8px; color:var(--ev-terra); letter-spacing:0.25em; text-transform:uppercase; display:block; margin-bottom:10px; }
+.ev-spec-val { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--ev-cream); opacity:0.6; line-height:1.7; }
+.ev-gallery { display:grid; grid-template-columns:1.2fr 1fr 1fr; border-top:1px solid var(--ev-border); }
+.ev-gallery-slot { overflow:hidden; background:var(--ev-bg2); position:relative; }
+.ev-gallery-slot img { width:100%; aspect-ratio:1; object-fit:cover; object-position:center; display:block; transition:transform 0.5s; filter:contrast(1.05); }
+.ev-gallery-slot:first-child img { aspect-ratio:4/5; }
+.ev-gallery-slot:hover img { transform:scale(1.04); }
+.ev-pills { display:flex; flex-wrap:wrap; gap:7px; padding:24px 40px; background:var(--ev-bg2); border-top:1px solid var(--ev-border); }
+.ev-pill { font-family:'Roboto Mono',monospace; font-size:7px; color:var(--ev-terra); border:1px solid rgba(193,112,64,0.2); padding:3px 10px; letter-spacing:0.1em; text-transform:uppercase; }
+
+/* ── LOVELY — Azul nocturno, DAZ 3D ── */
+#hab-lovely {
+  --ly-bg: #06080F;
+  --ly-bg2: #0B0E1A;
+  --ly-blue: #3A6FD8;
+  --ly-ice: #A8C4F0;
+  --ly-cream: #E8EEF8;
+  --ly-border: rgba(58,111,216,0.12);
+}
+#hab-lovely .hab-header { background:var(--ly-bg); border-bottom:1px solid var(--ly-border); padding:30px 40px; }
+#hab-lovely .hab-code { color:var(--ly-blue); }
+#hab-lovely .hab-title { color:var(--ly-cream); font-family:'Cormorant Garamond',serif; font-size:clamp(20px,2.8vw,36px); }
+#hab-lovely .hab-plus { color:var(--ly-blue); }
+#hab-lovely.focused .hab-plus { color:var(--ly-ice); transform:rotate(45deg); }
+#hab-lovely .hab-label-tag { color:var(--ly-blue); border-color:rgba(58,111,216,0.4); }
+#hab-lovely .hab-label-tag:hover { background:var(--ly-blue); color:#fff; }
+
+.ly-room { background:var(--ly-bg); }
+.ly-hero { display:grid; grid-template-columns:1fr 1.1fr; min-height:80vh; }
+.ly-hero-text { padding:60px 48px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid var(--ly-border); }
+.ly-overline { font-family:'Roboto Mono',monospace; font-size:8px; color:var(--ly-blue); letter-spacing:0.5em; text-transform:uppercase; display:block; margin-bottom:20px; }
+.ly-title { font-family:'Cormorant Garamond',serif; font-size:clamp(52px,7vw,96px); font-weight:300; font-style:italic; color:var(--ly-cream); line-height:0.85; margin-bottom:16px; }
+.ly-artist { font-family:'Roboto Mono',monospace; font-size:9px; color:var(--ly-ice); letter-spacing:0.3em; text-transform:uppercase; opacity:0.6; margin-bottom:32px; }
+.ly-concept { font-family:'Inter',sans-serif; font-size:14px; font-weight:300; color:var(--ly-cream); opacity:0.65; line-height:1.8; margin-bottom:24px; }
+.ly-symbols { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:28px; }
+.ly-symbol { background:rgba(58,111,216,0.06); border:1px solid var(--ly-border); padding:20px 18px; }
+.ly-sym-key { font-family:'Roboto Mono',monospace; font-size:8px; color:var(--ly-ice); letter-spacing:0.2em; text-transform:uppercase; display:block; margin-bottom:8px; }
+.ly-sym-val { font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic; color:var(--ly-cream); opacity:0.7; line-height:1.5; }
+.ly-hero-img { position:relative; overflow:hidden; background:#020408; }
+.ly-hero-img img { width:100%; height:100%; object-fit:cover; object-position:top center; filter:contrast(1.1) brightness(0.9) saturate(0.8); }
+.ly-gallery { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--ly-border); }
+.ly-gallery-slot { overflow:hidden; background:var(--ly-bg2); }
+.ly-gallery-slot img { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top; display:block; filter:brightness(0.85) contrast(1.1) saturate(0.7); transition:filter 0.5s,transform 0.5s; }
+.ly-gallery-slot:hover img { filter:brightness(1) contrast(1.1) saturate(1); transform:scale(1.04); }
+.ly-pills { display:flex; flex-wrap:wrap; gap:7px; padding:24px 40px; background:var(--ly-bg2); border-top:1px solid var(--ly-border); }
+.ly-pill { font-family:'Roboto Mono',monospace; font-size:7px; color:var(--ly-blue); border:1px solid rgba(58,111,216,0.2); padding:3px 10px; letter-spacing:0.1em; text-transform:uppercase; }
+
+/* ── FRACTUM — Verde digital, Blender + CLO3D ── */
+#hab-fractum {
+  --fr-bg: #050C08;
+  --fr-bg2: #0A1410;
+  --fr-green: #2A9E5E;
+  --fr-lime: #7FE08A;
+  --fr-cream: #D8F0DC;
+  --fr-border: rgba(42,158,94,0.1);
+}
+#hab-fractum .hab-header { background:var(--fr-bg); border-bottom:1px solid var(--fr-border); padding:30px 40px; }
+#hab-fractum .hab-code { color:var(--fr-green); }
+#hab-fractum .hab-title { color:var(--fr-cream); font-family:'Cormorant Garamond',serif; font-size:clamp(20px,2.8vw,36px); }
+#hab-fractum .hab-plus { color:var(--fr-green); }
+#hab-fractum.focused .hab-plus { color:var(--fr-lime); transform:rotate(45deg); }
+#hab-fractum .hab-label-tag { color:var(--fr-green); border-color:rgba(42,158,94,0.4); }
+#hab-fractum .hab-label-tag:hover { background:var(--fr-green); color:#fff; }
+
+.fr-room { background:var(--fr-bg); }
+.fr-hero { position:relative; min-height:70vh; display:grid; grid-template-columns:1fr 1fr 1fr; }
+.fr-slot { overflow:hidden; position:relative; background:var(--fr-bg2); }
+.fr-slot img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; filter:contrast(1.1) brightness(0.75) saturate(0.85); transition:filter 0.5s; }
+.fr-slot:hover img { filter:contrast(1.15) brightness(1) saturate(1); }
+.fr-slot:first-child { border-right:1px solid var(--fr-border); }
+.fr-slot:last-child { border-left:1px solid var(--fr-border); }
+.fr-overlay { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:36px 32px; background:linear-gradient(to top, rgba(5,12,8,0.95) 0%, transparent 60%); }
+.fr-overlay-title { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,5vw,64px); font-weight:300; color:var(--fr-cream); line-height:0.9; }
+.fr-overlay-sub { font-family:'Roboto Mono',monospace; font-size:8px; color:var(--fr-green); letter-spacing:0.4em; text-transform:uppercase; margin-top:8px; opacity:0.7; }
+.fr-info { display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--fr-border); }
+.fr-info-col { padding:40px; border-right:1px solid var(--fr-border); }
+.fr-info-col:last-child { border-right:none; }
+.fr-label { font-family:'Roboto Mono',monospace; font-size:8px; color:var(--fr-green); letter-spacing:0.4em; text-transform:uppercase; display:block; margin-bottom:14px; }
+.fr-text { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--fr-cream); opacity:0.55; line-height:1.8; }
+.fr-tools { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
+.fr-tool { font-family:'Roboto Mono',monospace; font-size:7px; color:var(--fr-lime); border:1px solid rgba(127,224,138,0.2); padding:4px 12px; letter-spacing:0.1em; }
+
+/* ── ESCHATON.EXE — Rojo violáceo, apocalipsis digital ── */
+#hab-eschaton {
+  --es-bg: #0A0508;
+  --es-bg2: #130A10;
+  --es-red: #C43060;
+  --es-violet: #8A3AC0;
+  --es-cream: #F0E0F0;
+  --es-border: rgba(196,48,96,0.1);
+}
+#hab-eschaton .hab-header { background:var(--es-bg); border-bottom:1px solid var(--es-border); padding:30px 40px; }
+#hab-eschaton .hab-code { color:var(--es-red); }
+#hab-eschaton .hab-title { color:var(--es-cream); font-family:'Cormorant Garamond',serif; font-size:clamp(20px,2.8vw,36px); }
+#hab-eschaton .hab-plus { color:var(--es-violet); }
+#hab-eschaton.focused .hab-plus { color:var(--es-red); transform:rotate(45deg); }
+#hab-eschaton .hab-label-tag { color:var(--es-red); border-color:rgba(196,48,96,0.4); }
+#hab-eschaton .hab-label-tag:hover { background:var(--es-red); color:#fff; }
+
+.es-room { background:var(--es-bg); }
+.es-narrative { display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid var(--es-border); }
+.es-universe { padding:48px 36px; border-right:1px solid var(--es-border); position:relative; overflow:hidden; }
+.es-universe:last-child { border-right:none; }
+.es-uni-num { font-family:'Cormorant Garamond',serif; font-size:96px; font-weight:300; color:rgba(196,48,96,0.06); line-height:1; position:absolute; top:20px; right:20px; }
+.es-uni-tag { font-family:'Roboto Mono',monospace; font-size:7px; color:var(--es-red); letter-spacing:0.3em; text-transform:uppercase; display:block; margin-bottom:10px; }
+.es-uni-title { font-family:'Cormorant Garamond',serif; font-size:clamp(18px,2vw,26px); font-weight:300; color:var(--es-cream); line-height:1.2; margin-bottom:16px; }
+.es-uni-text { font-family:'Inter',sans-serif; font-size:12px; font-weight:300; color:var(--es-cream); opacity:0.5; line-height:1.8; }
+.es-concept { padding:48px 40px; display:grid; grid-template-columns:1fr 1.5fr; gap:48px; border-bottom:1px solid var(--es-border); background:var(--es-bg2); }
+.es-concept-title { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3.5vw,48px); font-weight:300; font-style:italic; color:var(--es-cream); line-height:1.1; }
+.es-concept-text { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--es-cream); opacity:0.6; line-height:1.8; }
+.es-gallery { display:grid; grid-template-columns:repeat(4,1fr); }
+.es-gallery-slot { overflow:hidden; background:var(--es-bg2); border-right:1px solid var(--es-border); }
+.es-gallery-slot:last-child { border-right:none; }
+.es-gallery-slot img { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top; display:block; filter:contrast(1.15) brightness(0.7) saturate(0.7); transition:filter 0.5s,transform 0.5s; }
+.es-gallery-slot:hover img { filter:contrast(1.2) brightness(1) saturate(0.9); transform:scale(1.04); }
+.es-pills { display:flex; flex-wrap:wrap; gap:7px; padding:24px 40px; background:var(--es-bg2); border-top:1px solid var(--es-border); }
+.es-pill { font-family:'Roboto Mono',monospace; font-size:7px; color:var(--es-red); border:1px solid rgba(196,48,96,0.2); padding:3px 10px; letter-spacing:0.1em; text-transform:uppercase; }
+
+/* ── MILEE — Placeholder elegante ── */
+#hab-milee .hab-header { background:#080A0E; border-bottom:1px solid rgba(253,185,39,0.08); padding:30px 40px; }
+.milee-placeholder { padding:80px 40px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background:#080A0E; border:1px dashed rgba(253,185,39,0.1); margin:0; min-height:300px; }
+.milee-ph-title { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,4vw,48px); font-weight:300; font-style:italic; color:var(--matter-light); opacity:0.4; margin-bottom:16px; }
+.milee-ph-sub { font-family:'Roboto Mono',monospace; font-size:8px; color:var(--amber); letter-spacing:0.4em; text-transform:uppercase; opacity:0.4; margin-bottom:24px; }
+.milee-ph-text { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--matter-light); opacity:0.25; max-width:400px; line-height:1.7; }
+.milee-concept-strip { padding:40px; background:#080A0E; border-top:1px solid rgba(253,185,39,0.06); display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background-color:rgba(253,185,39,0.06); }
+.milee-concept-cell { background:#080A0E; padding:28px 24px; }
+.milee-c-key { font-family:'Roboto Mono',monospace; font-size:8px; color:var(--amber); letter-spacing:0.25em; text-transform:uppercase; display:block; margin-bottom:10px; opacity:0.6; }
+.milee-c-val { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--matter-light); opacity:0.4; line-height:1.7; }
+
+@media (max-width:768px) {
+  .vit-hero,.ev-hero,.ly-hero,.fr-hero { grid-template-columns:1fr; }
+  .vit-series,.ev-specs,.ly-symbols,.fr-info,.es-concept { grid-template-columns:1fr; }
+  .vit-gallery,.ly-gallery,.es-gallery { grid-template-columns:1fr 1fr; }
+  .ev-gallery,.fr-hero { grid-template-columns:1fr; }
+  .es-narrative { grid-template-columns:1fr; }
+  .milee-concept-strip { grid-template-columns:1fr; }
+  .vit-gallery-slot:first-child { grid-row:auto; }
+  .vit-gallery-slot:first-child img { aspect-ratio:3/4; height:auto; }
+}
+</style>
+
+<!-- HERO VIDEO SALA III -->
+<section class="room-hero view" id="mundos">
     <div class="room-hero-bg">
-        <video autoplay loop muted playsinline poster="vitriol_01.jpg">
-            <source src="portada vitrial.mp4" type="video/mp4">
+        <video autoplay loop muted playsinline poster="fotos/vitriol_01.jpg">
+            <source src="fotos/portada vitrial.mp4" type="video/mp4">
         </video>
     </div>
-    
     <div class="hero-content">
-        <span class="hero-code" style="font-family:'Roboto Mono'; color:var(--amber); letter-spacing:0.5em;">ST_03 // EXPERIMENTAL</span>
-        <h2 style="font-family:'Cormorant Garamond'; font-size: clamp(48px, 10vw, 120px); line-height: 0.85; margin: 24px 0;">La Cámara<br><em>Oscura</em></h2>
-        <p style="opacity:0.8; font-size: 14px; max-width: 480px; line-height: 1.8; font-weight: 300;">Donde la forma se disuelve y la identidad resiste. VITRIOL representa el punto donde la arquitectura digital encuentra su propia conciencia.</p>
-        <a class="hero-scroll-trigger" onclick="document.getElementById('sala-3-content').scrollIntoView({behavior:'smooth'})">DESCENDER AL ARCHIVO ↓</a>
+        <span style="font-family:'Roboto Mono',monospace;color:var(--amber);letter-spacing:0.5em;font-size:9px;text-transform:uppercase;display:block;margin-bottom:20px;">ST_03 // 3D · DIGITAL FASHION · EXPERIMENTAL</span>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(48px,10vw,120px);line-height:0.85;margin-bottom:24px;">La Cámara<br><em>Oscura</em></h2>
+        <p style="opacity:0.7;font-size:14px;max-width:480px;line-height:1.8;font-weight:300;">Donde la forma se disuelve y la identidad resiste. CLO3D · Blender · DAZ 3D · Digital Product Design.</p>
+        <a class="hero-scroll-trigger" onclick="navTo('mundos-content')">DESCENDER AL ARCHIVO ↓</a>
     </div>
 </section>
 
-<!-- IMPORTANTE: Envuelve tus proyectos actuales en un <div id="sala-3-content"> justo debajo -->
-<div class="room-section" id="sala-3-content" style="padding: 100px 8%;">
-    <!-- Aquí van tus proyectos actuales (VITRIOL, EVOLVER, etc.) -->
-</div>
+<div class="view room-view camara-view" id="mundos-content">
 
-    <!-- EVOLVER SKIN — FEATURED -->
-    <div class="hab featured-hab" id="hab-evolver" data-tag="BEATRIZ CASTRO">
-        <div class="hab-header" onclick="focusHab('hab-evolver')">
+    <!-- ══ CD_01: VITRIOL ══ -->
+    <div class="hab focused" id="hab-vitriol" data-tag="BEATRIZ CASTRO">
+        <div class="hab-header" onclick="focusHab('hab-vitriol')">
             <div class="hab-meta">
-                <div><span class="featured-hab-badge">FEATURED</span></div>
-                <span class="hab-code" style="margin-top:4px;">CD_04 · DIGITAL FASHION · PRODUCT CONCEPT</span>
-                <h2 class="hab-title">EVOLVER SKIN — Digital Second Skin System</h2>
+                <span class="hab-code">CD_01 · 3D SCULPTURE · IDENTITY DESIGN · IED MADRID</span>
+                <h2 class="hab-title">VITRIOL — Where Form Dissolves and Identity Resists</h2>
             </div>
             <div class="hab-controls">
                 <a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a>
@@ -731,85 +1948,351 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             </div>
         </div>
         <div class="hab-content">
-            <div class="vision-system"><p class="vision-concept">IDENTIDAD BIOMÉTRICA COMO MATERIA</p><div class="vision-logic"><span>Digital Product Design</span><span>3D Rendering</span><span>Concept Development</span><span>Packaging Direction</span></div></div>
-            <div class="vision-role"><span>CONCEPTO</span><p>Sistema modular inspirado en la exuvia biológica. Funciona como segunda piel: regenera la superficie dérmica y actúa como filtro biométrico que protege los datos de identidad. Cosmética anatómica inteligente.</p></div>
-            <div class="moodboard-grid">
-                <div class="mb-slot mb-feature" data-tag="BEATRIZ CASTRO" onclick="openDetail('EVOLVER SKIN','3D','RENDER','evolver_01.jpg')"><span class="mb-label">3D Design</span><img src="evolver_01.jpg" onerror="this.style.background='rgba(253,185,39,0.05)'"></div>
-                <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO" onclick="openDetail('EVOLVER SKIN · Packaging','PRODUCTO','FINAL','evolver_02.jpg')"><span class="mb-label">Packaging</span><img src="evolver_02.jpg" onerror="this.style.background='rgba(253,185,39,0.03)'"></div>
-                <div class="mb-slot mb-etc" style="flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:24px;background:rgba(253,185,39,0.02);border:1px solid rgba(253,185,39,0.08)!important;">
-                    <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--amber);letter-spacing:0.2em;display:block;margin-bottom:12px;">CATEGORÍA</span>
-                    <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--matter-light);line-height:1.4;">"Cosmética anatómica inteligente"</p>
-                    <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:6px;">
-                        <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--amber);border:1px solid rgba(253,185,39,0.2);padding:3px 8px;">EXUVIA</span>
-                        <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--amber);border:1px solid rgba(253,185,39,0.2);padding:3px 8px;">BIOMÉTRICO</span>
-                        <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--amber);border:1px solid rgba(253,185,39,0.2);padding:3px 8px;">MODULAR</span>
+            <div class="vit-room">
+                <!-- VIDEO PORTADA VITRIOL — cuando tengas el video, reemplaza "TU_VIDEO_VITRIOL.mp4" -->
+                <!-- Si no hay video, se muestra la imagen de fondo automáticamente -->
+                <div class="vit-video-hero" id="vit-video-wrap" style="position:relative;overflow:hidden;background:#02020A;border-bottom:1px solid var(--vit-border);">
+                    <video id="vit-video" autoplay loop muted playsinline poster="fotos/18.png"
+                           style="width:100%;max-height:60vh;object-fit:cover;display:block;opacity:0.75;"
+                           onerror="this.style.display='none'">
+                        <!-- PEGA AQUÍ: <source src="fotos/TU_VIDEO_VITRIOL.mp4" type="video/mp4"> -->
+                    </video>
+                    <div style="position:absolute;bottom:0;left:0;right:0;padding:20px 40px;background:linear-gradient(to top,rgba(5,5,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:7px;color:var(--vit-gold);letter-spacing:0.4em;text-transform:uppercase;opacity:0.6;">
+                        VITRIOL · WHERE FORM DISSOLVES AND IDENTITY RESISTS
+                    </div>
+                </div>
+
+                <div class="vit-hero">
+                    <div class="vit-hero-img">
+                        <img loading="lazy" src="fotos/18.png" alt="VITRIOL — Serie I">
+                    </div>
+                    <div class="vit-hero-text">
+                        <span class="vit-overline">CD_01 · 3D Sculpture · Alquimia Visual</span>
+                        <h3 class="vit-title">VITRIOL</h3>
+                        <span class="vit-subtitle">Where form dissolves and identity resists</span>
+                        <p class="vit-manifesto">"En alquimia, el vitriolo es el ácido que corroe la materia hasta que solo queda lo esencial. Pero también es lo que purifica."</p>
+                        <p class="vit-body">Una exploración material sobre el deseo como proceso corrosivo. Los ojos abandonan el rostro y se instalan en criaturas, ornamentos y figuras que desafían cualquier categoría estética convencional. La pedrería no es decoración — es una invasión. El brillo no embellece: coloniza.</p>
+                        <span class="vit-acid-line">VITRIOL IS NOT ABOUT WHAT REPELS OR ATTRACTS. IT IS ABOUT THE MOMENT YOU REALIZE YOU CANNOT TELL THE DIFFERENCE.</span>
+                    </div>
+                </div>
+                <div class="vit-series">
+                    <div class="vit-serie-block">
+                        <span class="vit-serie-num">I</span>
+                        <span class="vit-serie-name">Serie I</span>
+                        <h4 class="vit-serie-title">Morfología del Deseo</h4>
+                        <p class="vit-serie-text">¿Qué ocurre cuando el órgano de la percepción se convierte en el objeto percibido? Esta serie explora la mirada como arma, como portal, como joya.</p>
+                    </div>
+                    <div class="vit-serie-block">
+                        <span class="vit-serie-num">II</span>
+                        <span class="vit-serie-name">Serie II</span>
+                        <h4 class="vit-serie-title">Morfología Omnisciente</h4>
+                        <p class="vit-serie-text">Una figura andrógina, casi abstracta. Porta joyas que son ojos: órganos de visión convertidos en ornamento de poder. Quien observa esta figura, es observado.</p>
+                    </div>
+                </div>
+                <div class="vit-gallery">
+                    <div class="vit-gallery-slot"><img loading="lazy" src="fotos/2.jpg" alt="VITRIOL render 1" onerror="this.style.background='#05050A'"></div>
+                    <div class="vit-gallery-slot"><img loading="lazy" src="fotos/vitriol_02.jpg" alt="VITRIOL detalle" onerror="this.style.background='#05050A'"></div>
+                    <div class="vit-gallery-slot"><img loading="lazy" src="fotos/vitriol_03.jpg" alt="VITRIOL serie II" onerror="this.style.background='#05050A'"></div>
+                    <div class="vit-gallery-slot"><img loading="lazy" src="fotos/vitriol_04.jpg" alt="VITRIOL closeup" onerror="this.style.background='#05050A'"></div>
+                </div>
+                <div class="vit-pills">
+                    <span class="vit-pill">3D Sculpture</span>
+                    <span class="vit-pill">Identity Design</span>
+                    <span class="vit-pill">Joyas Digitales</span>
+                    <span class="vit-pill">Alquimia Visual</span>
+                    <span class="vit-pill">IED Madrid</span>
+                    <span class="vit-pill">Avatar Direction</span>
+                    <span class="vit-pill">Experimental</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ CD_02: EVOLVER SKIN — FEATURED ══ -->
+    <div class="hab featured-hab" id="hab-evolver" data-tag="BEATRIZ CASTRO">
+        <div class="hab-header" onclick="focusHab('hab-evolver')">
+            <div class="hab-meta">
+                <div><span class="featured-hab-badge">FEATURED</span></div>
+                <span class="hab-code" style="margin-top:4px;">CD_02 · DIGITAL PRODUCT DESIGN · BIOMIMÉTICA · PACKAGING</span>
+                <h2 class="hab-title">EVOLVER SKIN — Cosmética Anatómica Inteligente</h2>
+            </div>
+            <div class="hab-controls">
+                <a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a>
+                <span class="hab-plus">+</span>
+            </div>
+        </div>
+        <div class="hab-content">
+            <div class="ev-room">
+                <!-- VIDEO PORTADA EVOLVER — cuando tengas el video, reemplaza "TU_VIDEO_EVOLVER.mp4" -->
+                <div style="position:relative;overflow:hidden;background:#100A06;border-bottom:1px solid var(--ev-border);">
+                    <video autoplay loop muted playsinline poster="fotos/logo evolver skin.png"
+                           style="width:100%;max-height:60vh;object-fit:cover;display:block;opacity:0.75;"
+                           onerror="this.style.display='none'">
+                        <!-- PEGA AQUÍ: <source src="fotos/TU_VIDEO_EVOLVER.mp4" type="video/mp4"> -->
+                    </video>
+                    <div style="position:absolute;bottom:0;left:0;right:0;padding:20px 40px;background:linear-gradient(to top,rgba(14,10,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:7px;color:var(--ev-terra);letter-spacing:0.4em;text-transform:uppercase;opacity:0.6;">
+                        EVOLVER SKIN · COSMÉTICA ANATÓMICA INTELIGENTE
+                    </div>
+                </div>
+
+                <div class="ev-hero">
+                    <div class="ev-hero-img">
+                        <img loading="lazy" src="fotos/logo evolver skin.png" alt="EVOLVER SKIN — Segunda piel digital" onerror="this.style.background='#100A06'">
+                    </div>
+                    <div class="ev-hero-text">
+                        <span class="ev-overline">CD_02 · Digital Product Design · Biomimética</span>
+                        <h3 class="ev-title">EVOLVER<br>SKIN</h3>
+                        <span class="ev-tagline">Digital Second Skin System · Cosmética Anatómica Inteligente</span>
+                        <p class="ev-concept">"El diseño surge de la observación del proceso biológico de la exuvia — el momento en que ciertos seres vivos abandonan su piel para permitir una nueva etapa evolutiva."</p>
+                        <p class="ev-body">Sistema modular que cubre la palma y las falanges respetando la anatomía. Funciona como segunda piel: regenera la superficie dérmica, mejora la movilidad articular y actúa como filtro biométrico que protege los datos de identidad del usuario. Combina belleza, salud y tecnología para crear una nueva categoría: la cosmética anatómica inteligente.</p>
+                    </div>
+                </div>
+                <div class="ev-specs">
+                    <div class="ev-spec">
+                        <span class="ev-spec-key">Origen Conceptual</span>
+                        <p class="ev-spec-val">Exuvia biológica — el proceso de muda de piel de artrópodos. La vulnerabilidad de las huellas dactilares frente al desgaste físico y el robo digital biométrico.</p>
+                    </div>
+                    <div class="ev-spec">
+                        <span class="ev-spec-key">Función del Producto</span>
+                        <p class="ev-spec-val">Preservar la identidad biológica y digital del usuario. Protección, regeneración dérmica y filtro biométrico en un sistema modular aplicable.</p>
+                    </div>
+                    <div class="ev-spec">
+                        <span class="ev-spec-key">Categoría</span>
+                        <p class="ev-spec-val">Nueva categoría entre moda digital, cosmética y tecnología wearable. Diálogo entre diseño, ética y el futuro de la piel humana.</p>
+                    </div>
+                </div>
+                <div class="ev-gallery">
+                    <div class="ev-gallery-slot"><img loading="lazy" src="fotos/evolver_01.jpg" alt="EVOLVER SKIN render mano" onerror="this.style.background='#100A06'"></div>
+                    <div class="ev-gallery-slot"><img loading="lazy" src="fotos/evolver_02.jpg" alt="EVOLVER SKIN packaging" onerror="this.style.background='#100A06'"></div>
+                    <div class="ev-gallery-slot"><img loading="lazy" src="fotos/evolver_03.jpg" alt="EVOLVER SKIN detalle" onerror="this.style.background='#100A06'"></div>
+                </div>
+                <div class="ev-pills">
+                    <span class="ev-pill">Digital Product Design</span>
+                    <span class="ev-pill">Biomimética</span>
+                    <span class="ev-pill">Packaging Direction</span>
+                    <span class="ev-pill">3D Rendering</span>
+                    <span class="ev-pill">Wearable Tech Concept</span>
+                    <span class="ev-pill">Identidad Biométrica</span>
+                    <span class="ev-pill">Exuvia</span>
+                    <span class="ev-pill">IED Madrid</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ CD_03: LOVELY ══ -->
+    <div class="hab" id="hab-lovely" data-tag="BEATRIZ CASTRO">
+        <div class="hab-header" onclick="focusHab('hab-lovely')">
+            <div class="hab-meta">
+                <span class="hab-code">CD_03 · DAZ 3D · AVATAR DIRECTION · MUSIC INTERPRETATION</span>
+                <h2 class="hab-title">LOVELY — Avatar & Digital Identity Direction</h2>
+            </div>
+            <div class="hab-controls">
+                <a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a>
+                <span class="hab-plus">+</span>
+            </div>
+        </div>
+        <div class="hab-content">
+            <div class="ly-room">
+                <div class="ly-hero">
+                    <div class="ly-hero-text">
+                        <span class="ly-overline">CD_03 · DAZ 3D · Avatar Direction</span>
+                        <h3 class="ly-title">LOVELY</h3>
+                        <span class="ly-artist">Billie Eilish & Khalid — Interpretación Visual</span>
+                        <p class="ly-concept">LOVELY expone la soledad de Billie y su lucha por salir de un abismo emocional mientras busca un lugar seguro donde sostenerse. Con esa base construí una narrativa visual inspirada en la portada y en las metáforas de la canción — reinterpretada a través de un avatar 3D en DAZ 3D.</p>
+                        <div class="ly-symbols">
+                            <div class="ly-symbol">
+                                <span class="ly-sym-key">La Cadena</span>
+                                <p class="ly-sym-val">El peso que la limita, pero también aquello que la mantiene anclada cuando todo se desmorona. Carga y soporte a la vez.</p>
+                            </div>
+                            <div class="ly-symbol">
+                                <span class="ly-sym-key">El Cubo</span>
+                                <p class="ly-sym-val">Prisión y refugio simultáneamente. Encierra, pero ofrece un pequeño espacio donde puede ser ella sin pretender nada.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ly-hero-img">
+                        <img loading="lazy" src="fotos/bea 1.png" alt="LOVELY — Avatar DAZ 3D" onerror="this.style.background='#020408'">
+                    </div>
+                </div>
+                <div class="ly-gallery">
+                    <div class="ly-gallery-slot"><img loading="lazy" src="fotos/lovely_01.jpg" alt="LOVELY render 1" onerror="this.style.background='#060810'"></div>
+                    <div class="ly-gallery-slot"><img loading="lazy" src="fotos/lovely_02.jpg" alt="LOVELY cadena" onerror="this.style.background='#060810'"></div>
+                    <div class="ly-gallery-slot"><img loading="lazy" src="fotos/lovely_03.jpg" alt="LOVELY cubo" onerror="this.style.background='#060810'"></div>
+                    <div class="ly-gallery-slot"><img loading="lazy" src="fotos/lovely_04.jpg" alt="LOVELY portrait" onerror="this.style.background='#060810'"></div>
+                </div>
+                <div class="ly-pills">
+                    <span class="ly-pill">DAZ 3D</span>
+                    <span class="ly-pill">Avatar Design</span>
+                    <span class="ly-pill">Music Interpretation</span>
+                    <span class="ly-pill">Visual Narrative</span>
+                    <span class="ly-pill">Character Direction</span>
+                    <span class="ly-pill">Digital Identity</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ CD_04: FRACTUM ══ -->
+    <div class="hab" id="hab-fractum" data-tag="BEATRIZ CASTRO">
+        <div class="hab-header" onclick="focusHab('hab-fractum')">
+            <div class="hab-meta">
+                <span class="hab-code" style="color:#2A9E5E;">CD_04 · BLENDER · CLO3D · WORLD-BUILDING DIGITAL</span>
+                <h2 class="hab-title" style="color:#D8F0DC;font-family:'Cormorant Garamond',serif;">FRACTUM — 3D World & Garment Direction</h2>
+            </div>
+            <div class="hab-controls">
+                <a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)" style="color:#2A9E5E;border-color:rgba(42,158,94,0.4);">BEATRIZ CASTRO</a>
+                <span class="hab-plus">+</span>
+            </div>
+        </div>
+        <div class="hab-content">
+            <div class="fr-room">
+                <!-- VIDEO PORTADA FRACTUM — cuando tengas el video, reemplaza "TU_VIDEO_FRACTUM.mp4" -->
+                <div style="position:relative;overflow:hidden;background:#050C08;border-bottom:1px solid var(--fr-border);">
+                    <video autoplay loop muted playsinline poster="fotos/0144.png"
+                           style="width:100%;max-height:60vh;object-fit:cover;display:block;opacity:0.75;"
+                           onerror="this.style.display='none'">
+                        <!-- PEGA AQUÍ: <source src="fotos/TU_VIDEO_FRACTUM.mp4" type="video/mp4"> -->
+                    </video>
+                    <div style="position:absolute;bottom:0;left:0;right:0;padding:20px 40px;background:linear-gradient(to top,rgba(5,12,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:7px;color:var(--fr-green);letter-spacing:0.4em;text-transform:uppercase;opacity:0.6;">
+                        FRACTUM · BLENDER · CLO3D · WORLD-BUILDING DIGITAL
+                    </div>
+                </div>
+
+                <div class="fr-hero">
+                    <div class="fr-slot">
+                        <img loading="lazy" src="fotos/0144.png" alt="FRACTUM entorno" onerror="this.style.background='#050C08'">
+                    </div>
+                    <div class="fr-slot" style="position:relative;">
+                        <img loading="lazy" src="fotos/fractum_02.jpg" alt="FRACTUM avatar & garment" onerror="this.style.background='#050C08'">
+                        <div class="fr-overlay">
+                            <h3 class="fr-overlay-title">FRACTUM</h3>
+                            <span class="fr-overlay-sub">Blender · CLO3D · World-Building Digital</span>
+                        </div>
+                    </div>
+                    <div class="fr-slot">
+                        <img loading="lazy" src="fotos/fractum_03.jpg" alt="FRACTUM detalle textil" onerror="this.style.background='#050C08'">
+                    </div>
+                </div>
+                <div class="fr-info">
+                    <div class="fr-info-col">
+                        <span class="fr-label">Concepto</span>
+                        <p class="fr-text">Integración de prendas CLO3D con entornos volumétricos en Blender. El avatar como puente entre diseño técnico y narrativa cinematográfica. La prenda no se presenta sola — vive dentro de un mundo construido para ella.</p>
+                    </div>
+                    <div class="fr-info-col">
+                        <span class="fr-label">Disciplinas & Herramientas</span>
+                        <p class="fr-text">World-building 3D, simulación de tejidos, dirección de escena, integración avatar-entorno, iluminación volumétrica.</p>
+                        <div class="fr-tools">
+                            <span class="fr-tool">Blender</span>
+                            <span class="fr-tool">CLO3D</span>
+                            <span class="fr-tool">Avatar Integration</span>
+                            <span class="fr-tool">Scene Direction</span>
+                            <span class="fr-tool">3D Lighting</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="hab" id="hab-lovely" data-tag="BEATRIZ CASTRO">
-        <div class="hab-header" onclick="focusHab('hab-lovely')">
-            <div class="hab-meta"><span class="hab-code">CD_02 · AVATAR DIRECTION · DAZ 3D</span><h2 class="hab-title">LOVELY — Avatar & Digital Identity Direction</h2></div>
-            <div class="hab-controls"><a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a><span class="hab-plus">+</span></div>
-        </div>
-        <div class="hab-content">
-            <div class="vision-system"><p class="vision-concept">CARGA Y SOPORTE SIMULTÁNEOS</p><div class="vision-logic"><span>DAZ 3D</span><span>Avatar Design</span><span>Visual Narrative</span><span>Music Interpretation</span></div></div>
-            <div class="vision-role"><span>CONCEPTO</span><p>Reinterpretación de una identidad musical (Billie Eilish — Lovely) a través de un avatar 3D. La cadena como peso y ancla. El cubo como prisión y refugio.</p></div>
-            <div class="moodboard-grid">
-                <div class="mb-slot mb-feature" data-tag="BEATRIZ CASTRO"><span class="mb-label">Character Design</span><img src="lovely_01.jpg" onerror="this.style.background='rgba(15,82,186,0.05)'"></div>
-                <div class="mb-slot mb-texture-1" data-tag="BEATRIZ CASTRO"><span class="mb-label">Scene</span><img src="lovely_02.jpg" onerror="this.style.background='rgba(15,82,186,0.03)'"></div>
-                <div class="mb-slot mb-life-1" data-tag="BEATRIZ CASTRO"><span class="mb-label">Portrait</span><img src="lovely_03.jpg" onerror="this.style.background='rgba(15,82,186,0.03)'"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="hab" id="hab-fractum" data-tag="BEATRIZ CASTRO">
-        <div class="hab-header" onclick="focusHab('hab-fractum')">
-            <div class="hab-meta"><span class="hab-code amber">CD_03 · BLENDER · CLO3D · WORLD-BUILDING</span><h2 class="hab-title">FRACTUM — 3D World & Garment Direction</h2></div>
-            <div class="hab-controls"><a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a><span class="hab-plus">+</span></div>
-        </div>
-        <div class="hab-content">
-            <div class="vision-system"><p class="vision-concept">WORLD-BUILDING DIGITAL</p><div class="vision-logic"><span>Blender</span><span>CLO3D</span><span>Avatar Integration</span><span>Scene Direction</span></div></div>
-            <div class="vision-role"><span>DISCIPLINAS</span><p>Integración de prendas CLO3D con entornos volumétricos en Blender. El avatar como puente entre diseño técnico y narrativa cinematográfica.</p></div>
-            <div class="moodboard-grid">
-                <div class="mb-slot mb-texture-1" data-tag="BEATRIZ CASTRO"><span class="mb-label">Environment</span><img src="fractum_01.jpg" onerror="this.style.background='rgba(15,82,186,0.05)'"></div>
-                <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO"><span class="mb-label">Avatar & Garment</span><img src="fractum_02.jpg" onerror="this.style.background='rgba(15,82,186,0.03)'"></div>
-                <div class="mb-slot mb-feature" data-tag="BEATRIZ CASTRO"><span class="mb-label">Textile Detail</span><img src="fractum_03.jpg" onerror="this.style.background='rgba(15,82,186,0.03)'"></div>
-            </div>
-        </div>
-    </div>
-
+    <!-- ══ CD_05: MILEE — Placeholder elegante ══ -->
     <div class="hab" id="hab-milee" data-tag="BEATRIZ CASTRO">
         <div class="hab-header" onclick="focusHab('hab-milee')">
-            <div class="hab-meta"><span class="hab-code amber">CD_05 · AI CAMPAIGN DIRECTION · SUSTAINABLE FASHION</span><h2 class="hab-title">MILEE Collection — AI Campaign Direction</h2></div>
-            <div class="hab-controls"><a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a><span class="hab-plus">+</span></div>
+            <div class="hab-meta">
+                <span class="hab-code amber">CD_05 · AI CAMPAIGN DIRECTION · SUSTAINABLE FASHION · CULTURA DOMINICANA</span>
+                <h2 class="hab-title">MILEE Collection — AI Campaign Direction</h2>
+            </div>
+            <div class="hab-controls">
+                <a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a>
+                <span class="hab-plus">+</span>
+            </div>
         </div>
         <div class="hab-content">
-            <div class="vision-system"><p class="vision-concept">HERENCIA VISUAL COMO ACTO POLÍTICO</p><div class="vision-logic"><span>AI Art Direction</span><span>Campaign Concept</span><span>Cultura Dominicana</span><span>Moda Sostenible</span></div></div>
-            <div class="vision-role"><span>CONCEPTO</span><p>Campaña visual generada con IA que fusiona identidad cultural dominicana con moda sostenible (Milee Collection). Referencia: Balmain Spring 2023, Look 2.</p></div>
-            <div class="moodboard-grid">
-                <div class="mb-slot mb-feature" data-tag="BEATRIZ CASTRO"><span class="mb-label">Campaign Visual</span><img src="milee_01.jpg" onerror="this.style.background='rgba(253,185,39,0.05)'"></div>
-                <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO"><span class="mb-label">Campaign Visual 02</span><img src="milee_02.jpg" onerror="this.style.background='rgba(253,185,39,0.03)'"></div>
+            <div class="milee-placeholder">
+                <p class="milee-ph-title">Campaña en desarrollo</p>
+                <span class="milee-ph-sub">CD_05 · AI Art Direction · En proceso</span>
+                <p class="milee-ph-text">Campaña visual que fusiona identidad cultural dominicana con moda sostenible (Milee Collection). Referencia: Balmain Spring 2023, Look 2. Dirección creativa con IA. Próximamente.</p>
+            </div>
+            <div class="milee-concept-strip">
+                <div class="milee-concept-cell">
+                    <span class="milee-c-key">Concepto</span>
+                    <p class="milee-c-val">Herencia visual dominicana como acto político. Identidad cultural + moda sostenible en un mismo lenguaje visual.</p>
+                </div>
+                <div class="milee-concept-cell">
+                    <span class="milee-c-key">Referencia</span>
+                    <p class="milee-c-val">Balmain Spring 2023, Look 2. Paleta, silhouette y narrativa reinterpretadas desde la cultura dominicana.</p>
+                </div>
+                <div class="milee-concept-cell">
+                    <span class="milee-c-key">Herramientas</span>
+                    <p class="milee-c-val">AI Art Direction · Dirección creativa · Campaign Concept · Sustainable Fashion</p>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- ══ CD_06: ESCHATON.EXE ══ -->
     <div class="hab" id="hab-eschaton" data-tag="BEATRIZ CASTRO">
         <div class="hab-header" onclick="focusHab('hab-eschaton')">
-            <div class="hab-meta"><span class="hab-code">CD_06 · CLO3D · DIGITAL GARMENT COLLECTION</span><h2 class="hab-title">ESCHATON.EXE — Digital Garment Collection</h2></div>
-            <div class="hab-controls"><a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a><span class="hab-plus">+</span></div>
+            <div class="hab-meta">
+                <span class="hab-code">CD_06 · CLO3D · DIGITAL GARMENT COLLECTION · WORLD-BUILDING</span>
+                <h2 class="hab-title">ESCHATON.EXE — El Programa Final del Alma</h2>
+            </div>
+            <div class="hab-controls">
+                <a href="#" class="hab-label-tag" onclick="navigateToTag('BEATRIZ CASTRO',event)">BEATRIZ CASTRO</a>
+                <span class="hab-plus">+</span>
+            </div>
         </div>
         <div class="hab-content">
-            <div class="vision-system"><p class="vision-concept">FIN DE SISTEMA COMO PUNTO DE PARTIDA</p><div class="vision-logic"><span>CLO3D</span><span>3D Pattern Engineering</span><span>Digital Collection</span><span>Virtual Sampling</span></div></div>
-            <div class="vision-role"><span>ROL</span><p>Diseño y desarrollo completo de colección digital en CLO3D: desde concepto hasta prototipo virtual. Patronaje técnico, simulación de tejidos y dirección estética.</p></div>
-            <div class="moodboard-grid">
-                <div class="mb-slot mb-feature" data-tag="BEATRIZ CASTRO"><span class="mb-label">CLO3D Simulation</span><img src="image_7dcdb3.jpg"></div>
-                <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO"><span class="mb-label">Pattern Development</span><img src="eschaton_01.jpg" onerror="this.src='image_7dcdb3.jpg'"></div>
+            <div class="es-room">
+                <div class="es-narrative">
+                    <div class="es-universe">
+                        <span class="es-uni-num">I</span>
+                        <span class="es-uni-tag">Primer Universo</span>
+                        <h4 class="es-uni-title">El Despertar Biotecnológico</h4>
+                        <p class="es-uni-text">El cuerpo como interfaz. La piel como memoria. En un mundo donde la tecnología no solo se usa — sino que se siente. Cada prenda guarda un dato, cada textura reacciona a la emoción humana.</p>
+                    </div>
+                    <div class="es-universe">
+                        <span class="es-uni-num">II</span>
+                        <span class="es-uni-tag">Segundo Universo</span>
+                        <h4 class="es-uni-title">La Guerra</h4>
+                        <p class="es-uni-text">El virus fue solo el inicio. Las calles se transformaron en código roto. La humanidad, en errores del sistema. Pero algunos aún luchan por reiniciar el mundo.</p>
+                    </div>
+                    <div class="es-universe">
+                        <span class="es-uni-num">III</span>
+                        <span class="es-uni-tag">Tercer Universo</span>
+                        <h4 class="es-uni-title">La Venida</h4>
+                        <p class="es-uni-text">El cielo no se abrió — fue el código el que habló. La salvación no era física, ni digital. Era espiritual. El Serafín despertó: SERAPH.EXE_404.</p>
+                    </div>
+                </div>
+                <div class="es-concept">
+                    <div>
+                        <h3 class="es-concept-title">ESCHATON.EXE</h3>
+                        <p style="font-family:'Roboto Mono',monospace;font-size:8px;color:#C43060;letter-spacing:0.3em;text-transform:uppercase;margin-top:12px;opacity:0.7;">El Programa Final del Alma</p>
+                    </div>
+                    <div>
+                        <p class="es-concept-text">Colección digital completa desarrollada en CLO3D: desde concepto narrativo hasta prototipo virtual. Tres universos estéticos que responden a tres estados del alma — el despertar, la guerra y la redención. Patronaje técnico, simulación de tejidos y dirección estética cohesionada por una narrativa apocalíptica digital.</p>
+                        <p class="es-concept-text" style="margin-top:16px;">La evolución ya no es natural. Es programada.</p>
+                    </div>
+                </div>
+                <div class="es-gallery">
+                    <div class="es-gallery-slot"><img loading="lazy" src="fotos/eschaton_01.jpg" alt="ESCHATON Universe I" onerror="this.style.background='#0A0508'"></div>
+                    <div class="es-gallery-slot"><img loading="lazy" src="fotos/eschaton_02.jpg" alt="ESCHATON Universe II" onerror="this.style.background='#0A0508'"></div>
+                    <div class="es-gallery-slot"><img loading="lazy" src="fotos/eschaton_03.jpg" alt="ESCHATON Universe III" onerror="this.style.background='#0A0508'"></div>
+                    <div class="es-gallery-slot"><img loading="lazy" src="fotos/image_7dcdb3.jpg" alt="ESCHATON detail" onerror="this.style.background='#0A0508'"></div>
+                </div>
+                <div class="es-pills">
+                    <span class="es-pill">CLO3D</span>
+                    <span class="es-pill">Digital Garment Collection</span>
+                    <span class="es-pill">3D Pattern Engineering</span>
+                    <span class="es-pill">Virtual Sampling</span>
+                    <span class="es-pill">World-Building</span>
+                    <span class="es-pill">Narrativa Digital</span>
+                    <span class="es-pill">IED Madrid</span>
+                </div>
             </div>
         </div>
     </div>
+
 </div>
 
 
@@ -823,56 +2306,74 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <h1 class="sala-title">Beatriz<br><em style="color:var(--sapphire);">Castro</em></h1>
         </div>
 
-        <div class="sobre-grid">
-            <!-- BIO -->
-            <div class="sobre-bio-block">
+        <!-- FOTO + BIO HERO -->
+        <div style="display:grid;grid-template-columns:300px 1fr;gap:60px;align-items:start;margin-bottom:60px;padding-bottom:60px;border-bottom:1px solid rgba(15,82,186,0.1);">
+            <!-- FOTO: cuando tengas foto, reemplaza el div de abajo por <img loading="lazy" src="fotos/TU_FOTO.jpg" style="width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;display:block;"> -->
+            <div style="position:relative;">
+                <div style="width:100%;aspect-ratio:3/4;background:rgba(15,82,186,0.04);border:1px dashed rgba(15,82,186,0.2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+                    <span style="font-family:'Roboto Mono',monospace;font-size:13px;color:var(--sapphire);opacity:0.3;letter-spacing:0.2em;">[ FOTO ]</span>
+                    <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--matter-light);opacity:0.2;letter-spacing:0.1em;text-align:center;line-height:1.8;">Reemplaza con:<br>src="fotos/TU_FOTO.jpg"</span>
+                </div>
+                <div style="position:absolute;bottom:-1px;left:0;right:0;height:2px;background:linear-gradient(to right,var(--amber),transparent);"></div>
+            </div>
+            <div>
                 <span class="sobre-role-tag">Digital Fashion Designer · CLO3D · AI · Madrid</span>
-                <p class="sobre-text">Diseñadora de moda digital especializada en el desarrollo de indumentaria 3D, dirección creativa y la integración de inteligencia artificial en los procesos de diseño y producción de moda.</p>
-                <p class="sobre-text" style="margin-top:16px;">Con experiencia en patronaje técnico industrial, estilismo, dirección fotográfica y desarrollo de campañas visuales, opero en la intersección entre el oficio tradicional y las herramientas digitales del presente.</p>
-                <p class="sobre-text" style="margin-top:16px;">Formación especializada en moda digital (IED Madrid). Experiencia en RD Fashion Week y proyectos editoriales independientes en España.</p>
-
-                <div class="sobre-skills">
+                <p class="sobre-text" style="margin-top:8px;">Soy diseñadora de moda digital con una doble raíz: el oficio técnico del patronaje industrial y la exploración de las herramientas digitales del presente. Vengo de República Dominicana, vivo en Madrid, y trabajo en la intersección entre confección real, diseño 3D y dirección creativa.</p>
+                <p class="sobre-text" style="margin-top:16px;">He colaborado en producción de moda en pasarela, desarrollado patronaje industrial para producción en serie, dirigido editoriales fotográficas, y creado colecciones digitales completas en CLO3D y Blender. Mi trabajo va del tech-pack listo para fábrica al avatar 3D conceptual — sin que una disciplina excluya a la otra.</p>
+                <p class="sobre-text" style="margin-top:16px;">Formación especializada en Moda Digital (IED Madrid). Experiencia en RD Fashion Week, Wuatan Studio y proyectos independientes en España y República Dominicana.</p>
+                <div class="sobre-skills" style="margin-top:28px;">
                     <span class="skill-tag">CLO3D</span><span class="skill-tag">Blender</span><span class="skill-tag">DAZ 3D</span>
                     <span class="skill-tag">AI Art Direction</span><span class="skill-tag">Adobe Suite</span>
                     <span class="skill-tag">Patronaje Digital</span><span class="skill-tag">Styling</span>
                     <span class="skill-tag">Photo Direction</span><span class="skill-tag">3D Garment Dev.</span>
-                    <span class="skill-tag">Virtual Sampling</span>
+                    <span class="skill-tag">Virtual Sampling</span><span class="skill-tag">Tech-Pack</span>
+                    <span class="skill-tag">Escalado Industrial</span><span class="skill-tag">Dirección Creativa</span>
                 </div>
-
-                <!-- DISPONIBILIDAD -->
-                <div style="margin-top:40px;padding:24px;border:1px solid rgba(29,158,117,0.2);background:rgba(29,158,117,0.03);">
+                <div style="margin-top:32px;padding:24px;border:1px solid rgba(29,158,117,0.2);background:rgba(29,158,117,0.03);">
                     <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:#1D9E75;letter-spacing:0.3em;text-transform:uppercase;display:block;margin-bottom:10px;">● DISPONIBLE</span>
                     <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--matter-light);opacity:0.8;line-height:1.6;">Abierta a proyectos freelance, colaboraciones en moda digital y posiciones en equipos de diseño o producto de moda. Madrid · Europa · Remoto.</p>
-                    <a onclick="navTo('contacto')" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--amber);text-decoration:none;display:inline-block;margin-top:16px;border-bottom:1px solid rgba(253,185,39,0.3);padding-bottom:2px;cursor:pointer;">CONTACTAR →</a>
+                    <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
+                        <a onclick="navTo('contacto')" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--amber);border:1px solid rgba(253,185,39,0.4);padding:8px 18px;text-decoration:none;cursor:pointer;transition:0.3s;" onmouseover="this.style.background='var(--amber)';this.style.color='#000'" onmouseout="this.style.background='transparent';this.style.color='var(--amber)'">CONTACTAR →</a>
+                        <!-- CV: cuando tengas el PDF, cambia href="#" por href="fotos/CV_BeatrizCastro.pdf" -->
+                        <a href="#" download onclick="alert('Añade tu CV: renómbralo CV_BeatrizCastro.pdf y ponlo en tu carpeta fotos/. Luego cambia href=\'#\' por href=\'fotos/CV_BeatrizCastro.pdf\'');return false;" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(15,82,186,0.4);padding:8px 18px;text-decoration:none;cursor:pointer;transition:0.3s;" onmouseover="this.style.background='rgba(15,82,186,0.1)'" onmouseout="this.style.background='transparent'">↓ DESCARGAR CV</a>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <!-- EXPERIENCIA + HERRAMIENTAS -->
-            <div class="sobre-data-col">
+        <!-- EXPERIENCIA + FORMACIÓN + LOGROS en 2 columnas -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;">
+            <div>
                 <span class="sobre-section-label">Experiencia</span>
-
-                <div class="sobre-item">
-                    <div class="sobre-item-title">Wuatan Studio</div>
-                    <div class="sobre-item-sub">Estilismo · Dirección Creativa · Fotografía de Moda</div>
-                    <span class="sobre-item-year">2023 — 2024</span>
-                </div>
                 <div class="sobre-item">
                     <div class="sobre-item-title">Mayle Vázquez</div>
-                    <div class="sobre-item-sub">Digital Pattern Maker · Product Development</div>
+                    <div class="sobre-item-sub">Digital Pattern Maker · Product Development · Asistencia Creativa</div>
                     <span class="sobre-item-year">2023 — 2024</span>
                 </div>
                 <div class="sobre-item">
-                    <div class="sobre-item-title">RD Fashion Week</div>
-                    <div class="sobre-item-sub">Styling Direction · Backstage Production</div>
+                    <div class="sobre-item-title">Leonel Lirio</div>
+                    <div class="sobre-item-sub">Asistente Creativa · Confección · Producción de Desfile · RD Fashion Week</div>
                     <span class="sobre-item-year">2024</span>
                 </div>
                 <div class="sobre-item">
-                    <div class="sobre-item-title">Consultoría Independiente</div>
-                    <div class="sobre-item-sub">Moda Digital · Contenido · Estrategia</div>
+                    <div class="sobre-item-title">Wuatan Studio</div>
+                    <div class="sobre-item-sub">Estilismo · Dirección Creativa · Fotografía de Moda · Producción Editorial</div>
+                    <span class="sobre-item-year">2023 — 2024</span>
+                </div>
+                <div class="sobre-item">
+                    <div class="sobre-item-title">Revista A La Moda RD</div>
+                    <div class="sobre-item-sub">Dirección Editorial · Contenido Digital · Fotografía de Eventos</div>
+                    <span class="sobre-item-year">2023</span>
+                </div>
+                <div class="sobre-item">
+                    <div class="sobre-item-title">Proyectos Independientes</div>
+                    <div class="sobre-item-sub">Moda Digital · CLO3D · AI Art Direction · Dirección Creativa</div>
                     <span class="sobre-item-year">2023 — Presente</span>
                 </div>
+            </div>
 
-                <span class="sobre-section-label" style="margin-top:40px;">Formación</span>
+            <div class="sobre-data-col">
+                <span class="sobre-section-label">Formación</span>
                 <div class="sobre-item">
                     <div class="sobre-item-title">IED Madrid</div>
                     <div class="sobre-item-sub">Máster en Moda Digital</div>
@@ -881,12 +2382,26 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
                 <span class="sobre-section-label" style="margin-top:40px;">Logros</span>
                 <div class="sobre-item">
-                    <div class="sobre-item-title">2º lugar — Concurso Foto-Portada</div>
-                    <div class="sobre-item-sub">Estilismo y Dirección Fotográfica</div>
+                    <div class="sobre-item-title">RD Fashion Week 2022</div>
+                    <div class="sobre-item-sub">Concurso Homenaje a Oscar de la Renta · Diseñadora Emergente por Provincia</div>
                 </div>
                 <div class="sobre-item">
-                    <div class="sobre-item-title">3º lugar — Concurso Foto-Portada</div>
-                    <div class="sobre-item-sub">Dirección Creativa</div>
+                    <div class="sobre-item-title">2º lugar — Pretty Color</div>
+                    <div class="sobre-item-sub">Estilismo y Dirección Creativa · Big Models Management RD</div>
+                </div>
+                <div class="sobre-item">
+                    <div class="sobre-item-title">3º lugar — Look Lite</div>
+                    <div class="sobre-item-sub">Vestuario, Estilismo y Dirección · Big Models Management RD</div>
+                </div>
+
+                <span class="sobre-section-label" style="margin-top:40px;">Idiomas</span>
+                <div class="sobre-item">
+                    <div class="sobre-item-title">Español</div>
+                    <div class="sobre-item-sub">Nativo</div>
+                </div>
+                <div class="sobre-item" style="border-bottom:none;">
+                    <div class="sobre-item-title">Inglés</div>
+                    <div class="sobre-item-sub">Profesional</div>
                 </div>
             </div>
         </div>
@@ -902,6 +2417,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         <div class="contacto-header">
             <span class="sala-code">SYS_CONTACT // TRABAJEMOS JUNTOS</span>
             <h1 class="contacto-title">Hablemos<br><em>de tu proyecto.</em></h1>
+            <!-- CV: cuando tengas el PDF, cambia href="#" por href="fotos/CV_BeatrizCastro.pdf" -->
+            <a href="#" download onclick="alert('Añade tu CV: renómbralo CV_BeatrizCastro.pdf y ponlo en tu carpeta fotos/. Luego cambia href=\'#\' por href=\'fotos/CV_BeatrizCastro.pdf\'');return false;" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(15,82,186,0.3);padding:10px 22px;text-decoration:none;display:inline-block;margin-top:24px;transition:0.3s;letter-spacing:0.15em;" onmouseover="this.style.background='rgba(15,82,186,0.1)';this.style.borderColor='var(--sapphire)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(15,82,186,0.3)'">↓ DESCARGAR CV — BEATRIZ CASTRO</a>
         </div>
 
         <div class="contacto-grid">
@@ -999,7 +2516,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
                 <!-- QR Instagram -->
                 <a href="https://www.instagram.com/beatrizcastro9798" target="_blank" rel="noopener" style="text-decoration:none;">
-                    <img src="beatrizcastro9798_qr.png" class="contacto-qr-img" alt="QR Instagram @beatrizcastro9798"
+                    <img loading="lazy" src="beatrizcastro9798_qr.png" class="contacto-qr-img" alt="QR Instagram @beatrizcastro9798"
                          style="transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
                 </a>
                 <span class="contacto-qr-label">@BEATRIZCASTRO9798 · INSTAGRAM</span>
@@ -1007,7 +2524,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <!-- QR WhatsApp -->
                 <a href="https://wa.me/qr/R3B4SBXIKHAQE1" target="_blank" rel="noopener"
                    style="text-decoration:none;margin-top:36px;">
-                    <img src="whatsapp_qr.png"
+                    <img loading="lazy" src="whatsapp_qr.png"
                          style="width:200px;height:200px;object-fit:contain;border:1px solid rgba(37,211,102,0.2);padding:16px;background:rgba(37,211,102,0.03);transition:opacity 0.3s;opacity:0.85;"
                          alt="QR WhatsApp Beatriz Castro"
                          onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
@@ -1046,10 +2563,101 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
 </div><!-- /stage -->
 
+<!-- MODALES MAYLE -->
+<div class="mayle-modal-bg" id="mayle-modal-1" onclick="closeMayleModal(event,'mayle-modal-1')">
+  <div class="mayle-modal">
+    <div class="mayle-modal-img-col"><span class="mayle-modal-badge">Alta Complejidad</span><img loading="lazy" src="fotos/santo-domingo-dress.png" alt="Vestido Santo Domingo"></div>
+    <div class="mayle-modal-info">
+      <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-1').classList.remove('open')">✕ CERRAR</button>
+      <span class="mayle-modal-code">OF_01.A · Beatriz Castro · Mayle Vázquez</span>
+      <h3 class="mayle-modal-title">Vestido<br>"Santo Domingo"</h3>
+      <div class="mayle-modal-subtitle">Ingeniería de Fitting</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Estructura</span><p class="mayle-spec-val">Patronaje con <strong>holgura negativa controlada</strong> y "chasis" interno. Estabilidad garantizada en busto mediante distribución de tensiones.</p></div>
+      <div class="mayle-modal-subtitle">Eficiencia de Marcada</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Optimización de corte</span><p class="mayle-spec-val">Paneles trapezoidales optimizados para un <strong>aprovechamiento de tejido del 88%</strong>. Uso de "falsos paneles" en zonas de costura para reducir el desperdicio sin sacrificar el vuelo.</p></div>
+      <div class="mayle-modal-subtitle">Sostenibilidad</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Diseño responsable</span><p class="mayle-spec-val">Diseño de corte orientado a la <strong>reducción de mermas en tejidos de gran formato</strong>. Integración de principios de bajo impacto desde el patrón base.</p></div>
+      <div class="mayle-modal-tags"><span class="mayle-modal-tag">Fitting Negativo</span><span class="mayle-modal-tag">88% Fabric Use</span><span class="mayle-modal-tag">Zero Waste Approach</span><span class="mayle-modal-tag">Paneles Trapezoidales</span><span class="mayle-modal-tag">Chasis Interno</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="mayle-modal-bg" id="mayle-modal-2" onclick="closeMayleModal(event,'mayle-modal-2')">
+  <div class="mayle-modal">
+    <div class="mayle-modal-img-col"><span class="mayle-modal-badge">Sastrería Industrial</span><img loading="lazy" src="fotos/caribe coat.png" alt="Abrigo Caribe"></div>
+    <div class="mayle-modal-info">
+      <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-2').classList.remove('open')">✕ CERRAR</button>
+      <span class="mayle-modal-code">OF_01.B · Beatriz Castro · Mayle Vázquez</span>
+      <h3 class="mayle-modal-title">Abrigo "Caribe"<br>& Chaqueta 1</h3>
+      <div class="mayle-modal-subtitle">Producción en Serie</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Manga globo</span><p class="mayle-spec-val">Desarrollada mediante <strong>expansión radial</strong> con un coeficiente de embebido de copa <strong>inferior al 8%</strong>, optimizado para máquinas de coser automáticas.</p></div>
+      <div class="mayle-modal-subtitle">Estabilidad</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Línea de quiebre</span><p class="mayle-spec-val">Roll line con <strong>piquetes de posicionamiento para cinta de sastre</strong> (stay tape), eliminando el error humano en el montaje de la solapa.</p></div>
+      <div class="mayle-modal-subtitle">Escalado</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Curva de tallas S→XL</span><p class="mayle-spec-val">Estructura base diseñada para <strong>mantener el equilibrio del volumen</strong> en toda la curva de tallas. Escalado digital bajo normativas industriales internacionales.</p></div>
+      <div class="mayle-modal-tags"><span class="mayle-modal-tag">&lt;8% Embebido Copa</span><span class="mayle-modal-tag">Stay Tape</span><span class="mayle-modal-tag">Roll Line</span><span class="mayle-modal-tag">Automática Compatible</span><span class="mayle-modal-tag">S→XL Balanced</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="mayle-modal-bg" id="mayle-modal-3" onclick="closeMayleModal(event,'mayle-modal-3')">
+  <div class="mayle-modal">
+    <div class="mayle-modal-img-col"><span class="mayle-modal-badge">Optimización COGS</span><img loading="lazy" src="fotos/el pozo jacket- completo .png" alt="Chaqueta El Pozo"></div>
+    <div class="mayle-modal-info">
+      <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-3').classList.remove('open')">✕ CERRAR</button>
+      <span class="mayle-modal-code">OF_01.C · Beatriz Castro · Mayle Vázquez</span>
+      <h3 class="mayle-modal-title">Chaqueta<br>"El Pozo"</h3>
+      <div class="mayle-modal-subtitle">Ahorro de Tiempos</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Eficiencia de confección</span><p class="mayle-spec-val">Jaretas y tablones <strong>integrados en el patrón base con piquetes de doblado CNC</strong>. Reduce el tiempo de confección en un <strong>15%</strong> al eliminar mediciones manuales en mesa.</p></div>
+      <div class="mayle-modal-subtitle">Construcción</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Manga campana</span><p class="mayle-spec-val">Con <strong>compensación de caída en el patrón</strong> para tejidos inestables (lino / mezclas). La caída natural queda resuelta desde el patrón base.</p></div>
+      <div class="mayle-modal-subtitle">Montaje</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Cuello mao</span><p class="mayle-spec-val">Pie de cuello anatómico diseñado para asegurar el <strong>cierre exacto en la primera prueba</strong>, eliminando iteraciones costosas.</p></div>
+      <div class="mayle-modal-tags"><span class="mayle-modal-tag">−15% Confección</span><span class="mayle-modal-tag">CNC Piquetes</span><span class="mayle-modal-tag">Lino Estable</span><span class="mayle-modal-tag">Mao Anatómico</span><span class="mayle-modal-tag">First-Fit Guaranteed</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="mayle-modal-bg" id="mayle-modal-4" onclick="closeMayleModal(event,'mayle-modal-4')">
+  <div class="mayle-modal">
+    <div class="mayle-modal-img-col"><span class="mayle-modal-badge">Materiales Dinámicos</span><img loading="lazy" src="fotos/chaqueta 2 sin manga.png" alt="Vestido Santa María Ozama"></div>
+    <div class="mayle-modal-info">
+      <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-4').classList.remove('open')">✕ CERRAR</button>
+      <span class="mayle-modal-code">OF_01.D · Beatriz Castro · Mayle Vázquez</span>
+      <h3 class="mayle-modal-title">Vestido "Santa María"<br>& "Ozama"</h3>
+      <div class="mayle-modal-subtitle">Tejidos Plisados</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Compensación dinámica</span><p class="mayle-spec-val">Patrones desarrollados con <strong>compensación por elasticidad residual</strong>. Las medidas finales consideran el estiramiento post-corte del tejido metalizado.</p></div>
+      <div class="mayle-modal-subtitle">Consumo Inteligente</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Traslado de pinzas</span><p class="mayle-spec-val">Traslado al <strong>foco de torsión (nudo)</strong> para eliminar cortes innecesarios, reduciendo las operaciones de costura y mejorando la caída orgánica.</p></div>
+      <div class="mayle-modal-subtitle">Industrialización</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Acabados</span><p class="mayle-spec-val">Bajo con <strong>pespunte invisible optimizado para dobladilladoras industriales</strong>. Listo para producción en cadena sin reajustes en máquina.</p></div>
+      <div class="mayle-modal-tags"><span class="mayle-modal-tag">Elasticidad Residual</span><span class="mayle-modal-tag">Pinza a Torsión</span><span class="mayle-modal-tag">Tejido Metalizado</span><span class="mayle-modal-tag">Dobladilladora Industrial</span><span class="mayle-modal-tag">Caída Orgánica</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="mayle-modal-bg" id="mayle-modal-5" onclick="closeMayleModal(event,'mayle-modal-5')">
+  <div class="mayle-modal">
+    <div class="mayle-modal-img-col"><span class="mayle-modal-badge">Capacidades Globales</span><img loading="lazy" src="fotos/convent vest.png" alt="Convent Vest"></div>
+    <div class="mayle-modal-info">
+      <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-5').classList.remove('open')">✕ CERRAR</button>
+      <span class="mayle-modal-code">OF_01 · Beatriz Castro · Para Reclutamiento</span>
+      <h3 class="mayle-modal-title">Capacidades<br>para Producción Global</h3>
+      <div class="mayle-modal-subtitle">Visión de Costes (COGS)</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Integración diseño-producción</span><p class="mayle-spec-val">Integración de detalles de diseño en el patrón para <strong>minimizar pasos de montaje</strong> y reducir costes de mano de obra directa.</p></div>
+      <div class="mayle-modal-subtitle">Precisión Técnica</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Documentación</span><p class="mayle-spec-val"><strong>Tech-Packs completos listos para envío a fábrica</strong>, incluyendo aplomos de control, hojas de ruta y especificaciones de materiales.</p></div>
+      <div class="mayle-modal-subtitle">Software Avanzado</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Digital Pattern Making</span><p class="mayle-spec-val">Marcadas de <strong>alta eficiencia y escalado digital</strong> bajo normativas industriales internacionales. Compatible con sistemas CAD de patronaje.</p></div>
+      <div class="mayle-modal-tags"><span class="mayle-modal-tag">Tech-Pack Ready</span><span class="mayle-modal-tag">COGS Awareness</span><span class="mayle-modal-tag">CAD Pattern</span><span class="mayle-modal-tag">Factory-Ready Docs</span><span class="mayle-modal-tag">Industrial Standards</span></div>
+    </div>
+  </div>
+</div>
+
 
 <!-- DETALLE -->
 <div class="detail-overlay" id="detail-overlay">
-    <div class="detail-main"><img src="" id="d-img"></div>
+    <div class="detail-main"><img loading="lazy" src="" id="d-img"></div>
     <div class="detail-sidebar">
         <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--amber);letter-spacing:0.3em;">ANALYSIS</span>
         <h2 id="d-name" style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;margin:16px 0;color:var(--matter-light);"></h2>
@@ -1100,7 +2708,7 @@ function navigateToTag(tag, event) {
         if (img && img.src && !img.src.endsWith('/')) {
             const item = document.createElement('div');
             item.className = 'archive-item';
-            item.innerHTML = `<img src="${img.src}"><div class="archive-item-info"><span class="archive-item-name">${title}</span></div>`;
+            item.innerHTML = `<img loading="lazy" src="${img.src}"><div class="archive-item-info"><span class="archive-item-name">${title}</span></div>`;
             container.appendChild(item);
         }
     });
@@ -1231,6 +2839,25 @@ function initSlideshows() {
         }, cfg.interval);
     });
 }
+
+function openMayleModal(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function closeMayleModal(event, id) {
+    if (event.target === event.currentTarget) {
+        document.getElementById(id).classList.remove('open');
+        document.body.style.overflow = '';
+    }
+}
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.mayle-modal-bg.open').forEach(m => {
+            m.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+    }
+});
 
 window.onload = () => {
     setupInfiniteNews();
