@@ -293,7 +293,6 @@ html, body {
 /* ── SOBRE MÍ ── */
 #sobre-mi { background: var(--control-dark); padding: 100px 8% 200px; overflow-y: auto; }
 .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 60px; }
-.sobre-bio-block { }
 .sobre-bio-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 64px); font-weight: 300; line-height: 0.9; color: var(--matter-light); margin-bottom: 30px; }
 .sobre-bio-name em { color: var(--sapphire); font-style: italic; }
 .sobre-role-tag { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--amber); border: 1px solid rgba(253,185,39,0.3); padding: 6px 14px; display: inline-block; margin-bottom: 30px; letter-spacing: 0.15em; }
@@ -533,12 +532,12 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <header class="log-header"><h2 class="log-title">Architecture Log</h2></header>
     <div class="news-infinite-container">
         <div class="news-track" id="news-infinite-track">
-            <div class="news-cover" onclick="navTo('oficio');focusHab('hab-mayle');"><img src="Santo Domingo Dress.jpg"><span class="news-cover-label">MAYLE_24</span></div>
-            <div class="news-cover" onclick="navTo('oficio');focusHab('hab-leonel');"><img src="DSC07835.jpg"><span class="news-cover-label">RW_ARCHIVE</span></div>
-            <div class="news-cover" onclick="navTo('oficio');focusHab('hab-eliza');"><img src="DSC_0070.jpg"><span class="news-cover-label">ELISA_24</span></div>
-            <div class="news-cover" onclick="navTo('mundos');focusHab('hab-vitriol');"><img src="vitriol_01.jpg" onerror="this.style.background='#111'"><span class="news-cover-label">VITRIOL</span></div>
-            <div class="news-cover" onclick="navTo('mundos');focusHab('hab-lovely');"><img src="lovely_01.jpg" onerror="this.style.background='#111'"><span class="news-cover-label">LOVELY_DAZ</span></div>
-            <div class="news-cover" onclick="navTo('mundos');focusHab('hab-evolver');"><img src="evolver_02.jpg" onerror="this.style.background='#111'"><span class="news-cover-label">EVOLVER_SKIN</span></div>
+            <div class="news-cover" onclick="navTo('oficio');focusHab('hab-mayle');"><img src="fotos\santo-domingo-dress.png"><span class="news-cover-label">MAYLE_24</span></div>
+            <div class="news-cover" onclick="navTo('oficio');focusHab('hab-leonel');"><img src="fotos\leonel35.jpg"><span class="news-cover-label">RW_ARCHIVE</span></div>
+            <div class="news-cover" onclick="navTo('oficio');focusHab('hab-eliza');"><img src="fotos/elisamorato4.jpg"><span class="news-cover-label">ELISA_24</span></div>
+            <div class="news-cover" onclick="navTo('mundos');focusHab('hab-vitriol');"><img src="fotos\2.jpg" onerror="this.style.background='#111'"><span class="news-cover-label">VITRIOL</span></div>
+            <div class="news-cover" onclick="navTo('mundos');focusHab('hab-lovely');"><img src="fotos\bea 1.png" onerror="this.style.background='#111'"><span class="news-cover-label">LOVELY_DAZ</span></div>
+            <div class="news-cover" onclick="navTo('mundos');focusHab('hab-evolver');"><img src="logo evolver skin.png" onerror="this.style.background='#111'"><span class="news-cover-label">EVOLVER_SKIN</span></div>
         </div>
     </div>
 </div>
@@ -569,9 +568,13 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         <div class="hab-content">
             <div class="vision-role"><span>ROL</span><p>Desarrollo de patrones industriales y optimización de fit. Gestión de archivo técnico y digitalización de patronaje. Colaboración directa en el proceso de producción.</p></div>
             <div class="moodboard-grid">
-                <div class="mb-slot mb-texture-1" data-tag="BEATRIZ CASTRO" onclick="openDetail('Texture','92% ALGODÓN','8% LANA','Santo Domingo Dress.jpg')"><span class="mb-label">Texture</span><img src="Santo Domingo Dress.jpg"></div>
-                <div class="mb-slot mb-feature" data-tag="BEATRIZ CASTRO" onclick="openDetail('Feature','INDUSTRIAL','PRECISION','El pozo Jacket- completo .png')"><span class="mb-label">Feature Image</span><img src="El pozo Jacket- completo .png"></div>
-                <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO"><img src="Caribe Coat.png"></div>
+                <div class="mb-slot mb-texture-1" data-tag="BEATRIZ CASTRO" onclick="openDetail('ESTUDIO TÉCNICO: VESTIDO ESTRUCTURADO','Concepto:','Enfoque:','fotos\santo-domingo-dress.png')"><span class="mb-label">Texture</span><img src="fotos\santo-domingo-dress.png"></div>
+                <div class="mb-slot mb-feature" data-tag="BEATRIZ CASTRO" onclick="openDetail('Feature','INDUSTRIAL','PRECISION','fotos\el pozo jacket- completo .png')"><span class="mb-label">Feature Image</span><img src="fotos\el pozo jacket- completo .png"></div>
+                <div class="mb-slot mb-feature" data-tag="BEATRIZ CASTRO" onclick="openDetail('Feature','INDUSTRIAL','PRECISION','fotos\chaqueta 2 sin manga.png')"><span class="mb-label">Feature Image</span><img src="fotos\chaqueta 2 sin manga.png"></div>
+                <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO"><img src="fotos/caribe coat.png"></div>
+                 <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO"><img src="fotos\chaqueta1.png"></div>
+                <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO"><img src="fotos\convent vest.png"></div> 
+                <div class="mb-slot mb-insp-1" data-tag="BEATRIZ CASTRO"><img src="fotos\El Pozo Jacket.png"></div> 
             </div>
         </div>
     </div>
