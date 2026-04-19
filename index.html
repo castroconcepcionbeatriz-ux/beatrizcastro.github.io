@@ -730,7 +730,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 <!-- ═══════════════════════════════════════════
      SALA I: EL OFICIO
 ═══════════════════════════════════════════ -->
-<div class="view room-view" id="oficio">
+<div class="view room-view" id="oficio" style="background:#EDE3D4;">
     <div class="sala-header">
         <span class="sala-code">ST_01 // PATRONAJE · FOTOGRAFÍA · PRODUCCIÓN · CORTE</span>
         <h1 class="sala-title">La Sala de<br><em style="color:var(--sapphire);">la Corte</em></h1>
@@ -1101,7 +1101,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     </div>
                     <div class="ed-act-body ed-act-body--img-first">
                         <div class="ed-img-block">
-                            <img loading="lazy" src="fotos\elisa principal.png" alt="Elisa Morato backstage">
+                            <img loading="lazy" src="fotos/elisa principal.png" alt="Elisa Morato backstage">
                             <span class="ed-img-caption">Backstage · Coordinación vestuario · Foto: Beatriz Castro</span>
                         </div>
                         <div class="ed-text-block">
@@ -1121,9 +1121,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="ed-gallery">
                     <div class="ed-gallery-label">ARCHIVO · RW 2024 · ELISA MORATO · WUATAN STUDIO</div>
                     <div class="ed-gallery-grid">
-                        <div class="ed-gallery-item ed-gallery-item--tall"><img loading="lazy" src="fotos\elisamorato4.jpg" alt=""></div>
-                        <div class="ed-gallery-item"><img loading="lazy" src="fotos\elisamorato5.png" alt=""></div>
-                        <div class="ed-gallery-item"><img loading="lazy" src="fotos\elisa.jpg" alt=""></div>
+                        <div class="ed-gallery-item ed-gallery-item--tall"><img loading="lazy" src="fotos/elisamorato4.jpg" alt=""></div>
+                        <div class="ed-gallery-item"><img loading="lazy" src="fotos/elisamorato5.png" alt=""></div>
+                        <div class="ed-gallery-item"><img loading="lazy" src="fotos/elisa.jpg" alt=""></div>
                     </div>
                 </div>
             </div>
@@ -1239,7 +1239,12 @@ textarea.c-form-input { resize: none; min-height: 100px; }
   --inf-ink: #1A2410;
   --inf-border: rgba(90,122,46,0.15);
 }
-#hab-infantil .hab-header { background: var(--inf-bg); border-bottom: 1px solid var(--inf-border); padding: 30px 40px; }
+#hab-infantil .hab-header { background: transparent; border-bottom: 1px solid rgba(15,82,186,0.15); padding: 30px 40px; }
+#hab-infantil.focused .hab-header { background: var(--inf-bg); border-bottom: 1px solid var(--inf-border); }
+#hab-infantil .hab-title { color: var(--matter-light); }
+#hab-infantil.focused .hab-title { color: var(--inf-ink); }
+#hab-infantil .hab-code { color: var(--sapphire); }
+#hab-infantil.focused .hab-code { color: var(--inf-green); }
 #hab-infantil .hab-code { color: var(--inf-green); }
 #hab-infantil .hab-title { color: var(--inf-ink); }
 #hab-infantil .hab-plus { color: var(--inf-green); }
@@ -1291,7 +1296,12 @@ textarea.c-form-input { resize: none; min-height: 100px; }
   --pc-ink: #111;
   --pc-border: rgba(211,50,67,0.15);
 }
-#hab-concurso .hab-header { background: var(--pc-bg); border-bottom: 3px solid var(--pc-red); padding: 30px 40px; }
+#hab-concurso .hab-header { background: transparent; border-bottom: 1px solid rgba(15,82,186,0.15); padding: 30px 40px; }
+#hab-concurso.focused .hab-header { background: var(--pc-bg); border-bottom: 3px solid var(--pc-red); }
+#hab-concurso .hab-title { color: var(--matter-light); }
+#hab-concurso.focused .hab-title { color: var(--pc-ink); }
+#hab-concurso .hab-code { color: var(--sapphire); }
+#hab-concurso.focused .hab-code { color: var(--pc-red); }
 #hab-concurso .hab-code { color: var(--pc-red); }
 #hab-concurso .hab-title { color: var(--pc-ink); }
 #hab-concurso .hab-plus { color: var(--pc-green); }
@@ -1305,7 +1315,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
   border-bottom: 1px solid var(--pc-border);
 }
 .pc-cover-img { position: relative; overflow: hidden; background: #f0f0f0; }
-.pc-cover-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.pc-cover-img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
 .pc-cover-text {
   padding: 52px 44px; display: flex; flex-direction: column; justify-content: space-between;
   background: var(--pc-bg); border-left: 1px solid var(--pc-border);
@@ -1323,7 +1333,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .pc-award { display: inline-flex; align-items: center; gap: 10px; background: var(--pc-red); color: #fff; padding: 8px 16px; font-family: 'Roboto Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 20px; }
 .pc-gallery { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid var(--pc-border); }
 .pc-gallery-slot { position: relative; overflow: hidden; aspect-ratio: 3/4; background: #f5f5f5; }
-.pc-gallery-slot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 0.5s; }
+.pc-gallery-slot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; transition: transform 0.5s; }
 .pc-gallery-slot:hover img { transform: scale(1.04); }
 .pc-gallery-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 16px 14px; background: linear-gradient(to top, rgba(250,250,250,0.95), transparent); font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--pc-red); letter-spacing: 0.2em; text-transform: uppercase; }
 
@@ -1411,20 +1421,21 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         </div>
         <div class="hab-content">
             <div class="odr-room">
-                <div class="odr-runway">
-                    <div class="odr-runway-strip">
-                        <div class="odr-runway-side">
-                            <img loading="lazy" src="fotos/oscardelarenta.png" alt="Oscar de la Renta referencia">
+                <!-- 2 columnas: solo las dos fotos reales -->
+                <div style="display:grid;grid-template-columns:1fr 1fr;min-height:80vh;background:var(--odr-bg2);border-bottom:1px solid var(--odr-border);">
+                    <div style="position:relative;overflow:hidden;">
+                        <img loading="lazy" src="fotos/oscardelarenta.png" alt="Look Homenaje Oscar de la Renta — vista 1"
+                             style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;filter:contrast(1.05) brightness(0.88);">
+                        <div style="position:absolute;bottom:0;left:0;right:0;padding:40px 32px 28px;background:linear-gradient(to top,rgba(12,12,14,0.92),transparent);">
+                            <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--odr-gold);letter-spacing:0.4em;text-transform:uppercase;opacity:0.75;">Diseño & Confección · Beatriz Castro</span>
                         </div>
-                        <div class="odr-runway-center">
-                            <img loading="lazy" src="" alt="Look Homenaje Oscar de la Renta · Beatriz Castro">
-                            <div class="odr-runway-label">
-                                <span class="odr-runway-title">Homenaje a<br>Oscar de la Renta</span>
-                                <span class="odr-runway-subtitle">RDFW 2022 · Santo Domingo · Diseño: Beatriz Castro</span>
-                            </div>
-                        </div>
-                        <div class="odr-runway-side">
-                            <img loading="lazy" src="fotos\oscardelarenta1.png" alt="Look detalle">
+                    </div>
+                    <div style="position:relative;overflow:hidden;border-left:1px solid var(--odr-border);">
+                        <img loading="lazy" src="fotos/oscardelarenta1.png" alt="Look Homenaje Oscar de la Renta — vista 2"
+                             style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;filter:contrast(1.05) brightness(0.88);">
+                        <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:40px 32px 28px;background:linear-gradient(to top,rgba(12,12,14,0.7) 0%,transparent 60%);">
+                            <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,52px);font-weight:300;font-style:italic;color:var(--odr-ivory);line-height:1;margin-bottom:10px;">Homenaje a<br>Oscar de la Renta</h3>
+                            <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--odr-gold);letter-spacing:0.35em;text-transform:uppercase;opacity:0.8;">RDFW 2022 · Santo Domingo</span>
                         </div>
                     </div>
                 </div>
@@ -1502,11 +1513,11 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <!-- PASARELA — 3 fotos en runway -->
                 <div class="inf-runway">
                     <div class="inf-runway-slot">
-                        <img loading="lazy" src="fotos\niña1.jpg" alt="Look rosa · Pasarela">
+                        <img loading="lazy" src="fotos/niña1.jpg" alt="Look rosa · Pasarela">
                         <span class="inf-runway-slot-label">Look I · Rosa · Yapor Fashion Academy</span>
                     </div>
                     <div class="inf-runway-slot">
-                        <img loading="lazy" src="fotos\niña5.jpg" alt="Look verde/amarillo · Pasarela">
+                        <img loading="lazy" src="fotos/niña5.jpg" alt="Look verde/amarillo · Pasarela">
                         <span class="inf-runway-slot-label">Look II · Verde & Amarillo</span>
                     </div>
                     <div class="inf-runway-slot">
@@ -1599,15 +1610,15 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 </div>
                 <div class="pc-gallery">
                     <div class="pc-gallery-slot">
-                        <img loading="lazy" src="fotos\ozoria 1.jpg" alt="Pretty Color grupo 1">
+                        <img loading="lazy" src="fotos/ozoria 1.jpg" alt="Pretty Color grupo 1">
                         <span class="pc-gallery-label">Zona Colonial · Grupo I</span>
                     </div>
                     <div class="pc-gallery-slot">
-                        <img loading="lazy" src="fotos\ozoria.jpg" alt="Pretty Color grupo 2">
+                        <img loading="lazy" src="fotos/ozoria.jpg" alt="Pretty Color grupo 2">
                         <span class="pc-gallery-label">Pared Naranja · Grupo II</span>
                     </div>
                     <div class="pc-gallery-slot">
-                        <img loading="lazy" src="fotos\ozoria2.png" alt="Pretty Color individual">
+                        <img loading="lazy" src="fotos/ozoria2.png" alt="Pretty Color individual">
                         <span class="pc-gallery-label">Zona Colonial · Detalle</span>
                     </div>
                 </div>
@@ -1631,17 +1642,17 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <div class="dune-room">
                 <div class="dune-hero">
                     <div class="dune-hero-main">
-                        <img loading="lazy" src="fotos\fotoportadabea 2.png" alt="Look Lite · Dirección: Beatriz Castro">
+                        <img loading="lazy" src="fotos/fotoportadabea 2.png" alt="Look Lite · Dirección: Beatriz Castro">
                         <div class="dune-hero-overlay">
                             <span class="dune-hero-title">Look Lite</span>
                             <span class="dune-hero-sub">Vestuario, estilismo & dirección · Beatriz Castro · Foto: Josephphoto</span>
                         </div>
                     </div>
                     <div class="dune-hero-side">
-                        <img loading="lazy" src="fotos\sin editar bea 3.png" alt="Look Lite detalle">
+                        <img loading="lazy" src="fotos/sin editar bea 3.png" alt="Look Lite detalle">
                     </div>
                     <div class="dune-hero-side">
-                        <img loading="lazy" src="fotos\fotoportadabea1.png" alt="Look Lite proceso">
+                        <img loading="lazy" src="fotos/fotoportadabea1.png" alt="Look Lite proceso">
                     </div>
                 </div>
                 <div class="dune-info">
@@ -1662,13 +1673,13 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 </div>
                 <div class="dune-strip">
                     <div class="dune-strip-slot">
-                        <img loading="lazy" src="fotos\fotoportadabeatriz.png" alt="Look Lite escena 1">
+                        <img loading="lazy" src="fotos/fotoportadabeatriz.png" alt="Look Lite escena 1">
                     </div>
                     <div class="dune-strip-slot">
-                        <img loading="lazy" src="fotos\fotoportadabea.jpg" alt="Look Lite escena 2">
+                        <img loading="lazy" src="fotos/fotoportadabea.jpg" alt="Look Lite escena 2">
                     </div>    
                         <div class="dune-strip-slot">
-                        <img loading="lazy" src="fotos\sin editar bea.png" alt="Sin Editar">
+                        <img loading="lazy" src="fotos/sin editar bea.png" alt="Sin Editar">
                     </div>
                 </div>
                 <div class="dune-award">
@@ -1967,7 +1978,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
                 <div class="vit-hero">
                     <div class="vit-hero-img">
-                        <img loading="lazy" src="fotos\24.png" alt="VITRIOL — Serie I">
+                        <img loading="lazy" src="fotos/24.png" alt="VITRIOL — Serie I">
                     </div>
                     <div class="vit-hero-text">
                         <span class="vit-overline">CD_01 · 3D Sculpture · Alquimia Visual</span>
@@ -1992,15 +2003,35 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                         <p class="vit-serie-text">Una figura andrógina, casi abstracta. Porta joyas que son ojos: órganos de visión convertidos en ornamento de poder. Quien observa esta figura, es observado.</p>
                     </div>
                 </div>
-                <div class="vit-gallery">
-                    <div class="vit-gallery-slot"><img loading="lazy" src="fotos\17.png" alt="VITRIOL render 1" onerror="this.style.background='#05050A'"></div>
-                    <div class="vit-gallery-slot"><img loading="lazy" src="fotos/3.jpg" alt="VITRIOL detalle" onerror="this.style.background='#05050A'"></div>
-                    <div class="vit-gallery-slot"><img loading="lazy" src="fotos\19.png" alt="VITRIOL serie II" onerror="this.style.background='#05050A'"></div>
-                    <div class="vit-gallery-slot"><img loading="lazy" src="fotos\22.png" alt="VITRIOL closeup" onerror="this.style.background='#05050A'"></div>
-                    <div class="vit-gallery-slot"><img loading="lazy" src="fotos\10.jpg" alt="VITRIOL closeup" onerror="this.style.background='#05050A'"></div>
-                    <div class="vit-gallery-slot"><img loading="lazy" src="fotos\20.png" alt="VITRIOL closeup" onerror="this.style.background='#05050A'"></div>
-                    <div class="vit-gallery-slot"><img loading="lazy" src="fotos\2.jpg" alt="VITRIOL closeup" onerror="this.style.background='#05050A'"></div>
-                    <div class="vit-gallery-slot"><img loading="lazy" src="fotos\25.png" alt="VITRIOL closeup" onerror="this.style.background='#05050A'"></div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--vit-border);">
+                    <!-- Serie I -->
+                    <div style="border-right:1px solid var(--vit-border);">
+                        <div style="padding:14px 24px;background:var(--vit-bg2);border-bottom:1px solid var(--vit-border);">
+                            <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--vit-gold);letter-spacing:0.35em;text-transform:uppercase;opacity:0.65;">Serie I · Morfología del Deseo</span>
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;">
+                            <div style="overflow:hidden;aspect-ratio:3/4;background:var(--vit-bg2);">
+                                <img loading="lazy" src="fotos/17.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.85);transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.background='#05050A'">
+                            </div>
+                            <div style="overflow:hidden;aspect-ratio:3/4;background:var(--vit-bg2);border-left:1px solid var(--vit-border);">
+                                <img loading="lazy" src="fotos/3.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.85);transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.background='#05050A'">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Serie II -->
+                    <div>
+                        <div style="padding:14px 24px;background:var(--vit-bg2);border-bottom:1px solid var(--vit-border);">
+                            <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--vit-gold);letter-spacing:0.35em;text-transform:uppercase;opacity:0.65;">Serie II · Morfología Omnisciente</span>
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;">
+                            <div style="overflow:hidden;aspect-ratio:3/4;background:var(--vit-bg2);">
+                                <img loading="lazy" src="fotos/22.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.85);transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.background='#05050A'">
+                            </div>
+                            <div style="overflow:hidden;aspect-ratio:3/4;background:var(--vit-bg2);border-left:1px solid var(--vit-border);">
+                                <img loading="lazy" src="fotos/24.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.85);transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.background='#05050A'">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="vit-pills">
                     <span class="vit-pill">3D Sculpture</span>
@@ -2032,7 +2063,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <div class="ev-room">
                 <!-- VIDEO PORTADA EVOLVER — cuando tengas el video, reemplaza "TU_VIDEO_EVOLVER.mp4" -->
                 <div style="position:relative;overflow:hidden;background:#100A06;border-bottom:1px solid var(--ev-border);">
-                    <video autoplay loop muted playsinline poster="fotos/logo evolver skin.png"
+                    <video autoplay loop muted playsinline poster="fotos\logo evolver.png"
                            style="width:100%;max-height:60vh;object-fit:cover;display:block;opacity:0.75;"
                            onerror="this.style.display='none'">
                         <!-- PEGA AQUÍ: <source src="fotos/TU_VIDEO_EVOLVER.mp4" type="video/mp4"> -->
@@ -2044,7 +2075,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
                 <div class="ev-hero">
                     <div class="ev-hero-img">
-                        <img loading="lazy" src="fotos/logo evolver skin.png" alt="EVOLVER SKIN — Segunda piel digital" onerror="this.style.background='#100A06'">
+                        <img loading="lazy" src="fotos\ChatGPT Image 20 nov 2025, 03_19_40.png" alt="EVOLVER SKIN — Segunda piel digital" onerror="this.style.background='#100A06'">
                     </div>
                     <div class="ev-hero-text">
                         <span class="ev-overline">CD_02 · Digital Product Design · Biomimética</span>
@@ -2069,9 +2100,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     </div>
                 </div>
                 <div class="ev-gallery">
-                    <div class="ev-gallery-slot"><img loading="lazy" src="fotos/evolver_01.jpg" alt="EVOLVER SKIN render mano" onerror="this.style.background='#100A06'"></div>
-                    <div class="ev-gallery-slot"><img loading="lazy" src="fotos/evolver_02.jpg" alt="EVOLVER SKIN packaging" onerror="this.style.background='#100A06'"></div>
-                    <div class="ev-gallery-slot"><img loading="lazy" src="fotos/evolver_03.jpg" alt="EVOLVER SKIN detalle" onerror="this.style.background='#100A06'"></div>
+                    <div class="ev-gallery-slot"><img loading="lazy" src="fotos\exoesquelento final.png" alt="EVOLVER SKIN render mano" onerror="this.style.background='#100A06'"></div>
+                    <div class="ev-gallery-slot"><img loading="lazy" src="fotos\skin para video.png" alt="EVOLVER SKIN packaging" onerror="this.style.background='#100A06'"></div>
+                    <div class="ev-gallery-slot"><img loading="lazy" src="fotos\evolvi.png" alt="EVOLVER SKIN detalle" onerror="this.style.background='#100A06'"></div>
                 </div>
                 <div class="ev-pills">
                     <span class="ev-pill">Digital Product Design</span>
@@ -2123,10 +2154,10 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     </div>
                 </div>
                 <div class="ly-gallery">
-                    <div class="ly-gallery-slot"><img loading="lazy" src="fotos/lovely_01.jpg" alt="LOVELY render 1" onerror="this.style.background='#060810'"></div>
-                    <div class="ly-gallery-slot"><img loading="lazy" src="fotos/lovely_02.jpg" alt="LOVELY cadena" onerror="this.style.background='#060810'"></div>
-                    <div class="ly-gallery-slot"><img loading="lazy" src="fotos/lovely_03.jpg" alt="LOVELY cubo" onerror="this.style.background='#060810'"></div>
-                    <div class="ly-gallery-slot"><img loading="lazy" src="fotos/lovely_04.jpg" alt="LOVELY portrait" onerror="this.style.background='#060810'"></div>
+                    <div class="ly-gallery-slot"><img loading="lazy" src="fotos/bea 1.png" alt="LOVELY render 1" onerror="this.style.background='#060810'"></div>
+                    <div class="ly-gallery-slot"><img loading="lazy" src="fotos/bea 2.png" alt="LOVELY cadena" onerror="this.style.background='#060810'"></div>
+                    <div class="ly-gallery-slot"><img loading="lazy" src="fotos/bea 3.png" alt="LOVELY cubo" onerror="this.style.background='#060810'"></div>
+                    <div class="ly-gallery-slot"><img loading="lazy" src="fotos/bea4.png" alt="LOVELY portrait" onerror="this.style.background='#060810'"></div>
                 </div>
                 <div class="ly-pills">
                     <span class="ly-pill">DAZ 3D</span>
@@ -2154,54 +2185,134 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         </div>
         <div class="hab-content">
             <div class="fr-room">
-                <!-- VIDEO PORTADA FRACTUM — cuando tengas el video, reemplaza "TU_VIDEO_FRACTUM.mp4" -->
-                <div style="position:relative;overflow:hidden;background:#050C08;border-bottom:1px solid var(--fr-border);">
-                    <video autoplay loop muted playsinline poster="fotos/0144.png"
-                           style="width:100%;max-height:60vh;object-fit:cover;display:block;opacity:0.75;"
-                           onerror="this.style.display='none'">
-                        <!-- PEGA AQUÍ: <source src="fotos/TU_VIDEO_FRACTUM.mp4" type="video/mp4"> -->
+
+                <!-- VIDEO CLO3D 360° — activo -->
+                <div style="border-bottom:1px solid var(--fr-border);background:var(--fr-bg2);">
+                    <div style="padding:14px 40px;border-bottom:1px solid var(--fr-border);">
+                        <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--fr-green);letter-spacing:0.4em;text-transform:uppercase;">Simulación CLO3D · Look Final · Vista 360°</span>
+                    </div>
+                    <video autoplay loop muted playsinline
+                           style="width:100%;max-height:70vh;object-fit:contain;display:block;background:var(--fr-bg);">
+                        <source src="fotos/FINAL_DE_LOS_FINALITOS_Default_Colorway_0.mp4" type="video/mp4">
                     </video>
-                    <div style="position:absolute;bottom:0;left:0;right:0;padding:20px 40px;background:linear-gradient(to top,rgba(5,12,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:7px;color:var(--fr-green);letter-spacing:0.4em;text-transform:uppercase;opacity:0.6;">
-                        FRACTUM · BLENDER · CLO3D · WORLD-BUILDING DIGITAL
+                </div>
+
+                <!-- HERO: 3 imágenes del mundo Blender -->
+                <div class="fr-hero">
+                    <div class="fr-slot">
+                        <img loading="lazy" src="fotos\ERAGON CLOTHING_68.png" alt="El bosque — el mundo" onerror="this.style.background='#050C08'">
+                        <div style="position:absolute;bottom:14px;left:14px;font-family:'Roboto Mono',monospace;font-size:7px;color:var(--fr-lime);letter-spacing:0.3em;text-transform:uppercase;opacity:0.8;">El mundo · El bosque espera</div>
+                    </div>
+                    <div class="fr-slot" style="position:relative;">
+                        <img loading="lazy" src="fotos/0002.png" alt="El bailarín en el bosque" onerror="this.style.background='#050C08'">
+                        <div class="fr-overlay">
+                            <h3 class="fr-overlay-title">FRACTUM</h3>
+                            <span class="fr-overlay-sub">No se trata de vencer — sino de elegir con conciencia</span>
+                        </div>
+                    </div>
+                    <div class="fr-slot">
+                        <img loading="lazy" src="fotos/0215.png" alt="La sala de cristales — integración" onerror="this.style.background='#050C08'">
+                        <div style="position:absolute;bottom:14px;left:14px;font-family:'Roboto Mono',monospace;font-size:7px;color:var(--fr-lime);letter-spacing:0.3em;text-transform:uppercase;opacity:0.8;">Integración · El espacio como reflejo</div>
                     </div>
                 </div>
 
-                <div class="fr-hero">
-                    <div class="fr-slot">
-                        <img loading="lazy" src="fotos/0144.png" alt="FRACTUM entorno" onerror="this.style.background='#050C08'">
-                    </div>
-                    <div class="fr-slot" style="position:relative;">
-                        <img loading="lazy" src="fotos/fractum_02.jpg" alt="FRACTUM avatar & garment" onerror="this.style.background='#050C08'">
-                        <div class="fr-overlay">
-                            <h3 class="fr-overlay-title">FRACTUM</h3>
-                            <span class="fr-overlay-sub">Blender · CLO3D · World-Building Digital</span>
-                        </div>
-                    </div>
-                    <div class="fr-slot">
-                        <img loading="lazy" src="fotos/fractum_03.jpg" alt="FRACTUM detalle textil" onerror="this.style.background='#050C08'">
-                    </div>
-                </div>
+                <!-- CONCEPTO + HERRAMIENTAS -->
                 <div class="fr-info">
                     <div class="fr-info-col">
-                        <span class="fr-label">Concepto</span>
-                        <p class="fr-text">Integración de prendas CLO3D con entornos volumétricos en Blender. El avatar como puente entre diseño técnico y narrativa cinematográfica. La prenda no se presenta sola — vive dentro de un mundo construido para ella.</p>
+                        <span class="fr-label">El Concepto</span>
+                        <p class="fr-text" style="text-align:justify;">Pieza audiovisual conceptual inspirada en la saga de Eragon — centrada en la evolución interna del personaje: de reactivo a consciente. El poder deja de ser destructivo y se convierte en responsabilidad ética. La narrativa se expresa a través de danza contemporánea y entornos 3D en Blender.</p>
+                        <p class="fr-text" style="margin-top:12px;font-style:italic;color:var(--fr-lime);opacity:0.9;">"No se trata de vencer. Se trata de comprender y elegir."</p>
                     </div>
                     <div class="fr-info-col">
-                        <span class="fr-label">Disciplinas & Herramientas</span>
-                        <p class="fr-text">World-building 3D, simulación de tejidos, dirección de escena, integración avatar-entorno, iluminación volumétrica.</p>
-                        <div class="fr-tools">
+                        <span class="fr-label">Vestuario · Diseño & CLO3D</span>
+                        <p class="fr-text" style="text-align:justify;">El vestuario evoluciona con el personaje: negro austero en el conflicto, lino natural en la integración. Camisa lace-up, faldón asimétrico y arnés de cuero inspirados en la indumentaria élfica de Eragon. Patronaje y simulación de tela desarrollados en CLO3D.</p>
+                        <div class="fr-tools" style="margin-top:14px;">
                             <span class="fr-tool">Blender</span>
                             <span class="fr-tool">CLO3D</span>
-                            <span class="fr-tool">Avatar Integration</span>
-                            <span class="fr-tool">Scene Direction</span>
-                            <span class="fr-tool">3D Lighting</span>
+                            <span class="fr-tool">Danza Contemporánea</span>
+                            <span class="fr-tool">Animación Rig</span>
+                            <span class="fr-tool">Cycles Render</span>
+                            <span class="fr-tool">Vestuario Conceptual</span>
+                            <span class="fr-tool">Inspirado en Eragon</span>
                         </div>
                     </div>
                 </div>
+
+                <!-- VESTUARIO: Frente + Espalda (CLO3D) -->
+                <div style="display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--fr-border);">
+                    <div style="overflow:hidden;background:var(--fr-bg2);position:relative;">
+                        <img loading="lazy" src="fotos\FINAL DE LOS FINALITOS_Default Colorway_121.png" alt="Vestuario — Vista frontal CLO3D"
+                             style="width:100%;object-fit:contain;display:block;background:var(--fr-bg2);padding:16px;">
+                        <div style="padding:10px 20px;border-top:1px solid var(--fr-border);">
+                            <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--fr-lime);letter-spacing:0.25em;text-transform:uppercase;opacity:0.8;">Vista frontal · CLO3D</span>
+                        </div>
+                    </div>
+                    <div style="overflow:hidden;background:var(--fr-bg2);position:relative;border-left:1px solid var(--fr-border);">
+                        <img loading="lazy" src="fotos\FINAL DE LOS FINALITOS_Default Colorway_253.png" alt="Vestuario — Vista espalda CLO3D"
+                             style="width:100%;object-fit:contain;display:block;background:var(--fr-bg2);padding:16px;">
+                        <div style="padding:10px 20px;border-top:1px solid var(--fr-border);">
+                            <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--fr-lime);letter-spacing:0.25em;text-transform:uppercase;opacity:0.8;">Vista espalda · CLO3D</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RENDERS ADICIONALES: el look en el mundo -->
+                <div style="display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--fr-border);">
+                    <div style="overflow:hidden;background:var(--fr-bg2);">
+                        <img loading="lazy" src="fotos/0144.png" alt="Look completo en el mundo Blender"
+                             style="width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.8);"
+                             onerror="this.style.background='#050C08'">
+                        <div style="padding:10px 16px;background:var(--fr-bg2);border-top:1px solid var(--fr-border);">
+                            <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--fr-lime);letter-spacing:0.2em;text-transform:uppercase;opacity:0.75;">Look completo · En el mundo</span>
+                        </div>
+                    </div>
+                    <div style="overflow:hidden;background:var(--fr-bg2);border-left:1px solid var(--fr-border);">
+                        <img loading="lazy" src="fotos/autosave.png" alt="La danza — vestuario en movimiento"
+                             style="width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center top;display:block;filter:contrast(1.1) brightness(0.8);"
+                             onerror="this.style.background='#050C08'">
+                        <div style="padding:10px 16px;background:var(--fr-bg2);border-top:1px solid var(--fr-border);">
+                            <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--fr-lime);letter-spacing:0.2em;text-transform:uppercase;opacity:0.75;">La danza · El vestuario en movimiento</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECUENCIA NARRATIVA: 4 estados -->
+                <div style="border-top:1px solid var(--fr-border);">
+                    <div style="padding:14px 40px;background:var(--fr-bg2);border-bottom:1px solid var(--fr-border);">
+                        <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--fr-green);letter-spacing:0.4em;text-transform:uppercase;">Secuencia Narrativa · Los 4 estados del personaje</span>
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(4,1fr);">
+                        <div style="overflow:hidden;aspect-ratio:16/9;background:var(--fr-bg2);position:relative;">
+                            <img loading="lazy" src="fotos/0001.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
+                            <div style="position:absolute;bottom:0;left:0;right:0;padding:6px 10px;background:linear-gradient(to top,rgba(5,12,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:6px;color:var(--fr-lime);letter-spacing:0.2em;text-transform:uppercase;">01 · Reacción</div>
+                        </div>
+                        <div style="overflow:hidden;aspect-ratio:16/9;background:var(--fr-bg2);position:relative;border-left:1px solid var(--fr-border);">
+                            <img loading="lazy" src="fotos/0088.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
+                            <div style="position:absolute;bottom:0;left:0;right:0;padding:6px 10px;background:linear-gradient(to top,rgba(5,12,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:6px;color:var(--fr-lime);letter-spacing:0.2em;text-transform:uppercase;">02 · Escucha</div>
+                        </div>
+                        <div style="overflow:hidden;aspect-ratio:16/9;background:var(--fr-bg2);position:relative;border-left:1px solid var(--fr-border);">
+                            <img loading="lazy" src="fotos/0019.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
+                            <div style="position:absolute;bottom:0;left:0;right:0;padding:6px 10px;background:linear-gradient(to top,rgba(5,12,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:6px;color:var(--fr-lime);letter-spacing:0.2em;text-transform:uppercase;">03 · Juicio</div>
+                        </div>
+                        <div style="overflow:hidden;aspect-ratio:16/9;background:var(--fr-bg2);position:relative;border-left:1px solid var(--fr-border);">
+                            <img loading="lazy" src="fotos/0193.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
+                            <div style="position:absolute;bottom:0;left:0;right:0;padding:6px 10px;background:linear-gradient(to top,rgba(5,12,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:6px;color:var(--fr-lime);letter-spacing:0.2em;text-transform:uppercase;">04 · Decisión</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PILLS -->
+                <div style="display:flex;flex-wrap:wrap;gap:7px;padding:22px 40px;background:var(--fr-bg2);border-top:1px solid var(--fr-border);">
+                    <span class="fr-tool">Blender</span><span class="fr-tool">CLO3D</span>
+                    <span class="fr-tool">Danza Contemporánea</span><span class="fr-tool">Animación Rig</span>
+                    <span class="fr-tool">Cycles Render</span><span class="fr-tool">Volumetría</span>
+                    <span class="fr-tool">Vestuario Conceptual</span><span class="fr-tool">Inspirado en Eragon</span>
+                    <span class="fr-tool">IED Madrid</span>
+                </div>
+
             </div>
         </div>
     </div>
-
     <!-- ══ CD_05: MILEE — Placeholder elegante ══ -->
     <div class="hab" id="hab-milee" data-tag="BEATRIZ CASTRO">
         <div class="hab-header" onclick="focusHab('hab-milee')">
@@ -2282,10 +2393,10 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     </div>
                 </div>
                 <div class="es-gallery">
-                    <div class="es-gallery-slot"><img loading="lazy" src="fotos/eschaton_01.jpg" alt="ESCHATON Universe I" onerror="this.style.background='#0A0508'"></div>
-                    <div class="es-gallery-slot"><img loading="lazy" src="fotos/eschaton_02.jpg" alt="ESCHATON Universe II" onerror="this.style.background='#0A0508'"></div>
-                    <div class="es-gallery-slot"><img loading="lazy" src="fotos/eschaton_03.jpg" alt="ESCHATON Universe III" onerror="this.style.background='#0A0508'"></div>
-                    <div class="es-gallery-slot"><img loading="lazy" src="fotos/image_7dcdb3.jpg" alt="ESCHATON detail" onerror="this.style.background='#0A0508'"></div>
+                    <div class="es-gallery-slot"><img loading="lazy" src="fotos\ChatGPT Image 25 nov 2025, 15_11_38.png" alt="ESCHATON Universe I" onerror="this.style.background='#0A0508'"></div>
+                    <div class="es-gallery-slot"><img loading="lazy" src="fotos\look3_5.png" alt="ESCHATON Universe II" onerror="this.style.background='#0A0508'"></div>
+                    <div class="es-gallery-slot"><img loading="lazy" src="fotos\MANO_Default Colorway_4.png" alt="ESCHATON Universe III" onerror="this.style.background='#0A0508'"></div>
+                    <div class="es-gallery-slot"><img loading="lazy" src="fotos\Look4_Default Colorway.png" alt="ESCHATON detail" onerror="this.style.background='#0A0508'"></div>
                 </div>
                 <div class="es-pills">
                     <span class="es-pill">CLO3D</span>
