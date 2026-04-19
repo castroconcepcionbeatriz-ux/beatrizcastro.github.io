@@ -48,13 +48,15 @@ html, body {
 /* ── TRANSICIÓN REDUCIDA A 0.4s ── */
 /* 1. Busca la clase .view y reemplázala por esta para lograr el aislamiento total */
 .view {
-    position: absolute; 
-    inset: 0; 
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
     opacity: 0; 
     pointer-events: none; 
-    visibility: hidden; /* Esto asegura que las salas no se pisen */
-    transition: 0.8s cubic-bezier(0.2, 1, 0.3, 1); 
-    overflow-y: auto; 
+    visibility: hidden;
+    transition: opacity 0.8s cubic-bezier(0.2, 1, 0.3, 1), visibility 0.8s; 
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
     z-index: 5;
     background: var(--control-dark);
 }
@@ -301,7 +303,7 @@ html, body {
 .archive-item-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--matter-light); }
 
 /* ── SOBRE MÍ ── */
-#sobre-mi { background: var(--control-dark); padding: 100px 8% 200px; overflow-y: auto; }
+#sobre-mi { background: var(--control-dark); padding: 100px 8% 200px; }
 .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 60px; }
 .sobre-bio-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 64px); font-weight: 300; line-height: 0.9; color: var(--matter-light); margin-bottom: 30px; }
 .sobre-bio-name em { color: var(--sapphire); font-style: italic; }
@@ -318,7 +320,7 @@ html, body {
 .sobre-item-year { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--amber); opacity: 0.6; margin-top: 4px; display: block; }
 
 /* ── CONTACTO ── */
-#contacto { background: var(--control-dark); padding: 100px 8% 200px; overflow-y: auto; }
+#contacto { background: var(--control-dark); padding: 100px 8% 200px; }
 .contacto-header { margin-bottom: 80px; }
 .contacto-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 7vw, 86px); font-weight: 300; line-height: 0.9; color: var(--matter-light); }
 .contacto-title em { color: var(--amber); }
@@ -2415,12 +2417,31 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 <!-- ═══════════════════════════════════════════
      SOBRE MÍ
 ═══════════════════════════════════════════ -->
-<div class="view" id="sobre-mi">
-    <div style="padding:100px 8% 200px;">
-        <div class="sala-header">
-            <span class="sala-code">SYS_PROFILE // IDENTIDAD · EXPERIENCIA · HERRAMIENTAS</span>
-            <h1 class="sala-title">Beatriz<br><em style="color:var(--sapphire);">Castro</em></h1>
+<div class="view room-view" id="sobre-mi">
+    <span class="sala-code">SYS_PROFILE // IDENTIDAD</span>
+    <h1 class="sala-title">Beatriz <em style="color:var(--sapphire);">Castro</em></h1>
+    
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:60px; margin-top:40px;">
+        <div>
+            <p style="line-height:1.8; opacity:0.8;">Diseñadora especializada en desarrollo de producto moda 3D. Mi trabajo combina el rigor del patronaje industrial con la vanguardia del sampling virtual y la dirección creativa asistida por IA.</p>
+            <div style="margin-top:30px;">
+                <a href="https://drive.google.com/file/d/1AeYK15F9089sWuL8hQjgfnLXSubusrlk/view?usp=drive_link" target="_blank" rel="noopener" style="font-family:'Roboto Mono'; font-size:9px; color:var(--sapphire); border:1px solid var(--sapphire); padding:10px 20px; text-decoration:none;">VIEW_FULL_PORTFOLIO ↗</a>
+            </div>
         </div>
+        <div style="border-left: 1px solid rgba(15,82,186,0.15); padding-left: 40px;">
+            <span style="font-family:'Roboto Mono'; font-size:9px; color:var(--amber); letter-spacing:0.3em; display:block; margin-bottom:20px;">IDIOMAS</span>
+            <div style="margin-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:10px;">
+                <div style="font-family:'Cormorant Garamond'; font-size:20px;">Español</div>
+            </div>
+            <div style="margin-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:10px;">
+                <div style="font-family:'Cormorant Garamond'; font-size:20px;">Inglés</div>
+            </div>
+            <div style="margin-bottom:15px; border-bottom:none; padding-bottom:10px;">
+                <div style="font-family:'Cormorant Garamond'; font-size:20px;">Italiano</div>
+            </div>
+        </div>
+    </div>
+</div>
 
         <!-- FOTO + BIO HERO -->
         <div style="display:grid;grid-template-columns:300px 1fr;gap:60px;align-items:start;margin-bottom:60px;padding-bottom:60px;border-bottom:1px solid rgba(15,82,186,0.1);">
@@ -2529,18 +2550,33 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 <!-- ═══════════════════════════════════════════
      CONTACTO
 ═══════════════════════════════════════════ -->
-<div class="view" id="contacto">
-    <div style="padding:100px 8% 200px;">
-        <div class="contacto-header">
-            <span class="sala-code">SYS_CONTACT // TRABAJEMOS JUNTOS</span>
-            <h1 class="contacto-title">Hablemos<br><em>de tu proyecto.</em></h1>
-            <!-- CV: cuando tengas el PDF, cambia href="#" por href="fotos/CV_BeatrizCastro.pdf" -->
-            <a href="fotos\CV_BeatrizCastro.pdf" download onclick="alert('Añade tu CV: renómbralo CV_BeatrizCastro.pdf y ponlo en tu carpeta fotos/. Luego cambia href=\'#\' por href=\'fotos/CV_BeatrizCastro.pdf\'');return false;" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(15,82,186,0.3);padding:10px 22px;text-decoration:none;display:inline-block;margin-top:24px;transition:0.3s;letter-spacing:0.15em;" onmouseover="this.style.background='rgba(15,82,186,0.1)';this.style.borderColor='var(--sapphire)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(15,82,186,0.3)'">↓ DESCARGAR CV — BEATRIZ CASTRO</a>
+<div class="view room-view" id="contacto">
+    <span class="sala-code">SYS_CONTACT // TRABAJEMOS JUNTOS</span>
+    <h1 class="sala-title">Hablemos<br><em>de tu proyecto.</em></h1>
+    
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:60px; margin-top:40px;">
+        <div>
+            <a href="https://wa.me/qr/R3B4SBXIKHAQE1" target="_blank" style="display:flex; justify-content:space-between; align-items:center; padding:24px 0; border-bottom:1px solid rgba(255,255,255,0.1); text-decoration:none; color:inherit;">
+                <div><span style="font-family:'Roboto Mono'; font-size:9px; color:var(--sapphire); display:block;">WHATSAPP</span><span style="font-family:'Cormorant Garamond'; font-size:24px;">+34 603 508 827</span></div>
+                <span style="font-size:18px; opacity:0.4;">→</span>
+            </a>
+            <a href="mailto:castroconcepcionbeatriz@gmail.com" style="display:flex; justify-content:space-between; align-items:center; padding:24px 0; border-bottom:1px solid rgba(255,255,255,0.1); text-decoration:none; color:inherit;">
+                <div><span style="font-family:'Roboto Mono'; font-size:9px; color:var(--sapphire); display:block;">EMAIL</span><span style="font-family:'Cormorant Garamond'; font-size:24px;">castro@beatriz.com</span></div>
+                <span style="font-size:18px; opacity:0.4;">→</span>
+            </a>
+            <a href="https://drive.google.com/file/d/1AeYK15F9089sWuL8hQjgfnLXSubusrlk/view?usp=drive_link" target="_blank" style="display:flex; justify-content:space-between; align-items:center; padding:24px 0; border-bottom:1px solid rgba(255,255,255,0.1); text-decoration:none; color:inherit;">
+                <div><span style="font-family:'Roboto Mono'; font-size:9px; color:var(--amber); display:block;">PORTFOLIO DRIVE</span><span style="font-family:'Cormorant Garamond'; font-size:24px;">Dossier Completo (PDF)</span></div>
+                <span style="font-size:18px; opacity:0.4;">→</span>
+            </a>
         </div>
-
-        <div class="contacto-grid">
-            <div>
-                <div class="contacto-links">
+        <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(255,255,255,0.02); border:1px solid rgba(15,82,186,0.1); border-radius:10px; padding:40px;">
+            <div style="width:180px; height:180px; background:white; padding:15px; border-radius:8px;">
+                <div style="width:100%; height:100%; background:#eee; display:flex; align-items:center; justify-content:center; color:black; font-size:10px; font-family:'Roboto Mono'; text-align:center;">CÓDIGO QR<br>WHATSAPP</div>
+            </div>
+            <span style="font-family:'Roboto Mono'; font-size:8px; margin-top:20px; opacity:0.5; letter-spacing:0.2em;">ESCANEA PARA CONTACTAR</span>
+        </div>
+    </div>
+</div>
 
                     <!-- WHATSAPP — primer lugar, más directo -->
                     <a class="c-link" href="https://wa.me/qr/R3B4SBXIKHAQE1" target="_blank" rel="noopener"
@@ -2788,6 +2824,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
 
 <script>
+// REEMPLAZAR TODO EL CONTENIDO DENTRO DE <SCRIPT>
 let currentView = 'lobby';
 let isLocked = false;
 
@@ -2795,211 +2832,58 @@ function navTo(id) {
     const from = document.getElementById(currentView);
     const to = document.getElementById(id);
     if (!from || !to || id === currentView || isLocked) return;
+
     isLocked = true;
-    from.classList.add('out');
-    const isInRoom = id !== 'lobby' && id !== 'novedades-screen';
-    document.getElementById('btn-back').classList.toggle('visible', id !== 'lobby');
-    document.getElementById('bottom-nav').classList.toggle('visible', isInRoom);
-    // Update active nav
-    document.querySelectorAll('.bnav-item').forEach(i => {
-        i.classList.toggle('active', i.dataset.nav === id);
-    });
-    setTimeout(() => {
-        from.classList.remove('active','out');
-        to.classList.add('active');
-        currentView = id;
-        // Scroll to top
-        to.scrollTop = 0;
-        setTimeout(() => isLocked = false, 500);
-    }, 400);
-}
-
-function navigateToTag(tag, event) {
-    if (event) event.stopPropagation();
-    const container = document.getElementById('archive-results');
-    document.getElementById('active-tag-name').innerText = tag;
-    container.innerHTML = '';
-    document.querySelectorAll(`[data-tag="${tag}"]`).forEach(match => {
-        const img = match.querySelector('img');
-        const title = match.closest('.hab')?.querySelector('.hab-title')?.innerText || 'Fragment';
-        if (img && img.src && !img.src.endsWith('/')) {
-            const item = document.createElement('div');
-            item.className = 'archive-item';
-            item.innerHTML = `<img loading="lazy" src="${img.src}"><div class="archive-item-info"><span class="archive-item-name">${title}</span></div>`;
-            container.appendChild(item);
-        }
-    });
-    if (!container.innerHTML) container.innerHTML = `<p style="font-family:'Roboto Mono';opacity:0.3;">[ NO_VISUAL_DATA ]</p>`;
-    navTo('archive-view');
-}
-
-// LOBBY DRAG
-const lobbyTrack = document.getElementById('lobby-track');
-let isLobbyDown = false, lobbyStartX, lobbyXOffset = 0;
-document.addEventListener('mousedown', e => {
-    if (currentView === 'lobby') { isLobbyDown = true; lobbyStartX = e.pageX - lobbyXOffset; document.getElementById('cursor').classList.add('drag'); }
-});
-window.addEventListener('mouseup', () => { isLobbyDown = false; document.getElementById('cursor').classList.remove('drag'); });
-window.addEventListener('mousemove', e => {
-    const c = document.getElementById('cursor');
-    c.style.left = e.clientX + 'px'; c.style.top = e.clientY + 'px';
-    if (!isLobbyDown || currentView !== 'lobby') return;
-    lobbyXOffset = e.pageX - lobbyStartX;
-    const maxScroll = -(lobbyTrack.scrollWidth - window.innerWidth + 200);
-    lobbyXOffset = Math.max(maxScroll, Math.min(0, lobbyXOffset));
-    lobbyTrack.style.transform = `translateX(${lobbyXOffset}px)`;
-});
-
-// TOUCH DRAG para móvil
-let touchStartX = 0;
-lobbyTrack.parentElement.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX - lobbyXOffset; }, { passive: true });
-lobbyTrack.parentElement.addEventListener('touchmove', e => {
-    if (currentView !== 'lobby') return;
-    lobbyXOffset = e.touches[0].clientX - touchStartX;
-    const maxScroll = -(lobbyTrack.scrollWidth - window.innerWidth + 200);
-    lobbyXOffset = Math.max(maxScroll, Math.min(0, lobbyXOffset));
-    lobbyTrack.style.transform = `translateX(${lobbyXOffset}px)`;
-}, { passive: true });
-
-function focusHab(id) {
-    const all = document.querySelectorAll('.hab');
-    const target = document.getElementById(id);
-    if (!target) return;
-    if (target.classList.contains('focused')) { resetHabs(); return; }
-    all.forEach(h => {
-        if (h.id === id) { h.classList.add('focused'); h.classList.remove('hidden'); }
-        else { h.classList.add('hidden'); h.classList.remove('focused'); }
-    });
-    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-}
-function resetHabs() { document.querySelectorAll('.hab').forEach(h => h.classList.remove('focused','hidden')); }
-
-function openDetail(name, val1, val2, img) {
-    document.getElementById('d-name').innerText = name;
-    document.getElementById('d-val1').innerText = val1;
-    document.getElementById('d-val2').innerText = val2;
-    document.getElementById('d-img').src = img;
-    document.getElementById('detail-overlay').classList.add('active');
-}
-function closeDetail() { document.getElementById('detail-overlay').classList.remove('active'); }
-
-// FORMULARIO DE CONTACTO
-function sendContactForm() {
-    const nombre = document.getElementById('cf-nombre').value.trim();
-    const email = document.getElementById('cf-email').value.trim();
-    const msg = document.getElementById('cf-msg').value.trim();
-    const status = document.getElementById('cf-status');
-    if (!nombre || !email || !msg) { status.textContent = '[ COMPLETA TODOS LOS CAMPOS ]'; status.style.opacity = '1'; return; }
-    const mailto = `mailto:castroconcepcionbeatriz@gmail.com?subject=Contacto desde portfolio — ${encodeURIComponent(nombre)}&body=${encodeURIComponent('De: ' + nombre + '\nEmail: ' + email + '\n\n' + msg)}`;
-    window.location.href = mailto;
-    status.textContent = '[ ABRIENDO TU CLIENTE DE EMAIL ]';
-    status.style.opacity = '1';
-    setTimeout(() => status.style.opacity = '0', 3000);
-}
-
-// NOVEDADES INFINITO
-function setupInfiniteNews() {
-    const track = document.getElementById('news-infinite-track');
-    if (!track) return;
-    track.innerHTML += track.innerHTML;
-    let pos = 0;
-    (function move() {
-        if (currentView === 'novedades-screen') {
-            pos -= 0.7;
-            if (Math.abs(pos) >= track.scrollWidth / 2) pos = 0;
-            track.style.transform = `translateX(${pos}px)`;
-        }
-        requestAnimationFrame(move);
-    })();
-}
-
-// HINT DESAPARECE AL PRIMER DRAG
-document.addEventListener('mousedown', () => {
-    const hint = document.querySelector('.drag-hint');
-    if (hint && currentView === 'lobby') hint.style.opacity = '0';
-});
-
-// ── PANEL SLIDESHOW ──
-const slideshowConfig = [
-    { id: 'slides-01', dots: 'dots-01', interval: 3200 },
-    { id: 'slides-02', dots: 'dots-02', interval: 4000 },
-    { id: 'slides-03', dots: 'dots-03', interval: 2800 },
-];
-
-function initSlideshows() {
-    slideshowConfig.forEach(cfg => {
-        const container = document.getElementById(cfg.id);
-        const dotsEl = document.getElementById(cfg.dots);
-        if (!container || !dotsEl) return;
-        const slides = Array.from(container.querySelectorAll('.panel-slide'));
-        if (slides.length < 2) return;
-
-        // Build dots
-        slides.forEach((_, i) => {
-            const dot = document.createElement('div');
-            dot.className = 'panel-dot' + (i === 0 ? ' active' : '');
-            dotsEl.appendChild(dot);
-        });
-
-        let current = 0;
-        function goTo(n) {
-            slides[current].classList.remove('active');
-            dotsEl.children[current].classList.remove('active');
-            current = (n + slides.length) % slides.length;
-            slides[current].classList.add('active');
-            dotsEl.children[current].classList.add('active');
-        }
-
-        // Auto-advance — only when lobby is visible
-        let timer = setInterval(() => {
-            if (currentView === 'lobby') goTo(current + 1);
-        }, cfg.interval);
-    });
-}
-
-function openMayleModal(id) {
-    document.getElementById(id).classList.add('open');
-    document.body.style.overflow = 'hidden';
-}
-function closeMayleModal(event, id) {
-    if (event.target === event.currentTarget) {
-        document.getElementById(id).classList.remove('open');
-        document.body.style.overflow = '';
-    }
-}
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        document.querySelectorAll('.mayle-modal-bg.open').forEach(m => {
-            m.classList.remove('open');
-            document.body.style.overflow = '';
-        });
-    }
-});
-
-window.onload = () => {
-    setupInfiniteNews();
-    initSlideshows();
-};
-function navTo(id) {
-    const from = document.getElementById(currentView);
-    const to = document.getElementById(id);
-    if (!from || !to || id === currentView) return;
-
-    // Oculta la sala actual
     from.classList.remove('active');
     
+    // Control de UI (Botón atrás y Menú inferior)
+    const isLobby = id === 'lobby';
+    document.getElementById('btn-back').classList.toggle('visible', !isLobby);
+    document.getElementById('bottom-nav').classList.toggle('visible', !isLobby);
+
+    // Actualizar clase activa en el menú
+    document.querySelectorAll('.bnav-item').forEach(item => {
+        const oc = item.getAttribute('onclick') || '';
+        item.classList.toggle('active', oc.includes(id));
+    });
+
     setTimeout(() => {
-        // Muestra la nueva sala
         to.classList.add('active');
         currentView = id;
-        
-        // Actualiza el botón de volver y el menú
-        document.getElementById('btn-back').classList.toggle('visible', id !== 'lobby');
-        
-        // Scroll al inicio de la nueva vista
         to.scrollTop = 0;
-    }, 150); // El tiempo coincide con la transición CSS
+        isLocked = false;
+    }, 400); // Sincronizado con el CSS
 }
+
+// Lógica del Cursor
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+
+// Lógica de arrastre del Lobby
+const lobbyTrack = document.getElementById('lobby-track');
+let isDown = false, startX, scrollLeft = 0;
+
+document.addEventListener('mousedown', (e) => {
+    if(currentView !== 'lobby') return;
+    isDown = true;
+    startX = e.pageX - scrollLeft;
+    cursor.classList.add('drag');
+});
+
+window.addEventListener('mouseup', () => {
+    isDown = false;
+    cursor.classList.remove('drag');
+});
+
+window.addEventListener('mousemove', (e) => {
+    if(!isDown || currentView !== 'lobby') return;
+    const x = e.pageX - startX;
+    scrollLeft = Math.max(-(lobbyTrack.scrollWidth - window.innerWidth + 200), Math.min(0, x));
+    lobbyTrack.style.transform = `translateX(${scrollLeft}px)`;
+});
 </script>
 
 </body>
