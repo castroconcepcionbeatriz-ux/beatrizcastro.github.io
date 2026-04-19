@@ -403,8 +403,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
    Fondo lino cálido, aislado del dark theme
 ══════════════════════════════════════ */
 #hab-mayle {
-  --m-bg: #EDE3D4;
-  --m-bg-card: #F5EFE6;
+  --m-bg: #F5EEE4;
+  --m-bg-card: #FAF6F1;
   --m-ink: #1A1208;
   --m-ink-2: #4A3C2A;
   --m-amber: #C17D2A;
@@ -413,7 +413,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
   --m-overlay: rgba(15,10,4,0.82);
 }
 #hab-mayle { background: transparent; border-bottom: 1px solid rgba(90,60,20,0.15); }
-#hab-mayle .hab-header { background: var(--m-bg); border-bottom: 1px solid var(--m-border); padding: 30px 40px; }
+#hab-mayle .hab-header { background: var(--m-bg); border-bottom: 1px solid var(--m-border); padding: 30px calc(8% + 40px); margin-left: -8%; margin-right: -8%; width: calc(100% + 16%); }
 #hab-mayle .hab-header:hover { color: var(--m-amber); }
 #hab-mayle .hab-code { color: var(--m-blue); }
 #hab-mayle .hab-title { color: var(--m-ink); }
@@ -421,7 +421,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 #hab-mayle.focused .hab-plus { color: var(--m-amber); }
 #hab-mayle .hab-label-tag { color: var(--m-amber); border-color: rgba(193,125,42,0.35); }
 #hab-mayle .hab-label-tag:hover { background: var(--m-amber); color: #fff; }
-.mayle-room { background: var(--m-bg); padding: 48px 40px 64px; }
+.mayle-room { background: var(--m-bg); padding: 48px calc(8% + 40px) 64px; margin-left: -8%; margin-right: -8%; width: calc(100% + 16%); }
 .mayle-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 52px; padding-bottom: 40px; border-bottom: 1px solid var(--m-border); }
 .mayle-role-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--m-blue); letter-spacing: 0.4em; text-transform: uppercase; display: block; margin-bottom: 14px; }
 .mayle-role-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--m-ink-2); line-height: 1.75; }
@@ -730,7 +730,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 <!-- ═══════════════════════════════════════════
      SALA I: EL OFICIO
 ═══════════════════════════════════════════ -->
-<div class="view room-view" id="oficio" style="background:#EDE3D4;">
+<div class="view room-view" id="oficio">
     <div class="sala-header">
         <span class="sala-code">ST_01 // PATRONAJE · FOTOGRAFÍA · PRODUCCIÓN · CORTE</span>
         <h1 class="sala-title">La Sala de<br><em style="color:var(--sapphire);">la Corte</em></h1>
@@ -1240,7 +1240,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
   --inf-border: rgba(90,122,46,0.15);
 }
 #hab-infantil .hab-header { background: transparent; border-bottom: 1px solid rgba(15,82,186,0.15); padding: 30px 40px; }
-#hab-infantil.focused .hab-header { background: var(--inf-bg); border-bottom: 1px solid var(--inf-border); }
+#hab-infantil.focused .hab-header { background: var(--inf-bg); border-bottom: 1px solid var(--inf-border); padding: 30px calc(8% + 40px); margin-left: -8%; margin-right: -8%; width: calc(100% + 16%); }
 #hab-infantil .hab-title { color: var(--matter-light); }
 #hab-infantil.focused .hab-title { color: var(--inf-ink); }
 #hab-infantil .hab-code { color: var(--sapphire); }
@@ -1252,13 +1252,12 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 #hab-infantil .hab-label-tag { color: var(--inf-pink); border-color: rgba(212,96,122,0.35); }
 #hab-infantil .hab-label-tag:hover { background: var(--inf-pink); color: #fff; }
 
-.inf-room { background: var(--inf-bg); }
+.inf-room { background: var(--inf-bg); margin-left: -8%; margin-right: -8%; width: calc(100% + 16%); }
 .inf-manifesto {
   padding: 56px 40px 48px;
   border-bottom: 3px solid var(--inf-yellow);
   display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
 }
-.inf-manifesto-text {}
 .inf-manifesto-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--inf-pink); letter-spacing: 0.4em; text-transform: uppercase; display: block; margin-bottom: 16px; }
 .inf-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 3vw, 40px); font-weight: 300; font-style: italic; color: var(--inf-ink); line-height: 1.2; margin-bottom: 20px; }
 .inf-body { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--inf-ink); opacity: 0.75; line-height: 1.8; }
@@ -1297,7 +1296,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
   --pc-border: rgba(211,50,67,0.15);
 }
 #hab-concurso .hab-header { background: transparent; border-bottom: 1px solid rgba(15,82,186,0.15); padding: 30px 40px; }
-#hab-concurso.focused .hab-header { background: var(--pc-bg); border-bottom: 3px solid var(--pc-red); }
+#hab-concurso.focused .hab-header { background: var(--pc-bg); border-bottom: 3px solid var(--pc-red); padding: 30px calc(8% + 40px); margin-left: -8%; margin-right: -8%; width: calc(100% + 16%); }
 #hab-concurso .hab-title { color: var(--matter-light); }
 #hab-concurso.focused .hab-title { color: var(--pc-ink); }
 #hab-concurso .hab-code { color: var(--sapphire); }
@@ -1309,7 +1308,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 #hab-concurso .hab-label-tag { color: var(--pc-red); border-color: rgba(211,50,67,0.4); }
 #hab-concurso .hab-label-tag:hover { background: var(--pc-red); color: #fff; }
 
-.pc-room { background: var(--pc-bg); }
+.pc-room { background: var(--pc-bg); margin-left: -8%; margin-right: -8%; width: calc(100% + 16%); }
 .pc-cover-spread {
   display: grid; grid-template-columns: 1fr 1fr; min-height: 75vh;
   border-bottom: 1px solid var(--pc-border);
@@ -1327,7 +1326,6 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .pc-color-blocks { display: flex; gap: 0; height: 8px; margin-bottom: 28px; }
 .pc-color-block { flex: 1; }
 .pc-credits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.pc-credit { }
 .pc-credit-role { font-family: 'Roboto Mono', monospace; font-size: 7px; color: var(--pc-teal); letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 3px; opacity: 0.7; }
 .pc-credit-name { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 400; color: var(--pc-ink); }
 .pc-award { display: inline-flex; align-items: center; gap: 10px; background: var(--pc-red); color: #fff; padding: 8px 16px; font-family: 'Roboto Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 20px; }
