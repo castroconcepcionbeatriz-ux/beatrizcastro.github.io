@@ -11,6 +11,8 @@
 <meta property="og:description" content="Del patrón físico al avatar digital. Patronaje industrial, CLO3D, dirección creativa. Santo Domingo · Madrid.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="fotos/elizafacetoface.jpg">
+<meta name="robots" content="index, follow">
+<meta property="og:url" content="https://beatrizcastro.com">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Beatriz Castro — Digital Fashion Designer">
 <meta name="twitter:description" content="Del patrón físico al avatar digital. CLO3D · Blender · Patronaje Industrial.">
@@ -2631,7 +2633,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     </a>
 
                     <!-- PORTFOLIO — enlace a la web -->
-                    <a class="c-link" href="index.html" target="_blank" rel="noopener"
+                    <a class="c-link" href="https://beatrizcastro.com" target="_blank" rel="noopener"
                        style="border-bottom-color:rgba(253,185,39,0.2);"
                        onmouseover="this.style.color='var(--amber)';this.style.borderBottomColor='var(--amber)'"
                        onmouseout="this.style.color='';this.style.borderBottomColor='rgba(253,185,39,0.2)'">
@@ -2649,11 +2651,11 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     <h3 class="contacto-form-title">Enviar mensaje</h3>
                     <div class="c-form-group">
                         <label class="c-form-label">Nombre</label>
-                        <input type="text" class="c-form-input" placeholder="Tu nombre" id="cf-nombre">
+                        <input type="text" class="c-form-input" placeholder="Tu nombre" id="cf-nombre" name="nombre" autocomplete="name">
                     </div>
                     <div class="c-form-group">
                         <label class="c-form-label">Email</label>
-                        <input type="email" class="c-form-input" placeholder="tu@email.com" id="cf-email">
+                        <input type="email" class="c-form-input" placeholder="tu@email.com" id="cf-email" name="email" autocomplete="email">
                     </div>
                     <div class="c-form-group">
                         <label class="c-form-label">Mensaje</label>
@@ -2824,7 +2826,6 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
 
 <script>
-// REEMPLAZAR TODO EL CONTENIDO DENTRO DE <SCRIPT>
 let currentView = 'lobby';
 let isLocked = false;
 
@@ -2835,13 +2836,11 @@ function navTo(id) {
 
     isLocked = true;
     from.classList.remove('active');
-    
-    // Control de UI (Botón atrás y Menú inferior)
+
     const isLobby = id === 'lobby';
     document.getElementById('btn-back').classList.toggle('visible', !isLobby);
     document.getElementById('bottom-nav').classList.toggle('visible', !isLobby);
 
-    // Actualizar clase activa en el menú
     document.querySelectorAll('.bnav-item').forEach(item => {
         const oc = item.getAttribute('onclick') || '';
         item.classList.toggle('active', oc.includes(id));
@@ -2852,37 +2851,180 @@ function navTo(id) {
         currentView = id;
         to.scrollTop = 0;
         isLocked = false;
-    }, 400); // Sincronizado con el CSS
+    }, 400);
 }
 
-// Lógica del Cursor
+// ── FORMULARIO DE CONTACTO ──
+function sendContactForm() {
+    const nombre = document.getElementById('cf-nombre').value.trim();
+    const email  = document.getElementById('cf-email').value.trim();
+    const msg    = document.getElementById('cf-msg').value.trim();
+    const status = document.getElementById('cf-status');
+    if (!nombre || !email || !msg) {
+        status.textContent = '[ COMPLETA TODOS LOS CAMPOS ]';
+        status.style.opacity = '1';
+        return;
+    }
+    const mailto = 'mailto:castroconcepcionbeatriz@gmail.com?subject='
+        + encodeURIComponent('Contacto desde portfolio — ' + nombre)
+        + '&body=' + encodeURIComponent('De: ' + nombre + '\nEmail: ' + email + '\n\n' + msg);
+    window.open(mailto, '_blank');
+    status.textContent = '[ ABRIENDO TU CLIENTE DE EMAIL ]';
+    status.style.opacity = '1';
+    setTimeout(() => { status.style.opacity = '0'; }, 3000);
+}
+
+// ── CURSOR ──
 const cursor = document.getElementById('cursor');
 document.addEventListener('mousemove', (e) => {
     cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
+    cursor.style.top  = e.clientY + 'px';
 });
 
-// Lógica de arrastre del Lobby
+// ── ARRASTRE LOBBY — Mouse ──
 const lobbyTrack = document.getElementById('lobby-track');
 let isDown = false, startX, scrollLeft = 0;
 
 document.addEventListener('mousedown', (e) => {
-    if(currentView !== 'lobby') return;
-    isDown = true;
-    startX = e.pageX - scrollLeft;
+    if (currentView !== 'lobby') return;
+    isDown  = true;
+    startX  = e.pageX - scrollLeft;
     cursor.classList.add('drag');
 });
-
-window.addEventListener('mouseup', () => {
-    isDown = false;
-    cursor.classList.remove('drag');
-});
-
+window.addEventListener('mouseup', () => { isDown = false; cursor.classList.remove('drag'); });
 window.addEventListener('mousemove', (e) => {
-    if(!isDown || currentView !== 'lobby') return;
+    if (!isDown || currentView !== 'lobby') return;
     const x = e.pageX - startX;
     scrollLeft = Math.max(-(lobbyTrack.scrollWidth - window.innerWidth + 200), Math.min(0, x));
     lobbyTrack.style.transform = `translateX(${scrollLeft}px)`;
+});
+
+// ── ARRASTRE LOBBY — Touch (móvil) ──
+let touchStartX = 0, touchScrollLeft = 0;
+lobbyTrack.addEventListener('touchstart', (e) => {
+    if (currentView !== 'lobby') return;
+    touchStartX = e.touches[0].pageX - touchScrollLeft;
+}, { passive: true });
+lobbyTrack.addEventListener('touchmove', (e) => {
+    if (currentView !== 'lobby') return;
+    const x = e.touches[0].pageX - touchStartX;
+    touchScrollLeft = Math.max(-(lobbyTrack.scrollWidth - window.innerWidth + 200), Math.min(0, x));
+    lobbyTrack.style.transform = `translateX(${touchScrollLeft}px)`;
+}, { passive: true });
+lobbyTrack.addEventListener('touchend', () => { scrollLeft = touchScrollLeft; });
+
+// ── HINT DESAPARECE AL PRIMER DRAG ──
+document.addEventListener('mousedown', () => {
+    const hint = document.querySelector('.drag-hint');
+    if (hint && currentView === 'lobby') hint.style.opacity = '0';
+});
+
+// ── PANEL SLIDESHOW ──
+const slideshowConfig = [
+    { id: 'slides-01', dots: 'dots-01', interval: 3200 },
+    { id: 'slides-02', dots: 'dots-02', interval: 4000 },
+    { id: 'slides-03', dots: 'dots-03', interval: 2800 },
+];
+
+function initSlideshows() {
+    slideshowConfig.forEach(cfg => {
+        const container = document.getElementById(cfg.id);
+        const dotsEl    = document.getElementById(cfg.dots);
+        if (!container || !dotsEl) return;
+        const slides = Array.from(container.querySelectorAll('.panel-slide'));
+        if (slides.length < 2) return;
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.className = 'panel-dot' + (i === 0 ? ' active' : '');
+            dotsEl.appendChild(dot);
+        });
+        let current = 0;
+        function goTo(n) {
+            slides[current].classList.remove('active');
+            dotsEl.children[current].classList.remove('active');
+            current = (n + slides.length) % slides.length;
+            slides[current].classList.add('active');
+            dotsEl.children[current].classList.add('active');
+        }
+        setInterval(() => goTo(current + 1), cfg.interval);
+    });
+}
+
+// ── NOVEDADES INFINITO (flag para evitar doble init) ──
+function setupInfiniteNews() {
+    const track = document.getElementById('news-infinite-track');
+    if (!track || track.dataset.initialized) return;
+    track.dataset.initialized = 'true';
+    track.innerHTML += track.innerHTML;
+    let pos = 0;
+    (function move() {
+        if (currentView === 'novedades-screen') {
+            pos -= 0.7;
+            if (Math.abs(pos) >= track.scrollWidth / 2) pos = 0;
+            track.style.transform = `translateX(${pos}px)`;
+        }
+        requestAnimationFrame(move);
+    })();
+}
+
+// ── HABs — accordion ──
+function focusHab(id) {
+    const target = document.getElementById(id);
+    if (!target) return;
+    if (target.classList.contains('focused')) {
+        target.classList.remove('focused');
+    } else {
+        document.querySelectorAll('.hab.focused').forEach(h => h.classList.remove('focused'));
+        target.classList.add('focused');
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+}
+function resetHabs() {
+    document.querySelectorAll('.hab.focused').forEach(h => h.classList.remove('focused'));
+    const first = document.querySelector('.hab');
+    if (first) first.classList.add('focused');
+}
+
+// ── MODALES MAYLE ──
+function openMayleModal(id) { document.getElementById(id).classList.add('open'); }
+function closeMayleModal(e, id) {
+    if (e.target === e.currentTarget) document.getElementById(id).classList.remove('open');
+}
+
+// ── DETALLE ──
+function openDetail(img, name, val1, lab1, val2, lab2) {
+    document.getElementById('d-img').src  = img;
+    document.getElementById('d-name').textContent = name;
+    document.getElementById('d-val1').textContent = val1;
+    document.getElementById('d-lab1').textContent = lab1;
+    document.getElementById('d-val2').textContent = val2;
+    document.getElementById('d-lab2').textContent = lab2;
+    document.getElementById('detail-overlay').classList.add('active');
+}
+function closeDetail() {
+    document.getElementById('detail-overlay').classList.remove('active');
+    return false;
+}
+
+// ── ARCHIVO / TAG ──
+function navigateToTag(tag, e) {
+    if (e) e.stopPropagation();
+    const tagDisplay = document.getElementById('archive-tag-display');
+    const grid = document.getElementById('archive-results-grid');
+    if (tagDisplay) tagDisplay.textContent = tag;
+    if (grid) {
+        grid.querySelectorAll('.archive-item').forEach(item => {
+            item.style.display = (item.dataset.tags || '').includes(tag) ? '' : 'none';
+        });
+    }
+    navTo('archive-view');
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+    initSlideshows();
+    setupInfiniteNews();
+    resetHabs();
 });
 </script>
 
