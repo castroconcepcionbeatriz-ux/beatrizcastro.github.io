@@ -439,6 +439,24 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .mayle-card-img-wrap { aspect-ratio: 3/4; overflow: hidden; position: relative; background: #E8DDD0; }
 .mayle-card-img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.6s ease, opacity 0.4s; opacity: 0.85; display: block; }
 .mayle-card:hover .mayle-card-img { transform: scale(1.06); opacity: 1; }
+
+/* ── CARD DUAL: dos imágenes lado a lado en una misma card ── */
+.mayle-card.mayle-card-dual { grid-column: span 2; }
+.mayle-card-dual .mayle-card-img-wrap { aspect-ratio: 6/4; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--m-border); }
+.mayle-card-dual .mayle-card-img-wrap > .dual-half { position: relative; overflow: hidden; background: #E8DDD0; }
+.mayle-card-dual .mayle-card-img-wrap > .dual-half img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.6s ease, opacity 0.4s; opacity: 0.85; display: block; }
+.mayle-card-dual:hover .mayle-card-img-wrap > .dual-half img { transform: scale(1.04); opacity: 1; }
+.mayle-card-dual .dual-label { position: absolute; bottom: 8px; left: 8px; font-family: 'Roboto Mono', monospace; font-size: 7px; color: #fff; background: rgba(0,0,0,0.55); padding: 3px 8px; letter-spacing: 0.15em; text-transform: uppercase; z-index: 5; }
+@media (max-width: 700px) {
+  .mayle-card.mayle-card-dual { grid-column: span 1; }
+  .mayle-card-dual .mayle-card-img-wrap { aspect-ratio: 3/4; grid-template-columns: 1fr 1fr; }
+}
+
+/* ── MODAL DUAL: dos imágenes en la columna izquierda del modal ── */
+.mayle-modal-img-col.dual-img-col { display: grid; grid-template-rows: 1fr 1fr; gap: 1px; background: var(--m-border); }
+.mayle-modal-img-col.dual-img-col > .modal-img-half { position: relative; overflow: hidden; background: #E0D4C4; }
+.mayle-modal-img-col.dual-img-col > .modal-img-half img { width: 100%; height: 100%; object-fit: cover; object-position: top center; opacity: 0.92; }
+.mayle-modal-img-col.dual-img-col .modal-img-label { position: absolute; bottom: 10px; left: 10px; font-family: 'Roboto Mono', monospace; font-size: 7px; color: #fff; background: rgba(0,0,0,0.6); padding: 3px 8px; letter-spacing: 0.2em; text-transform: uppercase; }
 .mayle-card-overlay { position: absolute; inset: 0; background: var(--m-overlay); opacity: 0; transition: opacity 0.35s ease; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px 20px; pointer-events: none; }
 .mayle-card:hover .mayle-card-overlay { opacity: 1; }
 .mayle-overlay-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: #F5EFE6; font-weight: 300; margin-bottom: 12px; line-height: 1.2; }
@@ -784,7 +802,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="mayle-grid">
                     <div class="mayle-card" onclick="openMayleModal('mayle-modal-1')">
                         <div class="mayle-card-img-wrap">
-                            <img loading="lazy" class="mayle-card-img" src="fotos\santo-domingo-dress.png" alt="Vestido Santo Domingo">
+                            <img loading="lazy" class="mayle-card-img" src="fotos/santo-domingo-dress.png" alt="Vestido Santo Domingo">
                             <div class="mayle-card-overlay">
                                 <p class="mayle-overlay-title">Vestido "Santo Domingo"</p>
                                 <div class="mayle-overlay-metrics">
@@ -801,13 +819,21 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                             <div class="mayle-card-tags"><span class="mayle-card-tag">Fitting</span><span class="mayle-card-tag">Marcada</span><span class="mayle-card-tag">Sostenible</span></div>
                         </div>
                     </div>
-                    <div class="mayle-card" onclick="openMayleModal('mayle-modal-2')">
+                    <!-- CARD DUAL: Abrigo Caribe + Chaqueta 1 (misma prenda, dos vistas) -->
+                    <div class="mayle-card mayle-card-dual" onclick="openMayleModal('mayle-modal-2')">
                         <div class="mayle-card-img-wrap">
-                            <img loading="lazy" class="mayle-card-img" src="fotos\caribe coat.png" alt="Abrigo Caribe">
+                            <div class="dual-half">
+                                <img loading="lazy" src="fotos/caribe coat.png" alt="Abrigo Caribe — vista espalda">
+                                <span class="dual-label">Vista espalda</span>
+                            </div>
+                            <div class="dual-half">
+                                <img loading="lazy" src="fotos/chaqueta1.png" alt="Chaqueta 1 — vista frontal">
+                                <span class="dual-label">Vista frontal</span>
+                            </div>
                             <div class="mayle-card-overlay">
-                                <p class="mayle-overlay-title">Abrigo "Caribe"</p>
+                                <p class="mayle-overlay-title">Abrigo "Caribe" / Chaqueta 1</p>
                                 <div class="mayle-overlay-metrics">
-                                    <span class="mayle-metric-pill">Manga globo expansión radial</span>
+                                    <span class="mayle-metric-pill">Manga globo · expansión radial</span>
                                     <span class="mayle-metric-pill">Stay tape · error cero en solapa</span>
                                     <span class="mayle-metric-pill">Escalado S→XL equilibrado</span>
                                 </div>
@@ -816,65 +842,36 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                         </div>
                         <div class="mayle-card-meta">
                             <span class="mayle-card-code">OF_01.B · Sastrería Industrial</span>
-                            <div class="mayle-card-name">Abrigo "Caribe"</div>
-                            <div class="mayle-card-tags"><span class="mayle-card-tag">Serie</span><span class="mayle-card-tag">Escalado</span><span class="mayle-card-tag">Automatización</span></div>
+                            <div class="mayle-card-name">Abrigo "Caribe" — Frente & Espalda</div>
+                            <div class="mayle-card-tags"><span class="mayle-card-tag">Serie</span><span class="mayle-card-tag">Escalado</span><span class="mayle-card-tag">Volumen</span><span class="mayle-card-tag">Roll Line</span><span class="mayle-card-tag">Automatización</span></div>
                         </div>
                     </div>
-                    <div class="mayle-card" onclick="openMayleModal('mayle-modal-2')">
+                    <!-- CARD DUAL: Chaqueta El Pozo (vista completa + detalle constructivo) -->
+                    <div class="mayle-card mayle-card-dual" onclick="openMayleModal('mayle-modal-3')">
                         <div class="mayle-card-img-wrap">
-                            <img loading="lazy" class="mayle-card-img" src="fotos\chaqueta1.png" alt="Chaqueta 1">
-                            <div class="mayle-card-overlay">
-                                <p class="mayle-overlay-title">Chaqueta 1</p>
-                                <div class="mayle-overlay-metrics">
-                                    <span class="mayle-metric-pill">Línea de quiebre + piquetes</span>
-                                    <span class="mayle-metric-pill">Producción en serie optimizada</span>
-                                    <span class="mayle-metric-pill">Volumen uniforme S→XL</span>
-                                </div>
-                                <div class="mayle-card-cta">VER ESPECIFICACIÓN TÉCNICA →</div>
+                            <div class="dual-half">
+                                <img loading="lazy" src="fotos/el pozo jacket- completo .png" alt="Chaqueta El Pozo — vista completa">
+                                <span class="dual-label">Vista completa</span>
                             </div>
-                        </div>
-                        <div class="mayle-card-meta">
-                            <span class="mayle-card-code">OF_01.B · Sastrería Industrial</span>
-                            <div class="mayle-card-name">Chaqueta 1</div>
-                            <div class="mayle-card-tags"><span class="mayle-card-tag">Volumen</span><span class="mayle-card-tag">Roll Line</span><span class="mayle-card-tag">Serie</span></div>
-                        </div>
-                    </div>
-                    <div class="mayle-card" onclick="openMayleModal('mayle-modal-3')">
-                        <div class="mayle-card-img-wrap">
-                            <img loading="lazy" class="mayle-card-img" src="fotos\el pozo jacket- completo .png" alt="Chaqueta El Pozo">
+                            <div class="dual-half">
+                                <img loading="lazy" src="fotos/el pozo jacket.png" alt="Chaqueta El Pozo — detalle constructivo">
+                                <span class="dual-label">Detalle constructivo</span>
+                            </div>
                             <div class="mayle-card-overlay">
                                 <p class="mayle-overlay-title">Chaqueta "El Pozo"</p>
                                 <div class="mayle-overlay-metrics">
                                     <span class="mayle-metric-pill">−15% tiempo de confección</span>
                                     <span class="mayle-metric-pill">Tablones CNC integrados</span>
                                     <span class="mayle-metric-pill">Cuello mao anatómico</span>
-                                </div>
-                                <div class="mayle-card-cta">VER ESPECIFICACIÓN TÉCNICA →</div>
-                            </div>
-                        </div>
-                        <div class="mayle-card-meta">
-                            <span class="mayle-card-code">OF_01.C · Optimización COGS</span>
-                            <div class="mayle-card-name">Chaqueta "El Pozo"</div>
-                            <div class="mayle-card-tags"><span class="mayle-card-tag">COGS</span><span class="mayle-card-tag">CNC</span><span class="mayle-card-tag">Eficiencia</span></div>
-                        </div>
-                    </div>
-                    <div class="mayle-card" onclick="openMayleModal('mayle-modal-3')">
-                        <div class="mayle-card-img-wrap">
-                            <img loading="lazy" class="mayle-card-img" src="fotos/el pozo jacket.png" alt="El Pozo detalle">
-                            <div class="mayle-card-overlay">
-                                <p class="mayle-overlay-title">Chaqueta "El Pozo" — Detalle</p>
-                                <div class="mayle-overlay-metrics">
                                     <span class="mayle-metric-pill">Manga campana compensada</span>
-                                    <span class="mayle-metric-pill">Lino / mezclas inestables</span>
-                                    <span class="mayle-metric-pill">Primera prueba = cierre exacto</span>
                                 </div>
                                 <div class="mayle-card-cta">VER ESPECIFICACIÓN TÉCNICA →</div>
                             </div>
                         </div>
                         <div class="mayle-card-meta">
-                            <span class="mayle-card-code">OF_01.C · Detalle Constructivo</span>
-                            <div class="mayle-card-name">El Pozo — Vista Detalle</div>
-                            <div class="mayle-card-tags"><span class="mayle-card-tag">Construcción</span><span class="mayle-card-tag">Lino</span><span class="mayle-card-tag">Montaje</span></div>
+                            <span class="mayle-card-code">OF_01.C · Optimización COGS · Detalle Constructivo</span>
+                            <div class="mayle-card-name">Chaqueta "El Pozo" — Completa & Detalle</div>
+                            <div class="mayle-card-tags"><span class="mayle-card-tag">COGS</span><span class="mayle-card-tag">CNC</span><span class="mayle-card-tag">Eficiencia</span><span class="mayle-card-tag">Lino</span><span class="mayle-card-tag">Construcción</span></div>
                         </div>
                     </div>
                     <div class="mayle-card" onclick="openMayleModal('mayle-modal-4')">
@@ -898,7 +895,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     </div>
                     <div class="mayle-card" onclick="openMayleModal('mayle-modal-5')">
                         <div class="mayle-card-img-wrap">
-                            <img loading="lazy" class="mayle-card-img" src="fotos\convent vest.png" alt="Convent Vest">
+                            <img loading="lazy" class="mayle-card-img" src="fotos/convent vest.png" alt="Convent Vest">
                             <div class="mayle-card-overlay">
                                 <p class="mayle-overlay-title">Convent Vest</p>
                                 <div class="mayle-overlay-metrics">
@@ -1965,13 +1962,13 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         </div>
         <div class="hab-content">
             <div class="vit-room">
-                <!-- VIDEO PORTADA VITRIOL — cuando tengas el video, reemplaza "TU_VIDEO_VITRIOL.mp4" -->
-                <!-- Si no hay video, se muestra la imagen de fondo automáticamente -->
+                <!-- VIDEO PORTADA VITRIOL — Reemplaza "portada vitrial.mp4" si tienes otro video específico para esta sección -->
                 <div class="vit-video-hero" id="vit-video-wrap" style="position:relative;overflow:hidden;background:#02020A;border-bottom:1px solid var(--vit-border);">
-                    <video id="vit-video" autoplay loop muted playsinline poster="fotos/portada vitrial.mp4"
+                    <video id="vit-video" autoplay loop muted playsinline poster="fotos/24.png"
                            style="width:100%;max-height:60vh;object-fit:cover;display:block;opacity:0.75;"
                            onerror="this.style.display='none'">
-                        <!-- PEGA AQUÍ: <source src="fotos/TU_VIDEO_VITRIOL.mp4" type="video/mp4"> -->
+                        <source src="fotos/portada vitrial.mp4" type="video/mp4">
+                        <!-- Para añadir un segundo video alternativo, pega otra <source> aquí -->
                     </video>
                     <div style="position:absolute;bottom:0;left:0;right:0;padding:20px 40px;background:linear-gradient(to top,rgba(5,5,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:7px;color:var(--vit-gold);letter-spacing:0.4em;text-transform:uppercase;opacity:0.6;">
                         VITRIOL · WHERE FORM DISSOLVES AND IDENTITY RESISTS
@@ -2035,6 +2032,26 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                         </div>
                     </div>
                 </div>
+
+                <!-- SEGUNDO VIDEO VITRIOL · OPCIONAL — Pega tu video adicional en fotos/ -->
+                <div style="border-top:1px solid var(--vit-border);background:var(--vit-bg2);">
+                    <div style="padding:14px 40px;border-bottom:1px solid var(--vit-border);display:flex;justify-content:space-between;align-items:center;">
+                        <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--vit-gold);letter-spacing:0.4em;text-transform:uppercase;">Proceso · Construcción del avatar</span>
+                        <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--vit-acid);opacity:0.5;letter-spacing:0.2em;">VITRIOL_02</span>
+                    </div>
+                    <video autoplay loop muted playsinline
+                           poster="fotos/22.png"
+                           style="width:100%;max-height:60vh;object-fit:contain;display:block;background:var(--vit-bg);opacity:0.85;"
+                           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <!-- IMPORTANTE: sube tu segundo video VITRIOL a la carpeta fotos/ y reemplaza el nombre aquí -->
+                        <source src="fotos/vitriol_proceso.mp4" type="video/mp4">
+                    </video>
+                    <div style="display:none;width:100%;aspect-ratio:16/9;align-items:center;justify-content:center;flex-direction:column;gap:14px;background:var(--vit-bg2);">
+                        <span style="font-family:'Roboto Mono',monospace;font-size:11px;color:var(--vit-gold);letter-spacing:0.3em;opacity:0.5;">[ VIDEO PENDIENTE ]</span>
+                        <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--vit-cream);opacity:0.3;letter-spacing:0.15em;text-align:center;line-height:1.8;">Sube tu video a:<br>fotos/vitriol_proceso.mp4</span>
+                    </div>
+                </div>
+
                 <div class="vit-pills">
                     <span class="vit-pill">3D Sculpture</span>
                     <span class="vit-pill">Identity Design</span>
@@ -2197,6 +2214,25 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                            style="width:100%;max-height:70vh;object-fit:contain;display:block;background:var(--fr-bg);">
                         <source src="fotos/FINAL_DE_LOS_FINALITOS_Default_Colorway_0.mp4" type="video/mp4">
                     </video>
+                </div>
+
+                <!-- VIDEO BLENDER · LA DANZA — Pega tu video en fotos/ y reemplaza el src -->
+                <div style="border-bottom:1px solid var(--fr-border);background:var(--fr-bg2);">
+                    <div style="padding:14px 40px;border-bottom:1px solid var(--fr-border);display:flex;justify-content:space-between;align-items:center;">
+                        <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--fr-green);letter-spacing:0.4em;text-transform:uppercase;">Blender · La Danza · Mundo 3D Volumétrico</span>
+                        <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--fr-lime);opacity:0.5;letter-spacing:0.2em;">FRACTUM_02</span>
+                    </div>
+                    <video autoplay loop muted playsinline
+                           poster="fotos/0144.png"
+                           style="width:100%;max-height:70vh;object-fit:contain;display:block;background:var(--fr-bg);"
+                           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <!-- IMPORTANTE: sube tu video Blender a la carpeta fotos/ y reemplaza el nombre del archivo aquí -->
+                        <source src="fotos/fractum_blender_danza.mp4" type="video/mp4">
+                    </video>
+                    <div style="display:none;width:100%;aspect-ratio:16/9;align-items:center;justify-content:center;flex-direction:column;gap:14px;background:var(--fr-bg2);">
+                        <span style="font-family:'Roboto Mono',monospace;font-size:11px;color:var(--fr-lime);letter-spacing:0.3em;opacity:0.6;">[ VIDEO BLENDER PENDIENTE ]</span>
+                        <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--matter-light);opacity:0.35;letter-spacing:0.15em;text-align:center;line-height:1.8;">Sube tu video a:<br>fotos/fractum_blender_danza.mp4</span>
+                    </div>
                 </div>
 
                 <!-- HERO: 3 imágenes del mundo Blender -->
@@ -2420,129 +2456,109 @@ textarea.c-form-input { resize: none; min-height: 100px; }
      SOBRE MÍ
 ═══════════════════════════════════════════ -->
 <div class="view room-view" id="sobre-mi">
-    <span class="sala-code">SYS_PROFILE // IDENTIDAD</span>
-    <h1 class="sala-title">Beatriz <em style="color:var(--sapphire);">Castro</em></h1>
-    
-    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:60px; margin-top:40px;">
-        <div>
-            <p style="line-height:1.8; opacity:0.8;">Diseñadora especializada en desarrollo de producto moda 3D. Mi trabajo combina el rigor del patronaje industrial con la vanguardia del sampling virtual y la dirección creativa asistida por IA.</p>
-            <div style="margin-top:30px;">
-                <a href="https://drive.google.com/file/d/1AeYK15F9089sWuL8hQjgfnLXSubusrlk/view?usp=drive_link" target="_blank" rel="noopener" style="font-family:'Roboto Mono'; font-size:9px; color:var(--sapphire); border:1px solid var(--sapphire); padding:10px 20px; text-decoration:none;">VIEW_FULL_PORTFOLIO ↗</a>
+    <div class="sala-header">
+        <span class="sala-code">SYS_PROFILE // IDENTIDAD · EXPERIENCIA · HERRAMIENTAS</span>
+        <h1 class="sala-title">Beatriz<br><em style="color:var(--sapphire);">Castro</em></h1>
+    </div>
+
+    <!-- FOTO + BIO HERO -->
+    <div style="display:grid;grid-template-columns:300px 1fr;gap:60px;align-items:start;margin-bottom:60px;padding-bottom:60px;border-bottom:1px solid rgba(15,82,186,0.1);">
+        <div style="position:relative;">
+            <div style="width:100%;aspect-ratio:3/4;background:rgba(15,82,186,0.04);border:1px dashed rgba(15,82,186,0.2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+                <span style="font-family:'Roboto Mono',monospace;font-size:13px;color:var(--sapphire);opacity:0.3;letter-spacing:0.2em;">[ FOTO ]</span>
+                <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--matter-light);opacity:0.2;letter-spacing:0.1em;text-align:center;line-height:1.8;">Reemplaza con:<br>src="fotos/TU_FOTO.jpg"</span>
             </div>
+            <div style="position:absolute;bottom:-1px;left:0;right:0;height:2px;background:linear-gradient(to right,var(--amber),transparent);"></div>
         </div>
-        <div style="border-left: 1px solid rgba(15,82,186,0.15); padding-left: 40px;">
-            <span style="font-family:'Roboto Mono'; font-size:9px; color:var(--amber); letter-spacing:0.3em; display:block; margin-bottom:20px;">IDIOMAS</span>
-            <div style="margin-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:10px;">
-                <div style="font-family:'Cormorant Garamond'; font-size:20px;">Español</div>
+        <div>
+            <span class="sobre-role-tag">Digital Fashion Designer · CLO3D · AI · Madrid</span>
+            <p class="sobre-text" style="margin-top:8px;">Soy diseñadora de moda digital con una doble raíz: el oficio técnico del patronaje industrial y la exploración de las herramientas digitales del presente. Vengo de República Dominicana, vivo en Madrid, y trabajo en la intersección entre confección real, diseño 3D y dirección creativa.</p>
+            <p class="sobre-text" style="margin-top:16px;">He colaborado en producción de moda en pasarela, desarrollado patronaje industrial para producción en serie, dirigido editoriales fotográficas, y creado colecciones digitales completas en CLO3D y Blender. Mi trabajo va del tech-pack listo para fábrica al avatar 3D conceptual — sin que una disciplina excluya a la otra.</p>
+            <p class="sobre-text" style="margin-top:16px;">Formación especializada en Moda Digital (IED Madrid). Experiencia en RD Fashion Week, Wuatan Studio y proyectos independientes en España y República Dominicana.</p>
+            <div class="sobre-skills" style="margin-top:28px;">
+                <span class="skill-tag">CLO3D</span><span class="skill-tag">Blender</span><span class="skill-tag">DAZ 3D</span>
+                <span class="skill-tag">AI Art Direction</span><span class="skill-tag">Adobe Suite</span>
+                <span class="skill-tag">Patronaje Digital</span><span class="skill-tag">Styling</span>
+                <span class="skill-tag">Photo Direction</span><span class="skill-tag">3D Garment Dev.</span>
+                <span class="skill-tag">Virtual Sampling</span><span class="skill-tag">Tech-Pack</span>
+                <span class="skill-tag">Escalado Industrial</span><span class="skill-tag">Dirección Creativa</span>
             </div>
-            <div style="margin-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:10px;">
-                <div style="font-family:'Cormorant Garamond'; font-size:20px;">Inglés</div>
-            </div>
-            <div style="margin-bottom:15px; border-bottom:none; padding-bottom:10px;">
-                <div style="font-family:'Cormorant Garamond'; font-size:20px;">Italiano</div>
+            <div style="margin-top:32px;padding:24px;border:1px solid rgba(29,158,117,0.2);background:rgba(29,158,117,0.03);">
+                <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:#1D9E75;letter-spacing:0.3em;text-transform:uppercase;display:block;margin-bottom:10px;">● DISPONIBLE</span>
+                <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--matter-light);opacity:0.8;line-height:1.6;">Abierta a proyectos freelance, colaboraciones en moda digital y posiciones en equipos de diseño o producto de moda. Madrid · Europa · Remoto.</p>
+                <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
+                    <a onclick="navTo('contacto')" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--amber);border:1px solid rgba(253,185,39,0.4);padding:8px 18px;text-decoration:none;cursor:pointer;transition:0.3s;" onmouseover="this.style.background='var(--amber)';this.style.color='#000'" onmouseout="this.style.background='transparent';this.style.color='var(--amber)'">CONTACTAR →</a>
+                    <a href="https://drive.google.com/file/d/1AeYK15F9089sWuL8hQjgfnLXSubusrlk/view?usp=drive_link" target="_blank" rel="noopener" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(15,82,186,0.4);padding:8px 18px;text-decoration:none;cursor:pointer;transition:0.3s;" onmouseover="this.style.background='rgba(15,82,186,0.1)'" onmouseout="this.style.background='transparent'">↓ DESCARGAR CV</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-        <!-- FOTO + BIO HERO -->
-        <div style="display:grid;grid-template-columns:300px 1fr;gap:60px;align-items:start;margin-bottom:60px;padding-bottom:60px;border-bottom:1px solid rgba(15,82,186,0.1);">
-            <!-- FOTO: cuando tengas foto, reemplaza el div de abajo por <img loading="lazy" src="fotos/TU_FOTO.jpg" style="width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;display:block;"> -->
-            <div style="position:relative;">
-                <div style="width:100%;aspect-ratio:3/4;background:rgba(15,82,186,0.04);border:1px dashed rgba(15,82,186,0.2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
-                    <span style="font-family:'Roboto Mono',monospace;font-size:13px;color:var(--sapphire);opacity:0.3;letter-spacing:0.2em;">[ FOTO ]</span>
-                    <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--matter-light);opacity:0.2;letter-spacing:0.1em;text-align:center;line-height:1.8;">Reemplaza con:<br>src="fotos/TU_FOTO.jpg"</span>
-                </div>
-                <div style="position:absolute;bottom:-1px;left:0;right:0;height:2px;background:linear-gradient(to right,var(--amber),transparent);"></div>
+    <!-- EXPERIENCIA + FORMACIÓN + LOGROS en 2 columnas -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;">
+        <div>
+            <span class="sobre-section-label">Experiencia</span>
+            <div class="sobre-item">
+                <div class="sobre-item-title">Mayle Vázquez</div>
+                <div class="sobre-item-sub">Digital Pattern Maker · Product Development · Asistencia Creativa</div>
+                <span class="sobre-item-year">2023 — 2024</span>
             </div>
-            <div>
-                <span class="sobre-role-tag">Digital Fashion Designer · CLO3D · AI · Madrid</span>
-                <p class="sobre-text" style="margin-top:8px;">Soy diseñadora de moda digital con una doble raíz: el oficio técnico del patronaje industrial y la exploración de las herramientas digitales del presente. Vengo de República Dominicana, vivo en Madrid, y trabajo en la intersección entre confección real, diseño 3D y dirección creativa.</p>
-                <p class="sobre-text" style="margin-top:16px;">He colaborado en producción de moda en pasarela, desarrollado patronaje industrial para producción en serie, dirigido editoriales fotográficas, y creado colecciones digitales completas en CLO3D y Blender. Mi trabajo va del tech-pack listo para fábrica al avatar 3D conceptual — sin que una disciplina excluya a la otra.</p>
-                <p class="sobre-text" style="margin-top:16px;">Formación especializada en Moda Digital (IED Madrid). Experiencia en RD Fashion Week, Wuatan Studio y proyectos independientes en España y República Dominicana.</p>
-                <div class="sobre-skills" style="margin-top:28px;">
-                    <span class="skill-tag">CLO3D</span><span class="skill-tag">Blender</span><span class="skill-tag">DAZ 3D</span>
-                    <span class="skill-tag">AI Art Direction</span><span class="skill-tag">Adobe Suite</span>
-                    <span class="skill-tag">Patronaje Digital</span><span class="skill-tag">Styling</span>
-                    <span class="skill-tag">Photo Direction</span><span class="skill-tag">3D Garment Dev.</span>
-                    <span class="skill-tag">Virtual Sampling</span><span class="skill-tag">Tech-Pack</span>
-                    <span class="skill-tag">Escalado Industrial</span><span class="skill-tag">Dirección Creativa</span>
-                </div>
-                <div style="margin-top:32px;padding:24px;border:1px solid rgba(29,158,117,0.2);background:rgba(29,158,117,0.03);">
-                    <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:#1D9E75;letter-spacing:0.3em;text-transform:uppercase;display:block;margin-bottom:10px;">● DISPONIBLE</span>
-                    <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--matter-light);opacity:0.8;line-height:1.6;">Abierta a proyectos freelance, colaboraciones en moda digital y posiciones en equipos de diseño o producto de moda. Madrid · Europa · Remoto.</p>
-                    <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
-                        <a onclick="navTo('contacto')" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--amber);border:1px solid rgba(253,185,39,0.4);padding:8px 18px;text-decoration:none;cursor:pointer;transition:0.3s;" onmouseover="this.style.background='var(--amber)';this.style.color='#000'" onmouseout="this.style.background='transparent';this.style.color='var(--amber)'">CONTACTAR →</a>
-                        <!-- CV: cuando tengas el PDF, cambia href="fotos/CV_BeatrizCastro.pdf" por href="https://drive.google.com/file/d/1AeYK15F9089sWuL8hQjgfnLXSubusrlk/view?usp=drive_link" -->
-                        <a href="fotos/CV_BeatrizCastro.pdf" download style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(15,82,186,0.4);padding:8px 18px;text-decoration:none;cursor:pointer;transition:0.3s;" onmouseover="this.style.background='rgba(15,82,186,0.1)'" onmouseout="this.style.background='transparent'">↓ DESCARGAR CV</a>
-                    </div>
-                </div>
+            <div class="sobre-item">
+                <div class="sobre-item-title">Leonel Lirio</div>
+                <div class="sobre-item-sub">Asistente Creativa · Confección · Producción de Desfile · RD Fashion Week</div>
+                <span class="sobre-item-year">2024</span>
+            </div>
+            <div class="sobre-item">
+                <div class="sobre-item-title">Wuatan Studio</div>
+                <div class="sobre-item-sub">Estilismo · Dirección Creativa · Fotografía de Moda · Producción Editorial</div>
+                <span class="sobre-item-year">2023 — 2024</span>
+            </div>
+            <div class="sobre-item">
+                <div class="sobre-item-title">Revista A La Moda RD</div>
+                <div class="sobre-item-sub">Dirección Editorial · Contenido Digital · Fotografía de Eventos</div>
+                <span class="sobre-item-year">2023</span>
+            </div>
+            <div class="sobre-item">
+                <div class="sobre-item-title">Proyectos Independientes</div>
+                <div class="sobre-item-sub">Moda Digital · CLO3D · AI Art Direction · Dirección Creativa</div>
+                <span class="sobre-item-year">2023 — Presente</span>
             </div>
         </div>
 
-        <!-- EXPERIENCIA + FORMACIÓN + LOGROS en 2 columnas -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;">
-            <div>
-                <span class="sobre-section-label">Experiencia</span>
-                <div class="sobre-item">
-                    <div class="sobre-item-title">Mayle Vázquez</div>
-                    <div class="sobre-item-sub">Digital Pattern Maker · Product Development · Asistencia Creativa</div>
-                    <span class="sobre-item-year">2023 — 2024</span>
-                </div>
-                <div class="sobre-item">
-                    <div class="sobre-item-title">Leonel Lirio</div>
-                    <div class="sobre-item-sub">Asistente Creativa · Confección · Producción de Desfile · RD Fashion Week</div>
-                    <span class="sobre-item-year">2024</span>
-                </div>
-                <div class="sobre-item">
-                    <div class="sobre-item-title">Wuatan Studio</div>
-                    <div class="sobre-item-sub">Estilismo · Dirección Creativa · Fotografía de Moda · Producción Editorial</div>
-                    <span class="sobre-item-year">2023 — 2024</span>
-                </div>
-                <div class="sobre-item">
-                    <div class="sobre-item-title">Revista A La Moda RD</div>
-                    <div class="sobre-item-sub">Dirección Editorial · Contenido Digital · Fotografía de Eventos</div>
-                    <span class="sobre-item-year">2023</span>
-                </div>
-                <div class="sobre-item">
-                    <div class="sobre-item-title">Proyectos Independientes</div>
-                    <div class="sobre-item-sub">Moda Digital · CLO3D · AI Art Direction · Dirección Creativa</div>
-                    <span class="sobre-item-year">2023 — Presente</span>
-                </div>
+        <div class="sobre-data-col">
+            <span class="sobre-section-label">Formación</span>
+            <div class="sobre-item">
+                <div class="sobre-item-title">IED Madrid</div>
+                <div class="sobre-item-sub">Máster en Moda Digital</div>
+                <span class="sobre-item-year">2023 — 2024</span>
             </div>
 
-            <div class="sobre-data-col">
-                <span class="sobre-section-label">Formación</span>
-                <div class="sobre-item">
-                    <div class="sobre-item-title">IED Madrid</div>
-                    <div class="sobre-item-sub">Máster en Moda Digital</div>
-                    <span class="sobre-item-year">2023 — 2024</span>
-                </div>
+            <span class="sobre-section-label" style="margin-top:40px;">Logros</span>
+            <div class="sobre-item">
+                <div class="sobre-item-title">RD Fashion Week 2022</div>
+                <div class="sobre-item-sub">Concurso Homenaje a Oscar de la Renta · Diseñadora Emergente por Provincia</div>
+            </div>
+            <div class="sobre-item">
+                <div class="sobre-item-title">2º lugar — Pretty Color</div>
+                <div class="sobre-item-sub">Estilismo y Dirección Creativa · Big Models Management RD</div>
+            </div>
+            <div class="sobre-item">
+                <div class="sobre-item-title">3º lugar — Look Lite</div>
+                <div class="sobre-item-sub">Vestuario, Estilismo y Dirección · Big Models Management RD</div>
+            </div>
 
-                <span class="sobre-section-label" style="margin-top:40px;">Logros</span>
-                <div class="sobre-item">
-                    <div class="sobre-item-title">RD Fashion Week 2022</div>
-                    <div class="sobre-item-sub">Concurso Homenaje a Oscar de la Renta · Diseñadora Emergente por Provincia</div>
-                </div>
-                <div class="sobre-item">
-                    <div class="sobre-item-title">2º lugar — Pretty Color</div>
-                    <div class="sobre-item-sub">Estilismo y Dirección Creativa · Big Models Management RD</div>
-                </div>
-                <div class="sobre-item">
-                    <div class="sobre-item-title">3º lugar — Look Lite</div>
-                    <div class="sobre-item-sub">Vestuario, Estilismo y Dirección · Big Models Management RD</div>
-                </div>
-
-                <span class="sobre-section-label" style="margin-top:40px;">Idiomas</span>
-                <div class="sobre-item">
-                    <div class="sobre-item-title">Español</div>
-                </div>
-                <div class="sobre-item" style="border-bottom:none;">
-                    <div class="sobre-item-title">Inglés</div>
-                    <div></div>
-                    <div class="sobre-item" style="border-bottom:none;">
-                    <div class="sobre-item-title">Italiano</div>
-                </div>
+            <span class="sobre-section-label" style="margin-top:40px;">Idiomas</span>
+            <div class="sobre-item">
+                <div class="sobre-item-title">Español</div>
+                <div class="sobre-item-sub">Nativo</div>
+            </div>
+            <div class="sobre-item">
+                <div class="sobre-item-title">Inglés</div>
+                <div class="sobre-item-sub">B2</div>
+            </div>
+            <div class="sobre-item" style="border-bottom:none;">
+                <div class="sobre-item-title">Italiano</div>
+                <div class="sobre-item-sub">B1</div>
             </div>
         </div>
     </div>
@@ -2553,149 +2569,119 @@ textarea.c-form-input { resize: none; min-height: 100px; }
      CONTACTO
 ═══════════════════════════════════════════ -->
 <div class="view room-view" id="contacto">
-    <span class="sala-code">SYS_CONTACT // TRABAJEMOS JUNTOS</span>
-    <h1 class="sala-title">Hablemos<br><em>de tu proyecto.</em></h1>
-    
-    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:60px; margin-top:40px;">
-        <div>
-            <a href="https://wa.me/qr/2RBXWK3FYJBAP1" target="_blank" style="display:flex; justify-content:space-between; align-items:center; padding:24px 0; border-bottom:1px solid rgba(255,255,255,0.1); text-decoration:none; color:inherit;">
-                <div><span style="font-family:'Roboto Mono'; font-size:9px; color:var(--sapphire); display:block;">WHATSAPP</span><span style="font-family:'Cormorant Garamond'; font-size:24px;">+34 603 508 827</span></div>
-                <span style="font-size:18px; opacity:0.4;">→</span>
-            </a>
-            <a href="mailto:castroconcepcionbeatriz@gmail.com" style="display:flex; justify-content:space-between; align-items:center; padding:24px 0; border-bottom:1px solid rgba(255,255,255,0.1); text-decoration:none; color:inherit;">
-                <div><span style="font-family:'Roboto Mono'; font-size:9px; color:var(--sapphire); display:block;">EMAIL</span><span style="font-family:'Cormorant Garamond'; font-size:24px;">castro@beatriz.com</span></div>
-                <span style="font-size:18px; opacity:0.4;">→</span>
-            </a>
-            <a href="https://drive.google.com/file/d/1AeYK15F9089sWuL8hQjgfnLXSubusrlk/view?usp=drive_link" target="_blank" style="display:flex; justify-content:space-between; align-items:center; padding:24px 0; border-bottom:1px solid rgba(255,255,255,0.1); text-decoration:none; color:inherit;">
-                <div><span style="font-family:'Roboto Mono'; font-size:9px; color:var(--amber); display:block;">PORTFOLIO DRIVE</span><span style="font-family:'Cormorant Garamond'; font-size:24px;">Dossier Completo (PDF)</span></div>
-                <span style="font-size:18px; opacity:0.4;">→</span>
-            </a>
-        </div>
-        <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(255,255,255,0.02); border:1px solid rgba(15,82,186,0.1); border-radius:10px; padding:40px;">
-            <div style="width:180px; height:180px; background:white; padding:15px; border-radius:8px;">
-                <div style="width:100%; height:100%; background:#eee; display:flex; align-items:center; justify-content:center; color:black; font-size:10px; font-family:'Roboto Mono'; text-align:center;">CÓDIGO QR<br>WHATSAPP</div>
-            </div>
-            <span style="font-family:'Roboto Mono'; font-size:8px; margin-top:20px; opacity:0.5; letter-spacing:0.2em;">ESCANEA PARA CONTACTAR</span>
-        </div>
+    <div class="contacto-header">
+        <span class="sala-code">SYS_CONTACT // TRABAJEMOS JUNTOS</span>
+        <h1 class="contacto-title">Hablemos<br><em>de tu proyecto.</em></h1>
+        <a href="https://drive.google.com/file/d/1AeYK15F9089sWuL8hQjgfnLXSubusrlk/view?usp=drive_link" target="_blank" rel="noopener" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(15,82,186,0.3);padding:10px 22px;text-decoration:none;display:inline-block;margin-top:24px;transition:0.3s;letter-spacing:0.15em;" onmouseover="this.style.background='rgba(15,82,186,0.1)';this.style.borderColor='var(--sapphire)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(15,82,186,0.3)'">↓ DESCARGAR CV — BEATRIZ CASTRO</a>
     </div>
-</div>
 
-                    <!-- WHATSAPP — primer lugar, más directo -->
-                    <a class="c-link" href="https://wa.me/qr/2RBXWK3FYJBAP1" target="_blank" rel="noopener"
-                       style="border-bottom-color:rgba(37,211,102,0.2);"
-                       onmouseover="this.style.color='#25D366';this.style.borderBottomColor='#25D366'"
-                       onmouseout="this.style.color='';this.style.borderBottomColor='rgba(37,211,102,0.2)'">
-                        <div>
-                            <span class="c-link-label" style="color:#25D366;">WHATSAPP</span>
-                            <span class="c-link-value">+34 603 508 827</span>
-                        </div>
-                        <span class="c-link-arrow">→</span>
-                    </a>
+    <div class="contacto-grid">
+        <div>
+            <div class="contacto-links">
 
-                    <a class="c-link" href="mailto:castroconcepcionbeatriz@gmail.com">
-                        <div>
-                            <span class="c-link-label">EMAIL PRINCIPAL</span>
-                            <span class="c-link-value">castroconcepcionbeatriz@gmail.com</span>
-                        </div>
-                        <span class="c-link-arrow">→</span>
-                    </a>
-
-                    <a class="c-link" href="mailto:wuotanstudio@gmail.com">
-                        <div>
-                            <span class="c-link-label">EMAIL ESTUDIO</span>
-                            <span class="c-link-value">wuotanstudio@gmail.com</span>
-                        </div>
-                        <span class="c-link-arrow">→</span>
-                    </a>
-
-                    <a class="c-link" href="tel:+34603508827">
-                        <div>
-                            <span class="c-link-label">TELÉFONO</span>
-                            <span class="c-link-value">+34 603 508 827</span>
-                        </div>
-                        <span class="c-link-arrow">→</span>
-                    </a>
-
-                    <a class="c-link" href="https://www.linkedin.com/in/beatriz-castro-967529210/" target="_blank" rel="noopener">
-                        <div>
-                            <span class="c-link-label">LINKEDIN</span>
-                            <span class="c-link-value">linkedin.com/in/beatriz-castro-967529210</span>
-                        </div>
-                        <span class="c-link-arrow">→</span>
-                    </a>
-
-                    <a class="c-link" href="https://www.instagram.com/beatrizcastro9798" target="_blank" rel="noopener">
-                        <div>
-                            <span class="c-link-label">INSTAGRAM</span>
-                            <span class="c-link-value">@beatrizcastro9798</span>
-                        </div>
-                        <span class="c-link-arrow">→</span>
-                    </a>
-
-                    <!-- PORTFOLIO — enlace a la web -->
-                    <a class="c-link" href="https://beatrizcastro.com" target="_blank" rel="noopener"
-                       style="border-bottom-color:rgba(253,185,39,0.2);"
-                       onmouseover="this.style.color='var(--amber)';this.style.borderBottomColor='var(--amber)'"
-                       onmouseout="this.style.color='';this.style.borderBottomColor='rgba(253,185,39,0.2)'">
-                        <div>
-                            <span class="c-link-label" style="color:var(--amber);">PORTFOLIO</span>
-                            <span class="c-link-value">beatrizcastro.com · El Palacio</span>
-                        </div>
-                        <span class="c-link-arrow">→</span>
-                    </a>
-
-                </div>
-
-                <!-- FORMULARIO -->
-                <div class="contacto-form">
-                    <h3 class="contacto-form-title">Enviar mensaje</h3>
-                    <div class="c-form-group">
-                        <label class="c-form-label">Nombre</label>
-                        <input type="text" class="c-form-input" placeholder="Tu nombre" id="cf-nombre" name="nombre" autocomplete="name">
+                <!-- WHATSAPP -->
+                <a class="c-link" href="https://wa.me/qr/2RBXWK3FYJBAP1" target="_blank" rel="noopener"
+                   style="border-bottom-color:rgba(37,211,102,0.2);"
+                   onmouseover="this.style.color='#25D366';this.style.borderBottomColor='#25D366'"
+                   onmouseout="this.style.color='';this.style.borderBottomColor='rgba(37,211,102,0.2)'">
+                    <div>
+                        <span class="c-link-label" style="color:#25D366;">WHATSAPP</span>
+                        <span class="c-link-value">+34 603 508 827</span>
                     </div>
-                    <div class="c-form-group">
-                        <label class="c-form-label">Email</label>
-                        <input type="email" class="c-form-input" placeholder="tu@email.com" id="cf-email" name="email" autocomplete="email">
+                    <span class="c-link-arrow">→</span>
+                </a>
+
+                <a class="c-link" href="mailto:castroconcepcionbeatriz@gmail.com">
+                    <div>
+                        <span class="c-link-label">EMAIL PRINCIPAL</span>
+                        <span class="c-link-value">castroconcepcionbeatriz@gmail.com</span>
                     </div>
-                    <div class="c-form-group">
-                        <label class="c-form-label">Mensaje</label>
-                        <textarea class="c-form-input" placeholder="Cuéntame sobre tu proyecto..." id="cf-msg"></textarea>
+                    <span class="c-link-arrow">→</span>
+                </a>
+
+                <a class="c-link" href="mailto:wuotanstudio@gmail.com">
+                    <div>
+                        <span class="c-link-label">EMAIL ESTUDIO</span>
+                        <span class="c-link-value">wuotanstudio@gmail.com</span>
                     </div>
-                    <button class="c-form-btn" onclick="sendContactForm()">ENVIAR MENSAJE →</button>
-                    <p id="cf-status" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--amber);margin-top:12px;opacity:0;transition:opacity 0.3s;"></p>
-                </div>
+                    <span class="c-link-arrow">→</span>
+                </a>
+
+                <a class="c-link" href="tel:+34603508827">
+                    <div>
+                        <span class="c-link-label">TELÉFONO</span>
+                        <span class="c-link-value">+34 603 508 827</span>
+                    </div>
+                    <span class="c-link-arrow">→</span>
+                </a>
+
+                <a class="c-link" href="https://www.linkedin.com/in/beatriz-castro-967529210/" target="_blank" rel="noopener">
+                    <div>
+                        <span class="c-link-label">LINKEDIN</span>
+                        <span class="c-link-value">linkedin.com/in/beatriz-castro-967529210</span>
+                    </div>
+                    <span class="c-link-arrow">→</span>
+                </a>
+
+                <a class="c-link" href="https://www.instagram.com/beatrizcastro9798" target="_blank" rel="noopener">
+                    <div>
+                        <span class="c-link-label">INSTAGRAM</span>
+                        <span class="c-link-value">@beatrizcastro9798</span>
+                    </div>
+                    <span class="c-link-arrow">→</span>
+                </a>
+
+                <a class="c-link" href="https://drive.google.com/file/d/1AeYK15F9089sWuL8hQjgfnLXSubusrlk/view?usp=drive_link" target="_blank" rel="noopener"
+                   style="border-bottom-color:rgba(253,185,39,0.2);"
+                   onmouseover="this.style.color='var(--amber)';this.style.borderBottomColor='var(--amber)'"
+                   onmouseout="this.style.color='';this.style.borderBottomColor='rgba(253,185,39,0.2)'">
+                    <div>
+                        <span class="c-link-label" style="color:var(--amber);">PORTFOLIO DRIVE</span>
+                        <span class="c-link-value">Dossier Completo (PDF)</span>
+                    </div>
+                    <span class="c-link-arrow">→</span>
+                </a>
+
             </div>
 
-            <!-- QR COLUMN — Instagram + WhatsApp -->
-            <div class="contacto-qr-col">
-
-                <!-- QR Instagram -->
-                <a href="https://www.instagram.com/beatrizcastro9798" target="_blank" rel="noopener" style="text-decoration:none;">
-                    <img loading="lazy" src="fotos/beatrizcastro9798_qr.png" class="contacto-qr-img" alt=""
-                         style="transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
-                </a>
-                <span class="contacto-qr-label">@BEATRIZCASTRO9798 · INSTAGRAM</span>
-
-                <!-- QR WhatsApp -->
-                <a href="https://wa.me/qr/2RBXWK3FYJBAP1" target="_blank" rel="noopener"
-                   style="text-decoration:none;margin-top:36px;">
-                    <img loading="lazy" src="fotos/qrws.jpeg"
-                         style="width:200px;height:200px;object-fit:contain;border:1px solid rgba(37,211,102,0.2);padding:16px;background:rgba(37,211,102,0.03);transition:opacity 0.3s;opacity:0.85;"
-                         alt=""
-                         onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
-                </a>
-                <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:#25D366;letter-spacing:0.3em;margin-top:12px;text-align:center;opacity:0.7;">+34 603 508 827 · WHATSAPP</span>
-
-                <!-- Disponibilidad -->
-                <div style="margin-top:40px;width:100%;border-top:1px solid rgba(15,82,186,0.1);padding-top:30px;">
-                    <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--amber);letter-spacing:0.4em;display:block;margin-bottom:16px;">DISPONIBILIDAD</span>
-                    <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--matter-light);opacity:0.65;line-height:1.8;">
-                        Freelance · Colaboraciones<br>
-                        Moda Digital · CLO3D<br>
-                        Dirección Creativa · IA<br><br>
-                        Madrid · Europa · Remoto
-                    </p>
+            <!-- FORMULARIO -->
+            <div class="contacto-form">
+                <h3 class="contacto-form-title">Enviar mensaje</h3>
+                <div class="c-form-group">
+                    <label class="c-form-label">Nombre</label>
+                    <input type="text" class="c-form-input" placeholder="Tu nombre" id="cf-nombre" name="nombre" autocomplete="name">
                 </div>
+                <div class="c-form-group">
+                    <label class="c-form-label">Email</label>
+                    <input type="email" class="c-form-input" placeholder="tu@email.com" id="cf-email" name="email" autocomplete="email">
+                </div>
+                <div class="c-form-group">
+                    <label class="c-form-label">Mensaje</label>
+                    <textarea class="c-form-input" placeholder="Cuéntame sobre tu proyecto..." id="cf-msg"></textarea>
+                </div>
+                <button class="c-form-btn" onclick="sendContactForm()">ENVIAR MENSAJE →</button>
+                <p id="cf-status" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--amber);margin-top:12px;opacity:0;transition:opacity 0.3s;"></p>
+            </div>
+        </div>
+
+        <!-- QR COLUMN — Solo Instagram -->
+        <div class="contacto-qr-col">
+
+            <a href="https://www.instagram.com/beatrizcastro9798" target="_blank" rel="noopener" style="text-decoration:none;">
+                <img loading="lazy" src="fotos/beatrizcastro9798_qr.png" class="contacto-qr-img" alt="QR Instagram @beatrizcastro9798"
+                     style="transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
+            </a>
+            <span class="contacto-qr-label">@BEATRIZCASTRO9798 · INSTAGRAM</span>
+
+            <!-- Disponibilidad -->
+            <div style="margin-top:40px;width:100%;border-top:1px solid rgba(15,82,186,0.1);padding-top:30px;">
+                <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--amber);letter-spacing:0.4em;display:block;margin-bottom:16px;">DISPONIBILIDAD</span>
+                <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--matter-light);opacity:0.65;line-height:1.8;">
+                    Freelance · Colaboraciones<br>
+                    Moda Digital · CLO3D<br>
+                    Dirección Creativa · IA<br><br>
+                    Madrid · Europa · Remoto
+                </p>
             </div>
         </div>
     </div>
@@ -2739,11 +2725,21 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
 <div class="mayle-modal-bg" id="mayle-modal-2" onclick="closeMayleModal(event,'mayle-modal-2')">
   <div class="mayle-modal">
-    <div class="mayle-modal-img-col"><span class="mayle-modal-badge">Sastrería Industrial</span><img loading="lazy" src="fotos/caribe coat.png" alt="Abrigo Caribe"></div>
+    <div class="mayle-modal-img-col dual-img-col">
+      <span class="mayle-modal-badge">Sastrería Industrial</span>
+      <div class="modal-img-half">
+        <img loading="lazy" src="fotos/caribe coat.png" alt="Abrigo Caribe — vista espalda">
+        <span class="modal-img-label">Vista espalda</span>
+      </div>
+      <div class="modal-img-half">
+        <img loading="lazy" src="fotos/chaqueta1.png" alt="Chaqueta 1 — vista frontal">
+        <span class="modal-img-label">Vista frontal</span>
+      </div>
+    </div>
     <div class="mayle-modal-info">
       <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-2').classList.remove('open')">✕ CERRAR</button>
       <span class="mayle-modal-code">OF_01.B · Beatriz Castro · Mayle Vázquez</span>
-      <h3 class="mayle-modal-title">Abrigo "Caribe"<br>& Chaqueta 1</h3>
+      <h3 class="mayle-modal-title">Abrigo "Caribe"<br>Frente & Espalda</h3>
       <div class="mayle-modal-subtitle">Producción en Serie</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Manga globo</span><p class="mayle-spec-val">Desarrollada mediante <strong>expansión radial</strong> con un coeficiente de embebido de copa <strong>inferior al 8%</strong>, optimizado para máquinas de coser automáticas.</p></div>
       <div class="mayle-modal-subtitle">Estabilidad</div>
@@ -2757,7 +2753,17 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
 <div class="mayle-modal-bg" id="mayle-modal-3" onclick="closeMayleModal(event,'mayle-modal-3')">
   <div class="mayle-modal">
-    <div class="mayle-modal-img-col"><span class="mayle-modal-badge">Optimización COGS</span><img loading="lazy" src="fotos/el pozo jacket- completo .png" alt="Chaqueta El Pozo"></div>
+    <div class="mayle-modal-img-col dual-img-col">
+      <span class="mayle-modal-badge">Optimización COGS</span>
+      <div class="modal-img-half">
+        <img loading="lazy" src="fotos/el pozo jacket- completo .png" alt="Chaqueta El Pozo — vista completa">
+        <span class="modal-img-label">Vista completa</span>
+      </div>
+      <div class="modal-img-half">
+        <img loading="lazy" src="fotos/el pozo jacket.png" alt="Chaqueta El Pozo — detalle constructivo">
+        <span class="modal-img-label">Detalle constructivo</span>
+      </div>
+    </div>
     <div class="mayle-modal-info">
       <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-3').classList.remove('open')">✕ CERRAR</button>
       <span class="mayle-modal-code">OF_01.C · Beatriz Castro · Mayle Vázquez</span>
