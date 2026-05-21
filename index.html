@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Beatriz Castro — Digital Fashion Designer · CLO3D · Madrid</title>
 <meta name="description" content="Portfolio de Beatriz Castro, diseñadora de moda digital especializada en CLO3D, Blender, patronaje industrial y dirección creativa. Santo Domingo · Madrid.">
-<meta name="keywords" content="diseñadora moda digital, CLO3D, patronaje industrial, digital fashion designer, Blender, DAZ 3D, moda 3D Madrid, tech-pack, virtual sampling">
+<meta name="keywords" content="diseñadora moda digital, CLO3D, patronaje industrial, digital fashion designer, Blender, DAZ 3D, moda 3D Madrid, virtual sampling, womenswear">
 <meta name="author" content="Beatriz Castro">
 <meta property="og:title" content="Beatriz Castro — Digital Fashion Designer">
 <meta property="og:description" content="Del patrón físico al avatar digital. Patronaje industrial, CLO3D, dirección creativa. Santo Domingo · Madrid.">
@@ -376,13 +376,12 @@ html, body {
     text-decoration: none; color: var(--matter-light); transition: 0.3s; cursor: pointer;
 }
 .c-link:hover { color: var(--amber); border-bottom-color: var(--amber); }
-.c-link-label { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--sapphire); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 6px; display: block; }
-.c-link-value { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 2vw, 28px); font-weight: 300; }
+.c-link-label { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 2.4vw, 34px); font-weight: 300; color: var(--matter-light); letter-spacing: 0.01em; text-transform: none; margin-bottom: 0; display: block; transition: color 0.3s; }
+.c-link:hover .c-link-label { color: var(--amber); }
+.c-link-value { display: none; }
 .c-link-arrow { font-size: 18px; opacity: 0.4; transition: 0.3s; flex-shrink: 0; }
 .c-link:hover .c-link-arrow { opacity: 1; transform: translateX(6px); }
-.contacto-qr-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 10px; }
-.contacto-qr-img { width: 200px; height: 200px; object-fit: contain; filter: invert(1); opacity: 0.85; border: 1px solid rgba(74, 141, 238,0.15); padding: 16px; background: rgba(255,255,255,0.02); }
-.contacto-qr-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--sapphire); letter-spacing: 0.3em; margin-top: 12px; text-align: center; opacity: 0.6; }
+.contacto-qr-col { display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; padding-top: 24px; }
 .contacto-form { margin-top: 60px; border-top: 1px solid rgba(74, 141, 238,0.1); padding-top: 50px; }
 .contacto-form-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--matter-light); margin-bottom: 30px; }
 .c-form-group { margin-bottom: 24px; }
@@ -639,7 +638,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 <div id="cursor"></div>
 
 <div id="ui-nav">
-    <a href="#" class="back-btn" id="btn-back" onclick="navTo('lobby'); resetHabs();">← PALACIO</a>
+    <a href="#" class="back-btn" id="btn-back" onclick="navTo('lobby'); resetHabs();">← Inicio</a>
 </div>
 
 <!-- BOTTOM NAV PERSISTENTE -->
@@ -650,7 +649,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <a class="bnav-item" onclick="navTo('sobre-mi')" data-nav="sobre-mi">Sobre mí</a>
     <a class="bnav-item" onclick="navTo('contacto')" data-nav="contacto">Contacto</a>
     <span style="flex:1"></span>
-    <a class="bnav-item bnav-social-hide" href="https://wa.me/qr/2RBXWK3FYJBAP1" target="_blank" rel="noopener" style="color:#25D366;opacity:0.7;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">WA</a>
+    <a class="bnav-item bnav-social-hide" href="mailto:wuotanstudio@gmail.com" style="color:var(--matter-light);opacity:0.4;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.4'">@</a>
     <a class="bnav-item bnav-social-hide" href="https://www.instagram.com/beatrizcastro9798" target="_blank" rel="noopener" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.4'">IG</a>
     <a class="bnav-item bnav-social-hide" href="https://www.linkedin.com/in/beatriz-castro-967529210/" target="_blank" rel="noopener" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.4'">LI</a>
 </nav>
@@ -672,10 +671,10 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         </div>
         <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
             <!-- Redes sociales compactas -->
-            <a href="https://wa.me/qr/2RBXWK3FYJBAP1" target="_blank" rel="noopener"
-               title="WhatsApp"
-               style="font-family:'Roboto Mono',monospace;font-size:8px;color:#25D366;border:1px solid rgba(37,211,102,0.4);padding:6px 12px;text-decoration:none;transition:0.3s;letter-spacing:0.1em;"
-               onmouseover="this.style.background='rgba(37,211,102,0.1)'" onmouseout="this.style.background='transparent'">WA</a>
+            <a href="mailto:wuotanstudio@gmail.com"
+               title="Email"
+               style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--matter-light);border:1px solid rgba(232,216,195,0.25);padding:6px 12px;text-decoration:none;transition:0.3s;letter-spacing:0.1em;opacity:0.75;"
+               onmouseover="this.style.opacity='1';this.style.borderColor='var(--matter-light)'" onmouseout="this.style.opacity='0.75';this.style.borderColor='rgba(232,216,195,0.25)'">@</a>
             <a href="https://www.instagram.com/beatrizcastro9798" target="_blank" rel="noopener"
                title="Instagram"
                style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--matter-light);border:1px solid rgba(232,216,195,0.2);padding:6px 12px;text-decoration:none;transition:0.3s;letter-spacing:0.1em;opacity:0.6;"
@@ -706,7 +705,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="panel-frame">
                     <div class="panel-slides" id="slides-01">
                         <div class="panel-slide active"><span class="panel-slide-label">Leonel Lirio · RW 2024</span><img loading="lazy" src="fotos/lionellirio2.jpg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
-                        <div class="panel-slide"><span class="panel-slide-label">El Pozo Jacket</span><img loading="lazy" src="fotos/el-pozo-jacket-completo.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">El Pozo Jacket</span><img loading="lazy" src="fotos/el-pozo-jacket-detalle.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
                         <div class="panel-slide"><span class="panel-slide-label">Caribe Coat</span><img loading="lazy" src="fotos/caribe coat.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
                         <div class="panel-slide"><span class="panel-slide-label">Elisa Morato · RW 2024</span><img loading="lazy" src="fotos/elizafacetoface.jpg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
                     </div>
@@ -809,7 +808,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <div class="hab focused" id="hab-mayle" data-tag="BEATRIZ CASTRO">
         <div class="hab-header" onclick="focusHab('hab-mayle')">
             <div class="hab-meta">
-                <span class="hab-code">OF_01 · PATRONAJE INDUSTRIAL · DIGITAL PATTERN · PRODUCT DEVELOPMENT</span>
+                <span class="hab-code">PATRONAJE INDUSTRIAL · DIGITAL PATTERN · PRODUCT DEVELOPMENT</span>
                 <h2 class="hab-title">Mayle Vázquez — Patronaje & Product Development</h2>
             </div>
             <div class="hab-controls">
@@ -824,7 +823,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     <div>
                         <span class="mayle-role-label">Rol · Responsabilidades</span>
                         <p class="mayle-role-text">Desarrollo de patrones industriales y optimización de fit. Gestión de archivo técnico y digitalización de patronaje. Colaboración directa en el proceso de producción: desde el boceto técnico hasta el prototipo físico listo para fábrica.</p>
-                        <p class="mayle-role-text" style="margin-top:12px;">Especialización en marcadas de alta eficiencia, escalado digital bajo normativas industriales y documentación tipo Tech-Pack lista para envío a manufactura.</p>
+                        <p class="mayle-role-text" style="margin-top:12px;">Especialización en marcadas de alta eficiencia y escalado digital bajo normativas industriales internacionales.</p>
                     </div>
                     <div>
                         <span class="mayle-role-label">Métricas Clave</span>
@@ -860,7 +859,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                             </div>
                         </div>
                         <div class="mayle-card-meta">
-                            <span class="mayle-card-code">OF_01.A · Alta Complejidad</span>
+                            <span class="mayle-card-code">Alta Complejidad</span>
                             <div class="mayle-card-name">Vestido "Santo Domingo"</div>
                             <div class="mayle-card-tags"><span class="mayle-card-tag">Fitting</span><span class="mayle-card-tag">Marcada</span><span class="mayle-card-tag">Sostenible</span></div>
                         </div>
@@ -877,7 +876,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                                 <span class="dual-label">Vista frontal</span>
                             </div>
                             <div class="mayle-card-overlay">
-                                <p class="mayle-overlay-title">Abrigo "Caribe" / Chaqueta 1</p>
+                                <p class="mayle-overlay-title">Abrigo "Caribe"</p>
                                 <div class="mayle-overlay-metrics">
                                     <span class="mayle-metric-pill">Manga globo · expansión radial</span>
                                     <span class="mayle-metric-pill">Stay tape · error cero en solapa</span>
@@ -887,22 +886,15 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                             </div>
                         </div>
                         <div class="mayle-card-meta">
-                            <span class="mayle-card-code">OF_01.B · Sastrería Industrial</span>
-                            <div class="mayle-card-name">Abrigo "Caribe" — Frente & Espalda</div>
+                            <span class="mayle-card-code">Sastrería Industrial</span>
+                            <div class="mayle-card-name">Abrigo "Caribe"</div>
                             <div class="mayle-card-tags"><span class="mayle-card-tag">Serie</span><span class="mayle-card-tag">Escalado</span><span class="mayle-card-tag">Volumen</span><span class="mayle-card-tag">Roll Line</span><span class="mayle-card-tag">Automatización</span></div>
                         </div>
                     </div>
-                    <!-- CARD DUAL: Chaqueta El Pozo (vista completa + detalle constructivo) -->
-                    <div class="mayle-card mayle-card-dual" onclick="openMayleModal('mayle-modal-3')">
+                    <!-- CARD: Chaqueta El Pozo (solo detalle constructivo) -->
+                    <div class="mayle-card" onclick="openMayleModal('mayle-modal-3')">
                         <div class="mayle-card-img-wrap">
-                            <div class="dual-half">
-                                <img loading="lazy" src="fotos/el-pozo-jacket-completo.png" alt="Chaqueta El Pozo — vista completa">
-                                <span class="dual-label">Vista completa</span>
-                            </div>
-                            <div class="dual-half">
-                                <img loading="lazy" src="fotos/el-pozo-jacket-detalle.png" alt="Chaqueta El Pozo — detalle constructivo">
-                                <span class="dual-label">Detalle constructivo</span>
-                            </div>
+                            <img loading="lazy" class="mayle-card-img" src="fotos/el-pozo-jacket-detalle.png" alt="Chaqueta El Pozo — detalle constructivo">
                             <div class="mayle-card-overlay">
                                 <p class="mayle-overlay-title">Chaqueta "El Pozo"</p>
                                 <div class="mayle-overlay-metrics">
@@ -915,8 +907,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                             </div>
                         </div>
                         <div class="mayle-card-meta">
-                            <span class="mayle-card-code">OF_01.C · Optimización COGS · Detalle Constructivo</span>
-                            <div class="mayle-card-name">Chaqueta "El Pozo" — Completa & Detalle</div>
+                            <span class="mayle-card-code">Detalle Constructivo</span>
+                            <div class="mayle-card-name">Chaqueta "El Pozo"</div>
                             <div class="mayle-card-tags"><span class="mayle-card-tag">COGS</span><span class="mayle-card-tag">CNC</span><span class="mayle-card-tag">Eficiencia</span><span class="mayle-card-tag">Lino</span><span class="mayle-card-tag">Construcción</span></div>
                         </div>
                     </div>
@@ -934,7 +926,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                             </div>
                         </div>
                         <div class="mayle-card-meta">
-                            <span class="mayle-card-code">OF_01.D · Materiales Dinámicos</span>
+                            <span class="mayle-card-code">Materiales Dinámicos</span>
                             <div class="mayle-card-name">Vest Largo ¨El patio¨</div>
                             <div class="mayle-card-tags"><span class="mayle-card-tag">Plisado</span><span class="mayle-card-tag">Metalizado</span><span class="mayle-card-tag">Industrial</span></div>
                         </div>
@@ -945,7 +937,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                             <div class="mayle-card-overlay">
                                 <p class="mayle-overlay-title">Convent Vest</p>
                                 <div class="mayle-overlay-metrics">
-                                    <span class="mayle-metric-pill">Tech-Pack listo para fábrica</span>
+                                    <span class="mayle-metric-pill">Escalado Industrial</span>
                                     <span class="mayle-metric-pill">Aplomos de control</span>
                                     <span class="mayle-metric-pill">Escalado digital</span>
                                 </div>
@@ -953,9 +945,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                             </div>
                         </div>
                         <div class="mayle-card-meta">
-                            <span class="mayle-card-code">OF_01 · Capacidades Globales</span>
+                            <span class="mayle-card-code">Capacidades Globales</span>
                             <div class="mayle-card-name">Convent Vest</div>
-                            <div class="mayle-card-tags"><span class="mayle-card-tag">Tech-Pack</span><span class="mayle-card-tag">Escalado</span><span class="mayle-card-tag">Reclutamiento</span></div>
+                            <div class="mayle-card-tags"><span class="mayle-card-tag">Escalado</span><span class="mayle-card-tag">Marcada</span><span class="mayle-card-tag">Reclutamiento</span></div>
                         </div>
                     </div>
                 </div>
@@ -2572,7 +2564,6 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--matter-light);opacity:0.8;line-height:1.6;">Abierta a proyectos freelance, colaboraciones en moda digital y posiciones en equipos de diseño o producto de moda. Madrid · Europa · Remoto.</p>
             <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
                 <a onclick="navTo('contacto')" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--amber);border:1px solid rgba(253,185,39,0.4);padding:8px 18px;text-decoration:none;cursor:pointer;transition:0.3s;" onmouseover="this.style.background='var(--amber)';this.style.color='#000'" onmouseout="this.style.background='transparent';this.style.color='var(--amber)'">CONTACTAR →</a>
-                <a href="https://drive.google.com/file/d/1AeYK15F9089sWuL8hQjgfnLXSubusrlk/view?usp=drive_link" target="_blank" rel="noopener" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(74, 141, 238,0.4);padding:8px 18px;text-decoration:none;cursor:pointer;transition:0.3s;" onmouseover="this.style.background='rgba(74, 141, 238,0.1)'" onmouseout="this.style.background='transparent'">↓ DESCARGAR CV</a>
             </div>
         </div>
     </div>
@@ -2653,54 +2644,16 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 ═══════════════════════════════════════════ -->
 <div class="view room-view" id="contacto">
     <div class="contacto-header">
-        <span class="sala-code">SYS_CONTACT // TRABAJEMOS JUNTOS</span>
         <h1 class="contacto-title">Hablemos<br><em>de tu proyecto.</em></h1>
-        <a href="https://drive.google.com/file/d/1AeYK15F9089sWuL8hQjgfnLXSubusrlk/view?usp=drive_link" target="_blank" rel="noopener" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(74, 141, 238,0.3);padding:10px 22px;text-decoration:none;display:inline-block;margin-top:24px;transition:0.3s;letter-spacing:0.15em;" onmouseover="this.style.background='rgba(74, 141, 238,0.1)';this.style.borderColor='var(--sapphire)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(74, 141, 238,0.3)'">↓ DESCARGAR CV — BEATRIZ CASTRO</a>
     </div>
 
     <div class="contacto-grid">
         <div>
             <div class="contacto-links">
 
-                <!-- WHATSAPP -->
-                <a class="c-link" href="https://wa.me/qr/2RBXWK3FYJBAP1" target="_blank" rel="noopener"
-                   style="border-bottom-color:rgba(37,211,102,0.2);"
-                   onmouseover="this.style.color='#25D366';this.style.borderBottomColor='#25D366'"
-                   onmouseout="this.style.color='';this.style.borderBottomColor='rgba(37,211,102,0.2)'">
-                    <div>
-                        <span class="c-link-label" style="color:#25D366;">WHATSAPP</span>
-                        <span class="c-link-value">+34 603 508 827</span>
-                    </div>
-                    <span class="c-link-arrow">→</span>
-                </a>
-
-                <a class="c-link" href="mailto:castroconcepcionbeatriz@gmail.com">
-                    <div>
-                        <span class="c-link-label">EMAIL PRINCIPAL</span>
-                        <span class="c-link-value">castroconcepcionbeatriz@gmail.com</span>
-                    </div>
-                    <span class="c-link-arrow">→</span>
-                </a>
-
-                <a class="c-link" href="mailto:wuotanstudio@gmail.com">
-                    <div>
-                        <span class="c-link-label">EMAIL ESTUDIO</span>
-                        <span class="c-link-value">wuotanstudio@gmail.com</span>
-                    </div>
-                    <span class="c-link-arrow">→</span>
-                </a>
-
-                <a class="c-link" href="tel:+34603508827">
-                    <div>
-                        <span class="c-link-label">TELÉFONO</span>
-                        <span class="c-link-value">+34 603 508 827</span>
-                    </div>
-                    <span class="c-link-arrow">→</span>
-                </a>
-
                 <a class="c-link" href="https://www.linkedin.com/in/beatriz-castro-967529210/" target="_blank" rel="noopener">
                     <div>
-                        <span class="c-link-label">LINKEDIN</span>
+                        <span class="c-link-label">LinkedIn</span>
                         <span class="c-link-value">linkedin.com/in/beatriz-castro-967529210</span>
                     </div>
                     <span class="c-link-arrow">→</span>
@@ -2708,19 +2661,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
                 <a class="c-link" href="https://www.instagram.com/beatrizcastro9798" target="_blank" rel="noopener">
                     <div>
-                        <span class="c-link-label">INSTAGRAM</span>
+                        <span class="c-link-label">Instagram</span>
                         <span class="c-link-value">@beatrizcastro9798</span>
-                    </div>
-                    <span class="c-link-arrow">→</span>
-                </a>
-
-                <a class="c-link" href="https://drive.google.com/file/d/1AeYK15F9089sWuL8hQjgfnLXSubusrlk/view?usp=drive_link" target="_blank" rel="noopener"
-                   style="border-bottom-color:rgba(253,185,39,0.2);"
-                   onmouseover="this.style.color='var(--amber)';this.style.borderBottomColor='var(--amber)'"
-                   onmouseout="this.style.color='';this.style.borderBottomColor='rgba(253,185,39,0.2)'">
-                    <div>
-                        <span class="c-link-label" style="color:var(--amber);">PORTFOLIO DRIVE</span>
-                        <span class="c-link-value">Dossier Completo (PDF)</span>
                     </div>
                     <span class="c-link-arrow">→</span>
                 </a>
@@ -2747,19 +2689,18 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             </div>
         </div>
 
-        <!-- QR COLUMN — Solo Instagram -->
-        <div class="contacto-qr-col">
+        <!-- COLUMNA EDITORIAL — Disponibilidad + Cita -->
+        <div class="contacto-qr-col" style="align-items:flex-start;padding-top:24px;">
 
-            <a href="https://www.instagram.com/beatrizcastro9798" target="_blank" rel="noopener" style="text-decoration:none;">
-                <img loading="lazy" src="fotos/beatrizcastro9798_qr.png" class="contacto-qr-img" alt="QR Instagram @beatrizcastro9798"
-                     style="transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
-            </a>
-            <span class="contacto-qr-label">@BEATRIZCASTRO9798 · INSTAGRAM</span>
+            <!-- Cita editorial -->
+            <blockquote style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,1.8vw,26px);font-weight:300;font-style:italic;color:var(--matter-light);line-height:1.5;margin:0 0 40px 0;padding:0;border:0;opacity:0.9;">
+                "Lo que parece intuición<br>es estructura repetida."
+            </blockquote>
 
             <!-- Disponibilidad -->
-            <div style="margin-top:40px;width:100%;border-top:1px solid rgba(74, 141, 238,0.1);padding-top:30px;">
+            <div style="width:100%;border-top:1px solid rgba(74, 141, 238,0.15);padding-top:30px;">
                 <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--amber);letter-spacing:0.4em;display:block;margin-bottom:16px;">DISPONIBILIDAD</span>
-                <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--matter-light);opacity:0.65;line-height:1.8;">
+                <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--matter-light);opacity:0.7;line-height:1.8;margin:0;">
                     Freelance · Colaboraciones<br>
                     Moda Digital · CLO3D<br>
                     Dirección Creativa · IA<br><br>
@@ -2779,7 +2720,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         <div class="archive-header">
             <span class="archive-tag-display" id="active-tag-name"></span>
             <h2 class="archive-title">System Archive</h2>
-            <a href="#" style="font-family:'Roboto Mono';font-size:9px;color:var(--sapphire);text-decoration:none;margin-top:16px;display:inline-block;" onclick="navTo('lobby')">✕ BACK_TO_PALACIO</a>
+            <a href="#" style="font-family:'Roboto Mono';font-size:9px;color:var(--sapphire);text-decoration:none;margin-top:16px;display:inline-block;letter-spacing:0.2em;" onclick="navTo('lobby')">✕ VOLVER AL INICIO</a>
         </div>
         <div class="archive-results-grid" id="archive-results"></div>
     </div>
@@ -2793,7 +2734,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <div class="mayle-modal-img-col"><span class="mayle-modal-badge">Alta Complejidad</span><img loading="lazy" src="fotos/santo-domingo-dress.png" alt="Vestido Santo Domingo"></div>
     <div class="mayle-modal-info">
       <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-1').classList.remove('open')">✕ CERRAR</button>
-      <span class="mayle-modal-code">OF_01.A · Mayle Vázquez</span>
+      <span class="mayle-modal-code">Mayle Vázquez</span>
       <h3 class="mayle-modal-title">Vestido<br>"Santo Domingo"</h3>
       <div class="mayle-modal-subtitle">Ingeniería de Fitting</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Estructura</span><p class="mayle-spec-val">Patronaje con <strong>holgura negativa controlada</strong> y "chasis" interno. Estabilidad garantizada en busto mediante distribución de tensiones.</p></div>
@@ -2808,21 +2749,14 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
 <div class="mayle-modal-bg" id="mayle-modal-2" onclick="closeMayleModal(event,'mayle-modal-2')">
   <div class="mayle-modal">
-    <div class="mayle-modal-img-col dual-img-col">
+    <div class="mayle-modal-img-col">
       <span class="mayle-modal-badge">Sastrería Industrial</span>
-      <div class="modal-img-half">
-        <img loading="lazy" src="fotos/caribe coat.png" alt="Abrigo Caribe — vista espalda">
-        <span class="modal-img-label">Vista espalda</span>
-      </div>
-      <div class="modal-img-half">
-        <img loading="lazy" src="fotos/chaqueta1.png" alt="Chaqueta 1 — vista frontal">
-        <span class="modal-img-label">Vista frontal</span>
-      </div>
+      <img loading="lazy" src="fotos/caribe coat.png" alt="Abrigo Caribe">
     </div>
     <div class="mayle-modal-info">
       <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-2').classList.remove('open')">✕ CERRAR</button>
-      <span class="mayle-modal-code">OF_01.B · Mayle Vázquez</span>
-      <h3 class="mayle-modal-title">Abrigo "Caribe"<br>Frente & Espalda</h3>
+      <span class="mayle-modal-code">Mayle Vázquez</span>
+      <h3 class="mayle-modal-title">Abrigo "Caribe"</h3>
       <div class="mayle-modal-subtitle">Producción en Serie</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Manga globo</span><p class="mayle-spec-val">Desarrollada mediante <strong>expansión radial</strong> con un coeficiente de embebido de copa <strong>inferior al 8%</strong>, optimizado para máquinas de coser automáticas.</p></div>
       <div class="mayle-modal-subtitle">Estabilidad</div>
@@ -2836,20 +2770,13 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
 <div class="mayle-modal-bg" id="mayle-modal-3" onclick="closeMayleModal(event,'mayle-modal-3')">
   <div class="mayle-modal">
-    <div class="mayle-modal-img-col dual-img-col">
+    <div class="mayle-modal-img-col">
       <span class="mayle-modal-badge">Optimización COGS</span>
-      <div class="modal-img-half">
-        <img loading="lazy" src="fotos/el-pozo-jacket-completo.png" alt="Chaqueta El Pozo — vista completa">
-        <span class="modal-img-label">Vista completa</span>
-      </div>
-      <div class="modal-img-half">
-        <img loading="lazy" src="fotos/el-pozo-jacket-detalle.png" alt="Chaqueta El Pozo — detalle constructivo">
-        <span class="modal-img-label">Detalle constructivo</span>
-      </div>
+      <img loading="lazy" src="fotos/el-pozo-jacket-detalle.png" alt="Chaqueta El Pozo — detalle constructivo">
     </div>
     <div class="mayle-modal-info">
       <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-3').classList.remove('open')">✕ CERRAR</button>
-      <span class="mayle-modal-code">OF_01.C · Mayle Vázquez</span>
+      <span class="mayle-modal-code">Mayle Vázquez</span>
       <h3 class="mayle-modal-title">Chaqueta<br>"El Pozo"</h3>
       <div class="mayle-modal-subtitle">Ahorro de Tiempos</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Eficiencia de confección</span><p class="mayle-spec-val">Jaretas y tablones <strong>integrados en el patrón base con piquetes de doblado CNC</strong>. Reduce el tiempo de confección en un <strong>15%</strong> al eliminar mediciones manuales en mesa.</p></div>
@@ -2867,7 +2794,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <div class="mayle-modal-img-col"><span class="mayle-modal-badge">Materiales Dinámicos</span><img loading="lazy" src="fotos/chaqueta 2 sin manga.png" alt="Vestido Santa María Ozama"></div>
     <div class="mayle-modal-info">
       <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-4').classList.remove('open')">✕ CERRAR</button>
-      <span class="mayle-modal-code">OF_01.D · Mayle Vázquez</span>
+      <span class="mayle-modal-code">Mayle Vázquez</span>
       <h3 class="mayle-modal-title">Vestido "Santa María"<br>& "Ozama"</h3>
       <div class="mayle-modal-subtitle">Tejidos Plisados</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Compensación dinámica</span><p class="mayle-spec-val">Patrones desarrollados con <strong>compensación por elasticidad residual</strong>. Las medidas finales consideran el estiramiento post-corte del tejido metalizado.</p></div>
@@ -2882,18 +2809,18 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
 <div class="mayle-modal-bg" id="mayle-modal-5" onclick="closeMayleModal(event,'mayle-modal-5')">
   <div class="mayle-modal">
-    <div class="mayle-modal-img-col"><span class="mayle-modal-badge">Capacidades Globales</span><img loading="lazy" src="fotos/convent vest.png" alt="Convent Vest"></div>
+    <div class="mayle-modal-img-col"><span class="mayle-modal-badge">Capacidades Globales</span><img loading="lazy" src="fotos/convent-vest.png" alt="Convent Vest"></div>
     <div class="mayle-modal-info">
       <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-5').classList.remove('open')">✕ CERRAR</button>
-      <span class="mayle-modal-code">OF_01 · Para Reclutamiento</span>
+      <span class="mayle-modal-code">Para Reclutamiento</span>
       <h3 class="mayle-modal-title">Capacidades<br>para Producción Global</h3>
       <div class="mayle-modal-subtitle">Visión de Costes (COGS)</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Integración diseño-producción</span><p class="mayle-spec-val">Integración de detalles de diseño en el patrón para <strong>minimizar pasos de montaje</strong> y reducir costes de mano de obra directa.</p></div>
       <div class="mayle-modal-subtitle">Precisión Técnica</div>
-      <div class="mayle-spec-block"><span class="mayle-spec-key">Documentación</span><p class="mayle-spec-val"><strong>Tech-Packs completos listos para envío a fábrica</strong>, incluyendo aplomos de control, hojas de ruta y especificaciones de materiales.</p></div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Especificaciones de marcada</span><p class="mayle-spec-val">Marcadas digitales optimizadas con <strong>aplomos de control y hojas de ruta de materiales</strong>, listas para coordinación con manufactura externa.</p></div>
       <div class="mayle-modal-subtitle">Software Avanzado</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Digital Pattern Making</span><p class="mayle-spec-val">Marcadas de <strong>alta eficiencia y escalado digital</strong> bajo normativas industriales internacionales. Compatible con sistemas CAD de patronaje.</p></div>
-      <div class="mayle-modal-tags"><span class="mayle-modal-tag">Tech-Pack Ready</span><span class="mayle-modal-tag">COGS Awareness</span><span class="mayle-modal-tag">CAD Pattern</span><span class="mayle-modal-tag">Factory-Ready Docs</span><span class="mayle-modal-tag">Industrial Standards</span></div>
+      <div class="mayle-modal-tags"><span class="mayle-modal-tag">COGS Awareness</span><span class="mayle-modal-tag">CAD Pattern</span><span class="mayle-modal-tag">Marcada Digital</span><span class="mayle-modal-tag">Industrial Standards</span></div>
     </div>
   </div>
 </div>
@@ -2954,7 +2881,7 @@ function sendContactForm() {
         status.style.opacity = '1';
         return;
     }
-    const mailto = 'mailto:castroconcepcionbeatriz@gmail.com?subject='
+    const mailto = 'mailto:wuotanstudio@gmail.com?subject='
         + encodeURIComponent('Contacto desde portfolio — ' + nombre)
         + '&body=' + encodeURIComponent('De: ' + nombre + '\nEmail: ' + email + '\n\n' + msg);
     window.open(mailto, '_blank');
