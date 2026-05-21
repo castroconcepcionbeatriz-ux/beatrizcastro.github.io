@@ -22,7 +22,7 @@
 <style>
 :root {
     --control-dark: #0A0A0A;
-    --sapphire: #0F52BA;
+    --sapphire: #4A8DEE;
     --amber: #FDB927;
     --matter-light: #E8D8C3;
     --matter-base: #D6B8A3;
@@ -43,7 +43,7 @@ html, body {
 
 #technical-grid {
     position: fixed; inset: 0;
-    background-image: linear-gradient(to right, rgba(15,82,186,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,82,186,0.03) 1px, transparent 1px);
+    background-image: linear-gradient(to right, rgba(74, 141, 238,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(74, 141, 238,0.03) 1px, transparent 1px);
     background-size: 60px 60px; pointer-events: none; z-index: 1;
 }
 
@@ -95,16 +95,16 @@ html, body {
     border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%);
     mix-blend-mode: screen; transition: width 0.3s, height 0.3s, border-color 0.3s;
 }
-#cursor.drag { width: 50px; height: 50px; background: rgba(15,82,186,0.1); border-color: var(--amber); }
+#cursor.drag { width: 50px; height: 50px; background: rgba(74, 141, 238,0.1); border-color: var(--amber); }
 
 @media (max-width: 768px) { #cursor { display: none; } * { cursor: auto !important; } }
 
 /* ── LOBBY ── */
-#lobby { display: flex; align-items: center; position: relative; overflow: hidden; height: 100vh; }
+#lobby { display: flex; flex-direction: column; position: relative; overflow: hidden; height: 100vh; max-height: 100vh; }
 
 .l-header {
-    position: absolute; top: 0; left: 0; right: 0;
-    padding: 40px 8%; display: flex; justify-content: space-between; align-items: flex-start; z-index: 10;
+    position: relative; flex-shrink: 0;
+    padding: 36px 8% 24px; display: flex; justify-content: space-between; align-items: flex-start; z-index: 10;
 }
 .l-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 5vw, 56px); font-weight: 300; line-height: 0.85; }
 .l-name em { font-style: italic; color: var(--sapphire); }
@@ -122,36 +122,64 @@ html, body {
     margin-top: 8px; letter-spacing: 0.15em;
 }
 
+/* LOBBY FOOTER — franja inferior con drag hint + novedades */
+.l-footer {
+    position: relative; flex-shrink: 0; z-index: 10;
+    padding: 18px 8% 28px;
+    display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap;
+}
+
 /* DRAG HINT */
 .drag-hint {
-    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-    font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--sapphire);
-    letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.6;
-    display: flex; align-items: center; gap: 12px; pointer-events: none;
-    animation: hint-fade 3s ease-in-out infinite;
+    font-family: 'Roboto Mono', monospace; font-size: 11px;
+    color: var(--amber);
+    letter-spacing: 0.25em; text-transform: uppercase; opacity: 0.95;
+    display: flex; align-items: center; gap: 14px; pointer-events: none;
+}
+.drag-hint-text {
+    color: var(--sapphire); opacity: 0.85;
+    animation: hint-pulse 2.4s ease-in-out infinite;
 }
 .drag-hint-arrow {
-    display: inline-block;
-    animation: hint-slide 1.8s ease-in-out infinite;
+    display: inline-block; font-size: 16px; color: var(--amber);
+    animation: hint-bounce 1.4s ease-in-out infinite;
+    text-shadow: 0 0 12px rgba(253,185,39,0.4);
 }
-@keyframes hint-slide { 0%,100%{transform:translateX(0)} 50%{transform:translateX(12px)} }
-@keyframes hint-fade { 0%,100%{opacity:0.3} 50%{opacity:0.7} }
+.drag-hint-arrow:first-child { animation-delay: 0.7s; transform: scaleX(-1); }
+@keyframes hint-bounce {
+    0%, 100% { transform: translateX(0); opacity: 0.5; }
+    50% { transform: translateX(8px); opacity: 1; }
+}
+.drag-hint-arrow:first-child {
+    animation-name: hint-bounce-left;
+}
+@keyframes hint-bounce-left {
+    0%, 100% { transform: translateX(0) scaleX(-1); opacity: 0.5; }
+    50% { transform: translateX(-8px) scaleX(-1); opacity: 1; }
+}
+@keyframes hint-pulse { 0%,100%{opacity:0.5} 50%{opacity:0.95} }
 
 /* LOBBY PANELS */
-.track-container { width: 100%; height: 100vh; display: flex; align-items: center; overflow: hidden; touch-action: pan-x; }
-.track { display: flex; align-items: center; gap: 80px; padding: 0 12vw; will-change: transform; transition: transform 0.1s ease-out; }
+.track-container { width: 100%; flex: 1 1 auto; min-height: 0; display: flex; align-items: center; overflow: hidden; touch-action: pan-x; }
+.track { display: flex; align-items: center; gap: 80px; padding: 0 12vw; height: 100%; will-change: transform; transition: transform 0.1s ease-out; }
 .panel { flex-shrink: 0; position: relative; transition: transform 0.5s; cursor: pointer; }
 .panel:hover { transform: translateY(-12px); }
-.panel-lg { width: clamp(380px, 38vw, 580px); height: 78vh; }
-.panel-sm { width: clamp(280px, 28vw, 420px); height: 60vh; margin-top: 80px; opacity: 0.6; }
-.panel-frame { width: 100%; height: 100%; overflow: hidden; position: relative; border: 1px solid rgba(15,82,186,0.2); background: #050505; }
+.panel-lg { width: clamp(380px, 38vw, 580px); height: 100%; max-height: 560px; }
+.panel-sm { width: clamp(280px, 28vw, 420px); height: 100%; max-height: 460px; }
+.panel-frame { width: 100%; height: 100%; overflow: hidden; position: relative; border: 1px solid rgba(74, 141, 238,0.2); background: #050505; }
+/* Overlay inferior para legibilidad del panel-info sobre cualquier imagen */
+.panel-frame::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 55%;
+    background: linear-gradient(to top, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.7) 35%, rgba(5,5,5,0) 100%);
+    pointer-events: none; z-index: 2;
+}
 .panel-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.55; transition: 1.2s var(--transition); }
 .panel:hover .panel-img { opacity: 1; transform: scale(1.03); }
 .panel-data { position: absolute; top: 24px; right: 24px; text-align: right; color: var(--sapphire); font-family: 'Roboto Mono', monospace; }
 .data-val { font-size: 36px; font-weight: 100; display: block; line-height: 1; }
 .data-lab { font-size: 8px; text-transform: uppercase; opacity: 0.5; letter-spacing: 0.2em; }
-.panel-info { position: absolute; bottom: 30px; left: 30px; right: 30px; pointer-events: none; }
-.panel-num { font-family: 'Roboto Mono', monospace; font-size: 10px; color: var(--sapphire); margin-bottom: 10px; display: block; }
+.panel-info { position: absolute; bottom: 30px; left: 30px; right: 30px; pointer-events: none; z-index: 5; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+.panel-num { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--sapphire); margin-bottom: 10px; display: block; letter-spacing: 0.15em; line-height: 1.4; text-transform: uppercase; }
 .panel-ttl { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 3.5vw, 44px); line-height: 1; color: var(--matter-light); }
 
 /* ── PANEL SLIDESHOW ── */
@@ -164,10 +192,10 @@ html, body {
 .panel-slide.active { opacity: 1; }
 .panel-slide img {
     width: 100%; height: 100%; object-fit: cover;
-    opacity: 0.55; transition: transform 6s ease;
+    opacity: 0.88; transition: transform 6s ease, opacity 0.4s ease;
 }
 .panel-slide.active img { transform: scale(1.04); }
-.panel:hover .panel-slide img { opacity: 0.9; }
+.panel:hover .panel-slide img { opacity: 1; }
 
 /* DOTS indicadores */
 .panel-dots {
@@ -180,15 +208,26 @@ html, body {
 }
 .panel-dot.active { opacity: 0.9; background: var(--amber); width: 14px; border-radius: 2px; }
 
-/* LABEL de proyecto activo en el panel */
-.panel-slide-label {
-    position: absolute; top: 16px; left: 16px; z-index: 10;
-    font-family: 'Roboto Mono', monospace; font-size: 7px;
-    color: var(--matter-light); opacity: 0; letter-spacing: 0.2em;
-    text-transform: uppercase; transition: opacity 0.4s;
-    background: rgba(10,10,10,0.5); padding: 3px 8px;
+/* LABEL de proyecto activo en el panel — OCULTO por preferencia editorial */
+.panel-slide-label { display: none; }
+
+/* FALLBACK: cuando una imagen no carga, mostrar gradiente + label visible */
+.panel-slide--fallback {
+    background: linear-gradient(135deg, rgba(74,141,238,0.12) 0%, rgba(253,185,39,0.06) 50%, #050505 100%);
+    display: flex; align-items: center; justify-content: center;
 }
-.panel-slide.active .panel-slide-label { opacity: 0.6; }
+.panel-slide--fallback .panel-slide-label {
+    opacity: 1 !important;
+    position: static !important;
+    font-size: 11px !important;
+    background: transparent !important;
+    color: var(--amber) !important;
+    letter-spacing: 0.3em !important;
+    padding: 0 24px !important;
+    text-align: center;
+    max-width: 80%;
+    line-height: 1.8;
+}
 
 /* FEATURED BADGE */
 .panel-featured {
@@ -199,10 +238,10 @@ html, body {
 }
 
 /* NOVEDADES BAR */
-.novedades-bar { position: absolute; right: 40px; bottom: 40px; z-index: 20; }
+.novedades-bar { display: none; /* ya no se usa: news-item ahora vive en .l-footer */ }
 .news-item {
     font-family: 'Roboto Mono', monospace; font-size: 10px; color: inherit; text-decoration: none;
-    border-bottom: 1px solid rgba(15,82,186,0.3); padding: 8px 0; min-width: 200px;
+    border-bottom: 1px solid rgba(74, 141, 238,0.3); padding: 8px 0; min-width: 200px;
     display: flex; justify-content: space-between; gap: 20px; transition: 0.3s; cursor: pointer;
 }
 .news-item:hover { color: var(--amber); border-bottom-color: var(--amber); }
@@ -216,7 +255,7 @@ html, body {
 .sala-desc { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--matter-light); opacity: 0.45; margin-top: 20px; max-width: 500px; line-height: 1.7; }
 
 /* HAB */
-.hab { border-bottom: 1px solid rgba(15,82,186,0.1); margin-bottom: 10px; transition: opacity 0.4s, filter 0.4s; overflow: hidden; }
+.hab { border-bottom: 1px solid rgba(74, 141, 238,0.1); margin-bottom: 10px; transition: opacity 0.4s, filter 0.4s; overflow: hidden; }
 .hab.hidden { opacity: 0; pointer-events: none; height: 0; margin: 0; border: none; }
 .hab-header { display: flex; justify-content: space-between; align-items: center; padding: 30px 0; cursor: pointer; transition: 0.3s; }
 .hab-header:hover { color: var(--amber); }
@@ -288,7 +327,7 @@ html, body {
 .detail-overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(10,10,10,0.5); backdrop-filter: blur(30px); display: flex; opacity: 0; pointer-events: none; transition: opacity 0.4s; }
 .detail-overlay.active { opacity: 1; pointer-events: all; }
 .detail-main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px; }
-.detail-main img { max-height: 85vh; border: 1px solid rgba(15,82,186,0.2); }
+.detail-main img { max-height: 85vh; border: 1px solid rgba(74, 141, 238,0.2); }
 .detail-sidebar { width: 420px; border-left: 1px solid rgba(253,185,39,0.1); padding: 60px 50px; display: flex; flex-direction: column; }
 
 /* ARCHIVO */
@@ -312,10 +351,10 @@ html, body {
 .sobre-role-tag { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--amber); border: 1px solid rgba(253,185,39,0.3); padding: 6px 14px; display: inline-block; margin-bottom: 30px; letter-spacing: 0.15em; }
 .sobre-text { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300; line-height: 1.8; color: var(--matter-light); opacity: 0.75; max-width: 480px; }
 .sobre-skills { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 10px; }
-.skill-tag { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--sapphire); border: 1px solid rgba(15,82,186,0.3); padding: 5px 12px; letter-spacing: 0.1em; text-transform: uppercase; }
-.sobre-data-col { border-left: 1px solid rgba(15,82,186,0.15); padding-left: 50px; }
+.skill-tag { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--sapphire); border: 1px solid rgba(74, 141, 238,0.3); padding: 5px 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+.sobre-data-col { border-left: 1px solid rgba(74, 141, 238,0.15); padding-left: 50px; }
 .sobre-section-label { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--amber); letter-spacing: 0.4em; text-transform: uppercase; margin-bottom: 20px; display: block; }
-.sobre-item { margin-bottom: 35px; padding-bottom: 35px; border-bottom: 1px solid rgba(15,82,186,0.08); }
+.sobre-item { margin-bottom: 35px; padding-bottom: 35px; border-bottom: 1px solid rgba(74, 141, 238,0.08); }
 .sobre-item:last-child { border-bottom: none; }
 .sobre-item-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--matter-light); margin-bottom: 4px; }
 .sobre-item-sub { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--sapphire); opacity: 0.7; letter-spacing: 0.1em; }
@@ -330,7 +369,7 @@ html, body {
 .contacto-links { display: flex; flex-direction: column; gap: 0; }
 .c-link {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 24px 0; border-bottom: 1px solid rgba(15,82,186,0.1);
+    padding: 24px 0; border-bottom: 1px solid rgba(74, 141, 238,0.1);
     text-decoration: none; color: var(--matter-light); transition: 0.3s; cursor: pointer;
 }
 .c-link:hover { color: var(--amber); border-bottom-color: var(--amber); }
@@ -339,14 +378,14 @@ html, body {
 .c-link-arrow { font-size: 18px; opacity: 0.4; transition: 0.3s; flex-shrink: 0; }
 .c-link:hover .c-link-arrow { opacity: 1; transform: translateX(6px); }
 .contacto-qr-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 10px; }
-.contacto-qr-img { width: 200px; height: 200px; object-fit: contain; filter: invert(1); opacity: 0.85; border: 1px solid rgba(15,82,186,0.15); padding: 16px; background: rgba(255,255,255,0.02); }
+.contacto-qr-img { width: 200px; height: 200px; object-fit: contain; filter: invert(1); opacity: 0.85; border: 1px solid rgba(74, 141, 238,0.15); padding: 16px; background: rgba(255,255,255,0.02); }
 .contacto-qr-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--sapphire); letter-spacing: 0.3em; margin-top: 12px; text-align: center; opacity: 0.6; }
-.contacto-form { margin-top: 60px; border-top: 1px solid rgba(15,82,186,0.1); padding-top: 50px; }
+.contacto-form { margin-top: 60px; border-top: 1px solid rgba(74, 141, 238,0.1); padding-top: 50px; }
 .contacto-form-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--matter-light); margin-bottom: 30px; }
 .c-form-group { margin-bottom: 24px; }
 .c-form-label { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--sapphire); letter-spacing: 0.3em; text-transform: uppercase; display: block; margin-bottom: 10px; }
 .c-form-input {
-    width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(15,82,186,0.2);
+    width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(74, 141, 238,0.2);
     color: var(--matter-light); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300;
     padding: 12px 0; outline: none; transition: border-color 0.3s; cursor: text;
 }
@@ -365,7 +404,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .back-btn {
     position: absolute; top: 36px; left: 36px; pointer-events: all;
     font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--sapphire);
-    border: 1px solid rgba(15,82,186,0.4); padding: 10px 20px; text-decoration: none;
+    border: 1px solid rgba(74, 141, 238,0.4); padding: 10px 20px; text-decoration: none;
     opacity: 0; transition: opacity 0.3s;
 }
 .back-btn.visible { opacity: 1; }
@@ -374,7 +413,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 #bottom-nav {
     position: fixed; bottom: 0; left: 0; right: 0; z-index: 500;
     background: rgba(10,10,10,0.9); backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(15,82,186,0.08);
+    border-top: 1px solid rgba(74, 141, 238,0.08);
     display: none; justify-content: center; gap: 0; padding: 0;
 }
 #bottom-nav.visible { display: flex; }
@@ -390,7 +429,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 @media (max-width: 768px) {
     .room-view { padding: 80px 5% 150px; }
     .sobre-grid { grid-template-columns: 1fr; gap: 50px; }
-    .sobre-data-col { border-left: none; padding-left: 0; border-top: 1px solid rgba(15,82,186,0.15); padding-top: 40px; }
+    .sobre-data-col { border-left: none; padding-left: 0; border-top: 1px solid rgba(74, 141, 238,0.15); padding-top: 40px; }
     .contacto-grid { grid-template-columns: 1fr; gap: 40px; }
     .moodboard-grid { grid-template-columns: 1fr 1fr; }
     .mb-slot { grid-column: span 1 !important; grid-row: auto !important; aspect-ratio: 1 !important; }
@@ -496,8 +535,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 ══════════════════════════════════════ */
 .editorial-room { background: var(--control-dark); }
 
-.ed-act { padding: 56px 40px; border-bottom: 1px solid rgba(15,82,186,0.08); }
-.ed-act--dark { background: #0D0D14; border-bottom: 1px solid rgba(15,82,186,0.15); }
+.ed-act { padding: 56px 40px; border-bottom: 1px solid rgba(74, 141, 238,0.08); }
+.ed-act--dark { background: #0D0D14; border-bottom: 1px solid rgba(74, 141, 238,0.15); }
 
 .ed-act-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; padding-bottom: 16px; border-bottom: 1px solid rgba(253,185,39,0.12); }
 .ed-act-num { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; color: rgba(253,185,39,0.15); line-height: 1; }
@@ -510,7 +549,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .ed-pull-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 2.5vw, 32px); font-weight: 300; font-style: italic; color: var(--matter-light); line-height: 1.3; margin-bottom: 24px; padding-left: 20px; border-left: 2px solid var(--amber); }
 .ed-body-text { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300; color: var(--matter-light); opacity: 0.75; line-height: 1.8; }
 .ed-role-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
-.ed-pill { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--sapphire); border: 1px solid rgba(15,82,186,0.3); padding: 4px 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+.ed-pill { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--sapphire); border: 1px solid rgba(74, 141, 238,0.3); padding: 4px 12px; letter-spacing: 0.1em; text-transform: uppercase; }
 
 .ed-img-block { position: relative; }
 .ed-img-block img { width: 100%; aspect-ratio: 2/3; object-fit: cover; object-position: top; opacity: 0.8; display: block; filter: contrast(1.05); }
@@ -520,14 +559,14 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .ed-crisis-block { padding: 8px 0; }
 .ed-crisis-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--sapphire); letter-spacing: 0.35em; text-transform: uppercase; margin-bottom: 28px; opacity: 0.6; }
 .ed-crisis-grid { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 16px; align-items: start; }
-.ed-crisis-item { background: rgba(15,82,186,0.04); border: 1px solid rgba(15,82,186,0.1); padding: 24px 20px; }
+.ed-crisis-item { background: rgba(74, 141, 238,0.04); border: 1px solid rgba(74, 141, 238,0.1); padding: 24px 20px; }
 .ed-crisis-icon { font-size: 20px; display: block; margin-bottom: 10px; color: var(--amber); font-style: normal; font-family: monospace; }
 .ed-crisis-step { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--amber); letter-spacing: 0.25em; text-transform: uppercase; display: block; margin-bottom: 12px; }
 .ed-crisis-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--matter-light); opacity: 0.7; line-height: 1.7; }
 .ed-crisis-arrow { font-family: 'Roboto Mono', monospace; font-size: 20px; color: rgba(253,185,39,0.3); align-self: center; padding-top: 24px; }
 
 /* TIMELINE */
-.ed-timeline { margin-top: 28px; border-left: 1px solid rgba(15,82,186,0.2); padding-left: 20px; display: flex; flex-direction: column; gap: 14px; }
+.ed-timeline { margin-top: 28px; border-left: 1px solid rgba(74, 141, 238,0.2); padding-left: 20px; display: flex; flex-direction: column; gap: 14px; }
 .ed-tl-item { display: flex; align-items: flex-start; gap: 12px; }
 .ed-tl-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--amber); flex-shrink: 0; margin-top: 5px; }
 .ed-tl-text { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--matter-light); opacity: 0.55; letter-spacing: 0.1em; line-height: 1.6; }
@@ -553,8 +592,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 /* PLACEHOLDERS DE FOTO */
 .ed-photo-placeholder {
     width: 100%; aspect-ratio: 2/3;
-    background: rgba(15,82,186,0.04);
-    border: 1px dashed rgba(15,82,186,0.25);
+    background: rgba(74, 141, 238,0.04);
+    border: 1px dashed rgba(74, 141, 238,0.25);
     display: flex; flex-direction: column;
     align-items: center; justify-content: center; gap: 12px;
 }
@@ -576,8 +615,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
 }
 .ed-concept-item {
-    border: 1px solid rgba(15,82,186,0.1); padding: 24px 20px;
-    background: rgba(15,82,186,0.03);
+    border: 1px solid rgba(74, 141, 238,0.1); padding: 24px 20px;
+    background: rgba(74, 141, 238,0.03);
 }
 .ed-concept-label {
     font-family: 'Roboto Mono', monospace; font-size: 8px;
@@ -623,8 +662,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         <div>
             <h1 class="l-name">Beatriz <em>Castro</em></h1>
             <span style="font-family:'Roboto Mono',monospace;font-size:10px;color:var(--matter-light);opacity:0.5;letter-spacing:0.05em;display:block;margin-bottom:6px;">Del patrón físico al avatar digital — sin renunciar a ninguno.</span>
-            <span class="l-tagline">Digital Fashion Designer · CLO3D · AI · Madrid</span>
-            <span class="l-bio">3D Garment Development · Fashion Product · Creative Direction</span>
+            <span class="l-tagline">Fashion Strategy &amp; Management</span>
+            <span class="l-bio">Womenswear Product Development · Creative Direction</span>
             <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--sapphire);opacity:0.5;letter-spacing:0.25em;display:block;margin-top:6px;">SANTO DOMINGO · MADRID</span>
             <span class="l-available">● Disponible para proyectos</span>
         </div>
@@ -632,7 +671,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <!-- Redes sociales compactas -->
             <a href="https://wa.me/qr/2RBXWK3FYJBAP1" target="_blank" rel="noopener"
                title="WhatsApp"
-               style="font-family:'Roboto Mono',monospace;font-size:8px;color:#252ed3;border:1px solid rgba(37, 57, 211, 0.3);padding:6px 12px;text-decoration:none;transition:0.3s;letter-spacing:0.1em;"
+               style="font-family:'Roboto Mono',monospace;font-size:8px;color:#25D366;border:1px solid rgba(37,211,102,0.4);padding:6px 12px;text-decoration:none;transition:0.3s;letter-spacing:0.1em;"
                onmouseover="this.style.background='rgba(37,211,102,0.1)'" onmouseout="this.style.background='transparent'">WA</a>
             <a href="https://www.instagram.com/beatrizcastro9798" target="_blank" rel="noopener"
                title="Instagram"
@@ -640,11 +679,11 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                onmouseover="this.style.opacity='1';this.style.borderColor='var(--matter-light)'" onmouseout="this.style.opacity='0.6';this.style.borderColor='rgba(232,216,195,0.2)'">IG</a>
             <a href="https://www.linkedin.com/in/beatriz-castro-967529210/" target="_blank" rel="noopener"
                title="LinkedIn"
-               style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--sapphire);border:1px solid rgba(15,82,186,0.3);padding:6px 12px;text-decoration:none;transition:0.3s;letter-spacing:0.1em;"
-               onmouseover="this.style.background='rgba(15,82,186,0.1)'" onmouseout="this.style.background='transparent'">LI</a>
+               style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--amber);border:1px solid rgba(253,185,39,0.4);padding:6px 12px;text-decoration:none;transition:0.3s;letter-spacing:0.1em;"
+               onmouseover="this.style.background='rgba(253,185,39,0.1)'" onmouseout="this.style.background='transparent'">LI</a>
             <a onclick="navTo('sobre-mi')"
-               style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(15,82,186,0.3);padding:8px 16px;text-decoration:none;transition:0.3s;cursor:pointer;"
-               onmouseover="this.style.background='rgba(15,82,186,0.1)'" onmouseout="this.style.background='transparent'">SOBRE MÍ</a>
+               style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(74, 141, 238,0.3);padding:8px 16px;text-decoration:none;transition:0.3s;cursor:pointer;"
+               onmouseover="this.style.background='rgba(74, 141, 238,0.1)'" onmouseout="this.style.background='transparent'">SOBRE MÍ</a>
             <a onclick="navTo('contacto')"
                style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--amber);border:1px solid rgba(253,185,39,0.4);padding:8px 16px;text-decoration:none;transition:0.3s;cursor:pointer;"
                onmouseover="this.style.background='var(--amber)';this.style.color='#000'" onmouseout="this.style.background='transparent';this.style.color='var(--amber)'">CONTACTO</a>
@@ -663,52 +702,50 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="panel-data"><span class="data-val" style="color:var(--amber);">92%</span><span class="data-lab">Estructura</span></div>
                 <div class="panel-frame">
                     <div class="panel-slides" id="slides-01">
-                        <div class="panel-slide active"><span class="panel-slide-label">Mayle Vázquez · Patronaje</span><img loading="lazy" src="fotos/santo-domingo-dress.png" alt=""></div>
-                        <div class="panel-slide"><span class="panel-slide-label">El Pozo Jacket</span><img loading="lazy" src="fotos/el pozo jacket- completo .png" alt=""></div>
-                        <div class="panel-slide"><span class="panel-slide-label">Caribe Coat</span><img loading="lazy" src="fotos/caribe coat- completo .png" alt=""></div>
-                        <div class="panel-slide"><span class="panel-slide-label">Leonel Lirio · RW 2024</span><img loading="lazy" src="fotos/lionellirio2.jpg" alt=""></div>
-                        <div class="panel-slide"><span class="panel-slide-label">Elisa Morato · RW 2024</span><img loading="lazy" src="fotos/elizafacetoface.jpg" alt=""></div>
+                        <div class="panel-slide active"><span class="panel-slide-label">Leonel Lirio · RW 2024</span><img loading="lazy" src="fotos/lionellirio2.jpg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">El Pozo Jacket</span><img loading="lazy" src="fotos/el-pozo-jacket-completo.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">Caribe Coat</span><img loading="lazy" src="fotos/caribe coat.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">Elisa Morato · RW 2024</span><img loading="lazy" src="fotos/elizafacetoface.jpg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
                     </div>
                     <div class="panel-dots" id="dots-01"></div>
                     <div class="panel-info">
-                        <span class="panel-num">ST_01</span>
+                        <span class="panel-num">PATRONAJE · CORTE · PRODUCCIÓN</span>
                         <h3 class="panel-ttl" id="panel-ttl-01">La Sala de<br><em>la Corte</em></h3>
                     </div>
                 </div>
             </div>
 
             <!-- PANEL ST_02: Sala II — slideshow -->
-            <div class="panel panel-sm" id="panel-02" onclick="navTo('vision');">
+            <div class="panel panel-lg" id="panel-02" onclick="navTo('vision');">
                 <div class="panel-data"><span class="data-val">02</span><span class="data-lab">Visión</span></div>
-                <div class="panel-frame" style="border:1px solid rgba(15,82,186,0.3);">
+                <div class="panel-frame" style="border:1px solid rgba(74, 141, 238,0.3);">
                     <div class="panel-slides" id="slides-02">
-                        <div class="panel-slide active" style="background:rgba(15,82,186,0.08);"><span class="panel-slide-label">Desfile Oscar de la Renta</span><img loading="lazy" src="fotos/oscardelarenta.png" alt="" onerror="this.style.display='none'"></div>
-                        <div class="panel-slide" style="background:rgba(15,82,186,0.05);"><span class="panel-slide-label">Concurso Foto-Portada</span><img loading="lazy" src="fotos/ozoriamodelo1.jpg" alt="" onerror="this.style.display='none'"></div>
-                        <div class="panel-slide" style="background:rgba(15,82,186,0.03);"><span class="panel-slide-label">Dirección Creativa</span><img loading="lazy" src="fotos/leonel35.jpg" alt="" onerror="this.style.display='none'"></div>
+                        <div class="panel-slide active" style="background:rgba(74, 141, 238,0.08);"><span class="panel-slide-label">Desfile Oscar de la Renta</span><img loading="lazy" src="fotos/oscardelarenta.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
+                        <div class="panel-slide" style="background:rgba(74, 141, 238,0.05);"><span class="panel-slide-label">Concurso Foto-Portada</span><img loading="lazy" src="fotos/ozoriamodelo1.jpg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
+                        <div class="panel-slide" style="background:rgba(74, 141, 238,0.03);"><span class="panel-slide-label">Dirección Creativa</span><img loading="lazy" src="fotos/leonel35.jpg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
                     </div>
                     <div class="panel-dots" id="dots-02"></div>
                     <div class="panel-info">
-                        <span class="panel-num" style="color:var(--amber);">ST_02</span>
+                        <span class="panel-num" style="color:var(--amber);">DIRECCIÓN · ESTILISMO · EDITORIAL</span>
                         <h3 class="panel-ttl" id="panel-ttl-02">La Sala de<br><em>la Exposición</em></h3>
                     </div>
                 </div>
             </div>
 
-            <!-- PANEL ST_03: La Cámara Oscura — FEATURED + slideshow -->
+            <!-- PANEL ST_03: La Cámara Oscura — slideshow -->
             <div class="panel panel-lg" id="panel-03" onclick="navTo('mundos-content');">
-                <span class="panel-featured">FEATURED</span>
                 <div class="panel-data"><span class="data-val">2026</span><span class="data-lab" style="color:var(--amber);">Experimental</span></div>
                 <div class="panel-frame">
                     <div class="panel-slides" id="slides-03">
-                        <div class="panel-slide active"><span class="panel-slide-label">VITRIOL · 3D Sculpture</span><img loading="lazy" src="fotos/18.png" alt="" onerror="this.style.display='none'"></div>
-                        <div class="panel-slide"><span class="panel-slide-label">EVOLVER SKIN · Packaging</span><img loading="lazy" src="fotos/logo evolver skin.png" alt="" onerror="this.style.display='none'"></div>
-                        <div class="panel-slide"><span class="panel-slide-label">LOVELY · DAZ 3D Avatar</span><img loading="lazy" src="fotos/bea 1.png" alt="" onerror="this.style.display='none'"></div>
-                        <div class="panel-slide"><span class="panel-slide-label">FRACTUM · Blender + CLO3D</span><img loading="lazy" src="fotos/0144.png" alt="" onerror="this.style.display='none'"></div>
-                        <div class="panel-slide"><span class="panel-slide-label">MILEE · AI Campaign</span><img loading="lazy" src="fotos/milee_01.jpg" alt="" onerror="this.style.display='none'"></div>
+                        <div class="panel-slide active"><span class="panel-slide-label">VITRIOL · 3D Sculpture</span><img loading="lazy" src="fotos/18.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">EVOLVER SKIN · Packaging</span><img loading="lazy" src="fotos/logo evolver skin.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">LOVELY · DAZ 3D Avatar</span><img loading="lazy" src="fotos/bea 1.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">FRACTUM · Blender + CLO3D</span><img loading="lazy" src="fotos/0144.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">MILEE · AI Campaign</span><img loading="lazy" src="fotos/milee_01.jpg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
                     </div>
                     <div class="panel-dots" id="dots-03"></div>
                     <div class="panel-info">
-                        <span class="panel-num">ST_03</span>
+                        <span class="panel-num">3D · MODA DIGITAL · IA</span>
                         <h3 class="panel-ttl">La Cámara<br><em>Oscura</em></h3>
                     </div>
                 </div>
@@ -716,13 +753,13 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         </div>
     </div>
 
-    <!-- DRAG HINT -->
-    <div class="drag-hint">
-        <span>drag to explore</span>
-        <span class="drag-hint-arrow">→ → →</span>
-    </div>
-
-    <div class="novedades-bar">
+    <!-- LOBBY FOOTER: drag hint + novedades, dentro del flujo column -->
+    <div class="l-footer">
+        <div class="drag-hint">
+            <span class="drag-hint-arrow">←</span>
+            <span class="drag-hint-text">desliza para explorar</span>
+            <span class="drag-hint-arrow">→</span>
+        </div>
         <a class="news-item" onclick="navTo('novedades-screen')">
             <span>Proyectos Recientes</span>
             <span style="color:var(--amber);">VER ARCHIVO →</span>
@@ -823,7 +860,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     <div class="mayle-card mayle-card-dual" onclick="openMayleModal('mayle-modal-2')">
                         <div class="mayle-card-img-wrap">
                             <div class="dual-half">
-                                <img loading="lazy" src="fotos/caribe-coat.png" alt="Abrigo Caribe — vista espalda">
+                                <img loading="lazy" src="fotos/caribe coat.png" alt="Abrigo Caribe — vista espalda">
                                 <span class="dual-label">Vista espalda</span>
                             </div>
                             <div class="dual-half">
@@ -1240,7 +1277,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
   --inf-ink: #1A2410;
   --inf-border: rgba(90,122,46,0.15);
 }
-#hab-infantil .hab-header { background: transparent; border-bottom: 1px solid rgba(15,82,186,0.15); padding: 30px 40px; }
+#hab-infantil .hab-header { background: transparent; border-bottom: 1px solid rgba(74, 141, 238,0.15); padding: 30px 40px; }
 #hab-infantil.focused .hab-header { background: var(--inf-bg); border-bottom: 1px solid var(--inf-border); padding: 30px calc(8% + 40px); margin-left: -8%; margin-right: -8%; width: calc(100% + 16%); }
 #hab-infantil .hab-title { color: var(--matter-light); }
 #hab-infantil.focused .hab-title { color: var(--inf-ink); }
@@ -1296,7 +1333,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
   --pc-ink: #111;
   --pc-border: rgba(211,50,67,0.15);
 }
-#hab-concurso .hab-header { background: transparent; border-bottom: 1px solid rgba(15,82,186,0.15); padding: 30px 40px; }
+#hab-concurso .hab-header { background: transparent; border-bottom: 1px solid rgba(74, 141, 238,0.15); padding: 30px 40px; }
 #hab-concurso.focused .hab-header { background: var(--pc-bg); border-bottom: 3px solid var(--pc-red); padding: 30px calc(8% + 40px); margin-left: -8%; margin-right: -8%; width: calc(100% + 16%); }
 #hab-concurso .hab-title { color: var(--matter-light); }
 #hab-concurso.focused .hab-title { color: var(--pc-ink); }
@@ -1980,7 +2017,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="vit-video-hero" id="vit-video-wrap" style="position:relative;overflow:hidden;background:#02020A;border-bottom:1px solid var(--vit-border);">
                     <video id="vit-video" autoplay loop muted playsinline poster="fotos/24.png"
                            style="width:100%;max-height:60vh;object-fit:cover;display:block;opacity:0.75;"
-                           onerror="this.style.display='none'">
+                           onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')">
                         <source src="fotos/portada vitrial.mp4" type="video/mp4">
                         <!-- Para añadir un segundo video alternativo, pega otra <source> aquí -->
                     </video>
@@ -2507,35 +2544,26 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         <h1 class="sala-title">Beatriz<br><em style="color:var(--sapphire);">Castro</em></h1>
     </div>
 
-    <!-- FOTO + BIO HERO -->
-    <div style="display:grid;grid-template-columns:300px 1fr;gap:60px;align-items:start;margin-bottom:60px;padding-bottom:60px;border-bottom:1px solid rgba(15,82,186,0.1);">
-        <div style="position:relative;">
-            <div style="width:100%;aspect-ratio:3/4;background:rgba(15,82,186,0.04);border:1px dashed rgba(15,82,186,0.2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
-                <span style="font-family:'Roboto Mono',monospace;font-size:13px;color:var(--sapphire);opacity:0.3;letter-spacing:0.2em;">[ FOTO ]</span>
-                <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--matter-light);opacity:0.2;letter-spacing:0.1em;text-align:center;line-height:1.8;">Reemplaza con:<br>src="fotos/TU_FOTO.jpg"</span>
-            </div>
-            <div style="position:absolute;bottom:-1px;left:0;right:0;height:2px;background:linear-gradient(to right,var(--amber),transparent);"></div>
-        </div>
-        <div>
-            <span class="sobre-role-tag">Digital Fashion Designer · CLO3D · AI · Madrid</span>
-            <p class="sobre-text" style="margin-top:8px;">Soy diseñadora de moda digital con una doble raíz: el oficio técnico del patronaje industrial y la exploración de las herramientas digitales del presente. Vengo de República Dominicana, vivo en Madrid, y trabajo en la intersección entre confección real, diseño 3D y dirección creativa.</p>
-            <p class="sobre-text" style="margin-top:16px;">He colaborado en producción de moda en pasarela, desarrollado patronaje industrial para producción en serie, dirigido editoriales fotográficas, y creado colecciones digitales completas en CLO3D y Blender. Mi trabajo va del tech-pack listo para fábrica al avatar 3D conceptual — sin que una disciplina excluya a la otra.</p>
-            <p class="sobre-text" style="margin-top:16px;">Formación especializada en Moda Digital (IED Madrid). Experiencia en RD Fashion Week, Wuatan Studio y proyectos independientes en España y República Dominicana.</p>
-            <div class="sobre-skills" style="margin-top:28px;">
-                <span class="skill-tag">CLO3D</span><span class="skill-tag">Blender</span><span class="skill-tag">DAZ 3D</span>
-                <span class="skill-tag">AI Art Direction</span><span class="skill-tag">Adobe Suite</span>
-                <span class="skill-tag">Patronaje Digital</span><span class="skill-tag">Styling</span>
-                <span class="skill-tag">Photo Direction</span><span class="skill-tag">3D Garment Dev.</span>
-                <span class="skill-tag">Virtual Sampling</span><span class="skill-tag">Tech-Pack</span>
-                <span class="skill-tag">Escalado Industrial</span><span class="skill-tag">Dirección Creativa</span>
-            </div>
-            <div style="margin-top:32px;padding:24px;border:1px solid rgba(29,158,117,0.2);background:rgba(29,158,117,0.03);">
-                <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:#1D9E75;letter-spacing:0.3em;text-transform:uppercase;display:block;margin-bottom:10px;">● DISPONIBLE</span>
-                <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--matter-light);opacity:0.8;line-height:1.6;">Abierta a proyectos freelance, colaboraciones en moda digital y posiciones en equipos de diseño o producto de moda. Madrid · Europa · Remoto.</p>
-                <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
-                    <a onclick="navTo('contacto')" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--amber);border:1px solid rgba(253,185,39,0.4);padding:8px 18px;text-decoration:none;cursor:pointer;transition:0.3s;" onmouseover="this.style.background='var(--amber)';this.style.color='#000'" onmouseout="this.style.background='transparent';this.style.color='var(--amber)'">CONTACTAR →</a>
-                    <a href="https://drive.google.com/file/d/1AeYK15F9089sWuL8hQjgfnLXSubusrlk/view?usp=drive_link" target="_blank" rel="noopener" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(15,82,186,0.4);padding:8px 18px;text-decoration:none;cursor:pointer;transition:0.3s;" onmouseover="this.style.background='rgba(15,82,186,0.1)'" onmouseout="this.style.background='transparent'">↓ DESCARGAR CV</a>
-                </div>
+    <!-- BIO HERO -->
+    <div style="max-width:780px;margin:0 0 60px;padding-bottom:60px;border-bottom:1px solid rgba(74, 141, 238, 0.1);">
+        <span class="sobre-role-tag">Madrid · Santo Domingo · Womenswear</span>
+
+        <p class="sobre-text" style="margin-top:24px;"><strong style="color:var(--matter-light);font-weight:500;">Crecí entre dos lugares.</strong> Santo Domingo me enseñó que el color y el cuerpo son lenguaje. Madrid me enseñó que la historia se acumula en capas. Las dos cosas son verdad al mismo tiempo, y trabajo desde ese cruce.</p>
+
+        <p class="sobre-text" style="margin-top:20px;"><strong style="color:var(--matter-light);font-weight:500;">Veo el mundo desde la estructura.</strong> Lo que sostiene una prenda. Lo que sostiene una ciudad. Lo que sostiene a una mujer del siglo XVII cosiendo en silencio aquello que nadie firmará. Lo invisible — el patrón, el sistema, la decisión que nadie ve — es lo que me interesa.</p>
+
+        <p class="sobre-text" style="margin-top:20px;"><strong style="color:var(--matter-light);font-weight:500;">Mi proceso creativo empieza por debajo, no por arriba.</strong> Antes del color, el patrón. Antes del prototipo, el sistema. Antes del avatar, la persona que decide construirlo. Diseño en capas porque la realidad también las tiene, y la moda — cuando se hace en serio — lo sabe.</p>
+
+        <p class="sobre-text" style="margin-top:20px;"><strong style="color:var(--matter-light);font-weight:500;">Trabajo con orden,</strong> no por manía sino por método. La estructura no me limita: me deja arriesgar sin perderme. En mi mesa conviven la regla curva y el visor 3D, el archivo histórico y el avatar. No elijo entre técnica y memoria, entre Caribe y Europa, entre lo físico y lo digital. Integro.</p>
+
+        <p class="sobre-text" style="margin-top:20px;font-style:italic;color:var(--sapphire);opacity:0.85;">— Por eso diseño desde el patrón hacia el cuerpo, y desde el cuerpo hacia el mundo.</p>
+
+        <div style="margin-top:36px;padding:24px;border:1px solid rgba(29,158,117,0.2);background:rgba(29,158,117,0.03);">
+            <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:#1D9E75;letter-spacing:0.3em;text-transform:uppercase;display:block;margin-bottom:10px;">● DISPONIBLE</span>
+            <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--matter-light);opacity:0.8;line-height:1.6;">Abierta a proyectos freelance, colaboraciones en moda digital y posiciones en equipos de diseño o producto de moda. Madrid · Europa · Remoto.</p>
+            <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
+                <a onclick="navTo('contacto')" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--amber);border:1px solid rgba(253,185,39,0.4);padding:8px 18px;text-decoration:none;cursor:pointer;transition:0.3s;" onmouseover="this.style.background='var(--amber)';this.style.color='#000'" onmouseout="this.style.background='transparent';this.style.color='var(--amber)'">CONTACTAR →</a>
+                <a href="https://drive.google.com/file/d/1AeYK15F9089sWuL8hQjgfnLXSubusrlk/view?usp=drive_link" target="_blank" rel="noopener" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(74, 141, 238,0.4);padding:8px 18px;text-decoration:none;cursor:pointer;transition:0.3s;" onmouseover="this.style.background='rgba(74, 141, 238,0.1)'" onmouseout="this.style.background='transparent'">↓ DESCARGAR CV</a>
             </div>
         </div>
     </div>
@@ -2618,7 +2646,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <div class="contacto-header">
         <span class="sala-code">SYS_CONTACT // TRABAJEMOS JUNTOS</span>
         <h1 class="contacto-title">Hablemos<br><em>de tu proyecto.</em></h1>
-        <a href="https://drive.google.com/file/d/1AeYK15F9089sWuL8hQjgfnLXSubusrlk/view?usp=drive_link" target="_blank" rel="noopener" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(15,82,186,0.3);padding:10px 22px;text-decoration:none;display:inline-block;margin-top:24px;transition:0.3s;letter-spacing:0.15em;" onmouseover="this.style.background='rgba(15,82,186,0.1)';this.style.borderColor='var(--sapphire)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(15,82,186,0.3)'">↓ DESCARGAR CV — BEATRIZ CASTRO</a>
+        <a href="https://drive.google.com/file/d/1AeYK15F9089sWuL8hQjgfnLXSubusrlk/view?usp=drive_link" target="_blank" rel="noopener" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(74, 141, 238,0.3);padding:10px 22px;text-decoration:none;display:inline-block;margin-top:24px;transition:0.3s;letter-spacing:0.15em;" onmouseover="this.style.background='rgba(74, 141, 238,0.1)';this.style.borderColor='var(--sapphire)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(74, 141, 238,0.3)'">↓ DESCARGAR CV — BEATRIZ CASTRO</a>
     </div>
 
     <div class="contacto-grid">
@@ -2720,7 +2748,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <span class="contacto-qr-label">@BEATRIZCASTRO9798 · INSTAGRAM</span>
 
             <!-- Disponibilidad -->
-            <div style="margin-top:40px;width:100%;border-top:1px solid rgba(15,82,186,0.1);padding-top:30px;">
+            <div style="margin-top:40px;width:100%;border-top:1px solid rgba(74, 141, 238,0.1);padding-top:30px;">
                 <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--amber);letter-spacing:0.4em;display:block;margin-bottom:16px;">DISPONIBILIDAD</span>
                 <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--matter-light);opacity:0.65;line-height:1.8;">
                     Freelance · Colaboraciones<br>
@@ -2740,7 +2768,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 <div class="view" id="archive-view">
     <div style="padding:100px 8% 150px;">
         <div class="archive-header">
-            <span class="archive-tag-display" id="active-tag-name">LABEL</span>
+            <span class="archive-tag-display" id="active-tag-name"></span>
             <h2 class="archive-title">System Archive</h2>
             <a href="#" style="font-family:'Roboto Mono';font-size:9px;color:var(--sapphire);text-decoration:none;margin-top:16px;display:inline-block;" onclick="navTo('lobby')">✕ BACK_TO_PALACIO</a>
         </div>
@@ -2756,7 +2784,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <div class="mayle-modal-img-col"><span class="mayle-modal-badge">Alta Complejidad</span><img loading="lazy" src="fotos/santo-domingo-dress.png" alt="Vestido Santo Domingo"></div>
     <div class="mayle-modal-info">
       <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-1').classList.remove('open')">✕ CERRAR</button>
-      <span class="mayle-modal-code">OF_01.A · Beatriz Castro · Mayle Vázquez</span>
+      <span class="mayle-modal-code">OF_01.A · Mayle Vázquez</span>
       <h3 class="mayle-modal-title">Vestido<br>"Santo Domingo"</h3>
       <div class="mayle-modal-subtitle">Ingeniería de Fitting</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Estructura</span><p class="mayle-spec-val">Patronaje con <strong>holgura negativa controlada</strong> y "chasis" interno. Estabilidad garantizada en busto mediante distribución de tensiones.</p></div>
@@ -2784,7 +2812,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     </div>
     <div class="mayle-modal-info">
       <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-2').classList.remove('open')">✕ CERRAR</button>
-      <span class="mayle-modal-code">OF_01.B · Beatriz Castro · Mayle Vázquez</span>
+      <span class="mayle-modal-code">OF_01.B · Mayle Vázquez</span>
       <h3 class="mayle-modal-title">Abrigo "Caribe"<br>Frente & Espalda</h3>
       <div class="mayle-modal-subtitle">Producción en Serie</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Manga globo</span><p class="mayle-spec-val">Desarrollada mediante <strong>expansión radial</strong> con un coeficiente de embebido de copa <strong>inferior al 8%</strong>, optimizado para máquinas de coser automáticas.</p></div>
@@ -2802,17 +2830,17 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <div class="mayle-modal-img-col dual-img-col">
       <span class="mayle-modal-badge">Optimización COGS</span>
       <div class="modal-img-half">
-        <img loading="lazy" src="fotos/el pozo jacket- completo .png" alt="Chaqueta El Pozo — vista completa">
+        <img loading="lazy" src="fotos/el-pozo-jacket-completo.png" alt="Chaqueta El Pozo — vista completa">
         <span class="modal-img-label">Vista completa</span>
       </div>
       <div class="modal-img-half">
-        <img loading="lazy" src="fotos/el pozo jacket.png" alt="Chaqueta El Pozo — detalle constructivo">
+        <img loading="lazy" src="fotos/el-pozo-jacket-detalle.png" alt="Chaqueta El Pozo — detalle constructivo">
         <span class="modal-img-label">Detalle constructivo</span>
       </div>
     </div>
     <div class="mayle-modal-info">
       <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-3').classList.remove('open')">✕ CERRAR</button>
-      <span class="mayle-modal-code">OF_01.C · Beatriz Castro · Mayle Vázquez</span>
+      <span class="mayle-modal-code">OF_01.C · Mayle Vázquez</span>
       <h3 class="mayle-modal-title">Chaqueta<br>"El Pozo"</h3>
       <div class="mayle-modal-subtitle">Ahorro de Tiempos</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Eficiencia de confección</span><p class="mayle-spec-val">Jaretas y tablones <strong>integrados en el patrón base con piquetes de doblado CNC</strong>. Reduce el tiempo de confección en un <strong>15%</strong> al eliminar mediciones manuales en mesa.</p></div>
@@ -2830,7 +2858,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <div class="mayle-modal-img-col"><span class="mayle-modal-badge">Materiales Dinámicos</span><img loading="lazy" src="fotos/chaqueta 2 sin manga.png" alt="Vestido Santa María Ozama"></div>
     <div class="mayle-modal-info">
       <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-4').classList.remove('open')">✕ CERRAR</button>
-      <span class="mayle-modal-code">OF_01.D · Beatriz Castro · Mayle Vázquez</span>
+      <span class="mayle-modal-code">OF_01.D · Mayle Vázquez</span>
       <h3 class="mayle-modal-title">Vestido "Santa María"<br>& "Ozama"</h3>
       <div class="mayle-modal-subtitle">Tejidos Plisados</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Compensación dinámica</span><p class="mayle-spec-val">Patrones desarrollados con <strong>compensación por elasticidad residual</strong>. Las medidas finales consideran el estiramiento post-corte del tejido metalizado.</p></div>
@@ -2848,7 +2876,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <div class="mayle-modal-img-col"><span class="mayle-modal-badge">Capacidades Globales</span><img loading="lazy" src="fotos/convent vest.png" alt="Convent Vest"></div>
     <div class="mayle-modal-info">
       <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-5').classList.remove('open')">✕ CERRAR</button>
-      <span class="mayle-modal-code">OF_01 · Beatriz Castro · Para Reclutamiento</span>
+      <span class="mayle-modal-code">OF_01 · Para Reclutamiento</span>
       <h3 class="mayle-modal-title">Capacidades<br>para Producción Global</h3>
       <div class="mayle-modal-subtitle">Visión de Costes (COGS)</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Integración diseño-producción</span><p class="mayle-spec-val">Integración de detalles de diseño en el patrón para <strong>minimizar pasos de montaje</strong> y reducir costes de mano de obra directa.</p></div>
@@ -2872,7 +2900,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <div><span id="d-val1" style="font-size:44px;font-weight:100;color:var(--sapphire);display:block;line-height:1;">—</span><span id="d-lab1" style="font-family:'Roboto Mono',monospace;font-size:8px;opacity:0.5;letter-spacing:0.2em;color:var(--matter-light);"></span></div>
             <div><span id="d-val2" style="font-size:44px;font-weight:100;color:var(--amber);display:block;line-height:1;">—</span><span id="d-lab2" style="font-family:'Roboto Mono',monospace;font-size:8px;opacity:0.5;letter-spacing:0.2em;color:var(--matter-light);"></span></div>
         </div>
-        <a href="#" onclick="closeDetail()" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(15,82,186,0.4);padding:10px 20px;text-decoration:none;display:inline-block;margin-top:auto;">CLOSE_ANALYSIS</a>
+        <a href="#" onclick="closeDetail()" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(74, 141, 238,0.4);padding:10px 20px;text-decoration:none;display:inline-block;margin-top:auto;">CLOSE_ANALYSIS</a>
     </div>
 </div>
 
