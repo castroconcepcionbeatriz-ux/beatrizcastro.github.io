@@ -100,11 +100,14 @@ html, body {
 @media (max-width: 768px) { #cursor { display: none; } * { cursor: auto !important; } }
 
 /* ── LOBBY ── */
-#lobby { display: flex; flex-direction: column; position: relative; overflow: hidden; height: 100vh; max-height: 100vh; }
+#lobby { display: flex; flex-direction: column; position: relative; overflow: hidden !important; height: 100vh; max-height: 100vh; }
 
 .l-header {
-    position: absolute; top: 0; left: 0; right: 0;
-    padding: 40px 8%; display: flex; justify-content: space-between; align-items: flex-start; z-index: 10;
+    position: relative; flex-shrink: 0;
+    padding: 24px 8% 12px; display: flex; justify-content: space-between; align-items: flex-start; z-index: 10;
+}
+@media (max-height: 800px) {
+    .l-header { padding: 18px 8% 8px; }
 }
 .l-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 5vw, 56px); font-weight: 300; line-height: 0.85; }
 .l-name em { font-style: italic; color: var(--sapphire); }
@@ -164,8 +167,8 @@ html, body {
 .track { display: flex; align-items: center; gap: 80px; padding: 0 12vw; height: 100%; will-change: transform; transition: transform 0.1s ease-out; }
 .panel { flex-shrink: 0; position: relative; transition: transform 0.5s; cursor: pointer; }
 .panel:hover { transform: translateY(-12px); }
-.panel-lg { width: clamp(380px, 38vw, 580px); height: 100%; max-height: 560px; }
-.panel-sm { width: clamp(280px, 28vw, 420px); height: 100%; max-height: 460px; }
+.panel-lg { width: clamp(380px, 38vw, 580px); height: 100%; max-height: clamp(380px, 70vh, 560px); }
+.panel-sm { width: clamp(280px, 28vw, 420px); height: 100%; max-height: clamp(320px, 60vh, 460px); }
 .panel-frame { width: 100%; height: 100%; overflow: hidden; position: relative; border: 1px solid rgba(74, 141, 238,0.2); background: #050505; }
 /* Overlay inferior para legibilidad del panel-info sobre cualquier imagen */
 .panel-frame::after {
@@ -772,7 +775,13 @@ textarea.c-form-input { resize: none; min-height: 100px; }
      NOVEDADES
 ═══════════════════════════════════════════ -->
 <div class="view" id="novedades-screen">
-    <header class="log-header"><h2 class="log-title">Architecture Log</h2></header>
+    <header class="log-header">
+        <span style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--amber);letter-spacing:0.5em;text-transform:uppercase;display:block;margin-bottom:24px;opacity:0.85;">— Pensamiento</span>
+        <blockquote style="font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3.4vw,40px);font-weight:300;color:var(--matter-light);line-height:1.35;font-style:italic;max-width:1100px;margin:0;padding:0;border:0;">
+            "La moda necesita un arquitecto para las líneas, un escultor para la forma, un pintor para el color, un músico para la armonía y un filósofo para la mesura."
+        </blockquote>
+        <cite style="font-family:'Roboto Mono',monospace;font-size:10px;color:var(--sapphire);letter-spacing:0.3em;text-transform:uppercase;display:block;margin-top:28px;font-style:normal;opacity:0.85;">— Cristóbal Balenciaga</cite>
+    </header>
     <div class="news-infinite-container">
         <div class="news-track" id="news-infinite-track">
             <div class="news-cover" onclick="navTo('oficio');focusHab('hab-mayle');"><img loading="lazy" src="fotos/santo-domingo-dress.png"><span class="news-cover-label">MAYLE_24</span></div>
