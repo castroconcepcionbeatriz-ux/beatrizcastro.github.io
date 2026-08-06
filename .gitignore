@@ -4,3 +4,8 @@
 *.zip
 *.rar
 *.mp4
+# Videos usados de verdad en el sitio (excepción a la regla de arriba)
+!fotos/FRACTUM/AMBIENTE/video modificado.mp4
+!fotos/FRACTUM/LOOK 2/FINAL DE LOS FINALITOS_Default Colorway_0.mp4
+!sala-enter-the-palace/assets/shop/prod-12-sneaker.mp4
+!sala-enter-the-palace/assets/shop/prod-25-sneaker-negro.mp4
