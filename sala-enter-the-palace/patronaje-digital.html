@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MEDIDAS CLO3D · ENTER THE PALACE SS26</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800;900&family=VT323&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #0D0B1F;
+    --purple: #7B2AFF;
+    --pink: #FF2888;
+    --acid: #CCFF00;
+    --cyan: #00EEFF;
+    --orange: #FF6B1A;
+    --chrome: #C8C8E8;
+    --white: #EDE8FF;
+    --dark2: #12102A;
+    --dark3: #1A1735;
+    --dark4: #0F0D25;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--void);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+  }
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(rgba(123,42,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(123,42,255,0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events:none; z-index:0;
+  }
+  .wrap { position:relative; z-index:1; max-width:1300px; margin:0 auto; padding:0 36px; }
+
+  /* HEADER */
+  header {
+    padding: 36px 0 28px;
+    border-bottom: 1px solid var(--purple);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+  }
+  .h-left .sub {
+    font-family:'VT323',monospace;
+    font-size:13px; color:var(--cyan);
+    letter-spacing:4px; margin-bottom:8px;
+  }
+  .h-left h1 {
+    font-family:'Syne',sans-serif;
+    font-size: clamp(28px,4vw,60px);
+    font-weight:900; line-height:0.9;
+  }
+  .h-left h1 span { color:var(--acid); }
+  .h-right {
+    font-family:'VT323',monospace;
+    font-size:15px; color:var(--chrome);
+    line-height:1.6; text-align:right;
+  }
+
+  /* ALERTA DIAGNÓSTICO */
+  .diagnostico {
+    margin: 40px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .diag-card {
+    background: var(--dark2);
+    border: 1px solid;
+    padding: 24px;
+  }
+  .diag-card.problema { border-color: var(--pink); }
+  .diag-card.solucion { border-color: var(--acid); }
+  .diag-label {
+    font-family:'VT323',monospace;
+    font-size:12px; letter-spacing:3px;
+    margin-bottom:10px;
+  }
+  .diag-card.problema .diag-label { color:var(--pink); }
+  .diag-card.solucion .diag-label { color:var(--acid); }
+  .diag-card h3 {
+    font-family:'Syne',sans-serif;
+    font-size:16px; font-weight:900;
+    text-transform:uppercase; margin-bottom:12px;
+  }
+  .diag-card.problema h3 { color:var(--pink); }
+  .diag-card.solucion h3 { color:var(--acid); }
+  .diag-card p {
+    font-size:11px; color:var(--chrome);
+    line-height:1.8;
+  }
+  .diag-card p strong { color:var(--white); }
+
+  /* SECCIÓN HEADER */
+  .sec {
+    display:flex; align-items:center;
+    gap:16px; padding: 48px 0 24px;
+  }
+  .sec-num {
+    font-family:'VT323',monospace;
+    font-size:44px; color:var(--purple); opacity:.5; line-height:1;
+  }
+  .sec h2 {
+    font-family:'Syne',sans-serif;
+    font-size: clamp(18px,2.5vw,32px);
+    font-weight:900; text-transform:uppercase;
+  }
+  .sec-line { flex:1; height:1px; background:linear-gradient(to right,var(--purple),transparent); }
+
+  /* TARGET BLOCK */
+  .target-grid {
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    gap:16px; margin-bottom:48px;
+  }
+  .target-card {
+    background:var(--dark3);
+    border:1px solid rgba(123,42,255,.3);
+    padding:20px;
+  }
+  .tc-id {
+    font-family:'VT323',monospace;
+    font-size:11px; letter-spacing:3px;
+    color:var(--purple); margin-bottom:6px;
+  }
+  .tc-name {
+    font-family:'Syne',sans-serif;
+    font-size:15px; font-weight:900;
+    text-transform:uppercase; margin-bottom:4px;
+  }
+  .tc-age {
+    font-family:'VT323',monospace;
+    font-size:14px; letter-spacing:2px;
+    margin-bottom:12px;
+  }
+  .tc-stats {
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .tc-stat {
+    display:flex; justify-content:space-between;
+    font-size:10px; padding:4px 0;
+    border-bottom:1px solid rgba(123,42,255,.15);
+  }
+  .tc-stat .label { color:var(--chrome); }
+  .tc-stat .val { color:var(--white); font-weight:700; }
+
+  /* TABLA MEDIDAS */
+  .tabla-wrap {
+    overflow-x:auto; margin-bottom:48px;
+  }
+  table {
+    width:100%;
+    border-collapse:collapse;
+    font-size:12px;
+  }
+  th {
+    background:rgba(123,42,255,.25);
+    color:var(--white);
+    font-family:'VT323',monospace;
+    font-size:14px; letter-spacing:2px;
+    padding:12px 14px;
+    text-align:center;
+    border:1px solid rgba(123,42,255,.3);
+  }
+  th.col-medida {
+    text-align:left;
+    background:rgba(123,42,255,.15);
+    color:var(--cyan);
+  }
+  td {
+    padding:10px 14px;
+    text-align:center;
+    border:1px solid rgba(123,42,255,.15);
+    color:var(--chrome);
+    vertical-align:middle;
+  }
+  td.col-medida {
+    text-align:left;
+    color:var(--white); font-weight:700;
+    background:rgba(13,11,31,.5);
+    font-size:11px;
+  }
+  td.sub {
+    font-size:10px; color:rgba(200,200,232,.5);
+    font-style:italic;
+    background:rgba(13,11,31,.3);
+  }
+  tr:hover td { background:rgba(123,42,255,.08); }
+  tr.bloque-header td {
+    background:rgba(123,42,255,.2);
+    color:var(--purple);
+    font-family:'VT323',monospace;
+    font-size:13px; letter-spacing:2px;
+    text-align:left;
+    padding:8px 14px;
+  }
+  tr.bloque-a-row td { border-left:3px solid var(--cyan); }
+  tr.bloque-b-row td { border-left:3px solid var(--pink); }
+  tr.bloque-c-row td { border-left:3px solid var(--acid); }
+
+  .talla-xs { color:#A0A0D0; }
+  .talla-s  { color:#C8C8E8; }
+  .talla-m  { color:#EDE8FF; }
+  .talla-l  { color:#CCFF00; font-weight:700; }
+  .talla-xl { color:#FF6B1A; font-weight:700; }
+  .talla-xxl{ color:#FF2888; font-weight:700; }
+
+  th.talla-xs-h { color:#A0A0D0; }
+  th.talla-s-h  { color:#C8C8E8; }
+  th.talla-m-h  { color:#EDE8FF; }
+  th.talla-l-h  { color:#CCFF00; }
+  th.talla-xl-h { color:#FF6B1A; }
+  th.talla-xxl-h{ color:#FF2888; }
+
+  .nota-cel {
+    font-size:9px;
+    display:block;
+    color:rgba(200,200,232,.5);
+    font-weight:400;
+    margin-top:2px;
+  }
+  .delta {
+    color:var(--acid);
+    font-size:10px;
+    display:block;
+    font-weight:700;
+  }
+
+  /* CLO3D GUIDE */
+  .clo-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px; margin-bottom:48px;
+  }
+  .clo-card {
+    background:var(--dark2);
+    border:1px solid rgba(123,42,255,.3);
+    padding:24px;
+  }
+  .clo-card h3 {
+    font-family:'VT323',monospace;
+    font-size:18px; letter-spacing:2px;
+    color:var(--cyan); margin-bottom:16px;
+  }
+  .clo-step {
+    display:flex; gap:12px;
+    margin-bottom:12px;
+    align-items:flex-start;
+  }
+  .clo-step-num {
+    font-family:'VT323',monospace;
+    font-size:22px; color:var(--purple);
+    line-height:1; min-width:24px;
+  }
+  .clo-step-text {
+    font-size:11px; color:var(--chrome);
+    line-height:1.7;
+  }
+  .clo-step-text strong { color:var(--white); }
+  .clo-step-text code {
+    background:rgba(123,42,255,.2);
+    border:1px solid rgba(123,42,255,.4);
+    color:var(--acid);
+    padding:1px 6px;
+    font-size:10px;
+    font-family:'Space Mono',monospace;
+  }
+
+  /* AVATAR SPECS */
+  .avatar-spec-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px; margin-bottom:48px;
+  }
+  .avatar-spec-card {
+    background:var(--dark3);
+    border:1px solid;
+    padding:20px;
+    position:relative;
+    overflow:hidden;
+  }
+  .avatar-spec-card.bloque-a { border-color:var(--cyan); }
+  .avatar-spec-card.bloque-b { border-color:var(--pink); }
+  .avatar-spec-card.bloque-c { border-color:var(--acid); }
+  .asc-top {
+    display:flex; justify-content:space-between;
+    align-items:flex-start; margin-bottom:16px;
+  }
+  .asc-id {
+    font-family:'VT323',monospace;
+    font-size:44px; line-height:1;
+  }
+  .bloque-a .asc-id { color:var(--cyan); }
+  .bloque-b .asc-id { color:var(--pink); }
+  .bloque-c .asc-id { color:var(--acid); }
+  .asc-range {
+    font-family:'VT323',monospace;
+    font-size:12px; letter-spacing:2px;
+    text-align:right; margin-top:4px;
+  }
+  .bloque-a .asc-range { color:var(--cyan); }
+  .bloque-b .asc-range { color:var(--pink); }
+  .bloque-c .asc-range { color:var(--acid); }
+  .asc-measures {
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .asc-row {
+    display:flex; justify-content:space-between;
+    font-size:10px; padding:6px 0;
+    border-bottom:1px solid rgba(123,42,255,.1);
+    align-items:center;
+  }
+  .asc-label { color:var(--chrome); }
+  .asc-val {
+    font-family:'VT323',monospace;
+    font-size:16px; font-weight:700;
+  }
+  .bloque-a .asc-val { color:var(--cyan); }
+  .bloque-b .asc-val { color:var(--pink); }
+  .bloque-c .asc-val { color:var(--acid); }
+  .asc-note {
+    margin-top:14px;
+    padding:10px;
+    background:rgba(0,0,0,.3);
+    font-size:10px;
+    color:var(--chrome);
+    line-height:1.6;
+    border-left:2px solid;
+  }
+  .bloque-a .asc-note { border-left-color:var(--cyan); }
+  .bloque-b .asc-note { border-left-color:var(--pink); }
+  .bloque-c .asc-note { border-left-color:var(--acid); }
+
+  /* EASE GUIDE */
+  .ease-grid {
+    display:grid; grid-template-columns:repeat(3,1fr);
+    gap:16px; margin-bottom:48px;
+  }
+  .ease-card {
+    background:var(--dark3);
+    border:1px solid rgba(123,42,255,.25);
+    padding:18px;
+  }
+  .ease-type {
+    font-family:'Syne',sans-serif;
+    font-size:14px; font-weight:900;
+    text-transform:uppercase;
+    color:var(--purple); margin-bottom:10px;
+  }
+  .ease-row {
+    display:flex; justify-content:space-between;
+    font-size:10px; padding:5px 0;
+    border-bottom:1px solid rgba(123,42,255,.1);
+  }
+  .ease-label { color:var(--chrome); }
+  .ease-val { color:var(--acid); font-family:'VT323',monospace; font-size:15px; }
+
+  /* ALTURA */
+  .height-grid {
+    display:grid; grid-template-columns:repeat(4,1fr);
+    gap:16px; margin-bottom:48px;
+  }
+  .height-card {
+    background:var(--dark2);
+    border:1px solid rgba(123,42,255,.25);
+    padding:18px; text-align:center;
+  }
+  .height-type {
+    font-family:'VT323',monospace;
+    font-size:13px; letter-spacing:2px;
+    color:var(--purple); margin-bottom:8px;
+  }
+  .height-val {
+    font-family:'Syne',sans-serif;
+    font-size:28px; font-weight:900;
+    color:var(--acid); line-height:1;
+    margin-bottom:6px;
+  }
+  .height-desc {
+    font-size:10px; color:var(--chrome); line-height:1.5;
+  }
+
+  /* CHECKLIST */
+  .checklist {
+    background:var(--dark2);
+    border:1px solid rgba(0,238,255,.3);
+    padding:28px; margin-bottom:48px;
+  }
+  .checklist h3 {
+    font-family:'VT323',monospace;
+    font-size:20px; color:var(--cyan);
+    letter-spacing:3px; margin-bottom:20px;
+  }
+  .check-grid {
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  .check-item {
+    display:flex; gap:10px; align-items:flex-start;
+    font-size:11px; color:var(--chrome); line-height:1.6;
+  }
+  .check-icon {
+    font-family:'VT323',monospace;
+    font-size:18px; min-width:20px;
+    line-height:1.2;
+  }
+  .check-icon.ok { color:var(--acid); }
+  .check-icon.warn { color:var(--orange); }
+  .check-icon.err { color:var(--pink); }
+  .check-item strong { color:var(--white); }
+
+  /* FOOTER */
+  footer {
+    border-top:1px solid rgba(123,42,255,.3);
+    padding:28px 0;
+    display:flex; justify-content:space-between;
+    font-family:'VT323',monospace;
+    font-size:14px; letter-spacing:2px;
+  }
+  footer .fl { color:rgba(200,200,232,.4); }
+  footer .fr { color:var(--purple); }
+
+  /* UTILS */
+  .pill {
+    display:inline-block;
+    padding:2px 8px;
+    border:1px solid;
+    font-family:'VT323',monospace;
+    font-size:12px; margin:2px;
+  }
+  .pill-cyan { border-color:var(--cyan); color:var(--cyan); }
+  .pill-pink { border-color:var(--pink); color:var(--pink); }
+  .pill-acid { border-color:var(--acid); color:var(--acid); }
+  .pill-orange { border-color:var(--orange); color:var(--orange); }
+
+  .highlight-box {
+    background:linear-gradient(135deg,rgba(123,42,255,.12),rgba(255,40,136,.06));
+    border:1px solid var(--purple);
+    padding:20px 24px; margin:20px 0;
+  }
+  .highlight-box .hl-label {
+    font-family:'VT323',monospace;
+    font-size:12px; letter-spacing:3px;
+    color:var(--purple); margin-bottom:8px;
+  }
+  .highlight-box p {
+    font-size:11px; color:var(--chrome); line-height:1.8;
+  }
+  .highlight-box p strong { color:var(--white); }
+  .highlight-box .quote {
+    font-family:'VT323',monospace;
+    font-size:18px; color:var(--acid);
+    border-left:3px solid var(--acid);
+    padding-left:12px; margin-top:12px;
+  }
+
+  @media(max-width:900px){
+    .diagnostico,.clo-grid,.avatar-spec-grid,.target-grid { grid-template-columns:1fr; }
+    .check-grid,.ease-grid,.height-grid { grid-template-columns:1fr 1fr; }
+  }
+
+.back-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'VT323',monospace;font-size:15px;letter-spacing:1px;
+  color:var(--chrome);text-decoration:none;padding:14px 0 0;
+}
+.back-link:hover{color:var(--acid);}
+.unpublished-note{
+  background:linear-gradient(135deg,rgba(123,42,255,.12),rgba(0,238,255,.06));
+  border:1px solid var(--cyan);padding:18px 22px;margin:18px 0 30px;
+  font-size:11.5px;color:var(--chrome);line-height:1.8;
+}
+.unpublished-note strong{color:var(--white);}
+.unpublished-note .ub-tag{
+  font-family:'VT323',monospace;font-size:12px;letter-spacing:3px;
+  color:var(--cyan);margin-bottom:8px;display:block;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="back-link" href="index.html">← VOLVER A LA SALA · ENTER THE PALACE</a>
+
+<div class="unpublished-note">
+  <span class="ub-tag">// SALA TÉCNICA · NO PRESENTADA A BERSHKA</span>
+  Este es el trabajo de investigación y patronaje digital detrás de la colección — tablas de medidas, morfotipos y configuración de avatares en CLO3D. No se mostró en la presentación final del proyecto (esa se centró en concepto y experiencia), pero es el fundamento técnico de todas las decisiones de tallaje. <strong>Investigación, tablas y aplicación a avatares: trabajo individual mío.</strong>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="h-left">
+    <div class="sub">[ MEDIDAS CLO3D · TALLAJE · SS26 ]</div>
+    <h1>ENTER THE<br><span>PALACE</span></h1>
+  </div>
+  <div class="h-right">
+    BERSHKA SS26 · IED MADRID<br>
+    INVESTIGACIÓN DE TALLAS · CLO3D<br>
+    TARGET 13–25 · ESPAÑA / EUROPA<br>
+    BLOQUES A / B / C
+  </div>
+</header>
+
+<!-- DIAGNÓSTICO -->
+<div class="diagnostico">
+  <div class="diag-card problema">
+    <div class="diag-label">// PROBLEMA DOCUMENTADO</div>
+    <h3>Bershka actual: patronaje escalado</h3>
+    <p>
+      <strong>S actual Bershka (tops):</strong> Pecho 84cm · Cintura 62cm · Cadera 86cm<br>
+      <strong>L actual Bershka (tops):</strong> Pecho 94cm · Cintura 72cm · Cadera 98cm<br><br>
+      El escalado entre tallas es lineal: +4cm por talla en pecho, +5–6cm en cadera.
+      El problema es que este escalado <strong>parte de XS y añade tela</strong> sin rediseñar la proporción.
+      La XL tiene medida de M normativa real española.<br><br>
+      <strong>Resultado:</strong> La prenda "entra" pero no sienta — tira en cadera, queda holgada en hombros, no tiene soporte en bust. El viral "size up always" de TikTok viene exactamente de aquí.
+    </p>
+  </div>
+  <div class="diag-card solucion">
+    <div class="diag-label">// SOLUCIÓN ENTER THE PALACE</div>
+    <h3>Patronaje desde el cuerpo real</h3>
+    <p>
+      <strong>La regla:</strong> El Bloque B empieza en 2XL y construye hacia abajo.
+      Igual que Abercrombie Curve Love: +5cm reales en cadera vs Bershka actual en XL, con cintura diferenciada.<br><br>
+      <strong>En CLO3D esto se traduce en:</strong> crear un avatar por cada bloque de talla protagonista (M Bloque A, L Bloque B, XL Bloque B) y verificar que el patrón no hace "stress marks" (líneas de tensión) en ninguno de los tres.<br><br>
+      <strong>Resultado esperado:</strong> La misma prenda diseñada una sola vez, probada en 3 cuerpos distintos, sin comprometer el diseño en ninguno.
+    </p>
+  </div>
+</div>
+
+<!-- SECCIÓN 01: TARGET -->
+<div class="sec">
+  <div class="sec-num">01</div>
+  <h2>Target real de <span style="color:var(--pink)">Bershka</span> SS26</h2>
+  <div class="sec-line"></div>
+</div>
+
+<div class="target-grid">
+  <div class="target-card">
+    <div class="tc-id">// COMPRADOR FÍSICO</div>
+    <div class="tc-name">Core Store</div>
+    <div class="tc-age" style="color:var(--pink)">13–17 años</div>
+    <div class="tc-stats">
+      <div class="tc-stat"><span class="label">Estatura media</span><span class="val">155–163 cm</span></div>
+      <div class="tc-stat"><span class="label">Talla más común</span><span class="val">S / M (36–38)</span></div>
+      <div class="tc-stat"><span class="label">Morfotipo dominante</span><span class="val">Campana / Cilindro</span></div>
+      <div class="tc-stat"><span class="label">Canal</span><span class="val">Tienda física</span></div>
+      <div class="tc-stat"><span class="label">Fuente</span><span class="val">Oxford St. field study</span></div>
+    </div>
+  </div>
+  <div class="target-card">
+    <div class="tc-id">// COMPRADOR DIGITAL</div>
+    <div class="tc-name">Core Web</div>
+    <div class="tc-age" style="color:var(--cyan)">25–34 años</div>
+    <div class="tc-stats">
+      <div class="tc-stat"><span class="label">% audiencia web</span><span class="val">Mayor grupo (SimilarWeb)</span></div>
+      <div class="tc-stat"><span class="label">Talla más común</span><span class="val">M / L / XL (38–44)</span></div>
+      <div class="tc-stat"><span class="label">Morfotipo dominante</span><span class="val">Campana</span></div>
+      <div class="tc-stat"><span class="label">Canal</span><span class="val">bershka.com</span></div>
+      <div class="tc-stat"><span class="label">% femenina</span><span class="val">68% audiencia</span></div>
+    </div>
+  </div>
+  <div class="target-card">
+    <div class="tc-id">// TARGET EXPANDIDO SS26</div>
+    <div class="tc-name">Enter The Palace</div>
+    <div class="tc-age" style="color:var(--acid)">14–25 años · núcleo</div>
+    <div class="tc-stats">
+      <div class="tc-stat"><span class="label">Rango tallas objetivo</span><span class="val">XS → 2XL</span></div>
+      <div class="tc-stat"><span class="label">Estatura referencia</span><span class="val">162 cm (media 18–19)</span></div>
+      <div class="tc-stat"><span class="label">Morfotipos cubiertos</span><span class="val">Diábolo · Campana · Cilindro</span></div>
+      <div class="tc-stat"><span class="label">Género</span><span class="val">Mixto · Bloque A unisex</span></div>
+      <div class="tc-stat"><span class="label">País referencia</span><span class="val">España + Europa</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="highlight-box">
+  <div class="hl-label">// DATO CLAVE — ESTUDIO ANTROPOMÉTRICO MINISTERIO SANIDAD ESPAÑA</div>
+  <p>El estudio oficial español identifica <strong>tres morfotipos femeninos</strong>: Diábolo (cintura muy marcada respecto a pecho y cadera), Campana (cadera más ancha que pecho) y Cilindro (proporciones similares en pecho-cintura-cadera). La talla media real española es <strong>44–46 (L en etiquetado europeo)</strong>. La estatura media de mujeres jóvenes 18–19 años: <strong>162.6 cm</strong>. El propio estudio recomienda un sistema de patronaje basado en tres parámetros independientes: busto, cintura, cadera — exactamente lo que propone Enter The Palace.</p>
+  <div class="quote">El 52% de mujeres españolas ha tenido dificultades para encontrar su talla. El patronaje actual no las representa.</div>
+</div>
+
+<!-- SECCIÓN 02: TABLAS DE MEDIDAS -->
+<div class="sec">
+  <div class="sec-num">02</div>
+  <h2>Tablas de medidas <span style="color:var(--acid)">por bloque</span> · CLO3D input</h2>
+  <div class="sec-line"></div>
+</div>
+
+<p style="font-size:11px; color:var(--chrome); line-height:1.8; margin-bottom:24px;">
+  Medidas de <strong style="color:var(--white)">cuerpo</strong> (no de prenda). Son las que introduces en el Avatar Editor de CLO3D. Las medidas de prenda (acabado) añaden la holgura correspondiente sobre estas cifras. Fuentes: Bershka official size chart + Estudio Antropométrico España + ajuste Bloque B según modelo Abercrombie Curve Love (+5cm cadera real vs Bershka XL).
+</p>
+
+<!-- TABLA BLOQUE A -->
+<div style="margin-bottom:8px; font-family:'VT323',monospace; font-size:13px; color:var(--cyan); letter-spacing:3px;">
+  // BLOQUE A — STRAIGHT / ANDROGYNOUS · XS → L
+</div>
+<div class="tabla-wrap">
+<table>
+  <thead>
+    <tr>
+      <th class="col-medida" style="min-width:180px;">MEDIDA CORPORAL</th>
+      <th class="talla-xs-h">XS</th>
+      <th class="talla-s-h">S</th>
+      <th class="talla-m-h">M ★</th>
+      <th class="talla-l-h">L</th>
+      <th style="color:var(--chrome);font-size:11px;">Fuente</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="col-medida">Talla ES / EU<span class="nota-cel">etiqueta comercial</span></td><td class="talla-xs">32–34</td><td class="talla-s">36</td><td class="talla-m">38</td><td class="talla-l">40</td><td style="font-size:10px;color:rgba(200,200,232,.5);">Bershka oficial</td></tr>
+    <tr><td class="col-medida">Contorno de busto (cm)<span class="nota-cel">punto más prominente</span></td><td class="talla-xs">80–82</td><td class="talla-s">84–86</td><td class="talla-m">88–90</td><td class="talla-l">92–94</td><td style="font-size:10px;color:rgba(200,200,232,.5);">Bershka + EN 13402</td></tr>
+    <tr><td class="col-medida">Contorno de cintura (cm)<span class="nota-cel">punto más estrecho</span></td><td class="talla-xs">60–62</td><td class="talla-s">62–64</td><td class="talla-m">66–68</td><td class="talla-l">70–72</td><td style="font-size:10px;color:rgba(200,200,232,.5);">Bershka oficial</td></tr>
+    <tr><td class="col-medida">Contorno de cadera (cm)<span class="nota-cel">punto más amplio</span></td><td class="talla-xs">84–86</td><td class="talla-s">86–88</td><td class="talla-m">90–92</td><td class="talla-l">94–96</td><td style="font-size:10px;color:rgba(200,200,232,.5);">Bershka oficial</td></tr>
+    <tr><td class="col-medida">Estatura (cm)</td><td class="talla-xs">162</td><td class="talla-s">162</td><td class="talla-m">162</td><td class="talla-l">162</td><td style="font-size:10px;color:rgba(200,200,232,.5);">Est. Antrop. España</td></tr>
+    <tr><td class="col-medida">Alto de busto (cm)<span class="nota-cel">HPS al punto del busto</span></td><td class="talla-xs">24–25</td><td class="talla-s">25–26</td><td class="talla-m">26–27</td><td class="talla-l">27–28</td><td style="font-size:10px;color:rgba(200,200,232,.5);">CLO3D standard</td></tr>
+    <tr><td class="col-medida">HPS a cintura CB (cm)<span class="nota-cel">CB neck to waist</span></td><td class="talla-xs">38–39</td><td class="talla-s">39–40</td><td class="talla-m">40–41</td><td class="talla-l">41–42</td><td style="font-size:10px;color:rgba(200,200,232,.5);">CLO3D + ASTM</td></tr>
+    <tr><td class="col-medida">Profundidad de tiro (cm)<span class="nota-cel">crotch depth</span></td><td class="talla-xs">24</td><td class="talla-s">25</td><td class="talla-m">26</td><td class="talla-l">27</td><td style="font-size:10px;color:rgba(200,200,232,.5);">ASTM D5585</td></tr>
+    <tr><td class="col-medida">Largo de pierna (inseam) cm<span class="nota-cel">estándar · no Tall/Petite</span></td><td class="talla-xs">75</td><td class="talla-s">76</td><td class="talla-m">78</td><td class="talla-l">79</td><td style="font-size:10px;color:rgba(200,200,232,.5);">EN 13402 EU</td></tr>
+    <tr><td class="col-medida">Ancho de hombros (cm)</td><td class="talla-xs">37</td><td class="talla-s">38</td><td class="talla-m">39</td><td class="talla-l">40</td><td style="font-size:10px;color:rgba(200,200,232,.5);">CLO3D default</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- TABLA BLOQUE B -->
+<div style="margin-bottom:8px; font-family:'VT323',monospace; font-size:13px; color:var(--pink); letter-spacing:3px;">
+  // BLOQUE B — CURVY / BUST / HIP · S → 2XL · (+5cm cadera vs Bershka actual)
+</div>
+<div class="tabla-wrap">
+<table>
+  <thead>
+    <tr>
+      <th class="col-medida" style="min-width:180px;">MEDIDA CORPORAL</th>
+      <th class="talla-s-h">S</th>
+      <th class="talla-m-h">M ★</th>
+      <th class="talla-l-h">L ★</th>
+      <th class="talla-xl-h">XL ★</th>
+      <th class="talla-xxl-h">2XL</th>
+      <th style="color:var(--chrome);font-size:11px;">Delta vs Bershka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="col-medida">Talla ES / EU</td><td class="talla-s">36</td><td class="talla-m">38–40</td><td class="talla-l">42</td><td class="talla-xl">44–46</td><td class="talla-xxl">48–50</td><td style="font-size:10px;color:rgba(200,200,232,.5);">—</td></tr>
+    <tr class="bloque-b-row"><td class="col-medida">Contorno de busto (cm)<span class="nota-cel">+ copa diferenciada por talla</span></td><td class="talla-s">84–88</td><td class="talla-m">92–96</td><td class="talla-l">98–102</td><td class="talla-xl">104–108</td><td class="talla-xxl">112–116</td><td><span class="delta">= Bershka</span></td></tr>
+    <tr class="bloque-b-row"><td class="col-medida">Contorno de cintura (cm)<span class="nota-cel">cintura DIFERENCIADA — no sigue escala lineal</span></td><td class="talla-s">64–68</td><td class="talla-m">72–76</td><td class="talla-l">78–82</td><td class="talla-xl">84–90</td><td class="talla-xxl">94–100</td><td><span class="delta">= Bershka</span></td></tr>
+    <tr class="bloque-b-row"><td class="col-medida">Contorno de cadera (cm)<span class="nota-cel">★ DIFERENCIAL CLAVE · +5cm vs Bershka actual</span></td><td class="talla-s">92–96</td><td class="talla-m">100–104</td><td class="talla-l">108–112</td><td class="talla-xl">116–120</td><td class="talla-xxl">124–130</td><td><span class="delta">+5cm en XL</span></td></tr>
+    <tr class="bloque-b-row"><td class="col-medida">Contorno de muslo (cm)<span class="nota-cel">★ DIFERENCIAL · +5cm vs escalado lineal</span></td><td class="talla-s">52–54</td><td class="talla-m">56–58</td><td class="talla-l">62–66</td><td class="talla-xl">68–72</td><td class="talla-xxl">76–80</td><td><span class="delta">+5cm en XL</span></td></tr>
+    <tr><td class="col-medida">Estatura (cm)</td><td class="talla-s">162</td><td class="talla-m">162</td><td class="talla-l">162</td><td class="talla-xl">162</td><td class="talla-xxl">162</td><td style="font-size:10px;color:rgba(200,200,232,.5);">Constante</td></tr>
+    <tr><td class="col-medida">HPS a cintura CB (cm)</td><td class="talla-s">39</td><td class="talla-m">40</td><td class="talla-l">41</td><td class="talla-xl">42</td><td class="talla-xxl">43</td><td style="font-size:10px;color:rgba(200,200,232,.5);">CLO3D</td></tr>
+    <tr><td class="col-medida">Alto de busto (cm)<span class="nota-cel">copa diferenciada S→2XL</span></td><td class="talla-s">25</td><td class="talla-m">27</td><td class="talla-l">28</td><td class="talla-xl">29</td><td class="talla-xxl">30</td><td style="font-size:10px;color:rgba(200,200,232,.5);">+1cm/talla desde L</td></tr>
+    <tr><td class="col-medida">Profundidad de tiro (cm)<span class="nota-cel">mayor profundidad en B vs A</span></td><td class="talla-s">25</td><td class="talla-m">27</td><td class="talla-l">28</td><td class="talla-xl">30</td><td class="talla-xxl">32</td><td style="font-size:10px;color:rgba(200,200,232,.5);">+2cm en XL vs A</td></tr>
+    <tr><td class="col-medida">Largo de pierna inseam (cm)</td><td class="talla-s">76</td><td class="talla-m">78</td><td class="talla-l">79</td><td class="talla-xl">79</td><td class="talla-xxl">79</td><td style="font-size:10px;color:rgba(200,200,232,.5);">= Bloque A</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- TABLA BLOQUE C -->
+<div style="margin-bottom:8px; font-family:'VT323',monospace; font-size:13px; color:var(--acid); letter-spacing:3px;">
+  // BLOQUE C — TALL / PETITE · MODIFICADOR DE LONGITUD (aplica sobre A o B)
+</div>
+<div class="tabla-wrap">
+<table>
+  <thead>
+    <tr>
+      <th class="col-medida" style="min-width:180px;">PARÁMETRO</th>
+      <th style="color:var(--acid)">PETITE</th>
+      <th style="color:var(--white)">STANDARD ★</th>
+      <th style="color:var(--acid)">TALL</th>
+      <th style="color:var(--chrome);font-size:11px;">Aplicación CLO3D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="bloque-c-row"><td class="col-medida">Estatura avatar (cm)</td><td class="talla-xs">156</td><td class="talla-m">162</td><td class="talla-l">170</td><td style="font-size:10px;color:rgba(200,200,232,.5);">Altura avatar</td></tr>
+    <tr class="bloque-c-row"><td class="col-medida">Delta largo de pierna (cm)</td><td class="talla-xs">−6</td><td class="talla-m">0</td><td class="talla-l">+8</td><td style="font-size:10px;color:rgba(200,200,232,.5);">Inseam</td></tr>
+    <tr class="bloque-c-row"><td class="col-medida">Delta largo de torso (cm)</td><td class="talla-xs">−2</td><td class="talla-m">0</td><td class="talla-l">+3</td><td style="font-size:10px;color:rgba(200,200,232,.5);">CB neck to waist</td></tr>
+    <tr class="bloque-c-row"><td class="col-medida">Delta largo de manga (cm)</td><td class="talla-xs">−2</td><td class="talla-m">0</td><td class="talla-l">+3</td><td style="font-size:10px;color:rgba(200,200,232,.5);">Sleeve length</td></tr>
+    <tr><td class="col-medida">Busto / cintura / cadera</td><td class="talla-xs">Sin cambio</td><td class="talla-m">Sin cambio</td><td class="talla-l">Sin cambio</td><td style="font-size:10px;color:rgba(200,200,232,.5);">Solo longitudes cambian</td></tr>
+    <tr><td class="col-medida">Avatares CLO3D a crear</td><td class="talla-xs">A-Petite · B-Petite</td><td class="talla-m">A-Std · B-Std</td><td class="talla-l">A-Tall · B-Tall</td><td style="font-size:10px;color:rgba(200,200,232,.5);">6 avatares total</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- SECCIÓN 03: AVATARES CLO3D -->
+<div class="sec">
+  <div class="sec-num">03</div>
+  <h2>Avatares <span style="color:var(--cyan)">CLO3D</span> — configuración exacta</h2>
+  <div class="sec-line"></div>
+</div>
+
+<div class="avatar-spec-grid">
+
+  <!-- AVATAR BLOQUE A -->
+  <div class="avatar-spec-card bloque-a">
+    <div class="asc-top">
+      <div class="asc-id">A</div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:900;text-align:right;">STRAIGHT / ANDROGYNOUS</div>
+        <div class="asc-range">XS · S · M · L</div>
+      </div>
+    </div>
+    <div style="font-family:'VT323',monospace;font-size:12px;color:var(--cyan);letter-spacing:2px;margin-bottom:12px;">// AVATAR PROTAGONISTA: TALLA M</div>
+    <div class="asc-measures">
+      <div class="asc-row"><span class="asc-label">Busto</span><span class="asc-val">88–90 cm</span></div>
+      <div class="asc-row"><span class="asc-label">Cintura</span><span class="asc-val">66–68 cm</span></div>
+      <div class="asc-row"><span class="asc-label">Cadera</span><span class="asc-val">90–92 cm</span></div>
+      <div class="asc-row"><span class="asc-label">Muslo</span><span class="asc-val">52–54 cm</span></div>
+      <div class="asc-row"><span class="asc-label">Estatura</span><span class="asc-val">162 cm</span></div>
+      <div class="asc-row"><span class="asc-label">HPS → cintura CB</span><span class="asc-val">40–41 cm</span></div>
+      <div class="asc-row"><span class="asc-label">Profundidad de tiro</span><span class="asc-val">26 cm</span></div>
+      <div class="asc-row"><span class="asc-label">Inseam (standard)</span><span class="asc-val">78 cm</span></div>
+    </div>
+    <div class="asc-note">
+      Avatar para probar: Bomber oversize, Cargo pant, Hoodie.<br>
+      El oversize se prueba aquí — verificar que la silueta baggy no "aplasta" el cuerpo sino que crea volumen controlado.
+    </div>
+  </div>
+
+  <!-- AVATAR BLOQUE B -->
+  <div class="avatar-spec-card bloque-b">
+    <div class="asc-top">
+      <div class="asc-id">B</div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:900;text-align:right;">CURVY / BUST / HIP</div>
+        <div class="asc-range">S · M · L · XL · 2XL</div>
+      </div>
+    </div>
+    <div style="font-family:'VT323',monospace;font-size:12px;color:var(--pink);letter-spacing:2px;margin-bottom:12px;">// AVATAR PROTAGONISTA: TALLA L / XL</div>
+    <div class="asc-measures">
+      <div class="asc-row"><span class="asc-label">Busto</span><span class="asc-val">98–104 cm</span></div>
+      <div class="asc-row"><span class="asc-label">Cintura</span><span class="asc-val">78–84 cm</span></div>
+      <div class="asc-row"><span class="asc-label">Cadera ★ (+5cm)</span><span class="asc-val">110–118 cm</span></div>
+      <div class="asc-row"><span class="asc-label">Muslo ★ (+5cm)</span><span class="asc-val">64–70 cm</span></div>
+      <div class="asc-row"><span class="asc-label">Estatura</span><span class="asc-val">162 cm</span></div>
+      <div class="asc-row"><span class="asc-label">HPS → cintura CB</span><span class="asc-val">41–42 cm</span></div>
+      <div class="asc-row"><span class="asc-label">Profundidad de tiro</span><span class="asc-val">28–30 cm</span></div>
+      <div class="asc-row"><span class="asc-label">Alto de busto</span><span class="asc-val">28–29 cm</span></div>
+    </div>
+    <div class="asc-note">
+      Avatar para probar: Jean Bloque B, Top Corset, Vestido Mini, Bomber fitted.<br>
+      <strong>Regla de verificación en CLO3D:</strong> cero stress marks en cadera y muslo. Si aparecen líneas de tensión = el patrón sigue escalado, no rediseñado.
+    </div>
+  </div>
+
+  <!-- AVATAR BLOQUE C -->
+  <div class="avatar-spec-card bloque-c">
+    <div class="asc-top">
+      <div class="asc-id">C</div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:900;text-align:right;">TALL / PETITE</div>
+        <div class="asc-range">XS → 2XL + T/P</div>
+      </div>
+    </div>
+    <div style="font-family:'VT323',monospace;font-size:12px;color:var(--acid);letter-spacing:2px;margin-bottom:12px;">// 2 AVATARES ADICIONALES</div>
+    <div class="asc-measures">
+      <div class="asc-row"><span class="asc-label">Petite · Estatura</span><span class="asc-val">156 cm</span></div>
+      <div class="asc-row"><span class="asc-label">Petite · Inseam</span><span class="asc-val">72 cm (−6)</span></div>
+      <div class="asc-row"><span class="asc-label">Tall · Estatura</span><span class="asc-val">170 cm</span></div>
+      <div class="asc-row"><span class="asc-label">Tall · Inseam</span><span class="asc-val">86 cm (+8)</span></div>
+      <div class="asc-row"><span class="asc-label">Girths (busto/cin/cad)</span><span class="asc-val">Sin cambio</span></div>
+      <div class="asc-row"><span class="asc-label">CB neck to waist</span><span class="asc-val">±2–3 cm</span></div>
+      <div class="asc-row"><span class="asc-label">Sleeve length</span><span class="asc-val">±2–3 cm</span></div>
+    </div>
+    <div class="asc-note">
+      Solo se prueba con prendas que tienen modificador de largo: jeans, vestidos, abrigos.<br>
+      En CLO3D: duplicar avatar Bloque B talla L, cambiar solo estatura y inseam.
+    </div>
+  </div>
+
+</div>
+
+<!-- SECCIÓN 04: HOLGURAS -->
+<div class="sec">
+  <div class="sec-num">04</div>
+  <h2>Holguras <span style="color:var(--orange)">de prenda</span> · Ease allowance</h2>
+  <div class="sec-line"></div>
+</div>
+
+<p style="font-size:11px; color:var(--chrome); margin-bottom:20px; line-height:1.8;">
+  La holgura es la diferencia entre la medida del cuerpo y la medida de la prenda terminada. Es lo que hace que una prenda "se vea" baggy, fitted o estructurada. Medidas de cuerpo + holgura = patrón final en CLO3D.
+</p>
+
+<div class="ease-grid">
+  <div class="ease-card">
+    <div class="ease-type" style="color:var(--cyan)">Bomber / Oversize</div>
+    <div class="ease-row"><span class="ease-label">Busto</span><span class="ease-val">+16 a +24 cm</span></div>
+    <div class="ease-row"><span class="ease-label">Cintura</span><span class="ease-val">+20 a +30 cm</span></div>
+    <div class="ease-row"><span class="ease-label">Cadera</span><span class="ease-val">+18 a +26 cm</span></div>
+    <div class="ease-row"><span class="ease-label">Manga</span><span class="ease-val">+10 a +16 cm</span></div>
+    <div style="font-size:9px;color:rgba(200,200,232,.5);margin-top:8px;">Bloque A. La holgura crea el efecto dropped-shoulder y volumen característico.</div>
+  </div>
+  <div class="ease-card">
+    <div class="ease-type" style="color:var(--pink)">Top fitted / Corset</div>
+    <div class="ease-row"><span class="ease-label">Busto</span><span class="ease-val">+2 a +4 cm</span></div>
+    <div class="ease-row"><span class="ease-label">Cintura</span><span class="ease-val">−2 a 0 cm</span></div>
+    <div class="ease-row"><span class="ease-label">Cadera</span><span class="ease-val">+2 a +4 cm</span></div>
+    <div class="ease-row"><span class="ease-label">Manga</span><span class="ease-val">N/A (sin manga)</span></div>
+    <div style="font-size:9px;color:rgba(200,200,232,.5);margin-top:8px;">Bloque B. La cintura puede ir en 0 o negativo (corset). El soporte del bust no viene de la holgura sino de la estructura interna.</div>
+  </div>
+  <div class="ease-card">
+    <div class="ease-type" style="color:var(--acid)">Baggy jean / Cargo</div>
+    <div class="ease-row"><span class="ease-label">Cintura</span><span class="ease-val">+4 a +6 cm</span></div>
+    <div class="ease-row"><span class="ease-label">Cadera</span><span class="ease-val">+8 a +12 cm</span></div>
+    <div class="ease-row"><span class="ease-label">Muslo</span><span class="ease-val">+14 a +20 cm</span></div>
+    <div class="ease-row"><span class="ease-label">Bajo de pierna</span><span class="ease-val">+20 a +28 cm</span></div>
+    <div style="font-size:9px;color:rgba(200,200,232,.5);margin-top:8px;">Bloque A y B. El baggy se crea sobre todo en muslo y bajo. La cintura no va muy holgada para que no caiga.</div>
+  </div>
+</div>
+
+<!-- SECCIÓN 05: ALTURA DE AVATAR -->
+<div class="sec">
+  <div class="sec-num">05</div>
+  <h2>Alturas de <span style="color:var(--acid)">avatar</span> · Referencia real</h2>
+  <div class="sec-line"></div>
+</div>
+
+<div class="height-grid">
+  <div class="height-card">
+    <div class="height-type">PETITE</div>
+    <div class="height-val">156 cm</div>
+    <div class="height-desc">−6cm vs standard. Bloque C. Mismas medidas de cuerpo en anchuras.</div>
+  </div>
+  <div class="height-card">
+    <div class="height-type">STANDARD ★</div>
+    <div class="height-val" style="color:var(--white)">162 cm</div>
+    <div class="height-desc">Media mujeres 18–19 España (Est. Antrop. 2008). Avatar principal para todos los bloques.</div>
+  </div>
+  <div class="height-card">
+    <div class="height-type">TALL</div>
+    <div class="height-val">170 cm</div>
+    <div class="height-desc">+8cm vs standard. Bloque C. Solo largos cambian.</div>
+  </div>
+  <div class="height-card">
+    <div class="height-type">NOTA CLO3D</div>
+    <div class="height-val" style="font-size:20px; color:var(--purple)">⚠</div>
+    <div class="height-desc">En CLO3D, cambiar estatura cambia automáticamente proporciones. Verificar HPS y crotch depth después de cada cambio de altura.</div>
+  </div>
+</div>
+
+<!-- SECCIÓN 06: PROCESO CLO3D -->
+<div class="sec">
+  <div class="sec-num">06</div>
+  <h2>Proceso en <span style="color:var(--cyan)">CLO3D</span> · Paso a paso</h2>
+  <div class="sec-line"></div>
+</div>
+
+<div class="clo-grid">
+  <div class="clo-card">
+    <h3>// CONFIGURAR AVATARES</h3>
+    <div class="clo-step">
+      <div class="clo-step-num">1</div>
+      <div class="clo-step-text"><strong>Avatar base:</strong> usa el avatar femenino por defecto de CLO3D. Ir a <code>Main Menu → Avatar → Avatar Editor → Avatar Size</code></div>
+    </div>
+    <div class="clo-step">
+      <div class="clo-step-num">2</div>
+      <div class="clo-step-text"><strong>Orden de ajuste (crucial):</strong> Empieza por <code>Height</code> → luego <code>HPS to waist CB</code> → luego <code>Crotch depth</code> → después <code>Bust / Waist / Hip</code> → por último <code>Thigh / inseam</code>. No saltes este orden o el avatar queda distorsionado.</div>
+    </div>
+    <div class="clo-step">
+      <div class="clo-step-num">3</div>
+      <div class="clo-step-text"><strong>Guarda como .avt:</strong> <code>A_M_standard.avt</code>, <code>B_L_standard.avt</code>, <code>B_XL_standard.avt</code>, <code>B_L_petite.avt</code>, <code>B_L_tall.avt</code>. Así los reutilizas en cada prenda sin reconfigurar.</div>
+    </div>
+    <div class="clo-step">
+      <div class="clo-step-num">4</div>
+      <div class="clo-step-text"><strong>Verifica medidas:</strong> Usa <code>Avatar → Measurement</code> después de configurar para confirmar que las medidas reales del mesh coinciden con las que introdujiste (puede haber pequeñas diferencias por el algoritmo de interpolación).</div>
+    </div>
+  </div>
+
+  <div class="clo-card">
+    <h3>// PROBAR PATRONAJE</h3>
+    <div class="clo-step">
+      <div class="clo-step-num">5</div>
+      <div class="clo-step-text"><strong>Prueba siempre en 3 avatares mínimo:</strong> Bloque A talla M + Bloque B talla L + Bloque B talla XL. Si la prenda solo se prueba en una talla, el patronaje es incompleto.</div>
+    </div>
+    <div class="clo-step">
+      <div class="clo-step-num">6</div>
+      <div class="clo-step-text"><strong>Activa el Stress Map:</strong> <code>Display → Stress Map</code>. El color verde = bien. Rojo/naranja en cadera o muslo = el patrón sigue siendo escalado, no rediseñado. Este es el test definitivo del Bloque B.</div>
+    </div>
+    <div class="clo-step">
+      <div class="clo-step-num">7</div>
+      <div class="clo-step-text"><strong>Para el Bloque B:</strong> Si el Stress Map marca tensión en cadera lateral, aumenta la costura lateral del delantero en esa zona. La costura princess del top y el bloque de cadera del jean deben ser curvos, no rectos.</div>
+    </div>
+    <div class="clo-step">
+      <div class="clo-step-num">8</div>
+      <div class="clo-step-text"><strong>Render final:</strong> Una vez validado en los 3 avatares, renderiza los 3 juntos en la misma prenda para el lookbook. Esta imagen sola comunica todo el proyecto: misma prenda, cuerpos distintos, ningún compromiso.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<div class="checklist">
+  <h3>// CHECKLIST ANTES DE RENDERIZAR</h3>
+  <div class="check-grid">
+    <div class="check-item">
+      <div class="check-icon ok">✓</div>
+      <div><strong>Avatar Bloque A creado</strong> con medidas M standard (busto 88, cadera 90, altura 162)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon ok">✓</div>
+      <div><strong>Avatar Bloque B creado</strong> con medidas L/XL (cadera +5cm vs Bershka actual)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon ok">✓</div>
+      <div><strong>Stress Map verde</strong> en cadera y muslo para Bloque B en todas sus tallas</div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon ok">✓</div>
+      <div><strong>Holguras aplicadas</strong> según tipo de prenda (oversize vs fitted vs baggy)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon warn">!</div>
+      <div><strong>Avatares .avt guardados</strong> — sin esto tienes que reconfigurar cada vez que abres el proyecto</div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon warn">!</div>
+      <div><strong>Alto de busto diferenciado</strong> en Bloque B — cada talla S/M/L/XL/2XL tiene su propia copa, no la misma escalada</div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon ok">✓</div>
+      <div><strong>Bloque C verificado</strong>: solo largos cambian, ninguna anchura de cuerpo</div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon ok">✓</div>
+      <div><strong>Render en 3 avatares simultáneos</strong> por prenda para el lookbook de Fase 4</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fl">ENTER THE PALACE SS26 · MEDIDAS CLO3D · IED MADRID · BERSHKA</div>
+  <div class="fr">→ FASE 04: RENDERS + LOOKBOOK</div>
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENTER THE PALACE SS26 · Bershka · Sala de Proyecto</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800;900&family=VT323&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#0D0B1F; --void2:#151228; --purple:#7B2AFF; --pink:#FF2888;
+  --acid:#CCFF00; --cyan:#00EEFF; --chrome:#C8C8E8; --white:#F5F4FF;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--void); color:var(--white);
+  font-family:'Space Mono',monospace;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:1;
+  background-image:linear-gradient(rgba(200,200,232,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(200,200,232,.035) 1px,transparent 1px);
+  background-size:26px 26px;
+}
+h1,h2,h3{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-.01em;}
+.eyebrow{
+  font-family:'VT323',monospace;font-size:15px;letter-spacing:3px;
+  color:var(--acid);text-transform:uppercase;
+}
+a{color:var(--cyan);}
+
+/* ── CREDIT BAR ── */
+.credit-bar{
+  position:sticky;top:0;z-index:50;background:rgba(13,11,31,.92);
+  backdrop-filter:blur(6px);border-bottom:1px solid rgba(123,42,255,.4);
+  padding:10px 24px;font-family:'VT323',monospace;font-size:14px;
+  letter-spacing:1px;color:var(--chrome);display:flex;flex-wrap:wrap;
+  gap:6px 16px;justify-content:space-between;
+}
+.credit-bar strong{color:var(--pink);}
+.credit-bar .tag{color:var(--cyan);}
+
+/* ── HERO / LOADING SIGNATURE ── */
+.hero{
+  min-height:92vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;position:relative;z-index:2;
+  padding:60px 20px;
+}
+.hero .eyebrow{margin-bottom:18px;}
+.hero h1{
+  font-size:clamp(42px,8vw,110px);line-height:.94;
+  background:linear-gradient(120deg,var(--pink),var(--purple) 55%,var(--cyan));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-transform:uppercase;
+}
+.hero .sub{
+  margin-top:22px;font-family:'VT323',monospace;font-size:20px;
+  color:var(--chrome);max-width:560px;
+}
+.loadbar{
+  margin-top:40px;width:min(420px,80vw);
+}
+.loadbar .track{height:10px;border:1px solid var(--purple);background:rgba(123,42,255,.1);}
+.loadbar .fill{height:100%;width:95%;background:linear-gradient(90deg,var(--pink),var(--acid));}
+.loadbar .pct{font-family:'VT323',monospace;color:var(--acid);font-size:16px;margin-top:6px;}
+.warn{
+  margin-top:26px;font-family:'VT323',monospace;color:var(--pink);
+  font-size:13px;letter-spacing:1px;max-width:480px;line-height:1.5;
+}
+.scrollcue{position:absolute;bottom:26px;font-family:'VT323',monospace;color:var(--chrome);font-size:14px;letter-spacing:2px;}
+
+/* ── SECTIONS ── */
+section{
+  position:relative;z-index:2;padding:90px 6vw 40px;
+  border-top:1px solid rgba(123,42,255,.25);
+}
+.sec-head{display:flex;gap:22px;align-items:baseline;margin-bottom:34px;flex-wrap:wrap;}
+.sec-num{
+  font-family:'VT323',monospace;font-size:52px;color:rgba(123,42,255,.5);
+  line-height:1;
+}
+.sec-title{font-size:clamp(28px,4vw,48px);text-transform:uppercase;}
+.sec-title em{font-style:normal;color:var(--acid);}
+.sec-intro{
+  font-family:'Space Mono',monospace;font-size:15px;line-height:1.7;
+  color:var(--chrome);max-width:760px;margin-bottom:38px;
+}
+.role-tag{
+  display:inline-block;font-family:'VT323',monospace;font-size:13px;
+  letter-spacing:1px;padding:3px 10px;border:1px solid;border-radius:2px;
+  margin-top:8px;
+}
+.role-tag.mine{color:var(--acid);border-color:var(--acid);}
+.role-tag.hers{color:var(--pink);border-color:var(--pink);}
+.role-tag.both{color:var(--cyan);border-color:var(--cyan);}
+.room-btn{
+  display:inline-block;font-family:'VT323',monospace;font-size:15px;
+  letter-spacing:1px;color:var(--void);background:var(--acid);
+  padding:9px 16px;text-decoration:none;border-radius:2px;
+}
+.room-btn:hover{background:var(--cyan);}
+
+/* grid + cards */
+.grid{display:grid;gap:22px;}
+.g2{grid-template-columns:repeat(2,1fr);}
+.g3{grid-template-columns:repeat(3,1fr);}
+@media(max-width:760px){.g2,.g3{grid-template-columns:1fr;}}
+
+.card{
+  background:var(--void2);border:1px solid rgba(123,42,255,.3);
+  border-radius:4px;overflow:hidden;
+}
+.card img,.card video{width:100%;display:block;background:#000;}
+.card-body{padding:16px 18px 20px;}
+.card-cap{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:6px;}
+.card-txt{font-size:13px;line-height:1.6;color:var(--chrome);}
+
+/* decision chain */
+.chain{border-left:2px solid var(--purple);padding-left:26px;margin-left:6px;}
+.chain-item{position:relative;padding-bottom:30px;}
+.chain-item::before{
+  content:'';position:absolute;left:-32px;top:4px;width:12px;height:12px;
+  background:var(--void);border:2px solid var(--acid);border-radius:50%;
+}
+.chain-item h4{font-family:'Syne',sans-serif;font-size:17px;color:var(--white);margin-bottom:6px;}
+.chain-item p{font-size:13.5px;color:var(--chrome);line-height:1.65;max-width:680px;}
+.chain-item .role-tag{margin-top:8px;}
+
+/* web embed */
+.web-frame-wrap{
+  border:1px solid var(--purple);border-radius:6px;overflow:hidden;
+  box-shadow:0 0 40px rgba(123,42,255,.25);
+}
+.web-frame-bar{
+  background:var(--void2);padding:8px 14px;font-family:'VT323',monospace;
+  font-size:14px;color:var(--chrome);display:flex;justify-content:space-between;
+  border-bottom:1px solid rgba(123,42,255,.3);
+}
+iframe.web-frame{width:100%;height:640px;border:0;display:block;}
+
+/* flyer flagged note */
+.flag{
+  border:1px dashed var(--pink);background:rgba(255,40,136,.06);
+  padding:12px 16px;font-family:'VT323',monospace;font-size:14px;
+  color:var(--pink);margin-top:10px;letter-spacing:.5px;line-height:1.5;
+}
+
+/* credits closing */
+.credits-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
+@media(max-width:760px){.credits-grid{grid-template-columns:1fr;}}
+.credits-col h3{font-size:20px;margin-bottom:14px;}
+.credits-col.mine h3{color:var(--acid);}
+.credits-col.hers h3{color:var(--pink);}
+.credits-col ul{list-style:none;}
+.credits-col li{
+  font-size:13.5px;color:var(--chrome);padding:7px 0;
+  border-bottom:1px solid rgba(200,200,232,.1);
+}
+.credits-col.both{grid-column:1/-1;margin-top:6px;}
+.credits-col.both h3{color:var(--cyan);}
+
+footer{
+  position:relative;z-index:2;padding:50px 6vw 70px;text-align:center;
+  font-family:'VT323',monospace;color:rgba(200,200,232,.4);font-size:13px;
+  letter-spacing:2px;
+}
+</style>
+</head>
+<body>
+
+<div class="credit-bar">
+  <div><strong>ENTER THE PALACE</strong> · SS26 · Bershka — proyecto académico, IED Madrid</div>
+  <div>Proyecto colaborativo con mi compañera de equipo · <span class="tag">mi rol detallado abajo ↓</span></div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="eyebrow">// Cargando sala de proyecto</span>
+  <h1>Enter The<br>Palace</h1>
+  <p class="sub">En 1995, The Palace no te pedía la talla para entrar a la sala. Esta es la reconstrucción de esa idea como sistema real de tallaje para Bershka SS26.</p>
+  <div class="loadbar">
+    <div class="track"><div class="fill"></div></div>
+    <div class="pct">CARGANDO EL PROYECTO... 95%</div>
+  </div>
+  <p class="warn">⚠ ADVERTENCIA: esta sala documenta decisiones, no solo resultados. Contenido: investigación, patronaje, datos, producto, campaña.</p>
+  <div class="scrollcue">↓ scroll para entrar</div>
+</div>
+
+<!-- 01 · ORIGEN Y DECISIÓN -->
+<section id="s1">
+  <div class="sec-head">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">Origen → <em>Decisión estructural</em></h2>
+  </div>
+  <p class="sec-intro">
+    The Palace (1995–2002) fue la primera sala de chat donde nadie pedía credenciales para entrar: había concursos de vestuario y cada persona construía su propia habitación. Esa referencia es el punto de partida — tomarla y leerla como problema real de tallaje en moda es la decisión creativa central del proyecto.
+    <span class="role-tag mine">idea original · investigación · dirección creativa: yo</span>
+  </p>
+
+  <div class="chain">
+    <div class="chain-item">
+      <h4>De "todos entraban" a "todos los cuerpos entran"</h4>
+      <p>No está en el Palace original de forma literal — es mi lectura: si en 1995 nadie pedía credenciales para entrar a la sala, en Bershka nadie debería tener que pedir "la talla especial" para entrar a la colección.</p>
+      <span class="role-tag mine">decisión: yo</span>
+    </div>
+    <div class="chain-item">
+      <h4>El patronaje empieza en el Bloque B, no escala desde XS</h4>
+      <p>Consecuencia directa de la decisión anterior: construir los patrones desde el bloque curvy (Bloque B) como punto de partida, no como talla añadida al final. Bloque A (recto/andrógino) y Bloque C (modificador alto/petite) se derivan del mismo sistema, no lo contradicen.</p>
+      <span class="role-tag mine">decisión estructural + patronaje: yo</span>
+      <div style="margin-top:14px;">
+        <a href="patronaje-digital.html" class="room-btn">↳ ENTRAR A LA SALA DE PATRONAJE DIGITAL — tablas de medidas, morfotipos y configuración CLO3D</a>
+      </div>
+    </div>
+    <div class="chain-item">
+      <h4>Avatares como puerta de entrada</h4>
+      <p>De "cada quien construye su habitación" surge el avatar personal dentro de la web de Bershka, con el que además puedes conversar y formar comunidad — como en el chat original.</p>
+      <span class="role-tag both">idea: las dos</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SISTEMA DE CAPTURA DE DATOS -->
+<section id="s2">
+  <div class="sec-head">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">El sistema que <em>captura el dato</em></h2>
+  </div>
+  <p class="sec-intro">
+    Este es el propósito real del proyecto: la experiencia Palace existe para mantener actualizado el tallaje de la marca. Cada punto de contacto — web, cúpula, espejo, camerino — es también un punto de captura de datos corporales, con dos modos que alimentan la misma base: <strong style="color:var(--acid)">modo autoservicio</strong> (creas tu perfil en la web con tus medidas) y <strong style="color:var(--pink)">modo asistido</strong> (en tienda, si no conoces tus medidas reales, alguien te guía y te mide).
+  </p>
+
+  <div class="chain">
+    <div class="chain-item">
+      <h4>1 · Perfil en la web</h4>
+      <p>Creas tu avatar en la web de Bershka con tus medidas. Este perfil viaja contigo a la tienda física.</p>
+      <span class="role-tag mine">diseño y lógica de funcionamiento de la web: yo</span>
+    </div>
+    <div class="chain-item">
+      <h4>2 · Llegada a tienda</h4>
+      <p>Un avatar te invita a entrar; señalética tipo flechas te guía hasta la Cúpula.</p>
+      <span class="role-tag both">merchandising y señalética interior: yo · idea de la cúpula: mi compañera</span>
+    </div>
+    <div class="chain-item">
+      <h4>3 · Medición (si hace falta)</h4>
+      <p>Si no conoces tus medidas reales, una persona del equipo te guía y te mide — modo asistido, complementario al escaneo automático de la Estación 02.</p>
+    </div>
+    <div class="chain-item">
+      <h4>4 · Captura del dato</h4>
+      <p>Los datos se depositan en las tablets disponibles para construir o actualizar tu perfil de tallaje. Este es el punto donde la experiencia se convierte en información útil para la marca.</p>
+    </div>
+    <div class="chain-item">
+      <h4>5 · Cápsula / Try-on</h4>
+      <p>Entras a la cápsula: seleccionas piezas y alguien las tiene preparadas, o deambulas y escoges libremente. Vas al camerino, te pruebas.</p>
+    </div>
+    <div class="chain-item">
+      <h4>6 · Contenido + salida</h4>
+      <p>Se genera un video corto que puedes compartir con los hashtags del proyecto. Al pagar, recibes un código para participar en el concurso.</p>
+    </div>
+  </div>
+
+  <p class="sec-intro" style="margin-top:30px;border-top:1px solid rgba(123,42,255,.2);padding-top:26px;">
+    <strong style="color:var(--white)">Por qué importa:</strong> las medidas que se introducen no son solo para tallar la prenda de ese día — son datos que la marca usa para entender cómo evoluciona el cuerpo de su clientela en el tiempo.
+  </p>
+
+  <div class="grid g3" style="margin-top:30px;">
+    <div class="card">
+      <img src="assets/mirror-editable.png" alt="Diseño de la cúpula / espejo AR">
+      <div class="card-body">
+        <div class="card-cap">Cúpula · Espejo AR</div>
+        <div class="card-txt">Diseño de la instalación. Idea original: mi compañera. Desarrollo del diseño: yo.</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="assets/store-render-2.png" alt="Interior de tienda con cúpula">
+      <div class="card-body">
+        <div class="card-cap">Sala Cúpula, interior</div>
+        <div class="card-txt">Vestíbulo virtual + fitting room, Bershka Gran Vía 25.</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="assets/tablet-loading.png" alt="Tablet cargando perfil de talla">
+      <div class="card-body">
+        <div class="card-cap">Tablet · captura de perfil</div>
+        <div class="card-txt">"Encuentra tu talla Bershka" — interfaz de creación de perfil en el punto de medición.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · LA WEB (funcional) -->
+<section id="s3">
+  <div class="sec-head">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">La web <em>funcionando</em></h2>
+  </div>
+  <p class="sec-intro">
+    El punto de entrada digital del sistema: aquí se crea el avatar y el perfil de medidas que después viaja a la tienda física.
+    <span class="role-tag mine">diseño, lógica y funcionamiento: yo</span>
+  </p>
+  <div class="web-frame-wrap">
+    <div class="web-frame-bar">
+      <span>vestibulo_virtual_y2k.html</span>
+      <a href="web/vestibulo_virtual_y2k.html" target="_blank">abrir en pestaña nueva ↗</a>
+    </div>
+    <iframe class="web-frame" src="web/vestibulo_virtual_y2k.html" title="Vestíbulo Virtual Enter The Palace"></iframe>
+  </div>
+
+  <div class="grid g2" style="margin-top:26px;">
+    <div class="card">
+      <img src="assets/web-landing.png" alt="Landing de la web con countdown">
+      <div class="card-body">
+        <div class="card-cap">Landing · coming soon</div>
+        <div class="card-txt">Countdown + acceso a "crea tu avatar".</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="assets/poster-qr-nfc.png" alt="Poster de acceso QR NFC en tienda">
+      <div class="card-body">
+        <div class="card-cap">Punto de acceso en tienda</div>
+        <div class="card-txt">QR / NFC — conecta el perfil web con el punto físico de la Cúpula.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · PRODUCTO -->
+<section id="s4">
+  <div class="sec-head">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">Producto <em>por bloque</em></h2>
+  </div>
+  <p class="sec-intro">
+    Cada prenda nace del mismo patronaje que alimenta el sistema de datos. Diseño y selección final de las prendas de colección: mío, con criterio compartido con mi compañera en color y styling.
+    <span class="role-tag mine">diseño CLO3D + fichas técnicas: yo</span>
+    <span class="role-tag both">colores de colección + styling: las dos</span>
+  </p>
+  <a href="patronaje-digital.html" class="room-btn" style="margin-bottom:26px;">↳ VER DETALLE TÉCNICO — sala de patronaje digital</a>
+  <div class="grid g2">
+    <div class="card">
+      <img src="assets/avatar-look-2.png" alt="Look completo avatar 1">
+      <div class="card-body">
+        <div class="card-cap">Bloque B · Look completo</div>
+        <div class="card-txt">Prenda diseñada en CLO3D desde patronaje curvy.</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="assets/look-espalda.png" alt="Chaqueta print Palace, espalda">
+      <div class="card-body">
+        <div class="card-cap">Chaqueta print Palace · espalda</div>
+        <div class="card-txt">Diseño de print sobre prenda base.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="sec-intro" style="margin-top:34px;">
+    Accesorios, calzado y baby tee: diseñados por mi compañera en CLO3D. Sobre la baby tee, yo apliqué el print/diseño final.
+    <span class="role-tag hers">accesorios, calzado, base baby tee: mi compañera</span>
+    <span class="role-tag both">print sobre baby tee: las dos</span>
+  </p>
+  <div class="grid g3">
+    <div class="card">
+      <video src="assets/turntable-sneaker.mp4" autoplay muted loop playsinline></video>
+      <div class="card-body"><div class="card-cap">Sneaker · turntable</div></div>
+    </div>
+    <div class="card">
+      <video src="assets/turntable-sneaker-2.mp4" autoplay muted loop playsinline></video>
+      <div class="card-body"><div class="card-cap">Sneaker charm · detalle</div></div>
+    </div>
+    <div class="card">
+      <video src="assets/turntable-phonecases.mp4" autoplay muted loop playsinline></video>
+      <div class="card-body"><div class="card-cap">Fundas · merch extendido</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CAMPAÑA -->
+<section id="s5">
+  <div class="sec-head">
+    <span class="sec-num">05</span>
+    <h2 class="sec-title">Campaña <em>de embajador</em></h2>
+  </div>
+  <p class="sec-intro">
+    Producción de la campaña: búsqueda de locaciones vía IA y dirección de la mecánica del concurso, mi compañera. Flyers de tienda, míos.
+    <span class="role-tag hers">locaciones + mecánica del concurso: mi compañera</span>
+    <span class="role-tag mine">flyers de tienda: yo</span>
+  </p>
+  <div class="grid g2">
+    <div class="card">
+      <img src="assets/flyer-login-ss26.png" alt="Flyer login pantalla elevador SS26">
+      <div class="card-body">
+        <div class="card-cap">Pantalla de acceso · elevador</div>
+        <div class="card-txt">Versión oficial, SS26.</div>
+        <div class="flag">Nota de producción: existe una variante regenerada de esta pieza con errores tipográficos ("SS28", "NADA EE CASUALIDAD") — descartada, se usa esta versión como la oficial.</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="assets/logo-etp.png" alt="Logo Enter The Palace">
+      <div class="card-body">
+        <div class="card-cap">Sello de marca</div>
+        <div class="card-txt">Logo del universo Palace aplicado a campaña y merch.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="sec-intro" style="margin-top:30px;">
+    Sobre la mecánica de "gana quien más likes saque": es una decisión de equipo que, mirada junto a la tesis del proyecto, tensiona con ella — un criterio de validación por apariencia no es lo más coherente con "nadie pedía la talla para entrar". Lo señalo aquí como lectura crítica propia, no como corrección retroactiva del trabajo conjunto.
+  </p>
+</section>
+
+<!-- 06 · CIERRE / CRÉDITOS -->
+<section id="s6">
+  <div class="sec-head">
+    <span class="sec-num">06</span>
+    <h2 class="sec-title">Créditos <em>del proyecto</em></h2>
+  </div>
+  <p class="sec-intro">
+    Proyecto realizado en pareja para la Universidad, propuesta dirigida a Bershka. Reparto real de responsabilidades:
+  </p>
+  <div class="credits-grid">
+    <div class="credits-col mine">
+      <h3>Mi rol</h3>
+      <ul>
+        <li>Idea original: lectura de The Palace (1995) como problema de tallaje</li>
+        <li>Investigación y dirección creativa general</li>
+        <li>Decisión estructural: patronaje desde Bloque B</li>
+        <li>Diseño de prendas en CLO3D + fichas técnicas</li>
+        <li>Creación de avatares y su estilo visual</li>
+        <li>Diseño y lógica de funcionamiento de la web</li>
+        <li>Diseño de la cúpula (a partir de la idea de mi compañera)</li>
+        <li>Merchandising interior y colocación en tienda</li>
+        <li>Flyers de tienda</li>
+      </ul>
+    </div>
+    <div class="credits-col hers">
+      <h3>Rol de mi compañera</h3>
+      <ul>
+        <li>Idea original de la cúpula</li>
+        <li>Diseño de accesorios, calzado y baby tee (base) en CLO3D</li>
+        <li>Búsqueda de locaciones de campaña (asistida con IA)</li>
+        <li>Diseño de fundas de celular</li>
+        <li>Diseño y organización de la diapositiva inicial de presentación</li>
+        <li>Mecánica y decisión final del concurso de campaña</li>
+      </ul>
+    </div>
+    <div class="credits-col both">
+      <h3>Decisiones conjuntas</h3>
+      <ul>
+        <li>Concepto de avatares como puerta de entrada / comunidad</li>
+        <li>Colores de la colección</li>
+        <li>Selección final de prendas (a partir de mis propuestas de diseño)</li>
+        <li>Styling de las modelos</li>
+        <li>Print final sobre la baby tee</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  ENTER THE PALACE · SS26 · Bershka — Proyecto académico IED Madrid · Sala de portafolio
+</footer>
+
+</body>
+</html>
