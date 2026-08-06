@@ -671,7 +671,14 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .pd-patron-pages img { width: 100%; display: block; background: #fff; border: 1px solid var(--pd-border); user-select: none; -webkit-user-select: none; -webkit-user-drag: none; -webkit-touch-callout: none; pointer-events: none; }
 
 /* Ficha técnica consolidada — Look 3: ilustración + prenda + vistas en una sola ventana */
-.pd-ficha-tecnica-modal { max-width: 780px; grid-template-columns: 1fr; }
+.pd-ficha-tecnica-modal { max-width: 1040px; grid-template-columns: 1fr; }
+.pd-ficha-main-item.large { max-width: 420px; margin: 0 auto; }
+.pd-ficha-video-wrap { position: relative; background: #000; margin-top: 10px; }
+.pd-ficha-video-wrap video { width: 100%; display: block; max-height: 70vh; background: #000; }
+.pd-ficha-video-controls { display: flex; gap: 8px; align-items: center; padding: 10px; background: var(--pd-bg2); border-top: 1px solid var(--pd-border); flex-wrap: wrap; }
+.pd-ficha-video-controls button { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--pd-ink); background: none; border: 1px solid var(--pd-border); padding: 7px 12px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: 0.2s; }
+.pd-ficha-video-controls button:hover { background: var(--pd-cyan); color: #04100E; border-color: var(--pd-cyan); }
+.pd-ficha-video-controls select { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--pd-ink); background: var(--pd-bg); border: 1px solid var(--pd-border); padding: 6px 8px; cursor: pointer; }
 .pd-ficha-main { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
 .pd-ficha-main-item { position: relative; background: var(--pd-bg2); border: 1px solid var(--pd-border); }
 .pd-ficha-main-item img { width: 100%; aspect-ratio: 3/4; object-fit: contain; display: block; background: #fff; padding: 6%; box-sizing: border-box; }
@@ -893,7 +900,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                         <div class="panel-slide active"><span class="panel-slide-label">VITRIOL · 3D Sculpture</span><img loading="lazy" src="fotos/18.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
                         <div class="panel-slide"><span class="panel-slide-label">EVOLVER SKIN · Packaging</span><img loading="lazy" src="fotos/logo evolver skin.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
                         <div class="panel-slide"><span class="panel-slide-label">LOVELY · DAZ 3D Avatar</span><img loading="lazy" src="fotos/bea 1.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
-                        <div class="panel-slide"><span class="panel-slide-label">FRACTUM · Blender + CLO3D</span><img loading="lazy" src="fotos/0144.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">FRACTUM · Blender + CLO3D</span><img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0144.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
                         <div class="panel-slide"><span class="panel-slide-label">MILEE · AI Campaign</span><img loading="lazy" src="fotos/milee_01.jpg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
                     </div>
                     <div class="panel-dots" id="dots-03"></div>
@@ -1184,7 +1191,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     <!-- FRACTUM -->
                     <div class="pd-card" onclick="pdFocusProject('hab-fractum')">
                         <div class="pd-card-img-wrap">
-                            <img loading="lazy" class="pd-card-img" src="fotos/FINAL DE LOS FINALITOS_Default Colorway_121.png" alt="FRACTUM — vestuario CLO3D">
+                            <img loading="lazy" class="pd-card-img" src="fotos/FRACTUM/LOOK 2/FINAL DE LOS FINALITOS_Default Colorway_121.png" alt="FRACTUM — vestuario CLO3D">
                             <div class="pd-card-overlay">
                                 <p class="pd-overlay-title">FRACTUM</p>
                                 <div class="pd-overlay-metrics">
@@ -1298,16 +1305,51 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                             <button class="pd-modal-close" onclick="document.getElementById('pd-fractum-look1-ficha').classList.remove('open')">✕ CERRAR</button>
                             <span class="pd-modal-code">FRACTUM · Ficha Técnica</span>
                             <h3 class="pd-modal-title">Look 1</h3>
-                            <p class="pd-spec-val" style="margin-bottom:24px;max-width:640px;">Renders de detalle constructivo pendientes de integrar.</p>
+
+                            <div class="pd-ficha-main">
+                                <div class="pd-ficha-main-item render">
+                                    <img loading="lazy" class="render" src="fotos/FRACTUM/LOOK1/ERAGON CLOTHING_68.png" alt="Look completo">
+                                    <span class="pd-ficha-lab">Look Completo</span>
+                                </div>
+                                <div class="pd-ficha-main-item">
+                                    <img loading="lazy" src="fotos/FRACTUM/LOOK1/ERAGON CLOTHING.png" alt="Detalle bordado" style="aspect-ratio:0.707;">
+                                    <span class="pd-ficha-lab">Detalle Bordado</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pd-modal-bg" id="pd-fractum-look2-ficha" onclick="closePdFractumLook2Ficha(event)">
+                    <div class="pd-modal pd-ficha-tecnica-modal">
+                        <div class="pd-modal-info" style="grid-column:1/-1;">
+                            <button class="pd-modal-close" onclick="document.getElementById('pd-fractum-look2-ficha').classList.remove('open')">✕ CERRAR</button>
+                            <span class="pd-modal-code">FRACTUM · Ficha Técnica</span>
+                            <h3 class="pd-modal-title">Look 2</h3>
 
                             <div class="pd-ficha-main">
                                 <div class="pd-ficha-main-item">
-                                    <img loading="lazy" class="render" src="fotos/FINAL DE LOS FINALITOS_Default Colorway_121.png" alt="Look frontal">
+                                    <img loading="lazy" class="render" src="fotos/FRACTUM/LOOK 2/FINAL DE LOS FINALITOS_Default Colorway_121.png" alt="Look frontal">
                                     <span class="pd-ficha-lab">Frontal</span>
                                 </div>
                                 <div class="pd-ficha-main-item">
-                                    <img loading="lazy" class="render" src="fotos/FINAL DE LOS FINALITOS_Default Colorway_253.png" alt="Look espalda">
+                                    <img loading="lazy" class="render" src="fotos/FRACTUM/LOOK 2/FINAL DE LOS FINALITOS_Default Colorway_253.png" alt="Look espalda">
                                     <span class="pd-ficha-lab">Espalda</span>
+                                </div>
+                            </div>
+                            <div class="pd-ficha-main-item large" style="margin-top:14px;">
+                                <img loading="lazy" src="fotos/FRACTUM/LOOK 2/clothing 2.png" alt="Detalle arnés" style="aspect-ratio:0.707;">
+                                <span class="pd-ficha-lab">Detalle Arnés</span>
+                            </div>
+
+                            <span class="pd-modal-subtitle" style="margin-top:20px;">Video</span>
+                            <div class="pd-ficha-video-wrap">
+                                <video id="pd-fractum-l2-video" preload="metadata" playsinline poster="fotos/FRACTUM/LOOK 2/FINAL DE LOS FINALITOS_Default Colorway_121.png">
+                                    <source src="fotos/FRACTUM/LOOK 2/FINAL DE LOS FINALITOS_Default Colorway_0.mp4" type="video/mp4">
+                                </video>
+                                <div class="pd-ficha-video-controls">
+                                    <button onclick="pdToggleVideoPlay('pd-fractum-l2-video', this)">▶ REPRODUCIR</button>
+                                    <button onclick="document.getElementById('pd-fractum-l2-video').requestFullscreen()">⛶ PANTALLA COMPLETA</button>
                                 </div>
                             </div>
                         </div>
@@ -3883,7 +3925,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <!-- ══ CD_04: FRACTUM ══ -->
     <div class="hab" id="hab-fractum" data-tag="BEATRIZ CASTRO">
         <div class="hab-header hab-banner" onclick="focusHab('hab-fractum')">
-            <img loading="lazy" class="hab-banner-img" src="fotos/0002.png" alt="FRACTUM — 3D World & Garment Direction">
+            <img loading="lazy" class="hab-banner-img" src="fotos/FRACTUM/AMBIENTE/0002.png" alt="FRACTUM — 3D World & Garment Direction">
             <div class="hab-banner-scrim"></div>
             <div class="hab-banner-content">
                 <div>
@@ -3903,44 +3945,53 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     </div>
                     <video autoplay loop muted playsinline
                            style="width:100%;max-height:70vh;object-fit:contain;display:block;background:var(--fr-bg);">
-                        <source src="fotos/FINAL_DE_LOS_FINALITOS_Default_Colorway_0.mp4" type="video/mp4">
+                        <source src="fotos/FRACTUM/LOOK 2/FINAL DE LOS FINALITOS_Default Colorway_0.mp4" type="video/mp4">
                     </video>
                 </div>
 
-                <!-- VIDEO BLENDER · LA DANZA — Pega tu video en fotos/ y reemplaza el src -->
+                <!-- VIDEO BLENDER · LA DANZA — video real, reproductor con play/pausa + pantalla completa -->
                 <div style="border-bottom:1px solid var(--fr-border);background:var(--fr-bg2);">
                     <div style="padding:14px 40px;border-bottom:1px solid var(--fr-border);display:flex;justify-content:space-between;align-items:center;">
                         <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--fr-green);letter-spacing:0.4em;text-transform:uppercase;">Blender · La Danza · Mundo 3D Volumétrico</span>
                         <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--fr-lime);opacity:0.5;letter-spacing:0.2em;">FRACTUM_02</span>
                     </div>
-                    <video autoplay loop muted playsinline
+                    <video id="fr-danza-video" preload="metadata" playsinline
                            poster="fotos/0144.png"
-                           style="width:100%;max-height:70vh;object-fit:contain;display:block;background:var(--fr-bg);"
-                           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                        <!-- IMPORTANTE: sube tu video Blender a la carpeta fotos/ y reemplaza el nombre del archivo aquí -->
-                        <source src="fotos/fractum_blender_danza.mp4" type="video/mp4">
+                           style="width:100%;max-height:70vh;object-fit:contain;display:block;background:var(--fr-bg);">
+                        <source src="fotos/FRACTUM/AMBIENTE/video modificado.mp4" type="video/mp4">
                     </video>
-                    <div style="display:none;width:100%;aspect-ratio:16/9;align-items:center;justify-content:center;flex-direction:column;gap:14px;background:var(--fr-bg2);">
-                        <span style="font-family:'Roboto Mono',monospace;font-size:11px;color:var(--fr-lime);letter-spacing:0.3em;opacity:0.6;">[ VIDEO BLENDER PENDIENTE ]</span>
-                        <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--matter-light);opacity:0.35;letter-spacing:0.15em;text-align:center;line-height:1.8;">Sube tu video a:<br>fotos/fractum_blender_danza.mp4</span>
+                    <div style="display:flex;gap:8px;align-items:center;padding:10px 40px;background:var(--fr-bg2);border-top:1px solid var(--fr-border);flex-wrap:wrap;">
+                        <button onclick="pdToggleVideoPlay('fr-danza-video', this)" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--matter-light);background:none;border:1px solid var(--fr-border);padding:8px 14px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;">▶ REPRODUCIR</button>
+                        <button onclick="document.getElementById('fr-danza-video').requestFullscreen()" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--matter-light);background:none;border:1px solid var(--fr-border);padding:8px 14px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;">⛶ PANTALLA COMPLETA</button>
+                        <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--matter-light);opacity:0.4;letter-spacing:0.1em;">Archivo pesado — se carga solo al reproducir</span>
+                    </div>
+                </div>
+
+                <!-- DETALLE — 2 renders adicionales del entorno Blender -->
+                <div class="fr-hero" style="min-height:auto;grid-template-columns:1fr 1fr;">
+                    <div class="fr-slot" style="aspect-ratio:16/10;">
+                        <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0034.png" alt="Entorno Blender — detalle" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+                    </div>
+                    <div class="fr-slot" style="aspect-ratio:16/10;">
+                        <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0174.png" alt="Entorno Blender — detalle" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
                     </div>
                 </div>
 
                 <!-- HERO: 3 imágenes del mundo Blender -->
                 <div class="fr-hero">
                     <div class="fr-slot">
-                        <img loading="lazy" src="fotos/ERAGON CLOTHING_68.png" alt="El bosque — el mundo" onerror="this.style.background='#050C08'">
+                        <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/ERAGON CLOTHING_68.png" alt="El bosque — el mundo" onerror="this.style.background='#050C08'">
                         <div style="position:absolute;bottom:14px;left:14px;font-family:'Roboto Mono',monospace;font-size:7px;color:var(--fr-lime);letter-spacing:0.3em;text-transform:uppercase;opacity:0.8;">El mundo · El bosque espera</div>
                     </div>
                     <div class="fr-slot" style="position:relative;">
-                        <img loading="lazy" src="fotos/0002.png" alt="El bailarín en el bosque" onerror="this.style.background='#050C08'">
+                        <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0002.png" alt="El bailarín en el bosque" onerror="this.style.background='#050C08'">
                         <div class="fr-overlay">
                             <h3 class="fr-overlay-title">FRACTUM</h3>
                             <span class="fr-overlay-sub">No se trata de vencer — sino de elegir con conciencia</span>
                         </div>
                     </div>
                     <div class="fr-slot">
-                        <img loading="lazy" src="fotos/0215.png" alt="La sala de cristales — integración" onerror="this.style.background='#050C08'">
+                        <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0215.png" alt="La sala de cristales — integración" onerror="this.style.background='#050C08'">
                         <div style="position:absolute;bottom:14px;left:14px;font-family:'Roboto Mono',monospace;font-size:7px;color:var(--fr-lime);letter-spacing:0.3em;text-transform:uppercase;opacity:0.8;">Integración · El espacio como reflejo</div>
                     </div>
                 </div>
@@ -3970,14 +4021,14 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <!-- VESTUARIO: Frente + Espalda (CLO3D) -->
                 <div style="display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--fr-border);">
                     <div style="overflow:hidden;background:var(--fr-bg2);position:relative;">
-                        <img loading="lazy" src="fotos/FINAL DE LOS FINALITOS_Default Colorway_121.png" alt="Vestuario — Vista frontal CLO3D"
+                        <img loading="lazy" src="fotos/FRACTUM/LOOK 2/FINAL DE LOS FINALITOS_Default Colorway_121.png" alt="Vestuario — Vista frontal CLO3D"
                              style="width:100%;object-fit:contain;display:block;background:var(--fr-bg2);padding:16px;">
                         <div style="padding:10px 20px;border-top:1px solid var(--fr-border);">
                             <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--fr-lime);letter-spacing:0.25em;text-transform:uppercase;opacity:0.8;">Vista frontal · CLO3D</span>
                         </div>
                     </div>
                     <div style="overflow:hidden;background:var(--fr-bg2);position:relative;border-left:1px solid var(--fr-border);">
-                        <img loading="lazy" src="fotos/FINAL DE LOS FINALITOS_Default Colorway_253.png" alt="Vestuario — Vista espalda CLO3D"
+                        <img loading="lazy" src="fotos/FRACTUM/LOOK 2/FINAL DE LOS FINALITOS_Default Colorway_253.png" alt="Vestuario — Vista espalda CLO3D"
                              style="width:100%;object-fit:contain;display:block;background:var(--fr-bg2);padding:16px;">
                         <div style="padding:10px 20px;border-top:1px solid var(--fr-border);">
                             <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--fr-lime);letter-spacing:0.25em;text-transform:uppercase;opacity:0.8;">Vista espalda · CLO3D</span>
@@ -3988,7 +4039,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <!-- RENDERS ADICIONALES: el look en el mundo -->
                 <div style="display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--fr-border);">
                     <div style="overflow:hidden;background:var(--fr-bg2);">
-                        <img loading="lazy" src="fotos/0144.png" alt="Look completo en el mundo Blender"
+                        <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0144.png" alt="Look completo en el mundo Blender"
                              style="width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.8);"
                              onerror="this.style.background='#050C08'">
                         <div style="padding:10px 16px;background:var(--fr-bg2);border-top:1px solid var(--fr-border);">
@@ -4012,19 +4063,19 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     </div>
                     <div style="display:grid;grid-template-columns:repeat(4,1fr);">
                         <div style="overflow:hidden;aspect-ratio:16/9;background:var(--fr-bg2);position:relative;">
-                            <img loading="lazy" src="fotos/0001.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0001.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
                             <div style="position:absolute;bottom:0;left:0;right:0;padding:6px 10px;background:linear-gradient(to top,rgba(5,12,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:6px;color:var(--fr-lime);letter-spacing:0.2em;text-transform:uppercase;">01 · Reacción</div>
                         </div>
                         <div style="overflow:hidden;aspect-ratio:16/9;background:var(--fr-bg2);position:relative;border-left:1px solid var(--fr-border);">
-                            <img loading="lazy" src="fotos/0088.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0088.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
                             <div style="position:absolute;bottom:0;left:0;right:0;padding:6px 10px;background:linear-gradient(to top,rgba(5,12,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:6px;color:var(--fr-lime);letter-spacing:0.2em;text-transform:uppercase;">02 · Escucha</div>
                         </div>
                         <div style="overflow:hidden;aspect-ratio:16/9;background:var(--fr-bg2);position:relative;border-left:1px solid var(--fr-border);">
-                            <img loading="lazy" src="fotos/0019.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0019.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
                             <div style="position:absolute;bottom:0;left:0;right:0;padding:6px 10px;background:linear-gradient(to top,rgba(5,12,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:6px;color:var(--fr-lime);letter-spacing:0.2em;text-transform:uppercase;">03 · Juicio</div>
                         </div>
                         <div style="overflow:hidden;aspect-ratio:16/9;background:var(--fr-bg2);position:relative;border-left:1px solid var(--fr-border);">
-                            <img loading="lazy" src="fotos/0193.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0193.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
                             <div style="position:absolute;bottom:0;left:0;right:0;padding:6px 10px;background:linear-gradient(to top,rgba(5,12,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:6px;color:var(--fr-lime);letter-spacing:0.2em;text-transform:uppercase;">04 · Decisión</div>
                         </div>
                     </div>
@@ -4151,7 +4202,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     </div>
                 </div>
                 <div class="es-gallery">
-                    <div class="es-gallery-slot"><img loading="lazy" src="fotos/ChatGPT Image 25 nov 2025, 15_11_38.png" alt="ESCHATON Universe I" onerror="this.style.background='#0A0508'"></div>
+                    <div class="es-gallery-slot"><img loading="lazy" src="fotos/ESCHATON.EXE/ChatGPT Image 25 nov 2025, 15_11_38.png" alt="ESCHATON Universe I" onerror="this.style.background='#0A0508'"></div>
                     <div class="es-gallery-slot"><img loading="lazy" src="fotos/look3_5.png" alt="ESCHATON Universe II" onerror="this.style.background='#0A0508'"></div>
                     <div class="es-gallery-slot"><img loading="lazy" src="fotos/MANO_Default Colorway_4.png" alt="ESCHATON Universe III" onerror="this.style.background='#0A0508'"></div>
                     <div class="es-gallery-slot"><img loading="lazy" src="fotos/Look4_Default Colorway.png" alt="ESCHATON detail" onerror="this.style.background='#0A0508'"></div>
@@ -4742,8 +4793,8 @@ const PD_GARMENTS = [
     { name: 'Universo II — Look', img: 'fotos/look3_5.png', project: 'ESCHATON.EXE', hab: 'hab-eschaton', ficha: null },
     { name: 'Universo III — Look', img: 'fotos/MANO_Default Colorway_4.png', project: 'ESCHATON.EXE', hab: 'hab-eschaton', ficha: null },
 
-    { name: 'Look 1', img: 'fotos/FINAL DE LOS FINALITOS_Default Colorway_121.png', project: 'FRACTUM', hab: 'hab-fractum', openFicha: 'pdOpenFractumLook1Ficha' },
-    { name: 'Look 2', img: 'fotos/ERAGON CLOTHING_68.png', project: 'FRACTUM', hab: 'hab-fractum', ficha: null },
+    { name: 'Look 1', img: 'fotos/FRACTUM/LOOK1/ERAGON CLOTHING_68.png', project: 'FRACTUM', hab: 'hab-fractum', openFicha: 'pdOpenFractumLook1Ficha' },
+    { name: 'Look 2', img: 'fotos/FRACTUM/LOOK 2/FINAL DE LOS FINALITOS_Default Colorway_121.png', project: 'FRACTUM', hab: 'hab-fractum', openFicha: 'pdOpenFractumLook2Ficha' },
 
     { name: 'Look 3', img: 'fotos/CLIENTA DE Wuatan Studio look3.png', project: 'Look 3 · Archivo Personal', hab: 'independientes', openFicha: 'pdOpenLook3Ficha' },
 ];
@@ -4829,6 +4880,23 @@ function pdOpenFractumLook1Ficha() {
 }
 function closePdFractumLook1Ficha(e) {
     if (e.target.id === 'pd-fractum-look1-ficha') document.getElementById('pd-fractum-look1-ficha').classList.remove('open');
+}
+function pdOpenFractumLook2Ficha() {
+    document.getElementById('pd-fractum-look2-ficha').classList.add('open');
+}
+function closePdFractumLook2Ficha(e) {
+    if (e.target.id === 'pd-fractum-look2-ficha') {
+        const v = document.getElementById('pd-fractum-l2-video');
+        if (v) v.pause();
+        document.getElementById('pd-fractum-look2-ficha').classList.remove('open');
+    }
+}
+// Reproductor simple: play/pausa + pantalla completa. Sin segunda copia del video no hay
+// forma real de ofrecer un cambio de calidad — preload="metadata" evita que cargue todo de una vez.
+function pdToggleVideoPlay(videoId, btn) {
+    const v = document.getElementById(videoId);
+    if (v.paused) { v.play(); btn.textContent = '⏸ PAUSAR'; }
+    else { v.pause(); btn.textContent = '▶ REPRODUCIR'; }
 }
 // Visor de patrón protegido — solo visualización. Bloquea clic derecho, arrastre y selección;
 // no puede impedir una captura de pantalla real, eso es una limitación de cualquier página web.
