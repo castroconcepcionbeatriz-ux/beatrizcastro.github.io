@@ -373,12 +373,6 @@ html, body {
 .featured-card-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--matter-light); line-height: 1.2; }
 @media (max-width: 700px) { .featured-card { flex: 0 0 200px; } }
 
-/* DETALLE */
-.detail-overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(10,10,10,0.5); backdrop-filter: blur(30px); display: flex; opacity: 0; pointer-events: none; transition: opacity 0.4s; }
-.detail-overlay.active { opacity: 1; pointer-events: all; }
-.detail-main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px; }
-.detail-main img { max-height: 85vh; border: 1px solid rgba(74, 141, 238,0.2); }
-.detail-sidebar { width: 420px; border-left: 1px solid rgba(253,185,39,0.1); padding: 60px 50px; display: flex; flex-direction: column; }
 
 /* ARCHIVO */
 #archive-view { background: var(--control-dark); padding: 100px 8% 150px; }
@@ -1124,7 +1118,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                             <div class="mayle-card-overlay">
                                 <p class="mayle-overlay-title">Abrigo "Caribe"</p>
                                 <div class="mayle-overlay-metrics">
-                                    <span class="mayle-metric-pill">Manga globo · expansión radial</span>
+                                    <span class="mayle-metric-pill">Holgura manga 1–1.5"</span>
                                     <span class="mayle-metric-pill">Pinzas dobles al frente</span>
                                     <span class="mayle-metric-pill">Solapa y cuello XL</span>
                                 </div>
@@ -1163,17 +1157,17 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                             <div class="mayle-card-overlay">
                                 <p class="mayle-overlay-title">Vest Largo "El patio" </p>
                                 <div class="mayle-overlay-metrics">
-                                    <span class="mayle-metric-pill">Compensación elasticidad residual</span>
-                                    <span class="mayle-metric-pill">Pinzas al foco de torsión</span>
-                                    <span class="mayle-metric-pill">Dobladillo industrial invisible</span>
+                                    <span class="mayle-metric-pill">Variante de Abrigo Caribe</span>
+                                    <span class="mayle-metric-pill">Sin mangas</span>
+                                    <span class="mayle-metric-pill">Flecos en el cuello</span>
                                 </div>
                                 <div class="mayle-card-cta">VER ESPECIFICACIÓN TÉCNICA →</div>
                             </div>
                         </div>
                         <div class="mayle-card-meta">
-                            <span class="mayle-card-code">Materiales Dinámicos</span>
+                            <span class="mayle-card-code">Variante de Caribe</span>
                             <div class="mayle-card-name">Vest Largo ¨El patio¨</div>
-                            <div class="mayle-card-tags"><span class="mayle-card-tag">Plisado</span><span class="mayle-card-tag">Metalizado</span><span class="mayle-card-tag">Industrial</span></div>
+                            <div class="mayle-card-tags"><span class="mayle-card-tag">Variante de Caribe</span><span class="mayle-card-tag">Sin Mangas</span><span class="mayle-card-tag">Flecos</span></div>
                         </div>
                     </div>
                 </div>
@@ -1380,13 +1374,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     <div class="ed-act-body ed-act-body--text-first">
                         <div class="ed-text-block">
                             <p class="ed-pull-quote">"Diseñar no termina en el patrón.<br>Termina cuando la modelo sale a pasarela."</p>
-                            <p class="ed-body-text">Trabajé junto a Leonel Lirio como asistente de diseñadora y bordadora: participé en el proceso de diseño, el bordado de los vestuarios y la construcción de prendas de fantasía y acabados de confección. También fui su enlace directo con clientas, encargándome de vestirlas y asegurar el ajuste perfecto de cada look.</p>
+                            <p class="ed-body-text">Trabajé junto a Leonel Lirio como asistente de diseño en desfiles y eventos con clientas premium: seguimiento al vestir, ajustes en tiempo real y coordinación directa con cada clienta para asegurar el ajuste perfecto de cada look.</p>
                             <div class="ed-role-pills">
-                                <span class="ed-pill">Bordado</span>
                                 <span class="ed-pill">Asistencia de diseño</span>
-                                <span class="ed-pill">Confección</span>
-                                <span class="ed-pill">Prendas de fantasía</span>
-                                <span class="ed-pill">Acabados</span>
                                 <span class="ed-pill">Gestión de clientas</span>
                                 <span class="ed-pill">Coordinación vestuario</span>
                                 <span class="ed-pill">Producción fotográfica</span>
@@ -1459,8 +1449,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                         <div class="ed-gallery-item ed-gallery-item--tall"><img loading="lazy" src="fotos/leonellirio1.jpg" alt=""></div>
                         <div class="ed-gallery-item"><img loading="lazy" src="fotos/leonel04.jpg" alt=""></div>
                         <div class="ed-gallery-item"><img loading="lazy" src="fotos/leonel.jpg" alt=""></div>
-                        <div class="ed-gallery-item"><img loading="lazy" src="fotos/LEONEL LIRIO.png" alt="Bordado y confección — Leonel Lirio"></div>
-                        <div class="ed-gallery-item"><img loading="lazy" src="fotos/LEONEL LIRIO 2.png" alt="Bordado y confección — Leonel Lirio"></div>
+                        <div class="ed-gallery-item"><img loading="lazy" src="fotos/LEONEL LIRIO.png" alt="Leonel Lirio — RW 2024"></div>
+                        <div class="ed-gallery-item"><img loading="lazy" src="fotos/LEONEL LIRIO 2.png" alt="Leonel Lirio — RW 2024"></div>
                         <div class="ed-gallery-item ed-gallery-item--tall"><img loading="lazy" src="fotos/leonel lirio 3 look carnaval.png" alt="Look Carnaval — Leonel Lirio"></div>
                         <div class="ed-gallery-item"><img loading="lazy" src="fotos/leonel lirio 3 look carnaval 2.png" alt="Look Carnaval — Leonel Lirio"></div>
                     </div>
@@ -4199,15 +4189,13 @@ textarea.c-form-input { resize: none; min-height: 100px; }
       <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-2').classList.remove('open')">✕ CERRAR</button>
       <span class="mayle-modal-code">Mayle Vázquez</span>
       <h3 class="mayle-modal-title">Abrigo "Caribe"</h3>
-      <div class="mayle-modal-subtitle">Producción en Serie</div>
-      <div class="mayle-spec-block"><span class="mayle-spec-key">Manga globo</span><p class="mayle-spec-val">Desarrollada mediante <strong>expansión radial</strong> con <strong>holgura de manga de 1–1.5 pulgadas según tipo de manga</strong>, optimizado para máquinas de coser automáticas.</p></div>
+      <div class="mayle-modal-subtitle">Holgura de Manga</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Manga globo</span><p class="mayle-spec-val">Holgura de manga: <strong>1–1.5 pulgadas según tipo de manga</strong>.</p></div>
       <div class="mayle-modal-subtitle">Estructura Base</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Pinzas dobles al frente</span><p class="mayle-spec-val">No se usó cinta de sastre ni stay tape. La estructura base se mantuvo en patronaje tradicional, con dobles pinzas al frente — una decisión deliberada para darle un toque más tradicional y único, y para no sumar cortes extra.</p></div>
       <div class="mayle-modal-subtitle">Proporción</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Solapa y cuello XL</span><p class="mayle-spec-val">La solapa y el cuello se hicieron XL de forma intencional, buscando una proporción grande y exagerada.</p></div>
-      <div class="mayle-modal-subtitle">Escalado</div>
-      <div class="mayle-spec-block"><span class="mayle-spec-key">Curva de tallas S→XL</span><p class="mayle-spec-val">Estructura base diseñada para <strong>mantener el equilibrio del volumen</strong> en toda la curva de tallas. Escalado bajo normativas industriales internacionales.</p></div>
-      <div class="mayle-modal-tags"><span class="mayle-modal-tag">Holgura Manga 1–1.5"</span><span class="mayle-modal-tag">Pinzas Dobles</span><span class="mayle-modal-tag">Patronaje Tradicional</span><span class="mayle-modal-tag">Solapa XL</span><span class="mayle-modal-tag">S→XL Balanced</span></div>
+      <div class="mayle-modal-tags"><span class="mayle-modal-tag">Holgura Manga 1–1.5"</span><span class="mayle-modal-tag">Pinzas Dobles</span><span class="mayle-modal-tag">Patronaje Tradicional</span><span class="mayle-modal-tag">Solapa XL</span></div>
     </div>
   </div>
 </div>
@@ -4235,18 +4223,14 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
 <div class="mayle-modal-bg" id="mayle-modal-4" onclick="closeMayleModal(event,'mayle-modal-4')">
   <div class="mayle-modal">
-    <div class="mayle-modal-img-col"><span class="mayle-modal-badge">Materiales Dinámicos</span><img loading="lazy" src="fotos/chaqueta 2 sin manga.png" alt="Vestido Santa María Ozama"></div>
+    <div class="mayle-modal-img-col"><span class="mayle-modal-badge">Variante de Caribe</span><img loading="lazy" src="fotos/chaqueta 2 sin manga.png" alt="Vest Largo El Patio"></div>
     <div class="mayle-modal-info">
       <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-4').classList.remove('open')">✕ CERRAR</button>
       <span class="mayle-modal-code">Mayle Vázquez</span>
-      <h3 class="mayle-modal-title">Vestido "Santa María"<br>& "Ozama"</h3>
-      <div class="mayle-modal-subtitle">Tejidos Plisados</div>
-      <div class="mayle-spec-block"><span class="mayle-spec-key">Compensación dinámica</span><p class="mayle-spec-val">Patrones desarrollados con <strong>compensación por elasticidad residual</strong>. Las medidas finales consideran el estiramiento post-corte del tejido metalizado.</p></div>
-      <div class="mayle-modal-subtitle">Consumo Inteligente</div>
-      <div class="mayle-spec-block"><span class="mayle-spec-key">Traslado de pinzas</span><p class="mayle-spec-val">Traslado al <strong>foco de torsión (nudo)</strong> para eliminar cortes innecesarios, reduciendo las operaciones de costura y mejorando la caída orgánica.</p></div>
-      <div class="mayle-modal-subtitle">Industrialización</div>
-      <div class="mayle-spec-block"><span class="mayle-spec-key">Acabados</span><p class="mayle-spec-val">Bajo con <strong>pespunte invisible optimizado para dobladilladoras industriales</strong>. Listo para producción en cadena sin reajustes en máquina.</p></div>
-      <div class="mayle-modal-tags"><span class="mayle-modal-tag">Elasticidad Residual</span><span class="mayle-modal-tag">Pinza a Torsión</span><span class="mayle-modal-tag">Tejido Metalizado</span><span class="mayle-modal-tag">Dobladilladora Industrial</span><span class="mayle-modal-tag">Caída Orgánica</span></div>
+      <h3 class="mayle-modal-title">Vest Largo<br>"El Patio"</h3>
+      <div class="mayle-modal-subtitle">Construcción</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Variante de Abrigo Caribe</span><p class="mayle-spec-val">Variante de Abrigo Caribe — sin mangas, con flecos en el cuello. Misma estructura y confección que Abrigo Caribe: patronaje tradicional con dobles pinzas al frente, sin cinta de sastre ni stay tape.</p></div>
+      <div class="mayle-modal-tags"><span class="mayle-modal-tag">Variante de Caribe</span><span class="mayle-modal-tag">Sin Mangas</span><span class="mayle-modal-tag">Flecos</span><span class="mayle-modal-tag">Patronaje Tradicional</span></div>
     </div>
   </div>
 </div>
@@ -4258,29 +4242,15 @@ textarea.c-form-input { resize: none; min-height: 100px; }
       <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-5').classList.remove('open')">✕ CERRAR</button>
       <span class="mayle-modal-code">Para Reclutamiento</span>
       <h3 class="mayle-modal-title">Capacidades<br>para Producción Global</h3>
-      <div class="mayle-modal-subtitle">Visión de Costes (COGS)</div>
-      <div class="mayle-spec-block"><span class="mayle-spec-key">Integración diseño-producción</span><p class="mayle-spec-val">Integración de detalles de diseño en el patrón para <strong>minimizar pasos de montaje</strong> y reducir costes de mano de obra directa.</p></div>
+      <div class="mayle-modal-subtitle">Integración Diseño-Producción</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Integración diseño-producción</span><p class="mayle-spec-val">Integración de detalles de diseño en el patrón para <strong>minimizar pasos de montaje</strong>.</p></div>
       <div class="mayle-modal-subtitle">Precisión Técnica</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Especificaciones de marcada</span><p class="mayle-spec-val">Marcadas optimizadas con <strong>aplomos de control y hojas de ruta de materiales</strong>, listas para coordinación con manufactura externa.</p></div>
       <div class="mayle-modal-subtitle">Estándares de Manufactura</div>
-      <div class="mayle-spec-block"><span class="mayle-spec-key">Eficiencia de Marcada</span><p class="mayle-spec-val">Marcadas de <strong>alta eficiencia y escalado</strong> bajo normativas industriales internacionales, listas para producción en fábrica.</p></div>
-      <div class="mayle-modal-tags"><span class="mayle-modal-tag">COGS Awareness</span><span class="mayle-modal-tag">Marcada Industrial</span><span class="mayle-modal-tag">Hojas de Ruta</span><span class="mayle-modal-tag">Industrial Standards</span></div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Eficiencia de Marcada</span><p class="mayle-spec-val">Marcadas de <strong>alta eficiencia y escalado</strong>, listas para producción en fábrica.</p></div>
+      <div class="mayle-modal-tags"><span class="mayle-modal-tag">Marcada Industrial</span><span class="mayle-modal-tag">Hojas de Ruta</span></div>
     </div>
   </div>
-</div>
-
-<!-- DETALLE -->
-<div class="detail-overlay" id="detail-overlay">
-    <div class="detail-main"><img loading="lazy" src="" id="d-img"></div>
-    <div class="detail-sidebar">
-        <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--amber);letter-spacing:0.3em;">ANALYSIS</span>
-        <h2 id="d-name" style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;margin:16px 0;color:var(--matter-light);"></h2>
-        <div style="display:flex;gap:32px;margin-top:20px;">
-            <div><span id="d-val1" style="font-size:44px;font-weight:100;color:var(--sapphire);display:block;line-height:1;">—</span><span id="d-lab1" style="font-family:'Roboto Mono',monospace;font-size:8px;opacity:0.5;letter-spacing:0.2em;color:var(--matter-light);"></span></div>
-            <div><span id="d-val2" style="font-size:44px;font-weight:100;color:var(--amber);display:block;line-height:1;">—</span><span id="d-lab2" style="font-family:'Roboto Mono',monospace;font-size:8px;opacity:0.5;letter-spacing:0.2em;color:var(--matter-light);"></span></div>
-        </div>
-        <a href="#" onclick="closeDetail()" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--sapphire);border:1px solid rgba(74, 141, 238,0.4);padding:10px 20px;text-decoration:none;display:inline-block;margin-top:auto;">CLOSE_ANALYSIS</a>
-    </div>
 </div>
 
 
@@ -5253,21 +5223,6 @@ function etpCopyCode() {
         const hint = document.getElementById('etp-code-hint');
         if (hint) { hint.textContent = '¡Copiado!'; setTimeout(() => { hint.textContent = 'Toca para copiar'; }, 1500); }
     });
-}
-
-// ── DETALLE ──
-function openDetail(img, name, val1, lab1, val2, lab2) {
-    document.getElementById('d-img').src  = img;
-    document.getElementById('d-name').textContent = name;
-    document.getElementById('d-val1').textContent = val1;
-    document.getElementById('d-lab1').textContent = lab1;
-    document.getElementById('d-val2').textContent = val2;
-    document.getElementById('d-lab2').textContent = lab2;
-    document.getElementById('detail-overlay').classList.add('active');
-}
-function closeDetail() {
-    document.getElementById('detail-overlay').classList.remove('active');
-    return false;
 }
 
 // ── ARCHIVO / TAG ──
