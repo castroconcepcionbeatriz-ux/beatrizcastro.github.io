@@ -384,7 +384,7 @@ html, body {
 .sobre-bio-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 64px); font-weight: 300; line-height: 0.9; color: var(--matter-light); margin-bottom: 30px; }
 .sobre-bio-name em { color: var(--sapphire); font-style: italic; }
 .sobre-role-tag { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--amber); border: 1px solid rgba(253,185,39,0.3); padding: 6px 14px; display: inline-block; margin-bottom: 30px; letter-spacing: 0.15em; }
-.sobre-text { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300; line-height: 1.8; color: var(--matter-light); opacity: 0.75; max-width: 480px; }
+.sobre-text { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300; line-height: 1.8; color: var(--matter-light); opacity: 0.75; max-width: 480px; text-align: justify; }
 .sobre-skills { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 10px; }
 .skill-tag { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--sapphire); border: 1px solid rgba(74, 141, 238,0.3); padding: 5px 12px; letter-spacing: 0.1em; text-transform: uppercase; }
 .sobre-data-col { border-left: 1px solid rgba(74, 141, 238,0.15); padding-left: 50px; }
@@ -501,7 +501,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .mayle-room { background: var(--m-bg); padding: 48px calc(8% + 40px) 64px; margin-left: -8%; margin-right: -8%; width: calc(100% + 16%); }
 .mayle-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 52px; padding-bottom: 40px; border-bottom: 1px solid var(--m-border); }
 .mayle-role-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--m-blue); letter-spacing: 0.4em; text-transform: uppercase; display: block; margin-bottom: 14px; }
-.mayle-role-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--m-ink-2); line-height: 1.75; }
+.mayle-role-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--m-ink-2); line-height: 1.75; text-align: justify; }
 .mayle-stats { display: flex; gap: 28px; flex-wrap: wrap; align-items: flex-start; padding-top: 8px; }
 .mayle-stat { display: flex; flex-direction: column; gap: 5px; }
 .mayle-stat-val { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 300; color: var(--m-amber); line-height: 1; }
@@ -532,6 +532,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 /* ── CARD FLAGSHIP: pieza insignia, más grande que el resto ── */
 .mayle-card.mayle-card-flagship { grid-column: span 2; }
 .mayle-card-flagship .mayle-card-img-wrap { aspect-ratio: 16/9; }
+.mayle-card-flagship .mayle-card-img { object-fit: contain; padding: 3%; box-sizing: border-box; }
 .mayle-card-flagship .mayle-overlay-title { font-size: 24px; }
 .mayle-flagship-badge { position: absolute; top: 14px; left: 14px; z-index: 5; font-family: 'Roboto Mono', monospace; font-size: 8px; color: #fff; background: var(--m-amber); padding: 5px 12px; letter-spacing: 0.2em; text-transform: uppercase; }
 @media (max-width: 700px) {
@@ -541,7 +542,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
 /* ── CARD BANNER: Capacidades Globales, va arriba de las 5 piezas individuales ── */
 .mayle-card.mayle-card-banner { grid-column: 1 / -1; margin-bottom: 4px; }
-.mayle-card-banner .mayle-card-img-wrap { aspect-ratio: 21/6; }
+.mayle-card-banner .mayle-card-img-wrap { aspect-ratio: 12/5; }
+.mayle-card-banner .mayle-card-img { object-fit: contain; padding: 2%; box-sizing: border-box; }
 @media (max-width: 700px) { .mayle-card-banner .mayle-card-img-wrap { aspect-ratio: 16/9; } }
 
 /* ── MODAL DUAL: dos imágenes en la columna izquierda del modal ── */
@@ -577,7 +579,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .mayle-modal-subtitle::after { content: ''; flex: 1; height: 1px; background: rgba(193,125,42,0.25); }
 .mayle-spec-block { margin-bottom: 22px; }
 .mayle-spec-key { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--m-blue); letter-spacing: 0.25em; text-transform: uppercase; display: block; margin-bottom: 5px; }
-.mayle-spec-val { font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 300; color: var(--m-ink-2); line-height: 1.65; }
+.mayle-spec-val { font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 300; color: var(--m-ink-2); line-height: 1.65; text-align: justify; }
 .mayle-spec-val strong { font-weight: 500; color: var(--m-ink); }
 .mayle-modal-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--m-border); }
 .mayle-modal-tag { font-family: 'Roboto Mono', monospace; font-size: 7px; color: var(--m-amber); border: 1px solid rgba(193,125,42,0.3); padding: 3px 9px; letter-spacing: 0.1em; text-transform: uppercase; }
@@ -618,7 +620,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 }
 .pd-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 52px; padding-bottom: 40px; border-bottom: 1px solid var(--pd-border); }
 .pd-role-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--pd-cyan); letter-spacing: 0.4em; text-transform: uppercase; display: block; margin-bottom: 14px; }
-.pd-role-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--pd-ink-2); line-height: 1.75; }
+.pd-role-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--pd-ink-2); line-height: 1.75; text-align: justify; }
 .pd-tools { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 4px; }
 .pd-tool-pill { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--pd-cyan); border: 1px solid var(--pd-cyan-dim); padding: 5px 12px; letter-spacing: 0.12em; text-transform: uppercase; background: rgba(52,232,204,0.05); }
 
@@ -677,7 +679,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .pd-modal-subtitle::after { content: ''; flex: 1; height: 1px; background: var(--pd-border); }
 .pd-spec-block { margin-bottom: 22px; }
 .pd-spec-key { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--pd-cyan); letter-spacing: 0.25em; text-transform: uppercase; display: block; margin-bottom: 5px; }
-.pd-spec-val { font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 300; color: var(--pd-ink-2); line-height: 1.65; }
+.pd-spec-val { font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 300; color: var(--pd-ink-2); line-height: 1.65; text-align: justify; }
 .pd-spec-val strong { font-weight: 500; color: var(--pd-ink); }
 .pd-modal-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--pd-border); }
 .pd-modal-tag { font-family: 'Roboto Mono', monospace; font-size: 7px; color: var(--pd-cyan); border: 1px solid var(--pd-cyan-dim); padding: 3px 9px; letter-spacing: 0.1em; text-transform: uppercase; }
@@ -726,7 +728,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .ed-act-body--img-first { grid-template-columns: 1fr 1fr; }
 
 .ed-pull-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 2.5vw, 32px); font-weight: 300; font-style: italic; color: var(--matter-light); line-height: 1.3; margin-bottom: 24px; padding-left: 20px; border-left: 2px solid var(--amber); }
-.ed-body-text { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300; color: var(--matter-light); opacity: 0.75; line-height: 1.8; }
+.ed-body-text { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300; color: var(--matter-light); opacity: 0.75; line-height: 1.8; text-align: justify; }
 .ed-role-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
 .ed-pill { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--sapphire); border: 1px solid rgba(74, 141, 238,0.3); padding: 4px 12px; letter-spacing: 0.1em; text-transform: uppercase; }
 
@@ -741,7 +743,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .ed-crisis-item { background: rgba(74, 141, 238,0.04); border: 1px solid rgba(74, 141, 238,0.1); padding: 24px 20px; }
 .ed-crisis-icon { font-size: 20px; display: block; margin-bottom: 10px; color: var(--amber); font-style: normal; font-family: monospace; }
 .ed-crisis-step { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--amber); letter-spacing: 0.25em; text-transform: uppercase; display: block; margin-bottom: 12px; }
-.ed-crisis-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--matter-light); opacity: 0.7; line-height: 1.7; }
+.ed-crisis-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--matter-light); opacity: 0.7; line-height: 1.7; text-align: justify; }
 .ed-crisis-arrow { font-family: 'Roboto Mono', monospace; font-size: 20px; color: rgba(253,185,39,0.3); align-self: center; padding-top: 24px; }
 
 /* TIMELINE */
@@ -996,7 +998,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         <span class="sala-code">PATRONAJE · FOTOGRAFÍA · PRODUCCIÓN · CORTE</span>
         <h1 class="sala-title">La Sala de<br><em style="color:var(--sapphire);">la Corte</em></h1>
         <p class="sala-desc">El corte como primer acto irreversible. Patronaje industrial, fotografía de moda y producción de colección.</p>
-        <a href="#" class="sala-archive-link" onclick="event.preventDefault();openMayleArchive();" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--amber);letter-spacing:0.2em;text-transform:uppercase;border:1px solid rgba(253,185,39,0.3);padding:8px 16px;display:inline-block;margin-top:24px;text-decoration:none;">System Archive — Fichas Técnicas (COGS / CAD) →</a>
+        <a href="#" class="sala-archive-link" onclick="event.preventDefault();openMayleArchive();" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--amber);letter-spacing:0.2em;text-transform:uppercase;border:1px solid rgba(253,185,39,0.3);padding:8px 16px;display:inline-block;margin-top:24px;text-decoration:none;">System Archive — Fichas Técnicas (COGS) →</a>
     </div>
     <div class="habs-back-bar" onclick="resetHabs()">← Volver a la lista</div>
 
@@ -1007,7 +1009,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <div class="hab-banner-scrim"></div>
             <div class="hab-banner-content">
                 <div>
-                    <span class="hab-banner-code" style="color:#D9A857;">PATRONAJE INDUSTRIAL · DIGITAL PATTERN · PRODUCT DEVELOPMENT</span>
+                    <span class="hab-banner-code" style="color:#D9A857;">PATRONAJE INDUSTRIAL · MARCADA & ESCALADO · PRODUCT DEVELOPMENT</span>
                     <h2 class="hab-banner-title">Mayle Vázquez — Patronaje & Product Development</h2>
                 </div>
                 <span class="hab-banner-arrow">VER PROYECTO →</span>
@@ -1019,8 +1021,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="mayle-intro">
                     <div>
                         <span class="mayle-role-label">Rol · Responsabilidades</span>
-                        <p class="mayle-role-text">Desarrollo de patrones industriales y optimización de fit. Gestión de archivo técnico y digitalización de patronaje. Colaboración directa en el proceso de producción: desde el boceto técnico hasta el prototipo físico listo para fábrica.</p>
-                        <p class="mayle-role-text" style="margin-top:12px;">Especialización en marcadas de alta eficiencia y escalado digital bajo normativas industriales internacionales.</p>
+                        <p class="mayle-role-text">Desarrollo de patrones industriales y optimización de fit. Gestión de archivo técnico de patronaje. Colaboración directa en el proceso de producción: desde el boceto técnico hasta el prototipo físico listo para fábrica.</p>
+                        <p class="mayle-role-text" style="margin-top:12px;">Especialización en marcadas de alta eficiencia y escalado bajo normativas industriales internacionales.</p>
                     </div>
                     <div>
                         <span class="mayle-role-label">Métricas Clave</span>
@@ -1057,7 +1059,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                                 <div class="mayle-overlay-metrics">
                                     <span class="mayle-metric-pill">Escalado Industrial</span>
                                     <span class="mayle-metric-pill">Aplomos de control</span>
-                                    <span class="mayle-metric-pill">Escalado digital</span>
+                                    <span class="mayle-metric-pill">Curva de Tallas</span>
                                 </div>
                                 <div class="mayle-card-cta">VER CAPACIDADES GLOBALES →</div>
                             </div>
@@ -1199,7 +1201,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <!-- GRID DE PROYECTOS — click abre SOLO ese proyecto a pantalla completa, misma mecánica que las habitaciones -->
                 <div class="pd-grid" id="pd-project-grid">
                     <!-- EXCHATON = ESCHATON.EXE -->
-                    <div class="pd-card" onclick="pdFocusProject('hab-eschaton')">
+                    <div class="pd-card render" onclick="pdFocusProject('hab-eschaton')">
                         <div class="pd-card-img-wrap">
                             <img loading="lazy" class="pd-card-img" src="fotos/Look4_Default Colorway.png" alt="ESCHATON.EXE — look CLO3D">
                             <div class="pd-card-overlay">
@@ -1217,7 +1219,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                         </div>
                     </div>
                     <!-- FRACTUM -->
-                    <div class="pd-card" onclick="pdFocusProject('hab-fractum')">
+                    <div class="pd-card render" onclick="pdFocusProject('hab-fractum')">
                         <div class="pd-card-img-wrap">
                             <img loading="lazy" class="pd-card-img" src="fotos/FRACTUM/LOOK 2/FINAL DE LOS FINALITOS_Default Colorway_121.png" alt="FRACTUM — vestuario CLO3D">
                             <div class="pd-card-overlay">
@@ -1802,7 +1804,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 }
 .odr-info-text {
   font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300;
-  color: var(--odr-ivory); opacity: 0.7; line-height: 1.8;
+  color: var(--odr-ivory); opacity: 0.7; line-height: 1.8; text-align: justify;
 }
 .odr-jury {
   background: var(--odr-bg-2); border-top: 1px solid var(--odr-border);
@@ -1848,7 +1850,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 }
 .inf-manifesto-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--inf-pink); letter-spacing: 0.4em; text-transform: uppercase; display: block; margin-bottom: 16px; }
 .inf-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 3vw, 40px); font-weight: 300; font-style: italic; color: var(--inf-ink); line-height: 1.2; margin-bottom: 20px; }
-.inf-body { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--inf-ink); opacity: 0.75; line-height: 1.8; }
+.inf-body { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--inf-ink); opacity: 0.75; line-height: 1.8; text-align: justify; }
 .inf-color-palette { display: flex; gap: 8px; margin-top: 20px; align-items: center; }
 .inf-swatch { width: 28px; height: 28px; border-radius: 50%; }
 .inf-swatch-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--inf-ink); opacity: 0.4; letter-spacing: 0.15em; margin-left: 4px; }
@@ -1908,7 +1910,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .pc-cover-issue { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--pc-red); letter-spacing: 0.5em; text-transform: uppercase; margin-bottom: 32px; display: block; }
 .pc-cover-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 5vw, 72px); font-weight: 300; line-height: 0.9; color: var(--pc-ink); margin-bottom: 24px; }
 .pc-cover-title em { color: var(--pc-red); font-style: italic; }
-.pc-cover-body { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--pc-ink); opacity: 0.65; line-height: 1.8; margin-bottom: 28px; }
+.pc-cover-body { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--pc-ink); opacity: 0.65; line-height: 1.8; margin-bottom: 28px; text-align: justify; }
 .pc-color-blocks { display: flex; gap: 0; height: 8px; margin-bottom: 28px; }
 .pc-color-block { flex: 1; }
 .pc-credits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -1955,7 +1957,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .dune-info-col { padding: 40px; border-right: 1px solid var(--dune-border); }
 .dune-info-col:last-child { border-right: none; }
 .dune-info-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--dune-sand); letter-spacing: 0.4em; text-transform: uppercase; display: block; margin-bottom: 14px; }
-.dune-info-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--dune-cream); opacity: 0.65; line-height: 1.8; }
+.dune-info-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--dune-cream); opacity: 0.65; line-height: 1.8; text-align: justify; }
 .dune-strip { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--dune-border); }
 .dune-strip-slot { overflow: hidden; aspect-ratio: 4/3; position: relative; }
 .dune-strip-slot img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: contrast(1.06) saturate(0.9); transition: transform 0.6s; }
@@ -1990,7 +1992,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .ws-room { background: var(--ws-bg); padding: 48px 0 64px; }
 .ws-intro { max-width: 720px; margin-bottom: 44px; padding-bottom: 32px; border-bottom: 1px solid var(--ws-border); }
 .ws-role-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--ws-rose); letter-spacing: 0.4em; text-transform: uppercase; display: block; margin-bottom: 14px; }
-.ws-role-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--ws-ink2); line-height: 1.75; }
+.ws-role-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--ws-ink2); line-height: 1.75; text-align: justify; }
 
 .ws-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
 .ws-card { background: var(--ws-card); border: 1px solid var(--ws-border); cursor: pointer; position: relative; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s; }
@@ -2011,7 +2013,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .ws-panel-back:hover { background: var(--ws-rose); color: #fff; border-color: var(--ws-rose); }
 .ws-panel-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: var(--ws-ink); margin-bottom: 6px; }
 .ws-panel-sub { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--ws-rose); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 18px; display: block; }
-.ws-panel-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--ws-ink2); line-height: 1.75; max-width: 680px; margin-bottom: 28px; }
+.ws-panel-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--ws-ink2); line-height: 1.75; max-width: 680px; margin-bottom: 28px; text-align: justify; }
 .ws-photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
 .ws-photo-grid img { width: 100%; aspect-ratio: 3/4; object-fit: contain; object-position: center; display: block; cursor: pointer; background: #fff; transition: opacity 0.3s; }
 .ws-photo-grid img:hover { opacity: 0.85; }
@@ -2499,7 +2501,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .vit-title { font-family:'Cormorant Garamond',serif; font-size:clamp(52px,7vw,96px); font-weight:300; color:var(--vit-cream); line-height:0.85; margin-bottom:24px; }
 .vit-subtitle { font-family:'Roboto Mono',monospace; font-size:9px; color:var(--vit-gold); letter-spacing:0.3em; text-transform:uppercase; opacity:0.5; margin-bottom:32px; }
 .vit-manifesto { font-family:'Cormorant Garamond',serif; font-size:clamp(16px,1.6vw,22px); font-style:italic; color:var(--vit-cream); opacity:0.8; line-height:1.6; border-left:1px solid var(--vit-gold); padding-left:20px; margin-bottom:32px; }
-.vit-body { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--vit-cream); opacity:0.55; line-height:1.8; }
+.vit-body { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--vit-cream); opacity:0.55; line-height:1.8; text-align:justify; }
 .vit-acid-line { font-family:'Roboto Mono',monospace; font-size:8px; color:var(--vit-acid); letter-spacing:0.3em; margin-top:28px; opacity:0.7; }
 
 /* Grid de series VITRIOL */
@@ -2548,12 +2550,12 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .ev-title { font-family:'Cormorant Garamond',serif; font-size:clamp(40px,5vw,68px); font-weight:300; color:var(--ev-cream); line-height:0.9; margin-bottom:8px; }
 .ev-tagline { font-family:'Roboto Mono',monospace; font-size:9px; color:var(--ev-skin); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:28px; opacity:0.7; }
 .ev-concept { font-family:'Cormorant Garamond',serif; font-size:clamp(16px,1.6vw,21px); font-style:italic; color:var(--ev-cream); opacity:0.75; line-height:1.6; border-left:1px solid var(--ev-terra); padding-left:20px; margin-bottom:24px; }
-.ev-body { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--ev-cream); opacity:0.55; line-height:1.8; }
+.ev-body { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--ev-cream); opacity:0.55; line-height:1.8; text-align:justify; }
 .ev-specs { border-top:1px solid var(--ev-border); display:grid; grid-template-columns:repeat(3,1fr); }
 .ev-spec { padding:32px 28px; border-right:1px solid var(--ev-border); }
 .ev-spec:last-child { border-right:none; }
 .ev-spec-key { font-family:'Roboto Mono',monospace; font-size:8px; color:var(--ev-terra); letter-spacing:0.25em; text-transform:uppercase; display:block; margin-bottom:10px; }
-.ev-spec-val { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--ev-cream); opacity:0.6; line-height:1.7; }
+.ev-spec-val { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--ev-cream); opacity:0.6; line-height:1.7; text-align:justify; }
 .ev-gallery { display:grid; grid-template-columns:1.2fr 1fr 1fr; border-top:1px solid var(--ev-border); }
 .ev-gallery-slot { overflow:hidden; background:var(--ev-bg2); position:relative; }
 .ev-gallery-slot img { width:100%; aspect-ratio:1; object-fit:cover; object-position:center; display:block; transition:transform 0.5s; filter:contrast(1.05); }
@@ -2593,7 +2595,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .fr-info-col { padding:40px; border-right:1px solid var(--fr-border); }
 .fr-info-col:last-child { border-right:none; }
 .fr-label { font-family:'Roboto Mono',monospace; font-size:8px; color:var(--fr-green); letter-spacing:0.4em; text-transform:uppercase; display:block; margin-bottom:14px; }
-.fr-text { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--fr-cream); opacity:0.55; line-height:1.8; }
+.fr-text { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--fr-cream); opacity:0.55; line-height:1.8; text-align:justify; }
 .fr-tools { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
 .fr-tool { font-family:'Roboto Mono',monospace; font-size:7px; color:var(--fr-lime); border:1px solid rgba(127,224,138,0.2); padding:4px 12px; letter-spacing:0.1em; }
 
@@ -2621,10 +2623,10 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .es-uni-num { font-family:'Cormorant Garamond',serif; font-size:96px; font-weight:300; color:rgba(196,48,96,0.06); line-height:1; position:absolute; top:20px; right:20px; }
 .es-uni-tag { font-family:'Roboto Mono',monospace; font-size:7px; color:var(--es-red); letter-spacing:0.3em; text-transform:uppercase; display:block; margin-bottom:10px; }
 .es-uni-title { font-family:'Cormorant Garamond',serif; font-size:clamp(18px,2vw,26px); font-weight:300; color:var(--es-cream); line-height:1.2; margin-bottom:16px; }
-.es-uni-text { font-family:'Inter',sans-serif; font-size:12px; font-weight:300; color:var(--es-cream); opacity:0.5; line-height:1.8; }
+.es-uni-text { font-family:'Inter',sans-serif; font-size:12px; font-weight:300; color:var(--es-cream); opacity:0.5; line-height:1.8; text-align:justify; }
 .es-concept { padding:48px 40px; display:grid; grid-template-columns:1fr 1.5fr; gap:48px; border-bottom:1px solid var(--es-border); background:var(--es-bg2); }
 .es-concept-title { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3.5vw,48px); font-weight:300; font-style:italic; color:var(--es-cream); line-height:1.1; }
-.es-concept-text { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--es-cream); opacity:0.6; line-height:1.8; }
+.es-concept-text { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--es-cream); opacity:0.6; line-height:1.8; text-align:justify; }
 .es-gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); }
 .es-gallery-slot { overflow:hidden; background:var(--es-bg2); border-right:1px solid var(--es-border); }
 .es-gallery-slot:last-child { border-right:none; }
@@ -2673,7 +2675,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .etp-intro > * { position:relative; z-index:1; }
 .etp-intro h1 { font-size:clamp(20px,4vw,44px); margin:10px 0 16px; }
 .etp-quote { font-family:'VT323',monospace; font-size:19px; color:var(--etp-cream); opacity:0.85; max-width:640px; margin-bottom:14px; }
-.etp-p { font-family:'VT323',monospace; font-size:16px; color:var(--etp-cream); opacity:0.6; max-width:640px; line-height:1.5; }
+.etp-p { font-family:'VT323',monospace; font-size:16px; color:var(--etp-cream); opacity:0.6; max-width:640px; line-height:1.5; text-align:justify; }
 .etp-roles { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
 .etp-role { font-family:'VT323',monospace; font-size:12px; letter-spacing:0.1em; padding:3px 10px; border:2px solid; text-transform:uppercase; }
 .etp-role.mine { color:var(--etp-yellow); border-color:var(--etp-yellow); }
@@ -3571,7 +3573,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="fr-scene-modal-bg" id="fr-scene-1" onclick="frCloseScene(event,1)" style="position:fixed;inset:0;z-index:3000;background:rgba(5,12,8,0.92);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(8px);">
                     <div onclick="event.stopPropagation()" style="background:var(--fr-bg2);border:1px solid var(--fr-border);max-width:640px;width:100%;max-height:86vh;overflow-y:auto;">
                         <div style="position:relative;">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0001.png" style="width:100%;aspect-ratio:9/16;object-fit:cover;display:block;">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0001.png" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
                             <button onclick="frCloseScene(event,1)" style="position:absolute;top:14px;right:14px;font-family:'Roboto Mono',monospace;font-size:9px;color:#fff;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.3);padding:8px 12px;cursor:pointer;">✕ CERRAR</button>
                         </div>
                         <div style="padding:28px 32px;">
@@ -3589,7 +3591,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="fr-scene-modal-bg" id="fr-scene-2" onclick="frCloseScene(event,2)" style="position:fixed;inset:0;z-index:3000;background:rgba(5,12,8,0.92);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(8px);">
                     <div onclick="event.stopPropagation()" style="background:var(--fr-bg2);border:1px solid var(--fr-border);max-width:640px;width:100%;max-height:86vh;overflow-y:auto;">
                         <div style="position:relative;">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0088.png" style="width:100%;aspect-ratio:9/16;object-fit:cover;display:block;">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0088.png" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
                             <button onclick="frCloseScene(event,2)" style="position:absolute;top:14px;right:14px;font-family:'Roboto Mono',monospace;font-size:9px;color:#fff;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.3);padding:8px 12px;cursor:pointer;">✕ CERRAR</button>
                         </div>
                         <div style="padding:28px 32px;">
@@ -3607,7 +3609,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="fr-scene-modal-bg" id="fr-scene-3" onclick="frCloseScene(event,3)" style="position:fixed;inset:0;z-index:3000;background:rgba(5,12,8,0.92);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(8px);">
                     <div onclick="event.stopPropagation()" style="background:var(--fr-bg2);border:1px solid var(--fr-border);max-width:640px;width:100%;max-height:86vh;overflow-y:auto;">
                         <div style="position:relative;">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0019.png" style="width:100%;aspect-ratio:9/16;object-fit:cover;display:block;">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0019.png" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
                             <button onclick="frCloseScene(event,3)" style="position:absolute;top:14px;right:14px;font-family:'Roboto Mono',monospace;font-size:9px;color:#fff;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.3);padding:8px 12px;cursor:pointer;">✕ CERRAR</button>
                         </div>
                         <div style="padding:28px 32px;">
@@ -3625,7 +3627,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="fr-scene-modal-bg" id="fr-scene-4" onclick="frCloseScene(event,4)" style="position:fixed;inset:0;z-index:3000;background:rgba(5,12,8,0.92);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(8px);">
                     <div onclick="event.stopPropagation()" style="background:var(--fr-bg2);border:1px solid var(--fr-border);max-width:640px;width:100%;max-height:86vh;overflow-y:auto;">
                         <div style="position:relative;">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0193.png" style="width:100%;aspect-ratio:9/16;object-fit:cover;display:block;">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0193.png" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
                             <button onclick="frCloseScene(event,4)" style="position:absolute;top:14px;right:14px;font-family:'Roboto Mono',monospace;font-size:9px;color:#fff;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.3);padding:8px 12px;cursor:pointer;">✕ CERRAR</button>
                         </div>
                         <div style="padding:28px 32px;">
@@ -3752,7 +3754,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <span class="sobre-section-label">Experiencia</span>
             <div class="sobre-item">
                 <div class="sobre-item-title">Mayle Vázquez</div>
-                <div class="sobre-item-sub">Digital Pattern Maker · Product Development · Asistencia Creativa</div>
+                <div class="sobre-item-sub">Industrial Pattern Maker · Product Development · Asistencia Creativa</div>
                 <span class="sobre-item-year">2023 — 2024</span>
             </div>
             <div class="sobre-item">
@@ -3898,7 +3900,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         <div class="archive-header">
             <span class="archive-tag-display" id="active-tag-name">MAYLE VÁZQUEZ</span>
             <h2 class="archive-title">System Archive</h2>
-            <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--matter-light);opacity:0.65;max-width:520px;margin-top:16px;line-height:1.7;">Fichas técnicas de patronaje industrial — visión de costes (COGS), marcada digital y estándares CAD para cada pieza desarrollada con Mayle Vázquez.</p>
+            <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--matter-light);opacity:0.65;max-width:520px;margin-top:16px;line-height:1.7;">Fichas técnicas de patronaje industrial — visión de costes (COGS) y especificaciones de marcada para cada pieza desarrollada con Mayle Vázquez.</p>
             <a href="#" style="font-family:'Roboto Mono';font-size:9px;color:var(--sapphire);text-decoration:none;margin-top:16px;display:inline-block;letter-spacing:0.2em;" onclick="navTo('lobby')">✕ VOLVER AL INICIO</a>
         </div>
         <div class="archive-results-grid" id="archive-results">
@@ -3963,7 +3965,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     <div class="etp-cloud" style="bottom:12%;right:14%;"></div>
                     <span class="etp-eyebrow">// 01 · EL CONCEPTO</span>
                     <p class="etp-quote">"En 1995 nadie pedía la talla para entrar a la sala."</p>
-                    <p class="etp-p">Enter The Palace nació de una colaboración con Bershka: nos dieron una tendencia —elegí lo digital de los 90 sobre 2010— y debíamos construir una colección y campaña completas. En 1995, Jim Bumgardner creó The Palace para Time Warner Interactive: una sala de chat gráfica donde los usuarios se representaban con avatares pixelados que podían customizar con hasta nueve "props". En pocos meses, la artista Melicia Greenwood convirtió esos props en muñecas vestibles —las Dollz— y el internet tuvo su primera cultura de moda digital.</p>
+                    <p class="etp-p">Enter The Palace nació de una colaboración con Bershka: nos dieron una tendencia —elegimos lo digital de los 90 sobre 2010— y debíamos construir una colección y campaña completas. En 1995, Jim Bumgardner creó The Palace para Time Warner Interactive: una sala de chat gráfica donde los usuarios se representaban con avatares pixelados que podían customizar con hasta nueve "props". En pocos meses, la artista Melicia Greenwood convirtió esos props en muñecas vestibles —las Dollz— y el internet tuvo su primera cultura de moda digital.</p>
                     <p class="etp-p" style="margin-top:12px;">El Palace tenía salas temáticas —Balamb Garden, Crystal Tokyo, castillos góticos, cafés ciberpunk— y en ningún avatar existía la talla: un cuerpo de 32×32 píxeles no tiene estándares de industria. Hoy ese Palace se llama TikTok, los avatares son los vídeos, los props son la ropa y el vestíbulo es el feed. Enter The Palace no recrea los 90 — devuelve a Bershka al cruce exacto entre identidad, ropa y mundo digital, esta vez en el cuerpo físico.</p>
                     <div class="etp-roles">
                         <span class="etp-role mine">IDEA · DIRECCIÓN CREATIVA · PATRONAJE: YO</span>
@@ -4010,12 +4012,12 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     <p class="etp-p" style="max-width:820px;margin-top:12px;">Ese sistema se aplicó a una matriz de 5 looks por drop, cada uno con su propia ficha de ajuste, materiales y construcción — desde el denim de 12oz con canesú corazón invertido del Look 01 "The Foundation", hasta el mix final del Look 05 "Total Palace Glitch", con costuras princesa 3D y ganchos ocultos para lograr un efecto de mono visual sin gap de cintura en ningún punto del cuerpo.</p>
 
                     <div class="etp-grid" style="grid-template-columns:repeat(3,1fr);margin-top:22px;">
-                        <div class="etp-card"><img loading="lazy" src="sala-enter-the-palace/assets/shop/prod-01-falda-metal.png" alt="Minifalda Metalizada — CLO3D"><div class="etp-card-cap">MINIFALDA METALIZADA</div></div>
-                        <div class="etp-card"><img loading="lazy" src="sala-enter-the-palace/assets/shop/prod-02-blazer-gris.png" alt="Blazer Oversize — CLO3D"><div class="etp-card-cap">BLAZER OVERSIZE</div></div>
-                        <div class="etp-card"><img loading="lazy" src="sala-enter-the-palace/assets/shop/prod-07-corset-etp.png" alt="Corset — CLO3D"><div class="etp-card-cap">CORSET</div></div>
-                        <div class="etp-card"><img loading="lazy" src="sala-enter-the-palace/assets/shop/prod-08-pantalon-azul.png" alt="Pantalón Balloon — CLO3D"><div class="etp-card-cap">PANTALÓN BALLOON</div></div>
-                        <div class="etp-card"><img loading="lazy" src="sala-enter-the-palace/assets/shop/prod-09-bermuda-short.png" alt="Bermuda Short — CLO3D"><div class="etp-card-cap">BERMUDA SHORT</div></div>
-                        <div class="etp-card"><img loading="lazy" src="sala-enter-the-palace/assets/shop/prod-10-falda-plisada.png" alt="Minifalda Plisada — CLO3D"><div class="etp-card-cap">MINIFALDA PLISADA</div></div>
+                        <div class="etp-card"><img loading="lazy" src="sala-enter-the-palace/assets/shop/prod-01-falda-metal.png" alt="Minifalda Metalizada — CLO3D" style="object-fit:contain;background:var(--etp-navy);padding:4%;box-sizing:border-box;"><div class="etp-card-cap">MINIFALDA METALIZADA</div></div>
+                        <div class="etp-card"><img loading="lazy" src="sala-enter-the-palace/assets/shop/prod-02-blazer-gris.png" alt="Blazer Oversize — CLO3D" style="object-fit:contain;background:var(--etp-navy);padding:4%;box-sizing:border-box;"><div class="etp-card-cap">BLAZER OVERSIZE</div></div>
+                        <div class="etp-card"><img loading="lazy" src="sala-enter-the-palace/assets/shop/prod-07-corset-etp.png" alt="Corset — CLO3D" style="object-fit:contain;background:var(--etp-navy);padding:4%;box-sizing:border-box;"><div class="etp-card-cap">CORSET</div></div>
+                        <div class="etp-card"><img loading="lazy" src="sala-enter-the-palace/assets/shop/prod-08-pantalon-azul.png" alt="Pantalón Balloon — CLO3D" style="object-fit:contain;background:var(--etp-navy);padding:4%;box-sizing:border-box;"><div class="etp-card-cap">PANTALÓN BALLOON</div></div>
+                        <div class="etp-card"><img loading="lazy" src="sala-enter-the-palace/assets/shop/prod-09-bermuda-short.png" alt="Bermuda Short — CLO3D" style="object-fit:contain;background:var(--etp-navy);padding:4%;box-sizing:border-box;"><div class="etp-card-cap">BERMUDA SHORT</div></div>
+                        <div class="etp-card"><img loading="lazy" src="sala-enter-the-palace/assets/shop/prod-10-falda-plisada.png" alt="Minifalda Plisada — CLO3D" style="object-fit:contain;background:var(--etp-navy);padding:4%;box-sizing:border-box;"><div class="etp-card-cap">MINIFALDA PLISADA</div></div>
                     </div>
                     <p class="etp-p" style="font-size:12px;opacity:0.45;margin-top:12px;">▶ 6 piezas de la matriz, patronadas y modeladas en CLO3D desde el Bloque B.</p>
                 </div>
@@ -4512,7 +4514,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
       <div class="mayle-modal-subtitle">Estabilidad</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Línea de quiebre</span><p class="mayle-spec-val">Roll line con <strong>piquetes de posicionamiento para cinta de sastre</strong> (stay tape), eliminando el error humano en el montaje de la solapa.</p></div>
       <div class="mayle-modal-subtitle">Escalado</div>
-      <div class="mayle-spec-block"><span class="mayle-spec-key">Curva de tallas S→XL</span><p class="mayle-spec-val">Estructura base diseñada para <strong>mantener el equilibrio del volumen</strong> en toda la curva de tallas. Escalado digital bajo normativas industriales internacionales.</p></div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Curva de tallas S→XL</span><p class="mayle-spec-val">Estructura base diseñada para <strong>mantener el equilibrio del volumen</strong> en toda la curva de tallas. Escalado bajo normativas industriales internacionales.</p></div>
       <div class="mayle-modal-tags"><span class="mayle-modal-tag">Holgura Manga 1–1.5"</span><span class="mayle-modal-tag">Stay Tape</span><span class="mayle-modal-tag">Roll Line</span><span class="mayle-modal-tag">Automática Compatible</span><span class="mayle-modal-tag">S→XL Balanced</span></div>
     </div>
   </div>
@@ -4567,10 +4569,10 @@ textarea.c-form-input { resize: none; min-height: 100px; }
       <div class="mayle-modal-subtitle">Visión de Costes (COGS)</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Integración diseño-producción</span><p class="mayle-spec-val">Integración de detalles de diseño en el patrón para <strong>minimizar pasos de montaje</strong> y reducir costes de mano de obra directa.</p></div>
       <div class="mayle-modal-subtitle">Precisión Técnica</div>
-      <div class="mayle-spec-block"><span class="mayle-spec-key">Especificaciones de marcada</span><p class="mayle-spec-val">Marcadas digitales optimizadas con <strong>aplomos de control y hojas de ruta de materiales</strong>, listas para coordinación con manufactura externa.</p></div>
-      <div class="mayle-modal-subtitle">Software Avanzado</div>
-      <div class="mayle-spec-block"><span class="mayle-spec-key">Digital Pattern Making</span><p class="mayle-spec-val">Marcadas de <strong>alta eficiencia y escalado digital</strong> bajo normativas industriales internacionales. Compatible con sistemas CAD de patronaje.</p></div>
-      <div class="mayle-modal-tags"><span class="mayle-modal-tag">COGS Awareness</span><span class="mayle-modal-tag">CAD Pattern</span><span class="mayle-modal-tag">Marcada Digital</span><span class="mayle-modal-tag">Industrial Standards</span></div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Especificaciones de marcada</span><p class="mayle-spec-val">Marcadas optimizadas con <strong>aplomos de control y hojas de ruta de materiales</strong>, listas para coordinación con manufactura externa.</p></div>
+      <div class="mayle-modal-subtitle">Estándares de Manufactura</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Eficiencia de Marcada</span><p class="mayle-spec-val">Marcadas de <strong>alta eficiencia y escalado</strong> bajo normativas industriales internacionales, listas para producción en fábrica.</p></div>
+      <div class="mayle-modal-tags"><span class="mayle-modal-tag">COGS Awareness</span><span class="mayle-modal-tag">Marcada Industrial</span><span class="mayle-modal-tag">Hojas de Ruta</span><span class="mayle-modal-tag">Industrial Standards</span></div>
     </div>
   </div>
 </div>
