@@ -358,6 +358,21 @@ html, body {
 .news-cover:hover img { opacity: 1; transform: scale(1.02); }
 .news-cover-label { position: absolute; bottom: 16px; left: 16px; font-family: 'Roboto Mono', monospace; font-size: 9px; background: var(--amber); color: black; padding: 4px 10px; font-weight: 500; }
 
+/* ── PROYECTOS DESTACADOS — uno por sala, data-driven vía FEATURED_PROJECTS ── */
+.featured-section { padding: 40px 8% 32px; border-top: 1px solid rgba(253,185,39,0.1); flex-shrink: 0; }
+.featured-label { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--amber); letter-spacing: 0.5em; text-transform: uppercase; display: block; margin-bottom: 20px; }
+.featured-track { display: flex; gap: 24px; overflow-x: auto; padding-bottom: 8px; }
+.featured-card { flex: 0 0 240px; cursor: pointer; border: 1px solid rgba(253,185,39,0.15); background: rgba(255,255,255,0.02); transition: 0.3s; }
+.featured-card:hover { border-color: var(--amber); transform: translateY(-4px); }
+.featured-card-img-wrap { aspect-ratio: 3/4; overflow: hidden; position: relative; }
+.featured-card-img-wrap img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: 0.4s; display: block; }
+.featured-card:hover .featured-card-img-wrap img { opacity: 1; transform: scale(1.03); }
+.featured-card-badge { position: absolute; top: 12px; left: 12px; font-family: 'Roboto Mono', monospace; font-size: 7px; color: #000; background: var(--amber); padding: 4px 10px; letter-spacing: 0.2em; text-transform: uppercase; }
+.featured-card-meta { padding: 14px 16px; }
+.featured-card-sala { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--sapphire); letter-spacing: 0.15em; text-transform: uppercase; display: block; margin-bottom: 6px; }
+.featured-card-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--matter-light); line-height: 1.2; }
+@media (max-width: 700px) { .featured-card { flex: 0 0 200px; } }
+
 /* DETALLE */
 .detail-overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(10,10,10,0.5); backdrop-filter: blur(30px); display: flex; opacity: 0; pointer-events: none; transition: opacity 0.4s; }
 .detail-overlay.active { opacity: 1; pointer-events: all; }
@@ -881,7 +896,6 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
             <!-- PANEL ST_01: Sala I — slideshow -->
             <div class="panel panel-lg" id="panel-01" onclick="navTo('oficio');">
-                <div class="panel-data"><span class="data-val" style="color:var(--amber);">92%</span><span class="data-lab">Estructura</span></div>
                 <div class="panel-frame">
                     <div class="panel-slides" id="slides-01">
                         <div class="panel-slide active"><span class="panel-slide-label">Leonel Lirio · RW 2024</span><img loading="lazy" src="fotos/lionellirio2.jpg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
@@ -950,6 +964,12 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         </div>
     </div>
 
+    <!-- PROYECTOS DESTACADOS — uno por sala, generado desde FEATURED_PROJECTS (destacado:true), no hardcodeado -->
+    <div class="featured-section">
+        <span class="featured-label">Proyectos Destacados</span>
+        <div class="featured-track" id="featured-track"></div>
+    </div>
+
     <!-- LOBBY FOOTER: drag hint + novedades, dentro del flujo column -->
     <div class="l-footer">
         <div class="drag-hint">
@@ -981,7 +1001,6 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <div class="news-cover" onclick="navTo('oficio');focusHab('hab-mayle');"><img loading="lazy" src="fotos/santo-domingo-dress.png"><span class="news-cover-label">MAYLE</span></div>
             <div class="news-cover" onclick="navTo('oficio');focusHab('hab-leonel');"><img loading="lazy" src="fotos/leonel35.jpg"><span class="news-cover-label">LEONEL</span></div>
             <div class="news-cover" onclick="navTo('oficio');focusHab('hab-eliza');"><img loading="lazy" src="fotos/elisamorato4.jpg"><span class="news-cover-label">ELISA</span></div>
-            <div class="news-cover" onclick="navTo('oficio');focusHab('hab-koyrd');"><img loading="lazy" src="fotos/ChatGPT Image 29 jul 2026, 22_36_33.png"><span class="news-cover-label">KOYRD</span></div>
             <div class="news-cover" onclick="navTo('mundos-content');focusHab('hab-vitriol');"><img loading="lazy" src="fotos/2.jpg" onerror="this.style.background='#111'"><span class="news-cover-label">VITRIOL</span></div>
             <div class="news-cover" onclick="navTo('mundos-content');focusHab('hab-evolver');"><img loading="lazy" src="fotos/logo evolver skin.png" onerror="this.style.background='#111'"><span class="news-cover-label">EVOLVER</span></div>
             <div class="news-cover" onclick="navTo('enter-the-palace');focusHab('hab-etp');"><img loading="lazy" src="sala-enter-the-palace/assets/AVATARES/look-frente.png" onerror="this.style.background='#111'"><span class="news-cover-label">ETP</span></div>
@@ -1078,9 +1097,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                             <div class="mayle-card-overlay">
                                 <p class="mayle-overlay-title">Vestido "Santo Domingo"</p>
                                 <div class="mayle-overlay-metrics">
-                                    <span class="mayle-metric-pill">Holgura negativa controlada</span>
-                                    <span class="mayle-metric-pill">88% aprovechamiento tejido</span>
-                                    <span class="mayle-metric-pill">Sostenibilidad · reducción mermas</span>
+                                    <span class="mayle-metric-pill">Sin chasis interno</span>
+                                    <span class="mayle-metric-pill">Estructura por percalinado</span>
+                                    <span class="mayle-metric-pill">Forro sencillo, sin ballenas</span>
                                 </div>
                                 <div class="mayle-card-cta">VER ESPECIFICACIÓN TÉCNICA →</div>
                             </div>
@@ -1088,7 +1107,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                         <div class="mayle-card-meta">
                             <span class="mayle-card-code">Alta Complejidad</span>
                             <div class="mayle-card-name">Vestido "Santo Domingo"</div>
-                            <div class="mayle-card-tags"><span class="mayle-card-tag">Fitting</span><span class="mayle-card-tag">Marcada</span><span class="mayle-card-tag">Sostenible</span></div>
+                            <div class="mayle-card-tags"><span class="mayle-card-tag">Percalinado</span><span class="mayle-card-tag">Sin Chasis</span><span class="mayle-card-tag">Cortes Estructurales</span></div>
                         </div>
                     </div>
                     <!-- CARD DUAL: Abrigo Caribe + Chaqueta 1 (misma prenda, dos vistas) -->
@@ -1106,8 +1125,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                                 <p class="mayle-overlay-title">Abrigo "Caribe"</p>
                                 <div class="mayle-overlay-metrics">
                                     <span class="mayle-metric-pill">Manga globo · expansión radial</span>
-                                    <span class="mayle-metric-pill">Stay tape · error cero en solapa</span>
-                                    <span class="mayle-metric-pill">Escalado S→XL equilibrado</span>
+                                    <span class="mayle-metric-pill">Pinzas dobles al frente</span>
+                                    <span class="mayle-metric-pill">Solapa y cuello XL</span>
                                 </div>
                                 <div class="mayle-card-cta">VER ESPECIFICACIÓN TÉCNICA →</div>
                             </div>
@@ -1115,7 +1134,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                         <div class="mayle-card-meta">
                             <span class="mayle-card-code">Sastrería Industrial</span>
                             <div class="mayle-card-name">Abrigo "Caribe"</div>
-                            <div class="mayle-card-tags"><span class="mayle-card-tag">Serie</span><span class="mayle-card-tag">Escalado</span><span class="mayle-card-tag">Volumen</span><span class="mayle-card-tag">Roll Line</span><span class="mayle-card-tag">Automatización</span></div>
+                            <div class="mayle-card-tags"><span class="mayle-card-tag">Serie</span><span class="mayle-card-tag">Escalado</span><span class="mayle-card-tag">Volumen</span><span class="mayle-card-tag">Patronaje Tradicional</span><span class="mayle-card-tag">Solapa XL</span></div>
                         </div>
                     </div>
                     <!-- CARD: Chaqueta El Pozo (solo detalle constructivo) -->
@@ -1125,10 +1144,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                             <div class="mayle-card-overlay">
                                 <p class="mayle-overlay-title">Chaqueta "El Pozo"</p>
                                 <div class="mayle-overlay-metrics">
-                                    <span class="mayle-metric-pill">−15% tiempo de confección</span>
-                                    <span class="mayle-metric-pill">Tablones CNC integrados</span>
-                                    <span class="mayle-metric-pill">Cuello mao anatómico</span>
-                                    <span class="mayle-metric-pill">Manga campana compensada</span>
+                                    <span class="mayle-metric-pill">Cuello mao first-fit</span>
+                                    <span class="mayle-metric-pill">Corte al hilo · margen 3/4"</span>
+                                    <span class="mayle-metric-pill">Percalinado de un lado</span>
                                 </div>
                                 <div class="mayle-card-cta">VER ESPECIFICACIÓN TÉCNICA →</div>
                             </div>
@@ -1136,7 +1154,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                         <div class="mayle-card-meta">
                             <span class="mayle-card-code">Detalle Constructivo</span>
                             <div class="mayle-card-name">Chaqueta "El Pozo"</div>
-                            <div class="mayle-card-tags"><span class="mayle-card-tag">COGS</span><span class="mayle-card-tag">CNC</span><span class="mayle-card-tag">Eficiencia</span><span class="mayle-card-tag">Lino</span><span class="mayle-card-tag">Construcción</span></div>
+                            <div class="mayle-card-tags"><span class="mayle-card-tag">Lino</span><span class="mayle-card-tag">Mao First-Fit</span><span class="mayle-card-tag">Percalinado</span><span class="mayle-card-tag">Construcción</span></div>
                         </div>
                     </div>
                     <div class="mayle-card" onclick="openMayleModal('mayle-modal-4')">
@@ -1164,7 +1182,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     </div>
 
     <!-- ══ HAB: PATRONAJE DIGITAL — CLO3D + Illustrator (identidad "blueprint", propia y separada de Mayle) ══ -->
-    <div class="hab" id="hab-patronaje-digital" data-tag="BEATRIZ CASTRO">
+    <!-- Oculto: sin proyectos reales materializados en prenda física todavía. Se reactiva cuando Beatriz suba proyectos que sí lo estén. -->
+    <div class="hab" id="hab-patronaje-digital" data-tag="BEATRIZ CASTRO" style="display:none;">
         <div class="hab-header hab-banner" onclick="focusHab('hab-patronaje-digital')">
             <img loading="lazy" class="hab-banner-img" src="fotos/Look4_Default Colorway.png" alt="Patronaje Digital — CLO3D">
             <div class="hab-banner-scrim"></div>
@@ -1236,24 +1255,6 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                             <div class="pd-card-tags"><span class="pd-card-tag">2 Vestuarios</span><span class="pd-card-tag">CLO3D</span><span class="pd-card-tag">Blender</span></div>
                         </div>
                     </div>
-                    <!-- PROYECTOS INDEPENDIENTES -->
-                    <div class="pd-card" onclick="pdFocusProject('independientes')">
-                        <div class="pd-card-img-wrap">
-                            <img loading="lazy" class="pd-card-img" src="fotos/CLIENTA DE Wuatan Studio look3.png" alt="Proyectos Independientes — Clienta recurrente">
-                            <div class="pd-card-overlay">
-                                <p class="pd-overlay-title">Proyectos Independientes</p>
-                                <div class="pd-overlay-metrics">
-                                    <span class="pd-metric-pill">Clienta recurrente · Wuatan Studio</span>
-                                </div>
-                                <div class="pd-card-cta">VER FICHAS TÉCNICAS →</div>
-                            </div>
-                        </div>
-                        <div class="pd-card-meta">
-                            <span class="pd-card-code">Archivo Personal</span>
-                            <div class="pd-card-name">Proyectos Independientes</div>
-                            <div class="pd-card-tags"><span class="pd-card-tag">CLO3D</span><span class="pd-card-tag">Illustrator</span></div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- PANELES DE PROYECTO — solo uno visible a la vez, el resto (incluida la grilla de arriba) desaparece -->
@@ -1275,50 +1276,6 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     <div class="pd-grid" id="pd-garment-grid-hab-fractum"></div>
                     <button class="pd-panel-full-btn" onclick="navTo('mundos-content');focusHab('hab-fractum');">VER PROYECTO COMPLETO →</button>
                 </div>
-                <div class="pd-project-panel" id="pd-proj-independientes" style="display:none;">
-                    <button class="pd-panel-back" onclick="pdBackToGrid()">← VOLVER</button>
-                    <div class="pd-section-head">
-                        <span class="pd-section-eyebrow">Archivo Personal</span>
-                        <h3 class="pd-section-title">Look 3</h3>
-                    </div>
-                    <p class="pd-role-text" style="margin-bottom:28px;">Vestido con drapeado asimétrico. Patronaje base y transformación realizados en Adobe Illustrator — pieza completa, sin CLO3D.</p>
-                    <div class="pd-grid" id="pd-garment-grid-independientes"></div>
-                </div>
-
-                <!-- FICHA TÉCNICA — Look 3: ilustración + prenda + vistas, todo en una sola vista consolidada -->
-                <div class="pd-modal-bg" id="pd-look3-ficha" onclick="closePdLook3Ficha(event)">
-                    <div class="pd-modal pd-ficha-tecnica-modal">
-                        <div class="pd-modal-info" style="grid-column:1/-1;">
-                            <button class="pd-modal-close" onclick="document.getElementById('pd-look3-ficha').classList.remove('open')">✕ CERRAR</button>
-                            <span class="pd-modal-code">Archivo Personal · Ficha Técnica</span>
-                            <h3 class="pd-modal-title">Look 3</h3>
-                            <p class="pd-spec-val" style="margin-bottom:24px;max-width:640px;">Patronaje base y transformación realizados íntegramente en Adobe Illustrator — pieza completa, sin CLO3D.</p>
-
-                            <div class="pd-ficha-main">
-                                <div class="pd-ficha-main-item">
-                                    <img loading="lazy" src="fotos/ILUSTRACION CONJUNTO AZUL REY CLIENTA DE Wuatan Studio look3.png" alt="Ilustración técnica">
-                                    <span class="pd-ficha-lab">Ilustración técnica</span>
-                                </div>
-                                <div class="pd-ficha-main-item">
-                                    <img loading="lazy" src="fotos/CLIENTA DE Wuatan Studio look3.png" alt="Prenda terminada">
-                                    <span class="pd-ficha-lab">Prenda terminada</span>
-                                </div>
-                            </div>
-
-                            <span class="pd-modal-subtitle" style="margin-top:8px;">Vistas</span>
-                            <div class="pd-ficha-vistas">
-                                <div class="pd-ficha-vista-item"><img loading="lazy" src="fotos/CLIENTA DE Wuatan Studio look3a.png" alt="Vista A"><span class="pd-ficha-lab">Vista A</span></div>
-                                <div class="pd-ficha-vista-item"><img loading="lazy" src="fotos/CLIENTA DE Wuatan Studio look3b.png" alt="Vista B"><span class="pd-ficha-lab">Vista B</span></div>
-                                <div class="pd-ficha-vista-item"><img loading="lazy" src="fotos/CLIENTA DE Wuatan Studio look3c.png" alt="Vista C"><span class="pd-ficha-lab">Vista C</span></div>
-                            </div>
-
-                            <div class="pd-modal-tags">
-                                <button class="pd-tool-pill" style="cursor:pointer;background:rgba(52,232,204,0.05);" onclick="pdOpenPattern()">VER PATRÓN COMPLETO →</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- FICHA TÉCNICA — FRACTUM Look 1: frente + espalda juntos; renders de detalle pendientes de integrar -->
                 <div class="pd-modal-bg" id="pd-fractum-look1-ficha" onclick="closePdFractumLook1Ficha(event)">
                     <div class="pd-modal pd-ficha-tecnica-modal">
@@ -1395,20 +1352,6 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     </div>
                 </div>
 
-                <!-- VISOR PROTEGIDO DE PATRÓN — solo visualización, sin descarga ni clic derecho.
-                     Nota honesta: esto bloquea guardar-como, clic derecho y arrastrar la imagen — no puede impedir
-                     una captura de pantalla real (Print Screen, herramienta de recorte, cámara), eso ningún sitio web puede evitarlo. -->
-                <div class="pd-modal-bg" id="pd-patron-modal" onclick="closePdPattern(event)" oncontextmenu="return false;">
-                    <div class="pd-patron-viewer">
-                        <button class="pd-modal-close" style="position:sticky;top:14px;float:right;margin-right:14px;z-index:5;" onclick="document.getElementById('pd-patron-modal').classList.remove('open')">✕ CERRAR</button>
-                        <div class="pd-patron-head">
-                            <span class="pd-modal-code">Patrón digital · Solo visualización</span>
-                            <h3 class="pd-modal-title" style="margin-bottom:4px;">Look 3</h3>
-                            <p class="pd-spec-val" style="max-width:520px;">Este patrón es propiedad de Beatriz Castro. No está disponible para descarga.</p>
-                        </div>
-                        <div class="pd-patron-pages" id="pd-patron-pages"></div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -1635,96 +1578,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             </div>
         </div>
     </div>
-
-    <!-- ══ HAB: KOYRD — Reorganización de Taller y Patronaje de Marca (proyecto propio, independiente) ══ -->
-    <div class="hab" id="hab-koyrd" data-tag="BEATRIZ CASTRO">
-        <div class="hab-header hab-banner" onclick="focusHab('hab-koyrd')">
-            <img loading="lazy" class="hab-banner-img" src="fotos/ChatGPT Image 29 jul 2026, 22_36_33.png" alt="KOYRD — Reorganización de Taller y Patronaje de Marca">
-            <div class="hab-banner-scrim"></div>
-            <div class="hab-banner-content">
-                <div>
-                    <span class="hab-banner-code" style="color:var(--sapphire);">REORGANIZACIÓN DE TALLER · PATRONAJE DE MARCA</span>
-                    <h2 class="hab-banner-title">KOYRD — Reorganización de Taller y Patronaje de Marca</h2>
-                </div>
-                <span class="hab-banner-arrow">VER PROYECTO →</span>
-            </div>
-        </div>
-        <div class="hab-content">
-            <div class="editorial-room">
-                <!-- ACTO 1: El Contexto -->
-                <div class="ed-act">
-                    <div class="ed-act-header">
-                        <span class="ed-act-num">01</span>
-                        <span class="ed-act-label">El Contexto</span>
-                    </div>
-                    <div class="ed-act-body ed-act-body--text-first">
-                        <div class="ed-text-block">
-                            <p class="ed-pull-quote">"El equipo se había reducido a la mitad<br>justo antes de que yo empezara."</p>
-                            <p class="ed-body-text">La marca me contrató para reorganizar la parte de producción del taller — el área de bordado ya la tenía resuelta la diseñadora. El equipo se había reducido a la mitad justo antes de que yo empezara, y quien llevaba la administración no tenía formación técnica pero tomaba decisiones de producción sin consultar.</p>
-                            <div class="ed-role-pills">
-                                <span class="ed-pill">Reorganización de taller</span>
-                                <span class="ed-pill">Patronaje de marca</span>
-                                <span class="ed-pill">Tabla de tallas</span>
-                                <span class="ed-pill">Formación de equipo</span>
-                            </div>
-                        </div>
-                        <div class="ed-img-block">
-                            <img loading="lazy" src="fotos/ChatGPT Image 29 jul 2026, 22_36_33.png" alt="KOYRD by Yilda Santa">
-                            <span class="ed-img-caption">KOYRD by Yilda Santa</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ACTO 2: El Proceso -->
-                <div class="ed-act ed-act--dark">
-                    <div class="ed-act-header">
-                        <span class="ed-act-num">02</span>
-                        <span class="ed-act-label">El Proceso</span>
-                    </div>
-                    <div class="ed-crisis-block">
-                        <div class="ed-crisis-label">TRES FRENTES EN PARALELO</div>
-                        <div class="ed-crisis-grid">
-                            <div class="ed-crisis-item">
-                                <span class="ed-crisis-icon">01</span>
-                                <span class="ed-crisis-step">Patronaje de marca</span>
-                                <p class="ed-crisis-text">Creé la tabla de tallas y los patrones base de la marca desde cero.</p>
-                            </div>
-                            <div class="ed-crisis-arrow">→</div>
-                            <div class="ed-crisis-item">
-                                <span class="ed-crisis-icon">02</span>
-                                <span class="ed-crisis-step">Organización</span>
-                                <p class="ed-crisis-text">Organicé el área de patronaje y corte del taller.</p>
-                            </div>
-                            <div class="ed-crisis-arrow">→</div>
-                            <div class="ed-crisis-item">
-                                <span class="ed-crisis-icon">03</span>
-                                <span class="ed-crisis-step">Formación cruzada</span>
-                                <p class="ed-crisis-text">Formé al equipo de operarios —especializados en ropa de hombre— en técnicas de confección de ropa de mujer. A cambio, aprendí de ellos técnicas de sastrería masculina, lo que despertó mi interés en seguir formándome en esa área.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ACTO 3: El Resultado -->
-                <div class="ed-act">
-                    <div class="ed-act-header">
-                        <span class="ed-act-num">03</span>
-                        <span class="ed-act-label">El Resultado</span>
-                    </div>
-                    <div class="ed-act-body ed-act-body--text-first" style="grid-template-columns:1fr;">
-                        <div class="ed-text-block">
-                            <p class="ed-body-text">Antes de irme, saqué una colección completa para la marca, confeccionando parte de las piezas yo misma.</p>
-                            <p class="ed-body-text" style="margin-top:16px;">La reorganización del área de tejidos quedó pendiente por falta de tiempo — no todo se resolvió, y eso también es parte real de trabajar con recursos limitados.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
-
-
-
 
 <!-- ═══════════════════════════════════════════
      SALA II: LA EXPOSICIÓN
@@ -1968,56 +1822,6 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .dune-award-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--dune-cream); opacity: 0.6; }
 .dune-pills { display: flex; flex-wrap: wrap; gap: 7px; padding: 24px 40px; border-top: 1px solid var(--dune-border); background: var(--dune-bg-2); }
 .dune-pill { font-family: 'Roboto Mono', monospace; font-size: 7px; color: var(--dune-sand); border: 1px solid rgba(200,160,106,0.2); padding: 3px 10px; letter-spacing: 0.1em; text-transform: uppercase; }
-
-/* ── WUATAN STUDIO — Diseño/confección real por encargo, ivory + rosa oscuro ── */
-#hab-wuatan {
-  --ws-bg: #FBF3F0;
-  --ws-bg2: #F3E1DA;
-  --ws-card: #FFFFFF;
-  --ws-rose: #8C2F45;
-  --ws-gold: #B08D57;
-  --ws-ink: #2A1B1E;
-  --ws-ink2: #6E5A57;
-  --ws-border: rgba(140,47,69,0.14);
-}
-#hab-wuatan .hab-header { background: var(--ws-bg); border-bottom: 1px solid var(--ws-border); padding: 30px calc(8% + 40px); margin-left: -8%; margin-right: -8%; width: calc(100% + 16%); }
-#hab-wuatan .hab-header:hover { color: var(--ws-rose); }
-#hab-wuatan .hab-code { color: var(--ws-rose); }
-#hab-wuatan .hab-title { color: var(--ws-ink); font-family: 'Cormorant Garamond', serif; }
-#hab-wuatan .hab-plus { color: var(--ws-rose); }
-#hab-wuatan.focused .hab-plus { color: var(--ws-ink); }
-#hab-wuatan .hab-label-tag { color: var(--ws-rose); border-color: rgba(140,47,69,0.35); }
-#hab-wuatan .hab-label-tag:hover { background: var(--ws-rose); color: #fff; }
-
-.ws-room { background: var(--ws-bg); padding: 48px 0 64px; }
-.ws-intro { max-width: 720px; margin-bottom: 44px; padding-bottom: 32px; border-bottom: 1px solid var(--ws-border); }
-.ws-role-label { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--ws-rose); letter-spacing: 0.4em; text-transform: uppercase; display: block; margin-bottom: 14px; }
-.ws-role-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--ws-ink2); line-height: 1.75; text-align: justify; }
-
-.ws-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-.ws-card { background: var(--ws-card); border: 1px solid var(--ws-border); cursor: pointer; position: relative; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s; }
-.ws-card:hover { box-shadow: 0 12px 40px rgba(140,47,69,0.14); transform: translateY(-4px); border-color: var(--ws-rose); }
-.ws-card-img-wrap { aspect-ratio: 3/4; overflow: hidden; position: relative; background: #fff; }
-.ws-card-img { width: 100%; height: 100%; object-fit: contain; object-position: center; transition: transform 0.6s ease; display: block; }
-.ws-card:hover .ws-card-img { transform: scale(1.03); }
-.ws-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(42,27,30,0.88), transparent 55%); opacity: 0; transition: opacity 0.35s ease; display: flex; flex-direction: column; justify-content: flex-end; padding: 22px 18px; }
-.ws-card:hover .ws-card-overlay { opacity: 1; }
-.ws-overlay-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: #fff; font-weight: 500; margin-bottom: 10px; }
-.ws-card-cta { font-family: 'Roboto Mono', monospace; font-size: 8px; color: #fff; border: 1px solid rgba(255,255,255,0.4); padding: 6px 12px; display: inline-block; letter-spacing: 0.15em; }
-.ws-card-meta { padding: 14px 16px 18px; border-top: 1px solid var(--ws-border); }
-.ws-card-code { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--ws-rose); letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 5px; }
-.ws-card-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--ws-ink); }
-
-.ws-project-panel { margin-top: 4px; }
-.ws-panel-back { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--ws-ink); background: none; border: 1px solid var(--ws-border); padding: 8px 14px; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; margin-bottom: 24px; transition: 0.2s; }
-.ws-panel-back:hover { background: var(--ws-rose); color: #fff; border-color: var(--ws-rose); }
-.ws-panel-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: var(--ws-ink); margin-bottom: 6px; }
-.ws-panel-sub { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--ws-rose); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 18px; display: block; }
-.ws-panel-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--ws-ink2); line-height: 1.75; max-width: 680px; margin-bottom: 28px; text-align: justify; }
-.ws-photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
-.ws-photo-grid img { width: 100%; aspect-ratio: 3/4; object-fit: contain; object-position: center; display: block; cursor: pointer; background: #fff; transition: opacity 0.3s; }
-.ws-photo-grid img:hover { opacity: 0.85; }
-@media (max-width: 700px) { .ws-room { padding: 36px 0 48px; } }
 
 @media (max-width: 768px) {
   .odr-runway-strip { grid-template-columns: 1fr; }
@@ -2359,108 +2163,6 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         </div>
     </div>
 
-    <!-- ══ VS_05: WUATAN STUDIO — Diseño y confección real por encargo ══ -->
-    <div class="hab" id="hab-wuatan" data-tag="BEATRIZ CASTRO">
-        <div class="hab-header hab-banner" onclick="focusHab('hab-wuatan')">
-            <img loading="lazy" class="hab-banner-img" src="fotos/ChatGPT Image 29 jul 2026, 22_36_33.png" alt="Wuatan Studio — Diseño y confección por encargo">
-            <div class="hab-banner-scrim"></div>
-            <div class="hab-banner-content">
-                <div>
-                    <span class="hab-banner-code" style="color:#8C2F45;">WUATAN STUDIO · DISEÑO & CONFECCIÓN POR ENCARGO</span>
-                    <h2 class="hab-banner-title" style="font-family:'Cormorant Garamond',serif;">Wuatan Studio</h2>
-                </div>
-                <span class="hab-banner-arrow">VER PROYECTO →</span>
-            </div>
-        </div>
-        <div class="hab-content">
-            <div class="ws-room">
-                <div class="ws-intro">
-                    <span class="ws-role-label">Rol · Proceso</span>
-                    <p class="ws-role-text">Diseño y confección real, por encargo, bajo el nombre Wuatan Studio — para marcas que buscaron colaboración puntual y para clientas particulares. Desde el diseño de una pieza completa hasta arreglos precisos y confección de vestidos para damas de honor, invitadas de boda y graduación.</p>
-                </div>
-
-                <div class="ws-grid" id="ws-project-grid">
-                    <div class="ws-card" onclick="wsFocusProject('bordado')">
-                        <div class="ws-card-img-wrap">
-                            <img loading="lazy" class="ws-card-img" src="fotos/Wuatan studio bordado completo y trabajo de ensamblaje iniciar.png" alt="Primer vestido de novia bordado desde cero">
-                            <div class="ws-card-overlay">
-                                <p class="ws-overlay-title">Vestido de Novia Bordado</p>
-                                <div class="ws-card-cta">VER PROYECTO →</div>
-                            </div>
-                        </div>
-                        <div class="ws-card-meta">
-                            <span class="ws-card-code">Con Farah Cabrera</span>
-                            <div class="ws-card-name">Primer vestido de novia bordado desde cero</div>
-                        </div>
-                    </div>
-                    <div class="ws-card" onclick="wsFocusProject('novias')">
-                        <div class="ws-card-img-wrap">
-                            <img loading="lazy" class="ws-card-img" src="fotos/WUATANSTUDIO-CLIENTA4 (1).png" alt="Colaboración con tienda de novias">
-                            <div class="ws-card-overlay">
-                                <p class="ws-overlay-title">Tienda de Novias</p>
-                                <div class="ws-card-cta">VER PROYECTO →</div>
-                            </div>
-                        </div>
-                        <div class="ws-card-meta">
-                            <span class="ws-card-code">Colaboración puntual</span>
-                            <div class="ws-card-name">Arreglos y confección para damas e invitadas</div>
-                        </div>
-                    </div>
-                    <div class="ws-card" onclick="wsFocusProject('encargos')">
-                        <div class="ws-card-img-wrap">
-                            <img loading="lazy" class="ws-card-img" src="fotos/CLIENTA DE Wuatan Studio look1a.png" alt="Encargos Recurrentes — Wuatan Studio">
-                            <div class="ws-card-overlay">
-                                <p class="ws-overlay-title">Encargos Recurrentes</p>
-                                <div class="ws-card-cta">VER PROYECTO →</div>
-                            </div>
-                        </div>
-                        <div class="ws-card-meta">
-                            <span class="ws-card-code">Clientes Recurrentes</span>
-                            <div class="ws-card-name">Encargos Recurrentes — Wuatan Studio</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ws-project-panel" id="ws-proj-bordado" style="display:none;">
-                    <button class="ws-panel-back" onclick="wsBackToGrid()">← VOLVER</button>
-                    <span class="ws-panel-sub">Con Farah Cabrera</span>
-                    <h3 class="ws-panel-title">Primer vestido de novia bordado desde cero</h3>
-                    <p class="ws-panel-text">Junto a Farah Cabrera — reconocida como la primera diseñadora de moda de su país — bordé a mano pedrería sobre una base de encaje, que luego se aplicó sobre una base de velo. El cuerpo completo del vestido es de algodón inglés, no tul. Los acabados los hicimos juntas.</p>
-                    <div class="ws-photo-grid">
-                        <img loading="lazy" src="fotos/ChatGPT Image 29 jul 2026, 22_36_05 (7).png" alt="Proceso de bordado — pedrería sobre encaje">
-                        <img loading="lazy" src="fotos/Wuatan studio bordado completo y trabajo de ensamblaje iniciar.png" alt="Vestido de novia bordado — resultado final">
-                        <img loading="lazy" src="fotos/Wuatan studio bordado completo y trabajo de ensamblaje iniciar BORDADO.png" alt="Vestido de novia bordado — ceremonia">
-                    </div>
-                </div>
-                <div class="ws-project-panel" id="ws-proj-novias" style="display:none;">
-                    <button class="ws-panel-back" onclick="wsBackToGrid()">← VOLVER</button>
-                    <span class="ws-panel-sub">Colaboración puntual</span>
-                    <h3 class="ws-panel-title">Tienda de Novias</h3>
-                    <p class="ws-panel-text">Colaboración con una tienda de vestidos de novia: arreglos puntuales y confección de vestidos para damas de honor e invitadas de bodas y graduaciones.</p>
-                    <div class="ws-photo-grid">
-                        <img loading="lazy" src="fotos/WUATANSTUDIO-CLIENTA4 (1).png" alt="Tienda de novias — colaboración">
-                        <img loading="lazy" src="fotos/WUATANSTUDIO-CLIENTA4 (2).png" alt="Tienda de novias — colaboración">
-                        <img loading="lazy" src="fotos/WUATANSTUDIO-CLIENTA4 (3).png" alt="Tienda de novias — colaboración">
-                    </div>
-                </div>
-                <div class="ws-project-panel" id="ws-proj-encargos" style="display:none;">
-                    <button class="ws-panel-back" onclick="wsBackToGrid()">← VOLVER</button>
-                    <span class="ws-panel-sub">Clientes Recurrentes</span>
-                    <h3 class="ws-panel-title">Encargos Recurrentes — Wuatan Studio</h3>
-                    <p class="ws-panel-text">Looks tipo chacabana y resort para clientes recurrentes: vestidos camiseros y piezas chacabanescas, pensadas para repetirse temporada tras temporada con variaciones de tejido y color.</p>
-                    <p class="ws-panel-text" style="margin-top:12px;">Incluye una pieza de diseño y patronaje realizada a pedido de otra diseñadora para su propia marca, y los looks 1 y 2 de una clienta recurrente de Wuatan Studio, confeccionados para la misma fiesta anual en distintos años y temáticas — el look 2 fue para la fiesta del Banco Central, inspirado en dos colecciones 2024.</p>
-                    <div class="ws-photo-grid">
-                        <img loading="lazy" src="fotos/pieza de wuatan studio.png" alt="Pieza de Wuatan Studio — frente">
-                        <img loading="lazy" src="fotos/pieza de wuatan studio 2.png" alt="Pieza de Wuatan Studio — espalda">
-                        <img loading="lazy" src="fotos/pieza de wuatan studio 3.png" alt="Pieza de Wuatan Studio — variante">
-                        <img loading="lazy" src="fotos/CLIENTA DE Wuatan Studio look1a.png" alt="Look 1 — vista A">
-                        <img loading="lazy" src="fotos/CLIENTA DE Wuatan Studio look1b.png" alt="Look 1 — vista B">
-                        <img loading="lazy" src="fotos/CLIENTA DE Wuatan Studio look2.png" alt="Look 2 — Fiesta Banco Central">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 
@@ -3754,7 +3456,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <span class="sobre-section-label">Experiencia</span>
             <div class="sobre-item">
                 <div class="sobre-item-title">Mayle Vázquez</div>
-                <div class="sobre-item-sub">Industrial Pattern Maker · Product Development · Asistencia Creativa</div>
+                <div class="sobre-item-sub">Patronista industrial — patronaje 100% manual · Product Development · Asistencia Creativa</div>
                 <span class="sobre-item-year">2023 — 2024</span>
             </div>
             <div class="sobre-item">
@@ -3806,13 +3508,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="sobre-item-title">Español</div>
                 <div class="sobre-item-sub">Nativo</div>
             </div>
-            <div class="sobre-item">
-                <div class="sobre-item-title">Inglés</div>
-                <div class="sobre-item-sub">B2</div>
-            </div>
             <div class="sobre-item" style="border-bottom:none;">
-                <div class="sobre-item-title">Italiano</div>
-                <div class="sobre-item-sub">B1</div>
+                <div class="sobre-item-title">Inglés</div>
+                <div class="sobre-item-sub">B1-B2 funcional</div>
             </div>
         </div>
     </div>
@@ -3900,7 +3598,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         <div class="archive-header">
             <span class="archive-tag-display" id="active-tag-name">MAYLE VÁZQUEZ</span>
             <h2 class="archive-title">System Archive</h2>
-            <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--matter-light);opacity:0.65;max-width:520px;margin-top:16px;line-height:1.7;">Fichas técnicas de patronaje industrial — visión de costes (COGS) y especificaciones de marcada para cada pieza desarrollada con Mayle Vázquez.</p>
+            <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;color:var(--matter-light);opacity:0.65;max-width:520px;margin-top:16px;line-height:1.7;">Fichas técnicas de patronaje industrial — especificaciones reales de construcción para cada pieza desarrollada con Mayle Vázquez.</p>
             <a href="#" style="font-family:'Roboto Mono';font-size:9px;color:var(--sapphire);text-decoration:none;margin-top:16px;display:inline-block;letter-spacing:0.2em;" onclick="navTo('lobby')">✕ VOLVER AL INICIO</a>
         </div>
         <div class="archive-results-grid" id="archive-results">
@@ -3915,10 +3613,6 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <div class="archive-item" onclick="openMayleModal('mayle-modal-3')">
                 <img loading="lazy" src="fotos/el-pozo-jacket-detalle.png" alt="Chaqueta El Pozo">
                 <div class="archive-item-info"><p class="archive-item-name">Chaqueta "El Pozo"</p></div>
-            </div>
-            <div class="archive-item" onclick="openMayleModal('mayle-modal-4')">
-                <img loading="lazy" src="fotos/chaqueta 2 sin manga.png" alt="Vest Largo El Patio">
-                <div class="archive-item-info"><p class="archive-item-name">Vest Largo "El patio"</p></div>
             </div>
             <div class="archive-item" onclick="openMayleModal('mayle-modal-5')">
                 <img loading="lazy" src="fotos/convent-vest.png" alt="Convent Vest">
@@ -4488,13 +4182,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
       <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-1').classList.remove('open')">✕ CERRAR</button>
       <span class="mayle-modal-code">Mayle Vázquez</span>
       <h3 class="mayle-modal-title">Vestido<br>"Santo Domingo"</h3>
-      <div class="mayle-modal-subtitle">Ingeniería de Fitting</div>
-      <div class="mayle-spec-block"><span class="mayle-spec-key">Estructura</span><p class="mayle-spec-val">Patronaje con <strong>holgura negativa controlada</strong> y "chasis" interno. Estabilidad garantizada en busto mediante distribución de tensiones.</p></div>
-      <div class="mayle-modal-subtitle">Eficiencia de Marcada</div>
-      <div class="mayle-spec-block"><span class="mayle-spec-key">Optimización de corte</span><p class="mayle-spec-val">Paneles trapezoidales optimizados para un <strong>aprovechamiento de tejido del 88%</strong>. Uso de "falsos paneles" en zonas de costura para reducir el desperdicio sin sacrificar el vuelo.</p></div>
-      <div class="mayle-modal-subtitle">Sostenibilidad</div>
-      <div class="mayle-spec-block"><span class="mayle-spec-key">Diseño responsable</span><p class="mayle-spec-val">Diseño de corte orientado a la <strong>reducción de mermas en tejidos de gran formato</strong>. Integración de principios de bajo impacto desde el patrón base.</p></div>
-      <div class="mayle-modal-tags"><span class="mayle-modal-tag">Fitting Negativo</span><span class="mayle-modal-tag">88% Fabric Use</span><span class="mayle-modal-tag">Zero Waste Approach</span><span class="mayle-modal-tag">Paneles Trapezoidales</span><span class="mayle-modal-tag">Chasis Interno</span></div>
+      <div class="mayle-modal-subtitle">Estructura</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Sin chasis interno</span><p class="mayle-spec-val">No lleva chasis interno ni varillas. Lo que sostiene el vestido y le da la estructura son los cortes y el trabajo de percalinado del tejido principal — ese tejido se deformaba solo, pero tratado así soportaba el corte sin necesitar una estructura interna adicional. Lleva un forro sencillo, sin ballenas.</p></div>
+      <div class="mayle-modal-tags"><span class="mayle-modal-tag">Sin Chasis</span><span class="mayle-modal-tag">Percalinado</span><span class="mayle-modal-tag">Cortes Estructurales</span><span class="mayle-modal-tag">Forro Sencillo</span></div>
     </div>
   </div>
 </div>
@@ -4511,11 +4201,13 @@ textarea.c-form-input { resize: none; min-height: 100px; }
       <h3 class="mayle-modal-title">Abrigo "Caribe"</h3>
       <div class="mayle-modal-subtitle">Producción en Serie</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Manga globo</span><p class="mayle-spec-val">Desarrollada mediante <strong>expansión radial</strong> con <strong>holgura de manga de 1–1.5 pulgadas según tipo de manga</strong>, optimizado para máquinas de coser automáticas.</p></div>
-      <div class="mayle-modal-subtitle">Estabilidad</div>
-      <div class="mayle-spec-block"><span class="mayle-spec-key">Línea de quiebre</span><p class="mayle-spec-val">Roll line con <strong>piquetes de posicionamiento para cinta de sastre</strong> (stay tape), eliminando el error humano en el montaje de la solapa.</p></div>
+      <div class="mayle-modal-subtitle">Estructura Base</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Pinzas dobles al frente</span><p class="mayle-spec-val">No se usó cinta de sastre ni stay tape. La estructura base se mantuvo en patronaje tradicional, con dobles pinzas al frente — una decisión deliberada para darle un toque más tradicional y único, y para no sumar cortes extra.</p></div>
+      <div class="mayle-modal-subtitle">Proporción</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Solapa y cuello XL</span><p class="mayle-spec-val">La solapa y el cuello se hicieron XL de forma intencional, buscando una proporción grande y exagerada.</p></div>
       <div class="mayle-modal-subtitle">Escalado</div>
       <div class="mayle-spec-block"><span class="mayle-spec-key">Curva de tallas S→XL</span><p class="mayle-spec-val">Estructura base diseñada para <strong>mantener el equilibrio del volumen</strong> en toda la curva de tallas. Escalado bajo normativas industriales internacionales.</p></div>
-      <div class="mayle-modal-tags"><span class="mayle-modal-tag">Holgura Manga 1–1.5"</span><span class="mayle-modal-tag">Stay Tape</span><span class="mayle-modal-tag">Roll Line</span><span class="mayle-modal-tag">Automática Compatible</span><span class="mayle-modal-tag">S→XL Balanced</span></div>
+      <div class="mayle-modal-tags"><span class="mayle-modal-tag">Holgura Manga 1–1.5"</span><span class="mayle-modal-tag">Pinzas Dobles</span><span class="mayle-modal-tag">Patronaje Tradicional</span><span class="mayle-modal-tag">Solapa XL</span><span class="mayle-modal-tag">S→XL Balanced</span></div>
     </div>
   </div>
 </div>
@@ -4530,13 +4222,13 @@ textarea.c-form-input { resize: none; min-height: 100px; }
       <button class="mayle-modal-close" onclick="document.getElementById('mayle-modal-3').classList.remove('open')">✕ CERRAR</button>
       <span class="mayle-modal-code">Mayle Vázquez</span>
       <h3 class="mayle-modal-title">Chaqueta<br>"El Pozo"</h3>
-      <div class="mayle-modal-subtitle">Ahorro de Tiempos</div>
-      <div class="mayle-spec-block"><span class="mayle-spec-key">Eficiencia de confección</span><p class="mayle-spec-val">Jaretas y tablones <strong>integrados en el patrón base con piquetes de doblado CNC</strong>. Reduce el tiempo de confección en un <strong>15%</strong> al eliminar mediciones manuales en mesa.</p></div>
-      <div class="mayle-modal-subtitle">Construcción</div>
-      <div class="mayle-spec-block"><span class="mayle-spec-key">Manga campana</span><p class="mayle-spec-val">Con <strong>compensación de caída en el patrón</strong> para tejidos inestables (lino / mezclas). La caída natural queda resuelta desde el patrón base.</p></div>
       <div class="mayle-modal-subtitle">Montaje</div>
-      <div class="mayle-spec-block"><span class="mayle-spec-key">Cuello mao</span><p class="mayle-spec-val">Pie de cuello anatómico diseñado para asegurar el <strong>cierre exacto en la primera prueba</strong>, eliminando iteraciones costosas.</p></div>
-      <div class="mayle-modal-tags"><span class="mayle-modal-tag">−15% Confección</span><span class="mayle-modal-tag">CNC Piquetes</span><span class="mayle-modal-tag">Lino Estable</span><span class="mayle-modal-tag">Mao Anatómico</span><span class="mayle-modal-tag">First-Fit Guaranteed</span></div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Cuello mao</span><p class="mayle-spec-val">Cierre exacto en la primera prueba — el patrón quedó bien resuelto desde el diseño, sin necesitar ajustes posteriores.</p></div>
+      <div class="mayle-modal-subtitle">Corte en Lino</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Margen de costura ampliado</span><p class="mayle-spec-val">Corté al hilo y usé un margen de costura más amplio de lo habitual (3/4 de pulgada) — con un cuarto de pulgada el lino se deshilacha fácilmente al coser.</p></div>
+      <div class="mayle-modal-subtitle">Entretela</div>
+      <div class="mayle-spec-block"><span class="mayle-spec-key">Percalinado de un lado</span><p class="mayle-spec-val">Percaliné solo un lado del tejido, sin incluir el borde, y añadí una entretela adhesiva de grosor suave: ese lino ya tenía estructura y peso propios, así que una entretela más gruesa lo habría dejado rígido en vez de mantener la caída delicada que buscaba.</p></div>
+      <div class="mayle-modal-tags"><span class="mayle-modal-tag">Mao First-Fit</span><span class="mayle-modal-tag">Corte al Hilo</span><span class="mayle-modal-tag">Margen 3/4"</span><span class="mayle-modal-tag">Entretela Suave</span></div>
     </div>
   </div>
 </div>
@@ -4877,7 +4569,6 @@ const PD_GARMENTS = [
     { name: 'Look 1', img: 'fotos/FRACTUM/LOOK1/ERAGON CLOTHING_68.png', project: 'FRACTUM', hab: 'hab-fractum', openFicha: 'pdOpenFractumLook1Ficha' },
     { name: 'Look 2', img: 'fotos/FRACTUM/LOOK 2/FINAL DE LOS FINALITOS_Default Colorway_121.png', project: 'FRACTUM', hab: 'hab-fractum', openFicha: 'pdOpenFractumLook2Ficha' },
 
-    { name: 'Look 3', img: 'fotos/CLIENTA DE Wuatan Studio look3.png', project: 'Look 3 · Archivo Personal', hab: 'independientes', openFicha: 'pdOpenLook3Ficha' },
 ];
 function pdBuildGarmentGrid() {
     const habs = [...new Set(PD_GARMENTS.map(g => g.hab))];
@@ -4910,17 +4601,6 @@ function pdBackToGrid() {
     document.querySelectorAll('.pd-project-panel').forEach(p => p.style.display = 'none');
     document.getElementById('pd-project-grid').style.display = '';
 }
-function wsFocusProject(key) {
-    document.getElementById('ws-project-grid').style.display = 'none';
-    document.querySelectorAll('.ws-project-panel').forEach(p => p.style.display = 'none');
-    const panel = document.getElementById('ws-proj-' + key);
-    if (panel) panel.style.display = 'block';
-    document.getElementById('hab-wuatan').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-function wsBackToGrid() {
-    document.querySelectorAll('.ws-project-panel').forEach(p => p.style.display = 'none');
-    document.getElementById('ws-project-grid').style.display = '';
-}
 function pdOpenGarment(i) {
     const g = PD_GARMENTS[i];
     if (!g) return;
@@ -4930,10 +4610,7 @@ function pdOpenGarment(i) {
     document.getElementById('pd-garment-modal-name').textContent = g.name;
     document.getElementById('pd-garment-modal-code').textContent = g.project;
     const fichaEl = document.getElementById('pd-garment-modal-ficha');
-    if (g.ficha === 'pattern') {
-        fichaEl.innerHTML = '<div class="pd-spec-block"><p class="pd-spec-val">Patrón digital real, hecho en Adobe Illustrator (' + g.patternPages + ' piezas) — cliente ' + g.patternClient + '. Solo visualización, protegido contra descarga.</p>' +
-            '<button class="pd-tool-pill" style="cursor:pointer;background:rgba(52,232,204,0.05);margin-top:10px;" onclick="pdOpenPattern()">VER PATRÓN COMPLETO →</button></div>';
-    } else if (g.ficha) {
+    if (g.ficha) {
         fichaEl.innerHTML = '<div class="pd-spec-block"><img src="' + g.ficha + '" alt="Ficha técnica ' + g.name + '" style="width:100%;display:block;"></div>';
     } else {
         fichaEl.innerHTML = '<div class="pd-spec-block"><p class="pd-spec-val">Ficha técnica pendiente — se integra en cuanto se exporte desde CLO3D.</p></div>';
@@ -4949,12 +4626,6 @@ function pdOpenGarment(i) {
 }
 function closePdGarmentModal(e) {
     if (e.target.id === 'pd-garment-modal') document.getElementById('pd-garment-modal').classList.remove('open');
-}
-function pdOpenLook3Ficha() {
-    document.getElementById('pd-look3-ficha').classList.add('open');
-}
-function closePdLook3Ficha(e) {
-    if (e.target.id === 'pd-look3-ficha') document.getElementById('pd-look3-ficha').classList.remove('open');
 }
 function pdOpenFractumLook1Ficha() {
     document.getElementById('pd-fractum-look1-ficha').classList.add('open');
@@ -4978,24 +4649,6 @@ function pdToggleVideoPlay(videoId, btn) {
     const v = document.getElementById(videoId);
     if (v.paused) { v.play(); btn.textContent = '⏸ PAUSAR'; }
     else { v.pause(); btn.textContent = '▶ REPRODUCIR'; }
-}
-// Visor de patrón protegido — solo visualización. Bloquea clic derecho, arrastre y selección;
-// no puede impedir una captura de pantalla real, eso es una limitación de cualquier página web.
-const PD_PATTERN_PAGES = 6;
-function pdOpenPattern() {
-    const el = document.getElementById('pd-patron-pages');
-    if (!el.dataset.built) {
-        let html = '';
-        for (let i = 1; i <= PD_PATTERN_PAGES; i++) {
-            html += '<img loading="lazy" src="fotos/patron-elvia/pagina-' + i + '.png" alt="Patrón Look 3 — página ' + i + '" draggable="false" oncontextmenu="return false;">';
-        }
-        el.innerHTML = html;
-        el.dataset.built = '1';
-    }
-    document.getElementById('pd-patron-modal').classList.add('open');
-}
-function closePdPattern(e) {
-    if (e.target.id === 'pd-patron-modal') document.getElementById('pd-patron-modal').classList.remove('open');
 }
 const ETP_SHOP_CATEGORIES = [
     { cat: 'tops', label: 'TOPS', img: 'sala-enter-the-palace/assets/shop-looks/look-01.png' },
@@ -5635,10 +5288,46 @@ function navigateToTag(tag, e) {
 }
 
 // ── INIT ──
+// ── PROYECTOS DESTACADOS — uno por sala, vía etiqueta destacado:true en los datos (no hardcodeado) ──
+const FEATURED_PROJECTS = [
+    { destacado: true, sala: 'oficio', salaLabel: 'La Corte', name: 'Vestido "Santo Domingo"', img: 'fotos/santo-domingo-dress.png', hab: 'hab-mayle', modal: 'mayle-modal-1' },
+    { destacado: true, sala: 'vision', salaLabel: 'La Exposición', name: 'Homenaje a Oscar de la Renta', img: 'fotos/oscardelarenta.png', hab: 'hab-oscar', modal: null },
+    { destacado: true, sala: 'enter-the-palace', salaLabel: 'La Cámara Oscura', name: 'Enter The Palace', img: 'sala-enter-the-palace/assets/AVATARES/look-frente.png', hab: 'hab-etp', modal: null },
+];
+function goToFeatured(i) {
+    const p = FEATURED_PROJECTS[i];
+    if (!p) return;
+    navTo(p.sala);
+    setTimeout(() => {
+        if (p.hab) focusHab(p.hab);
+        if (p.modal) setTimeout(() => openMayleModal(p.modal), 400);
+    }, 100);
+}
+function buildFeaturedProjects() {
+    const track = document.getElementById('featured-track');
+    if (!track) return;
+    track.innerHTML = FEATURED_PROJECTS
+        .map((p, i) => ({ p, i }))
+        .filter(({ p }) => p.destacado)
+        .map(({ p, i }) => (
+            '<div class="featured-card" onclick="goToFeatured(' + i + ')">' +
+                '<div class="featured-card-img-wrap">' +
+                    '<span class="featured-card-badge">Destacado</span>' +
+                    '<img loading="lazy" src="' + p.img + '" alt="' + p.name + '">' +
+                '</div>' +
+                '<div class="featured-card-meta">' +
+                    '<span class="featured-card-sala">' + p.salaLabel + '</span>' +
+                    '<div class="featured-card-name">' + p.name + '</div>' +
+                '</div>' +
+            '</div>'
+        )).join('');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initSlideshows();
     setupInfiniteNews();
     resetHabs();
+    buildFeaturedProjects();
 });
 </script>
 
