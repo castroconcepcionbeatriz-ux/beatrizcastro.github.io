@@ -258,7 +258,7 @@ html, body {
 .sala-desc { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--matter-light); opacity: 0.45; margin-top: 20px; max-width: 500px; line-height: 1.7; }
 
 /* HAB */
-.hab { border-bottom: 1px solid rgba(74, 141, 238,0.1); margin-bottom: 10px; transition: opacity 0.4s, filter 0.4s; overflow: hidden; }
+.hab { border-bottom: 1px solid rgba(74, 141, 238,0.1); margin-bottom: 10px; transition: opacity 0.4s, filter 0.4s; overflow: hidden; scroll-margin-top: 145px; }
 .hab.hidden { opacity: 0; pointer-events: none; height: 0; margin: 0; border: none; }
 .hab-header { display: flex; justify-content: space-between; align-items: center; padding: 30px 0; cursor: pointer; transition: 0.3s; }
 .hab-header:hover { color: var(--amber); }
@@ -371,6 +371,8 @@ html, body {
 .featured-card-meta { padding: 14px 16px; }
 .featured-card-sala { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--sapphire); letter-spacing: 0.15em; text-transform: uppercase; display: block; margin-bottom: 6px; }
 .featured-card-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--matter-light); line-height: 1.2; }
+.featured-card-cta { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--amber); letter-spacing: 0.15em; text-transform: uppercase; display: block; margin-top: 12px; opacity: 0.75; transition: opacity 0.3s; }
+.featured-card:hover .featured-card-cta { opacity: 1; }
 @media (max-width: 700px) { .featured-card { flex: 0 0 200px; } }
 
 
@@ -449,6 +451,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--sapphire);
     border: 1px solid rgba(74, 141, 238,0.4); padding: 10px 20px; text-decoration: none;
     opacity: 0; transition: opacity 0.3s;
+    background: rgba(10,10,10,0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
 }
 .back-btn.visible { opacity: 1; }
 
@@ -1011,7 +1014,6 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         <span class="sala-code">PATRONAJE · FOTOGRAFÍA · PRODUCCIÓN · CORTE</span>
         <h1 class="sala-title">La Sala de<br><em style="color:var(--sapphire);">la Corte</em></h1>
         <p class="sala-desc">El corte como primer acto irreversible. Patronaje industrial, fotografía de moda y producción de colección.</p>
-        <a href="#" class="sala-archive-link" onclick="event.preventDefault();openMayleArchive();" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--amber);letter-spacing:0.2em;text-transform:uppercase;border:1px solid rgba(253,185,39,0.3);padding:8px 16px;display:inline-block;margin-top:24px;text-decoration:none;">System Archive — Fichas Técnicas (COGS) →</a>
     </div>
     <div class="habs-back-bar" onclick="resetHabs()">← Volver a la lista</div>
 
@@ -1034,23 +1036,23 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="mayle-intro">
                     <div>
                         <span class="mayle-role-label">Rol · Responsabilidades</span>
-                        <p class="mayle-role-text">Desarrollo de patrones industriales y optimización de fit. Gestión de archivo técnico de patronaje. Colaboración directa en el proceso de producción: desde el boceto técnico hasta el prototipo físico listo para fábrica.</p>
-                        <p class="mayle-role-text" style="margin-top:12px;">Especialización en marcadas de alta eficiencia y escalado bajo normativas industriales internacionales.</p>
+                        <p class="mayle-role-text">Desarrollo de patrones industriales y gestión de archivo técnico de patronaje. Colaboración directa en el proceso de producción: desde el boceto técnico hasta el prototipo físico listo para fábrica.</p>
+                        <p class="mayle-role-text" style="margin-top:12px;">Marcada y escalado de la colección, trabajados junto a Mayle Vázquez.</p>
                     </div>
                     <div>
-                        <span class="mayle-role-label">Métricas Clave</span>
+                        <span class="mayle-role-label">La Colección</span>
                         <div class="mayle-stats">
                             <div class="mayle-stat">
-                                <span class="mayle-stat-val">88%</span>
-                                <span class="mayle-stat-lab">Aprovechamiento<br>de tejido</span>
+                                <span class="mayle-stat-val">5</span>
+                                <span class="mayle-stat-lab">Piezas<br>desarrolladas</span>
                             </div>
                             <div class="mayle-stat">
-                                <span class="mayle-stat-val">−15%</span>
-                                <span class="mayle-stat-lab">Reducción tiempo<br>de confección</span>
+                                <span class="mayle-stat-val">1 mes</span>
+                                <span class="mayle-stat-lab">Enero a<br>febrero</span>
                             </div>
                             <div class="mayle-stat">
-                                <span class="mayle-stat-val">&lt;8%</span>
-                                <span class="mayle-stat-lab">Coef. embebido<br>de copa</span>
+                                <span class="mayle-stat-val">100%</span>
+                                <span class="mayle-stat-lab">Patronaje<br>manual</span>
                             </div>
                         </div>
                     </div>
@@ -2319,7 +2321,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .es-concept { padding:48px 40px; display:grid; grid-template-columns:1fr 1.5fr; gap:48px; border-bottom:1px solid var(--es-border); background:var(--es-bg2); }
 .es-concept-title { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3.5vw,48px); font-weight:300; font-style:italic; color:var(--es-cream); line-height:1.1; }
 .es-concept-text { font-family:'Inter',sans-serif; font-size:13px; font-weight:300; color:var(--es-cream); opacity:0.6; line-height:1.8; text-align:justify; }
-.es-gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); }
+.es-gallery { display:grid; grid-template-columns:repeat(4,1fr); }
 .es-gallery-slot { overflow:hidden; background:var(--es-bg2); border-right:1px solid var(--es-border); }
 .es-gallery-slot:last-child { border-right:none; }
 .es-gallery-slot img { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top; display:block; filter:contrast(1.15) brightness(0.7) saturate(0.7); transition:filter 0.5s,transform 0.5s; }
@@ -2368,6 +2370,23 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .etp-intro h1 { font-size:clamp(20px,4vw,44px); margin:10px 0 16px; }
 .etp-quote { font-family:'VT323',monospace; font-size:19px; color:var(--etp-cream); opacity:0.85; max-width:640px; margin-bottom:14px; }
 .etp-p { font-family:'VT323',monospace; font-size:16px; color:var(--etp-cream); opacity:0.6; max-width:640px; line-height:1.5; text-align:justify; }
+.etp-stat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:2px; background:#000; border:2px solid #000; margin-top:18px; }
+.etp-stat { background:var(--etp-ink); padding:20px 16px; }
+.etp-stat-num { display:block; font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(24px,3vw,34px); color:var(--etp-yellow); line-height:1; }
+.etp-stat-lab { display:block; margin-top:8px; font-family:'VT323',monospace; font-size:13px; color:var(--etp-cream); opacity:0.7; line-height:1.3; }
+.etp-spec-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2px; background:#000; border:2px solid #000; margin-top:18px; }
+.etp-spec-card { background:var(--etp-navy); padding:20px; }
+.etp-spec-card-tag { display:inline-block; font-family:'Roboto Mono',monospace; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:#000; background:var(--etp-yellow); padding:3px 9px; margin-bottom:12px; }
+.etp-spec-card-fix { font-family:'Syne',sans-serif; font-weight:800; font-size:15px; color:var(--etp-cream); margin-bottom:6px; }
+.etp-spec-card-detail { font-family:'VT323',monospace; font-size:14px; color:var(--etp-cream); opacity:0.6; line-height:1.4; }
+.etp-flow { display:flex; flex-direction:column; gap:0; margin-top:18px; }
+.etp-flow-step { display:flex; align-items:center; gap:16px; background:var(--etp-navy2); border:1px solid #000; padding:14px 16px; }
+.etp-flow-num { flex-shrink:0; width:32px; height:32px; border-radius:50%; background:var(--etp-yellow); color:#000; font-family:'Press Start 2P',monospace; font-size:12px; display:flex; align-items:center; justify-content:center; }
+.etp-flow-txt { flex:1; min-width:0; font-family:'VT323',monospace; font-size:16px; color:var(--etp-cream); opacity:0.85; }
+.etp-flow-thumb { flex-shrink:0; width:64px; height:64px; overflow:hidden; border:1px solid rgba(253,255,0,0.3); }
+.etp-flow-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.etp-flow-arrow { text-align:center; font-family:'VT323',monospace; font-size:18px; color:var(--etp-yellow); opacity:0.6; padding:2px 0; }
+@media (max-width:600px) { .etp-flow-thumb { display:none; } }
 .etp-roles { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
 .etp-role { font-family:'VT323',monospace; font-size:12px; letter-spacing:0.1em; padding:3px 10px; border:2px solid; text-transform:uppercase; }
 .etp-role.mine { color:var(--etp-yellow); border-color:var(--etp-yellow); }
@@ -2745,7 +2764,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 <!-- HERO VIDEO SALA III -->
 <section class="room-hero view" id="mundos">
     <div class="room-hero-bg">
-        <video autoplay loop muted playsinline poster="fotos/vitriol_01.jpg">
+        <video autoplay loop muted playsinline poster="fotos/VITRIOL.png">
             <source src="fotos/portada vitrial.mp4" type="video/mp4">
         </video>
     </div>
@@ -2759,6 +2778,12 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
 <div class="view room-view camara-view" id="mundos-content">
     <div class="habs-back-bar" onclick="resetHabs()">← Volver a la lista</div>
+
+    <div class="sala-header">
+        <span class="sala-code">3D · MODA DIGITAL · CLO3D · BLENDER · IA</span>
+        <h1 class="sala-title">La Cámara<br><em style="color:var(--sapphire);">Oscura</em></h1>
+        <p class="sala-desc">Donde la forma se disuelve y la identidad resiste. Patronaje y prototipado 100% digital — CLO3D, Blender y DAZ 3D — aplicados a colecciones conceptuales y editoriales.</p>
+    </div>
 
 
     <!-- ══ CD_01: VITRIOL ══ -->
@@ -2781,7 +2806,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
                 <!-- IMAGEN 1: Hero editorial full-width, ya tiene el título tipográfico integrado -->
                 <div style="position:relative;overflow:hidden;border-bottom:1px solid var(--vit-border);">
-                    <img src="fotos/1780588714257_VITRIOL.png"
+                    <img src="fotos/VITRIOL.png"
                          style="width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center top;display:block;"
                          alt="VITRIOL — Where Form Dissolves and Identity Resists">
                     <!-- gradiente sutil solo en el borde inferior para continuidad -->
@@ -2791,7 +2816,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
                 <!-- VIDEO PRINCIPAL: portada vitrial.mp4 — se mantiene como estaba -->
                 <div class="vit-video-hero" id="vit-video-wrap" style="position:relative;overflow:hidden;background:#02020A;border-bottom:1px solid var(--vit-border);">
-                    <video id="vit-video" autoplay loop muted playsinline poster="fotos/1780588714257_VITRIOL.png"
+                    <video id="vit-video" autoplay loop muted playsinline poster="fotos/VITRIOL.png"
                            style="width:100%;max-height:65vh;object-fit:cover;display:block;opacity:0.85;">
                         <source src="fotos/portada vitrial.mp4" type="video/mp4">
                     </video>
@@ -2858,7 +2883,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
                     <!-- PASO 03 · IMAGEN 2: variaciones con IA — full width, ya tiene texto integrado -->
                     <div style="position:relative;overflow:hidden;border-bottom:1px solid var(--vit-border);">
-                        <img src="fotos/1780588714257_VITRIOL__2_.png"
+                        <img src="fotos/VITRIOL (1).png"
                              style="width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center;display:block;"
                              alt="VITRIOL — Variaciones IA">
                         <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(2,2,10,0.88) 0%,rgba(2,2,10,0.1) 45%,transparent 100%);pointer-events:none;"></div>
@@ -2883,9 +2908,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                             <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--vit-acid);opacity:0.5;letter-spacing:0.2em;">VITRIOL · PERSONAJE</span>
                         </div>
                         <video autoplay loop muted playsinline
-                               poster="fotos/1780588714258_VITRIOL__1_.png"
+                               poster="fotos/VITRIOL (2).png"
                                style="width:100%;max-height:65vh;object-fit:contain;display:block;background:var(--vit-bg);opacity:0.90;">
-                            <source src="fotos/video_personaje.mp4" type="video/mp4">
+                            <source src="fotos/video personaje.mp4" type="video/mp4">
                         </video>
                         <div style="position:absolute;bottom:0;left:0;right:0;padding:20px 40px;background:linear-gradient(to top,rgba(2,2,10,0.7),transparent);pointer-events:none;">
                             <p style="font-family:'Inter',sans-serif;font-size:10px;font-weight:300;color:var(--vit-cream);opacity:0.45;line-height:1.6;max-width:600px;">En Blender: sistema de partículas para las joyas, trabajo volumétrico en los ojos para que funcionaran como cristales con luz interior.</p>
@@ -2895,7 +2920,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
                     <!-- PASO 05 · IMAGEN 3: resultado final de sculpt 3D — full width -->
                     <div style="position:relative;overflow:hidden;border-bottom:1px solid var(--vit-border);">
-                        <img src="fotos/1780588714258_VITRIOL__1_.png"
+                        <img src="fotos/VITRIOL (2).png"
                              style="width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center;display:block;filter:brightness(0.85);"
                              alt="VITRIOL — Resultado 3D final">
                         <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(2,2,10,0.90) 0%,rgba(2,2,10,0.15) 50%,transparent 100%);pointer-events:none;"></div>
@@ -2921,9 +2946,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                             <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--vit-gold);opacity:0.5;letter-spacing:0.2em;">VITRIOL · OJOS</span>
                         </div>
                         <video autoplay loop muted playsinline
-                               poster="fotos/1780588714258_VITRIOL__1_.png"
+                               poster="fotos/VITRIOL (2).png"
                                style="width:100%;max-height:65vh;object-fit:contain;display:block;background:#020208;opacity:0.92;">
-                            <source src="fotos/video_ojos_.mp4" type="video/mp4">
+                            <source src="fotos/video ojos .mp4" type="video/mp4">
                         </video>
                         <div style="position:absolute;bottom:0;left:0;right:0;padding:20px 40px;background:linear-gradient(to top,rgba(2,2,8,0.75),transparent);pointer-events:none;">
                             <p style="font-family:'Inter',sans-serif;font-size:10px;font-weight:300;color:var(--vit-cream);opacity:0.45;line-height:1.6;max-width:600px;">Prompt JSON creado en ChatGPT: parámetros técnicos precisos con margen deliberado para la interpretación de la IA. La directora definió la visión; la máquina, el trazo final.</p>
@@ -2997,9 +3022,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <!-- VIDEO PERSONAJE: grande, ocupa todo -->
                 <div style="background:#000;border-bottom:1px solid var(--vit-border);">
                     <video autoplay loop muted playsinline
-                           poster="fotos/1780588714258_VITRIOL__1_.png"
+                           poster="fotos/VITRIOL (2).png"
                            style="width:100%;display:block;max-height:90vh;object-fit:contain;opacity:0.95;">
-                        <source src="fotos/video_personaje.mp4" type="video/mp4">
+                        <source src="fotos/video personaje.mp4" type="video/mp4">
                     </video>
                     <div style="padding:16px 40px;border-top:1px solid var(--vit-border);display:flex;justify-content:space-between;align-items:center;">
                         <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--vit-gold);letter-spacing:0.3em;text-transform:uppercase;opacity:0.7;">Escultura 3D · Blender · Sistema de Partículas</span>
@@ -3010,9 +3035,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <!-- VIDEO OJOS: grande, cierre total -->
                 <div style="background:#000;border-bottom:1px solid var(--vit-border);">
                     <video autoplay loop muted playsinline
-                           poster="fotos/1780588714257_VITRIOL.png"
+                           poster="fotos/VITRIOL.png"
                            style="width:100%;display:block;max-height:90vh;object-fit:contain;opacity:0.95;">
-                        <source src="fotos/video_ojos_.mp4" type="video/mp4">
+                        <source src="fotos/video ojos .mp4" type="video/mp4">
                     </video>
                     <div style="padding:16px 40px;border-top:1px solid var(--vit-border);display:flex;justify-content:space-between;align-items:center;">
                         <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--vit-acid);letter-spacing:0.3em;text-transform:uppercase;opacity:0.9;">Video IA · Prompt JSON · ChatGPT</span>
@@ -3122,6 +3147,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                         <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--fr-green);letter-spacing:0.4em;text-transform:uppercase;">Simulación CLO3D · Look Final · Vista 360°</span>
                     </div>
                     <video autoplay loop muted playsinline
+                           poster="fotos/FRACTUM/LOOK 2/FINAL DE LOS FINALITOS_Default Colorway_121.png"
                            style="width:100%;max-height:70vh;object-fit:contain;display:block;background:var(--fr-bg);">
                         <source src="fotos/FRACTUM/LOOK 2/FINAL DE LOS FINALITOS_Default Colorway_0.mp4" type="video/mp4">
                     </video>
@@ -3134,7 +3160,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                         <span style="font-family:'Roboto Mono',monospace;font-size:7px;color:var(--fr-lime);opacity:0.5;letter-spacing:0.2em;">FRACTUM_02</span>
                     </div>
                     <video id="fr-danza-video" preload="metadata" playsinline
-                           poster="fotos/0144.png"
+                           poster="fotos/FRACTUM/AMBIENTE/0144.png"
                            style="width:100%;max-height:70vh;object-fit:contain;display:block;background:var(--fr-bg);">
                         <source src="fotos/FRACTUM/AMBIENTE/video modificado.mp4" type="video/mp4">
                     </video>
@@ -3158,18 +3184,18 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <!-- HERO: 3 imágenes del mundo Blender -->
                 <div class="fr-hero">
                     <div class="fr-slot">
-                        <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/ERAGON CLOTHING_68.png" alt="El bosque — el mundo" onerror="this.style.background='#050C08'">
+                        <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0002.png" alt="El bosque — el mundo" onerror="this.style.background='#050C08'">
                         <div style="position:absolute;bottom:14px;left:14px;font-family:'Roboto Mono',monospace;font-size:7px;color:var(--fr-lime);letter-spacing:0.3em;text-transform:uppercase;opacity:0.8;">El mundo · El bosque espera</div>
                     </div>
                     <div class="fr-slot" style="position:relative;">
-                        <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0002.png" alt="El bailarín en el bosque" onerror="this.style.background='#050C08'">
+                        <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0001.png" alt="El bailarín en el bosque" onerror="this.style.background='#050C08'">
                         <div class="fr-overlay">
                             <h3 class="fr-overlay-title">FRACTUM</h3>
                             <span class="fr-overlay-sub">No se trata de vencer — sino de elegir con conciencia</span>
                         </div>
                     </div>
                     <div class="fr-slot">
-                        <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0215.png" alt="La sala de cristales — integración" onerror="this.style.background='#050C08'">
+                        <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0019.png" alt="La sala de cristales — integración" onerror="this.style.background='#050C08'">
                         <div style="position:absolute;bottom:14px;left:14px;font-family:'Roboto Mono',monospace;font-size:7px;color:var(--fr-lime);letter-spacing:0.3em;text-transform:uppercase;opacity:0.8;">Integración · El espacio como reflejo</div>
                     </div>
                 </div>
@@ -3243,19 +3269,19 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     </div>
                     <div style="display:grid;grid-template-columns:repeat(4,1fr);">
                         <div style="overflow:hidden;aspect-ratio:16/9;background:var(--fr-bg2);position:relative;cursor:pointer;" onclick="frOpenScene(1)">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0001.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0002.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
                             <div style="position:absolute;bottom:0;left:0;right:0;padding:6px 10px;background:linear-gradient(to top,rgba(5,12,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:6px;color:var(--fr-lime);letter-spacing:0.2em;text-transform:uppercase;">01 · Reacción — VER FICHA →</div>
                         </div>
                         <div style="overflow:hidden;aspect-ratio:16/9;background:var(--fr-bg2);position:relative;border-left:1px solid var(--fr-border);cursor:pointer;" onclick="frOpenScene(2)">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0088.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0193.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
                             <div style="position:absolute;bottom:0;left:0;right:0;padding:6px 10px;background:linear-gradient(to top,rgba(5,12,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:6px;color:var(--fr-lime);letter-spacing:0.2em;text-transform:uppercase;">02 · Escucha — VER FICHA →</div>
                         </div>
                         <div style="overflow:hidden;aspect-ratio:16/9;background:var(--fr-bg2);position:relative;border-left:1px solid var(--fr-border);cursor:pointer;" onclick="frOpenScene(3)">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0019.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0215.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
                             <div style="position:absolute;bottom:0;left:0;right:0;padding:6px 10px;background:linear-gradient(to top,rgba(5,12,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:6px;color:var(--fr-lime);letter-spacing:0.2em;text-transform:uppercase;">03 · Juicio — VER FICHA →</div>
                         </div>
                         <div style="overflow:hidden;aspect-ratio:16/9;background:var(--fr-bg2);position:relative;border-left:1px solid var(--fr-border);cursor:pointer;" onclick="frOpenScene(4)">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0193.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0019.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
                             <div style="position:absolute;bottom:0;left:0;right:0;padding:6px 10px;background:linear-gradient(to top,rgba(5,12,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:6px;color:var(--fr-lime);letter-spacing:0.2em;text-transform:uppercase;">04 · Decisión — VER FICHA →</div>
                         </div>
                     </div>
@@ -3265,7 +3291,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="fr-scene-modal-bg" id="fr-scene-1" onclick="frCloseScene(event,1)" style="position:fixed;inset:0;z-index:3000;background:rgba(5,12,8,0.92);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(8px);">
                     <div onclick="event.stopPropagation()" style="background:var(--fr-bg2);border:1px solid var(--fr-border);max-width:640px;width:100%;max-height:86vh;overflow-y:auto;">
                         <div style="position:relative;">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0001.png" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0002.png" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
                             <button onclick="frCloseScene(event,1)" style="position:absolute;top:14px;right:14px;font-family:'Roboto Mono',monospace;font-size:9px;color:#fff;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.3);padding:8px 12px;cursor:pointer;">✕ CERRAR</button>
                         </div>
                         <div style="padding:28px 32px;">
@@ -3283,7 +3309,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="fr-scene-modal-bg" id="fr-scene-2" onclick="frCloseScene(event,2)" style="position:fixed;inset:0;z-index:3000;background:rgba(5,12,8,0.92);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(8px);">
                     <div onclick="event.stopPropagation()" style="background:var(--fr-bg2);border:1px solid var(--fr-border);max-width:640px;width:100%;max-height:86vh;overflow-y:auto;">
                         <div style="position:relative;">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0088.png" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0193.png" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
                             <button onclick="frCloseScene(event,2)" style="position:absolute;top:14px;right:14px;font-family:'Roboto Mono',monospace;font-size:9px;color:#fff;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.3);padding:8px 12px;cursor:pointer;">✕ CERRAR</button>
                         </div>
                         <div style="padding:28px 32px;">
@@ -3301,7 +3327,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="fr-scene-modal-bg" id="fr-scene-3" onclick="frCloseScene(event,3)" style="position:fixed;inset:0;z-index:3000;background:rgba(5,12,8,0.92);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(8px);">
                     <div onclick="event.stopPropagation()" style="background:var(--fr-bg2);border:1px solid var(--fr-border);max-width:640px;width:100%;max-height:86vh;overflow-y:auto;">
                         <div style="position:relative;">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0019.png" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0215.png" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
                             <button onclick="frCloseScene(event,3)" style="position:absolute;top:14px;right:14px;font-family:'Roboto Mono',monospace;font-size:9px;color:#fff;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.3);padding:8px 12px;cursor:pointer;">✕ CERRAR</button>
                         </div>
                         <div style="padding:28px 32px;">
@@ -3319,7 +3345,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="fr-scene-modal-bg" id="fr-scene-4" onclick="frCloseScene(event,4)" style="position:fixed;inset:0;z-index:3000;background:rgba(5,12,8,0.92);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(8px);">
                     <div onclick="event.stopPropagation()" style="background:var(--fr-bg2);border:1px solid var(--fr-border);max-width:640px;width:100%;max-height:86vh;overflow-y:auto;">
                         <div style="position:relative;">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0193.png" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0019.png" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
                             <button onclick="frCloseScene(event,4)" style="position:absolute;top:14px;right:14px;font-family:'Roboto Mono',monospace;font-size:9px;color:#fff;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.3);padding:8px 12px;cursor:pointer;">✕ CERRAR</button>
                         </div>
                         <div style="padding:28px 32px;">
@@ -3397,7 +3423,6 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 </div>
                 <div class="es-gallery">
                     <div class="es-gallery-slot"><img loading="lazy" src="fotos/ESCHATON.EXE/ChatGPT Image 25 nov 2025, 15_11_38.png" alt="ESCHATON Universe I" onerror="this.style.background='#0A0508'"></div>
-                    <div class="es-gallery-slot"><img loading="lazy" src="fotos/ESCHATON.EXE/LOOK 1/detalle-01.png" alt="" onerror="this.style.background='#0A0508'"></div>
                     <div class="es-gallery-slot"><img loading="lazy" src="fotos/look3_5.png" alt="ESCHATON Universe II" onerror="this.style.background='#0A0508'"></div>
                     <div class="es-gallery-slot"><img loading="lazy" src="fotos/MANO_Default Colorway_4.png" alt="ESCHATON Universe III" onerror="this.style.background='#0A0508'"></div>
                     <div class="es-gallery-slot"><img loading="lazy" src="fotos/Look4_Default Colorway.png" alt="ESCHATON detail" onerror="this.style.background='#0A0508'"></div>
@@ -3615,6 +3640,12 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 <div class="view room-view" id="enter-the-palace">
     <div class="habs-back-bar" onclick="resetHabs()">← Volver a la lista</div>
 
+    <div class="sala-header">
+        <span class="sala-code">INSIGNIA · BERSHKA · SS26 · IED MADRID</span>
+        <h1 class="sala-title">Enter The<br><em style="color:var(--sapphire);">Palace</em></h1>
+        <p class="sala-desc">Proyecto insignia: dirección creativa, patronaje técnico y campaña completa para una colaboración conceptual con Bershka, del cuerpo digital al físico.</p>
+    </div>
+
     <!-- ══ ENTER THE PALACE — SS26 · Bershka · IED Madrid — Proyecto insignia, entrada propia ══ -->
     <div class="hab" id="hab-etp" data-tag="BEATRIZ CASTRO">
         <div class="hab-header hab-banner" onclick="focusHab('hab-etp')">
@@ -3656,6 +3687,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                         <span class="etp-role both">AVATARES · CONCEPTO: LAS DOS</span>
                     </div>
                 </div>
+                <div class="etp-card" style="border:none;border-top:1px solid #000;">
+                    <img loading="lazy" style="aspect-ratio:auto;width:100%;" src="sala-enter-the-palace/assets/campaign/moodboard-2.svg" alt="Moodboard del proyecto">
+                </div>
                 <div class="etp-dots-strip"></div>
 
                 <!-- 02 — EL DIAGNÓSTICO DE MERCADO -->
@@ -3663,8 +3697,15 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     <div class="etp-sec-head">
                         <span class="etp-eyebrow" style="font-size:13px;">02 · EL DIAGNÓSTICO DE MERCADO</span>
                     </div>
-                    <p class="etp-p" style="max-width:820px;">Empecé con un research de qué habían hecho otras marcas y la propia Bershka, para no repetir. Ahí encontré el punto que más me interesaba trabajar: identifiqué una oportunidad de mercado que Bershka no había resuelto — el tallaje. Bershka ofrece oficialmente tallas hasta XXL en su web, pero el patronaje no ha cambiado: es el mismo molde escalado hacia arriba. La talla media real de la mujer española es 44–48; Bershka rara vez supera la 40 con variedad real. En 2021, una clienta expuso el problema en TikTok con un vídeo que acumuló 79.2K likes — Bershka no respondió públicamente ni hubo cambio documentado en producción.</p>
-                    <p class="etp-p" style="max-width:820px;margin-top:12px;">El problema tiene coste medible: el 38% de las devoluciones en moda online se debe a talla o ajuste incorrecto, con una tasa de devolución online de 25–40% en Europa (frente a 3–8% en tienda física). El 63% de los compradores admite "bracketing" —comprar varias tallas con intención de devolver las que no sirven—, y cada devolución procesada cuesta entre 21€ y 46€ a la marca. En España, el 52% de las mujeres ha tenido dificultades para encontrar su talla, y el 84% cree que la oferta actual podría mejorar.</p>
+                    <p class="etp-p" style="max-width:820px;">Empecé con un research de qué habían hecho otras marcas y la propia Bershka, para no repetir. Ahí encontré la oportunidad: el tallaje. Bershka ofrece tallas hasta XXL en su web, pero es el mismo molde escalado hacia arriba — la talla media real de la mujer española es 44–48, Bershka rara vez supera la 40 con variedad real. En 2021, una clienta expuso el problema en TikTok con un vídeo que acumuló 79.2K likes. Bershka no respondió.</p>
+                    <div class="etp-stat-grid">
+                        <div class="etp-stat"><span class="etp-stat-num">38%</span><span class="etp-stat-lab">de las devoluciones en moda online son por talla o ajuste incorrecto</span></div>
+                        <div class="etp-stat"><span class="etp-stat-num">25–40%</span><span class="etp-stat-lab">tasa de devolución online en Europa (vs. 3–8% en tienda física)</span></div>
+                        <div class="etp-stat"><span class="etp-stat-num">63%</span><span class="etp-stat-lab">hace "bracketing" — compra varias tallas para devolver las que no sirven</span></div>
+                        <div class="etp-stat"><span class="etp-stat-num">21–46€</span><span class="etp-stat-lab">cuesta a la marca cada devolución procesada</span></div>
+                        <div class="etp-stat"><span class="etp-stat-num">52%</span><span class="etp-stat-lab">de las mujeres en España ha tenido dificultad para encontrar su talla</span></div>
+                        <div class="etp-stat"><span class="etp-stat-num">84%</span><span class="etp-stat-lab">cree que la oferta actual de tallas podría mejorar</span></div>
+                    </div>
                 </div>
 
                 <!-- 03 — EL PERFIL PROTAGONISTA -->
@@ -3672,8 +3713,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     <div class="etp-sec-head">
                         <span class="etp-eyebrow" style="font-size:13px;">03 · EL PERFIL PROTAGONISTA</span>
                     </div>
-                    <p class="etp-p" style="max-width:820px;">The One Outside, 16–28 años: quiere comprar en Bershka, ha intentado comprar en Bershka. La ropa no le cabe o no le funciona en su cuerpo. Se va. Cuenta lo que pasó en TikTok. Sigue a la marca, guarda sus drops, le encanta la estética — pero la XXL tiene medidas de M normativa, el jean no sube de cadera, el top queda sin soporte. Compra ahora en ASOS, H&M o Shein, no por preferencia, por necesidad.</p>
-                    <p class="etp-p" style="max-width:820px;margin-top:12px;">Con Bershka la relación sería emocional; hoy es solo funcional. Bershka tiene dos consumidoras que nunca se han tratado como sistema: la de 13–17 que compra en grupo en tienda física, y la de 25–34 que descubre online y compra con más criterio. Enter The Palace conecta a ambas porque la nostalgia de The Palace une exactamente esas dos edades.</p>
+                    <p class="etp-p" style="max-width:820px;"><strong style="color:var(--etp-yellow);">"The One Outside"</strong>, 16–28 años. Sigue a Bershka, le encanta la estética, pero la ropa no le funciona — la XXL tiene medidas de M, el jean no sube de cadera. Compra en ASOS o Shein, no por preferencia, por necesidad: hoy la relación es solo funcional, no emocional.</p>
+                    <p class="etp-p" style="max-width:820px;margin-top:12px;">Bershka tiene dos consumidoras que nunca se han tratado como sistema — la de 13–17 que compra en grupo en tienda, y la de 25–34 que compra online con más criterio. La nostalgia de The Palace conecta exactamente esas dos edades.</p>
                 </div>
 
                 <!-- 04 — LA NARRATIVA -->
@@ -3691,9 +3732,25 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     <div class="etp-sec-head">
                         <span class="etp-eyebrow" style="font-size:13px;">05 · EL PATRONAJE TÉCNICO — BLOQUE B</span>
                     </div>
-                    <p class="etp-p" style="max-width:820px;">El objetivo técnico partía de un problema concreto: estandarizar el ajuste del Bloque B para tipos de cuerpo curvy/bust/hip, con una ratio cintura-cadera de 0.7 (±2%), cintura sin "waist gap" en ninguna talla, y soporte estructural sin rigidez. Propuse además anclar la talla de prueba en la M en vez de la S para el grading, y a partir de 2XL construir el patrón desde cero en vez de seguir escalando, para evitar acumular margen de error. También propuse que las clientas crearan un perfil con sus medidas reales, para que Bershka tuviera su propia base de datos de tipos de cuerpo — una idea ambiciosa, con el problema real de que las medidas cambiarían con cada producción, pero la alternativa más cercana a algo inclusivo y propio de la marca que pude proponer.</p>
-                    <p class="etp-p" style="max-width:820px;margin-top:12px;">Para resolver el waist gap trabajé tres sistemas según el tejido: en denim, una cinturilla anatómica con canesú trasero en corazón invertido (curvatura de 1.5 a 2.2 cm en el centro espalda) más entretela elástica ligera; en tejidos tipo chrome, paneles de tensión con micro-elasticidad (8–12% de elongación) y mayor recuperación en los laterales internos para sellar la cintura sin marcar; y en piezas de volumen, modelado 3D con costuras princesa que redistribuyen el volumen al busto y la cadera, con margen de holgura controlado de 2 a 6 mm.</p>
-                    <p class="etp-p" style="max-width:820px;margin-top:12px;">Ese sistema se aplicó a una matriz de 5 looks por drop, cada uno con su propia ficha de ajuste, materiales y construcción — desde el denim de 12oz con canesú corazón invertido del Look 01 "The Foundation", hasta el mix final del Look 05 "Total Palace Glitch", con costuras princesa 3D y ganchos ocultos para lograr un efecto de mono visual sin gap de cintura en ningún punto del cuerpo.</p>
+                    <p class="etp-p" style="max-width:820px;">El objetivo: un ajuste estándar para cuerpos curvy, sin el hueco de cintura ("waist gap") que casi toda la ropa deja en la espalda baja al escalar tallas. Ancló la talla de prueba en la M en vez de la S, y a partir de 2XL construyó el patrón desde cero en lugar de solo escalar — cada tejido necesitaba su propia solución:</p>
+                    <div class="etp-spec-grid">
+                        <div class="etp-spec-card">
+                            <span class="etp-spec-card-tag">Denim</span>
+                            <div class="etp-spec-card-fix">Cinturilla anatómica</div>
+                            <div class="etp-spec-card-detail">Canesú trasero en corazón invertido + entretela elástica ligera, para que la cintura siga la curva real del cuerpo.</div>
+                        </div>
+                        <div class="etp-spec-card">
+                            <span class="etp-spec-card-tag">Tipo Chrome</span>
+                            <div class="etp-spec-card-fix">Paneles de tensión</div>
+                            <div class="etp-spec-card-detail">Micro-elasticidad con más recuperación en los laterales internos — sella la cintura sin marcar.</div>
+                        </div>
+                        <div class="etp-spec-card">
+                            <span class="etp-spec-card-tag">Volumen</span>
+                            <div class="etp-spec-card-fix">Costuras princesa 3D</div>
+                            <div class="etp-spec-card-detail">Redistribuyen el volumen al busto y la cadera con holgura controlada, sin rigidez.</div>
+                        </div>
+                    </div>
+                    <p class="etp-p" style="max-width:820px;margin-top:16px;">El sistema se aplicó a 5 looks por drop, desde el denim del Look 01 "The Foundation" hasta el mix final del Look 05 "Total Palace Glitch" — sin gap de cintura en ningún punto del cuerpo, en ninguna talla.</p>
 
                     <div class="etp-grid" style="grid-template-columns:repeat(3,1fr);margin-top:22px;">
                         <div class="etp-card"><img loading="lazy" src="sala-enter-the-palace/assets/shop/prod-01-falda-metal.png" alt="Minifalda Metalizada — CLO3D" style="object-fit:contain;background:var(--etp-navy);padding:4%;box-sizing:border-box;"><div class="etp-card-cap">MINIFALDA METALIZADA</div></div>
@@ -3719,21 +3776,47 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     <div class="etp-sec-head">
                         <span class="etp-eyebrow" style="font-size:13px;">07 · EXPERIENCIA FÍSICA Y DIGITAL</span>
                     </div>
-                    <p class="etp-p" style="max-width:820px;margin-bottom:20px;">El sistema conecta tienda y digital sin fisuras: lo que pasa en TikTok se vive en tienda, lo que ocurre en la burbuja se comparte en Snapchat, el avatar que se crea en la app se mide en el espejo. En tienda, cuatro salas tipo Palace —empezando por El Vestíbulo, con espejos AR de suelo a techo y personajes que dan la bienvenida— reinterpretan la sala de chat de los 90 como espacio físico, con AR funcional que toma medidas reales, las conecta con el avatar de la app, y genera contenido de campaña de forma orgánica mientras la clienta lo vive. Cada escaneo de cuerpo alimenta datos anónimos que ajustan el patronaje de la temporada siguiente — la tecnología sirve tanto a la clienta como al negocio.</p>
+                    <p class="etp-p" style="max-width:820px;margin-bottom:8px;">Tienda y digital sin fisuras: lo que pasa en TikTok se vive en tienda, el avatar de la app se mide en el espejo. Cada escaneo de cuerpo alimenta el patronaje de la temporada siguiente.</p>
 
-                    <div class="etp-journey">
-                        <div class="etp-jstep"><span class="etp-jnum">1</span><span class="etp-jtxt">Perfil web con tus medidas</span></div>
-                        <div class="etp-jstep"><span class="etp-jnum">2</span><span class="etp-jtxt">Señalética guía a la Cúpula</span></div>
-                        <div class="etp-jstep"><span class="etp-jnum">3</span><span class="etp-jtxt">Medición asistida si hace falta</span></div>
-                        <div class="etp-jstep"><span class="etp-jnum">4</span><span class="etp-jtxt">Tablet actualiza tu talla</span></div>
-                        <div class="etp-jstep"><span class="etp-jnum">5</span><span class="etp-jtxt">Cápsula · pruebas la colección</span></div>
-                        <div class="etp-jstep"><span class="etp-jnum">6</span><span class="etp-jtxt">Video + código de concurso</span></div>
-                    </div>
-                    <div class="etp-card" style="margin-top:14px;">
-                        <img loading="lazy" style="aspect-ratio:auto;width:100%;" src="sala-enter-the-palace/assets/campaign/moodboard-2.svg" alt="Moodboard del proyecto">
+                    <div class="etp-flow">
+                        <div class="etp-flow-step">
+                            <span class="etp-flow-num">1</span>
+                            <span class="etp-flow-txt">Perfil web con tus medidas</span>
+                            <div class="etp-flow-thumb"><img loading="lazy" src="sala-enter-the-palace/assets/web-landing.png" alt=""></div>
+                        </div>
+                        <div class="etp-flow-arrow">↓</div>
+                        <div class="etp-flow-step">
+                            <span class="etp-flow-num">2</span>
+                            <span class="etp-flow-txt">Señalética guía a la Cúpula</span>
+                            <div class="etp-flow-thumb"><img loading="lazy" src="sala-enter-the-palace/assets/flayer-de-provador2.png" alt=""></div>
+                        </div>
+                        <div class="etp-flow-arrow">↓</div>
+                        <div class="etp-flow-step">
+                            <span class="etp-flow-num">3</span>
+                            <span class="etp-flow-txt">Medición asistida en la Cúpula si hace falta</span>
+                            <div class="etp-flow-thumb"><img loading="lazy" src="sala-enter-the-palace/assets/CUPULA TIENDA.png" alt=""></div>
+                        </div>
+                        <div class="etp-flow-arrow">↓</div>
+                        <div class="etp-flow-step">
+                            <span class="etp-flow-num">4</span>
+                            <span class="etp-flow-txt">Tablet actualiza tu talla en el Mirror</span>
+                            <div class="etp-flow-thumb"><img loading="lazy" src="sala-enter-the-palace/assets/store-render-3.png" alt=""></div>
+                        </div>
+                        <div class="etp-flow-arrow">↓</div>
+                        <div class="etp-flow-step">
+                            <span class="etp-flow-num">5</span>
+                            <span class="etp-flow-txt">Cápsula · pruebas la colección</span>
+                            <div class="etp-flow-thumb"><img loading="lazy" src="sala-enter-the-palace/assets/store-render-2.png" alt=""></div>
+                        </div>
+                        <div class="etp-flow-arrow">↓</div>
+                        <div class="etp-flow-step">
+                            <span class="etp-flow-num">6</span>
+                            <span class="etp-flow-txt">Video + código de concurso</span>
+                        </div>
                     </div>
 
-                    <div class="etp-card" style="margin-top:20px;margin-bottom:14px;position:relative;">
+                    <p class="etp-p" style="max-width:820px;margin-top:20px;margin-bottom:8px;font-size:13px;opacity:0.5;">▶ Prueba el vestíbulo virtual:</p>
+                    <div class="etp-card" style="margin-top:0;margin-bottom:14px;position:relative;">
                         <img loading="lazy" style="aspect-ratio:auto;width:100%;display:block;" src="sala-enter-the-palace/assets/web-landing.png" alt="Landing web Enter The Palace">
                         <!-- hotspots reales sobre la imagen -->
                         <div class="etp-hotspot" style="left:82%;top:13.5%;width:14%;height:3.6%;" onclick="etpOpenShop()" title="Start Bershka"></div>
@@ -3750,20 +3833,11 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                             </div>
                         </div>
                     </div>
-                    <p class="etp-p" style="font-size:12px;opacity:0.45;margin-bottom:20px;">▶ Landing funcional: toca "Jugar ahora" para crear tu avatar, "Start Bershka" para ver la cápsula, "Descubre SS26" para la campaña. El contador es real — se reinicia cada vez que entras al vestíbulo.</p>
+                    <p class="etp-p" style="font-size:12px;opacity:0.45;margin-bottom:20px;">▶ Toca "Jugar ahora" para crear tu avatar, "Start Bershka" para ver la cápsula, "Descubre SS26" para la campaña.</p>
 
-                    <p class="etp-p" style="margin-bottom:18px;">Bershka Gran Vía 25. La cápsula cuelga por bloque de patronaje, no por talla única — se prueba directo en el Mirror.</p>
-                    <div class="etp-card" style="margin-bottom:14px;">
-                        <img loading="lazy" style="aspect-ratio:auto;width:100%;" src="sala-enter-the-palace/assets/store-render-2.png" alt="Merchandising, maniquíes en tienda">
-                        <div class="etp-card-cap">MERCHANDISING · CÁPSULA EN TIENDA</div>
-                    </div>
-                    <div class="etp-card" style="margin-bottom:14px;">
+                    <div class="etp-card" style="margin-bottom:0;">
                         <img loading="lazy" style="aspect-ratio:auto;width:100%;" src="sala-enter-the-palace/assets/CUPULA TIENDA.png" alt="Cúpula y Mirror, mockup completo">
-                        <div class="etp-card-cap">CÚPULA + MIRROR · MOCKUP COMPLETO</div>
-                    </div>
-                    <div class="etp-grid etp-g2">
-                        <div class="etp-card"><img loading="lazy" src="sala-enter-the-palace/assets/flayer-de-provador2.png" alt="Flyer acceso SS26"><div class="etp-card-cap">FLYER DE ACCESO · YO</div></div>
-                        <div class="etp-card tall"><img loading="lazy" src="sala-enter-the-palace/assets/store-render-3.png" alt="Mockup deslizable de colorways"><div class="etp-card-cap">MOCKUP CÁPSULA — YA FUNCIONA EN EL MIRROR ↑</div></div>
+                        <div class="etp-card-cap">CÚPULA + MIRROR · MOCKUP COMPLETO · BERSHKA GRAN VÍA 25</div>
                     </div>
                 </div>
 
@@ -4203,7 +4277,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 <div class="mayle-modal-bg" id="mayle-modal-3" onclick="closeMayleModal(event,'mayle-modal-3')">
   <div class="mayle-modal">
     <div class="mayle-modal-img-col">
-      <span class="mayle-modal-badge">Optimización COGS</span>
+      <span class="mayle-modal-badge">Ajuste de Primera</span>
       <img loading="lazy" src="fotos/el-pozo-jacket-detalle.png" alt="Chaqueta El Pozo — detalle constructivo">
     </div>
     <div class="mayle-modal-info">
@@ -5247,7 +5321,8 @@ function navigateToTag(tag, e) {
 const FEATURED_PROJECTS = [
     { destacado: true, sala: 'oficio', salaLabel: 'La Corte', name: 'Vestido "Santo Domingo"', img: 'fotos/santo-domingo-dress.png', hab: 'hab-mayle', modal: 'mayle-modal-1' },
     { destacado: true, sala: 'vision', salaLabel: 'La Exposición', name: 'Homenaje a Oscar de la Renta', img: 'fotos/oscardelarenta.png', hab: 'hab-oscar', modal: null },
-    { destacado: true, sala: 'enter-the-palace', salaLabel: 'La Cámara Oscura', name: 'Enter The Palace', img: 'sala-enter-the-palace/assets/AVATARES/look-frente.png', hab: 'hab-etp', modal: null },
+    { destacado: true, sala: 'mundos-content', salaLabel: 'La Cámara Oscura', name: 'FRACTUM', img: 'fotos/FRACTUM/LOOK 2/FINAL DE LOS FINALITOS_Default Colorway_121.png', hab: 'hab-fractum', modal: null },
+    { destacado: true, sala: 'enter-the-palace', salaLabel: 'Enter The Palace', name: 'Enter The Palace', img: 'sala-enter-the-palace/assets/AVATARES/look-frente.png', hab: 'hab-etp', modal: null },
 ];
 function goToFeatured(i) {
     const p = FEATURED_PROJECTS[i];
@@ -5273,6 +5348,7 @@ function buildFeaturedProjects() {
                 '<div class="featured-card-meta">' +
                     '<span class="featured-card-sala">' + p.salaLabel + '</span>' +
                     '<div class="featured-card-name">' + p.name + '</div>' +
+                    '<span class="featured-card-cta">Ir a ' + p.salaLabel + ' →</span>' +
                 '</div>' +
             '</div>'
         )).join('');
