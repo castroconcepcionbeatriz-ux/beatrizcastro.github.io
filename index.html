@@ -3,19 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Beatriz Castro — Digital Fashion Designer · CLO3D · Madrid</title>
-<meta name="description" content="Portfolio de Beatriz Castro, diseñadora de moda digital especializada en CLO3D, Blender, patronaje industrial y dirección creativa. Santo Domingo · Madrid.">
-<meta name="keywords" content="diseñadora moda digital, CLO3D, patronaje industrial, digital fashion designer, Blender, DAZ 3D, moda 3D Madrid, virtual sampling, womenswear">
+<title>Beatriz Castro — Fashion Product Developer · Industrial Patternmaking + 3D/CLO3D · Madrid</title>
+<meta name="description" content="Portfolio de Beatriz Castro, Fashion Product Developer especializada en womenswear, patronaje industrial y desarrollo de producto 3D con CLO3D. Santo Domingo · Madrid.">
+<meta name="keywords" content="fashion product developer, diseñadora moda digital, CLO3D, patronaje industrial, digital fashion designer, Blender, DAZ 3D, moda 3D Madrid, virtual sampling, womenswear">
 <meta name="author" content="Beatriz Castro">
-<meta property="og:title" content="Beatriz Castro — Digital Fashion Designer">
+<meta property="og:title" content="Beatriz Castro — Fashion Product Developer · Industrial Patternmaking + 3D/CLO3D · Madrid">
 <meta property="og:description" content="Del patrón físico al avatar digital. Patronaje industrial, CLO3D, dirección creativa. Santo Domingo · Madrid.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="fotos/elizafacetoface.jpg">
+<meta property="og:image" content="https://castroconcepcionbeatriz-ux.github.io/beatrizcastro.github.io/fotos/elizafacetoface.jpg">
 <meta name="robots" content="index, follow">
-<meta property="og:url" content="https://beatrizcastro.com">
+<meta property="og:url" content="https://castroconcepcionbeatriz-ux.github.io/beatrizcastro.github.io/">
+<link rel="canonical" href="https://castroconcepcionbeatriz-ux.github.io/beatrizcastro.github.io/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Beatriz Castro — Digital Fashion Designer">
+<meta name="twitter:title" content="Beatriz Castro — Fashion Product Developer · Industrial Patternmaking + 3D/CLO3D · Madrid">
 <meta name="twitter:description" content="Del patrón físico al avatar digital. CLO3D · Blender · Patronaje Industrial.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Beatriz Castro",
+  "jobTitle": "Fashion Product Developer",
+  "url": "https://castroconcepcionbeatriz-ux.github.io/beatrizcastro.github.io/",
+  "image": "https://castroconcepcionbeatriz-ux.github.io/beatrizcastro.github.io/fotos/elizafacetoface.jpg",
+  "sameAs": [
+    "https://www.linkedin.com/in/beatriz-castro-967529210/",
+    "https://www.instagram.com/beatrizcastro9798"
+  ],
+  "knowsAbout": ["Industrial Patternmaking", "CLO3D", "Womenswear Product Development", "3D Fashion Design", "Creative Direction"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Madrid",
+    "addressCountry": "ES"
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Inter:wght@100;200;300;400;500&family=Roboto+Mono:wght@200;300;400&family=Syne:wght@700;800&family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -256,6 +277,7 @@ html, body {
 .sala-code { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--amber); letter-spacing: 0.5em; display: block; margin-bottom: 16px; }
 .sala-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 7vw, 86px); font-weight: 300; line-height: 0.85; color: var(--matter-light); }
 .sala-desc { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--matter-light); opacity: 0.45; margin-top: 20px; max-width: 500px; line-height: 1.7; }
+.sala-func-subtitle { font-family: 'Roboto Mono', monospace; font-size: 10px; color: var(--amber); letter-spacing: 0.1em; display: block; margin-top: 14px; }
 
 /* HAB */
 .hab { border-bottom: 1px solid rgba(74, 141, 238,0.1); margin-bottom: 10px; transition: opacity 0.4s, filter 0.4s; overflow: hidden; scroll-margin-top: 145px; }
@@ -298,6 +320,13 @@ html, body {
 .hab-banner:hover .hab-banner-img { filter: brightness(0.38) saturate(1.05); transform: scale(1.035); }
 .hab-banner-scrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0.4) 100%); }
 .hab-banner-content { position: relative; z-index: 2; height: 100%; padding: 12px 22px; display: flex; justify-content: space-between; align-items: center; gap: 16px; overflow: hidden; }
+.hab-cat-badge { position: absolute; top: 10px; left: 22px; z-index: 3; font-family: 'Roboto Mono', monospace; font-size: 7px; letter-spacing: 0.2em; text-transform: uppercase; color: #000; background: var(--amber); padding: 3px 9px; }
+.proj-summary { display: grid; grid-template-columns: repeat(4,1fr); border-bottom: 1px solid rgba(255,255,255,0.08); }
+.proj-summary-item { padding: 22px 20px; border-right: 1px solid rgba(255,255,255,0.08); }
+.proj-summary-item:last-child { border-right: none; }
+.proj-summary-key { font-family: 'Roboto Mono', monospace; font-size: 7px; letter-spacing: 0.25em; text-transform: uppercase; opacity: 0.5; display: block; margin-bottom: 8px; }
+.proj-summary-val { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 300; line-height: 1.5; opacity: 0.9; }
+@media (max-width:700px) { .proj-summary { grid-template-columns: 1fr 1fr; } .proj-summary-item:nth-child(2) { border-right: none; } }
 .hab-banner-content > div:first-child { min-width: 0; }
 .hab-banner-code { font-family: 'Roboto Mono', monospace; font-size: 7px; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .hab-banner-title { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(14px, 1.5vw, 20px); line-height: 1.15; color: #F5F1E8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -395,6 +424,8 @@ html, body {
 .sobre-bio-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 64px); font-weight: 300; line-height: 0.9; color: var(--matter-light); margin-bottom: 30px; }
 .sobre-bio-name em { color: var(--sapphire); font-style: italic; }
 .sobre-role-tag { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--amber); border: 1px solid rgba(253,185,39,0.3); padding: 6px 14px; display: inline-block; margin-bottom: 30px; letter-spacing: 0.15em; }
+.sobre-intro-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--matter-light); opacity: 0.7; line-height: 1.8; text-align: justify; margin-bottom: 16px; max-width: 720px; }
+.sobre-intro-competencies { font-family: 'Roboto Mono', monospace; font-size: 9px; color: var(--sapphire); opacity: 0.7; letter-spacing: 0.1em; margin-top: 20px; }
 .sobre-text { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300; line-height: 1.8; color: var(--matter-light); opacity: 0.75; max-width: 480px; text-align: justify; }
 .sobre-skills { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 10px; }
 .skill-tag { font-family: 'Roboto Mono', monospace; font-size: 8px; color: var(--sapphire); border: 1px solid rgba(74, 141, 238,0.3); padding: 5px 12px; letter-spacing: 0.1em; text-transform: uppercase; }
@@ -443,6 +474,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     letter-spacing: 0.2em; cursor: pointer; transition: 0.3s; margin-top: 10px;
 }
 .c-form-btn:hover { background: var(--amber); color: #000; }
+
+.skip-link { position: absolute; top: -60px; left: 12px; z-index: 10000; background: var(--amber); color: #000; font-family: 'Roboto Mono', monospace; font-size: 12px; padding: 12px 20px; text-decoration: none; transition: top 0.2s; }
+.skip-link:focus { top: 12px; }
 
 /* UI NAV FIJA */
 #ui-nav { position: fixed; inset: 0; pointer-events: none; z-index: 1000; }
@@ -825,6 +859,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 </head>
 <body>
 
+<a href="#stage" class="skip-link">Saltar al contenido principal</a>
+
 <div id="technical-grid"></div>
 <div id="cursor"></div>
 
@@ -834,10 +870,10 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
 <!-- BOTTOM NAV PERSISTENTE -->
 <nav id="bottom-nav">
+    <a class="bnav-item" onclick="navTo('enter-the-palace');focusHab('hab-etp');" data-nav="enter-the-palace" style="color:#fdff00;">✦ Enter The Palace <span style="opacity:0.4;font-size:6px;">INSIGNIA</span></a>
     <a class="bnav-item" onclick="navTo('oficio')" data-nav="oficio">I · La Corte <span style="opacity:0.4;font-size:6px;">PATRONAJE</span></a>
     <a class="bnav-item" onclick="navTo('vision')" data-nav="vision">II · La Exposición <span style="opacity:0.4;font-size:6px;">DISEÑO</span></a>
     <a class="bnav-item" onclick="navTo('mundos-content')" data-nav="mundos-content">III · La Cámara <span style="opacity:0.4;font-size:6px;">DIGITAL</span></a>
-    <a class="bnav-item" onclick="navTo('enter-the-palace');focusHab('hab-etp');" data-nav="enter-the-palace" style="color:#fdff00;">✦ Enter The Palace <span style="opacity:0.4;font-size:6px;">INSIGNIA</span></a>
     <a class="bnav-item" onclick="navTo('sobre-mi')" data-nav="sobre-mi">Sobre mí</a>
     <a class="bnav-item" onclick="navTo('contacto')" data-nav="contacto">Contacto</a>
     <span style="flex:1"></span>
@@ -846,7 +882,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <a class="bnav-item bnav-social-hide" href="https://www.linkedin.com/in/beatriz-castro-967529210/" target="_blank" rel="noopener" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.4'">LI</a>
 </nav>
 
-<div id="stage">
+<div id="stage" tabindex="-1">
 
 <!-- ═══════════════════════════════════════════
      LOBBY
@@ -856,8 +892,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         <div>
             <h1 class="l-name">Beatriz <em>Castro</em></h1>
             <span style="font-family:'Roboto Mono',monospace;font-size:10px;color:var(--matter-light);opacity:0.5;letter-spacing:0.05em;display:block;margin-bottom:6px;">Del patrón físico al avatar digital — sin renunciar a ninguno.</span>
-            <span class="l-tagline">Fashion Strategy &amp; Management</span>
-            <span class="l-bio">Womenswear Product Development · Creative Direction</span>
+            <span class="l-tagline">Fashion Product Developer</span>
+            <span class="l-bio">Industrial Patternmaking + 3D/CLO3D · Womenswear</span>
             <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--sapphire);opacity:0.5;letter-spacing:0.25em;display:block;margin-top:6px;">SANTO DOMINGO · MADRID</span>
             <span class="l-available">● Disponible para proyectos</span>
         </div>
@@ -889,6 +925,23 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <div style="flex-shrink:0;padding-right:100px;">
                 <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3vw,34px);font-style:italic;color:var(--sapphire);line-height:1.2;">"La estructura es<br>el control."</p>
                 <div style="width:40px;height:1px;background:var(--amber);margin-top:28px;box-shadow:0 0 12px rgba(253,185,39,0.3);"></div>
+            </div>
+
+            <!-- PANEL ST_04: Enter The Palace — proyecto insignia, primero en el recorrido -->
+            <div class="panel panel-lg" id="panel-04" onclick="navTo('enter-the-palace');focusHab('hab-etp');">
+                <div class="panel-data"><span class="data-val" style="color:#fdff00;">✦</span><span class="data-lab">Insignia</span></div>
+                <div class="panel-frame" style="border:1px solid rgba(253,255,0,0.3);">
+                    <div class="panel-slides" id="slides-04">
+                        <div class="panel-slide active"><span class="panel-slide-label">Enter The Palace · Avatar</span><img loading="lazy" src="sala-enter-the-palace/assets/AVATARES/look-frente.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">Landing · Vestíbulo Virtual</span><img loading="lazy" src="sala-enter-the-palace/assets/web-landing.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
+                        <div class="panel-slide"><span class="panel-slide-label">Cúpula + Mirror · Tienda</span><img loading="lazy" src="sala-enter-the-palace/assets/CUPULA TIENDA.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
+                    </div>
+                    <div class="panel-dots" id="dots-04"></div>
+                    <div class="panel-info">
+                        <span class="panel-num" style="color:#fdff00;">SS26 · BERSHKA · IED MADRID</span>
+                        <h3 class="panel-ttl">Enter The<br><em>Palace</em></h3>
+                    </div>
+                </div>
             </div>
 
             <!-- PANEL ST_01: Sala I — slideshow -->
@@ -942,22 +995,6 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 </div>
             </div>
 
-            <!-- PANEL ST_04: Enter The Palace — proyecto insignia, entrada propia -->
-            <div class="panel panel-lg" id="panel-04" onclick="navTo('enter-the-palace');focusHab('hab-etp');">
-                <div class="panel-data"><span class="data-val" style="color:#fdff00;">✦</span><span class="data-lab">Insignia</span></div>
-                <div class="panel-frame" style="border:1px solid rgba(253,255,0,0.3);">
-                    <div class="panel-slides" id="slides-04">
-                        <div class="panel-slide active"><span class="panel-slide-label">Enter The Palace · Avatar</span><img loading="lazy" src="sala-enter-the-palace/assets/AVATARES/look-frente.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
-                        <div class="panel-slide"><span class="panel-slide-label">Landing · Vestíbulo Virtual</span><img loading="lazy" src="sala-enter-the-palace/assets/web-landing.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
-                        <div class="panel-slide"><span class="panel-slide-label">Cúpula + Mirror · Tienda</span><img loading="lazy" src="sala-enter-the-palace/assets/CUPULA TIENDA.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('panel-slide--fallback')"></div>
-                    </div>
-                    <div class="panel-dots" id="dots-04"></div>
-                    <div class="panel-info">
-                        <span class="panel-num" style="color:#fdff00;">SS26 · BERSHKA · IED MADRID</span>
-                        <h3 class="panel-ttl">Enter The<br><em>Palace</em></h3>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -1012,7 +1049,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 <div class="view room-view" id="oficio">
     <div class="sala-header">
         <span class="sala-code">PATRONAJE · FOTOGRAFÍA · PRODUCCIÓN · CORTE</span>
-        <h1 class="sala-title">La Sala de<br><em style="color:var(--sapphire);">la Corte</em></h1>
+        <h2 class="sala-title">La Sala de<br><em style="color:var(--sapphire);">la Corte</em></h2>
+        <span class="sala-func-subtitle">Product Development · Patronaje Industrial</span>
         <p class="sala-desc">El corte como primer acto irreversible. Patronaje industrial, fotografía de moda y producción de colección.</p>
     </div>
     <div class="habs-back-bar" onclick="resetHabs()">← Volver a la lista</div>
@@ -1020,6 +1058,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <!-- HAB: Mayle — ABIERTO POR DEFECTO -->
     <div class="hab" id="hab-mayle" data-tag="BEATRIZ CASTRO">
         <div class="hab-header hab-banner" onclick="focusHab('hab-mayle')">
+            <span class="hab-cat-badge">Professional</span>
             <img loading="lazy" class="hab-banner-img" src="fotos/santo-domingo-dress.png" alt="Mayle Vázquez — Patronaje & Product Development">
             <div class="hab-banner-scrim"></div>
             <div class="hab-banner-content">
@@ -1355,6 +1394,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <!-- ══ HAB: LEONEL LIRIO — Editorial narrativo ══ -->
     <div class="hab" id="hab-leonel" data-tag="BEATRIZ CASTRO">
         <div class="hab-header hab-banner" onclick="focusHab('hab-leonel')">
+            <span class="hab-cat-badge">Professional</span>
             <img loading="lazy" class="hab-banner-img" src="fotos/leonellirio.jpg" alt="Leonel Lirio — Behind the Show">
             <div class="hab-banner-scrim"></div>
             <div class="hab-banner-content">
@@ -1448,9 +1488,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="ed-gallery">
                     <div class="ed-gallery-label">ARCHIVO · RW 2024 · LEONEL LIRIO</div>
                     <div class="ed-gallery-grid">
-                        <div class="ed-gallery-item ed-gallery-item--tall"><img loading="lazy" src="fotos/leonellirio1.jpg" alt=""></div>
-                        <div class="ed-gallery-item"><img loading="lazy" src="fotos/leonel04.jpg" alt=""></div>
-                        <div class="ed-gallery-item"><img loading="lazy" src="fotos/leonel.jpg" alt=""></div>
+                        <div class="ed-gallery-item ed-gallery-item--tall"><img loading="lazy" src="fotos/leonellirio1.jpg" alt="Leonel Lirio — RW 2024"></div>
+                        <div class="ed-gallery-item"><img loading="lazy" src="fotos/leonel04.jpg" alt="Leonel Lirio — RW 2024"></div>
+                        <div class="ed-gallery-item"><img loading="lazy" src="fotos/leonel.jpg" alt="Leonel Lirio — RW 2024"></div>
                         <div class="ed-gallery-item"><img loading="lazy" src="fotos/LEONEL LIRIO.png" alt="Leonel Lirio — RW 2024"></div>
                         <div class="ed-gallery-item"><img loading="lazy" src="fotos/LEONEL LIRIO 2.png" alt="Leonel Lirio — RW 2024"></div>
                         <div class="ed-gallery-item ed-gallery-item--tall"><img loading="lazy" src="fotos/leonel lirio 3 look carnaval.png" alt="Look Carnaval — Leonel Lirio"></div>
@@ -1464,6 +1504,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <!-- ══ HAB: ELISA MORATO — Editorial narrativo ══ -->
     <div class="hab" id="hab-eliza" data-tag="BEATRIZ CASTRO">
         <div class="hab-header hab-banner" onclick="focusHab('hab-eliza')">
+            <span class="hab-cat-badge">Professional</span>
             <img loading="lazy" class="hab-banner-img" src="fotos/elizafacetoface.jpg" alt="Elisa Morato — Behind the Show">
             <div class="hab-banner-scrim"></div>
             <div class="hab-banner-content">
@@ -1562,9 +1603,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="ed-gallery">
                     <div class="ed-gallery-label">ARCHIVO · RW 2024 · ELISA MORATO · WUATAN STUDIO</div>
                     <div class="ed-gallery-grid">
-                        <div class="ed-gallery-item ed-gallery-item--tall"><img loading="lazy" src="fotos/elisamorato4.jpg" alt=""></div>
-                        <div class="ed-gallery-item"><img loading="lazy" src="fotos/elisamorato5.png" alt=""></div>
-                        <div class="ed-gallery-item"><img loading="lazy" src="fotos/elisa.jpg" alt=""></div>
+                        <div class="ed-gallery-item ed-gallery-item--tall"><img loading="lazy" src="fotos/elisamorato4.jpg" alt="Elisa Morato — RW 2024"></div>
+                        <div class="ed-gallery-item"><img loading="lazy" src="fotos/elisamorato5.png" alt="Elisa Morato — RW 2024"></div>
+                        <div class="ed-gallery-item"><img loading="lazy" src="fotos/elisa.jpg" alt="Elisa Morato — RW 2024"></div>
                     </div>
                 </div>
             </div>
@@ -1835,7 +1876,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 <div class="view room-view" id="vision">
     <div class="sala-header">
         <span class="sala-code">DISEÑO · ESTILISMO · DIRECCIÓN CREATIVA · FOTOGRAFÍA</span>
-        <h1 class="sala-title">La Sala de<br><em style="color:var(--sapphire);">la Exposición</em></h1>
+        <h2 class="sala-title">La Sala de<br><em style="color:var(--sapphire);">la Exposición</em></h2>
+        <span class="sala-func-subtitle">Creative Direction · Editorial</span>
         <p class="sala-desc">El tiempo de exposición decide lo que permanece. Diseño de autor, dirección creativa y producción editorial.</p>
     </div>
     <div class="habs-back-bar" onclick="resetHabs()">← Volver a la lista</div>
@@ -1843,6 +1885,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <!-- ══ VS_01: OSCAR DE LA RENTA — Pasarela internacional ══ -->
     <div class="hab" id="hab-oscar" data-tag="BEATRIZ CASTRO">
         <div class="hab-header hab-banner" onclick="focusHab('hab-oscar')">
+            <span class="hab-cat-badge">Creative Direction</span>
             <img loading="lazy" class="hab-banner-img" src="fotos/oscardelarenta.png" alt="Homenaje a Oscar de la Renta — RDFW XIII">
             <div class="hab-banner-scrim"></div>
             <div class="hab-banner-content">
@@ -1921,6 +1964,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <!-- ══ VS_02: COLECCIÓN INFANTIL — Pasarela verde/amarillo/rosa ══ -->
     <div class="hab" id="hab-infantil" data-tag="BEATRIZ CASTRO">
         <div class="hab-header hab-banner" onclick="focusHab('hab-infantil')">
+            <span class="hab-cat-badge">Creative Direction</span>
             <img loading="lazy" class="hab-banner-img" src="fotos/niña3.jpg" alt="¡Mami Quiero Ser Adulta! — Colección Infantil">
             <div class="hab-banner-scrim"></div>
             <div class="hab-banner-content">
@@ -2016,6 +2060,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <!-- ══ VS_03: PRETTY COLOR — Portada de revista, color blocks ══ -->
     <div class="hab" id="hab-concurso" data-tag="BEATRIZ CASTRO">
         <div class="hab-header hab-banner" onclick="focusHab('hab-concurso')">
+            <span class="hab-cat-badge">Creative Direction</span>
             <img loading="lazy" class="hab-banner-img" src="fotos/ozoriamodelo1.jpg" alt="Pretty Color — Color Blocks Editorial">
             <div class="hab-banner-scrim"></div>
             <div class="hab-banner-content">
@@ -2078,6 +2123,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <!-- ══ VS_04: LOOK LITE / DUNE — Terracota, arena, místico ══ -->
     <div class="hab" id="hab-propio" data-tag="BEATRIZ CASTRO">
         <div class="hab-header hab-banner" onclick="focusHab('hab-propio')">
+            <span class="hab-cat-badge">Creative Direction</span>
             <img loading="lazy" class="hab-banner-img" src="fotos/fotoportadabea 2.png" alt="Look Lite — Editorial · 3º Lugar">
             <div class="hab-banner-scrim"></div>
             <div class="hab-banner-content">
@@ -2441,7 +2487,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .etp-wizard-overlay.open { visibility:visible !important; }
 .etp-wizard-overlay.open { opacity:1; pointer-events:all; }
 .etp-wiz-bubble { position:absolute; border-radius:50%; border:2px solid rgba(255,255,255,0.6); background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.5), rgba(255,255,255,0.05) 70%); pointer-events:none; }
-.etp-wiz-topbar { display:flex; justify-content:space-between; align-items:center; padding:16px 5vw; position:relative; z-index:2; }
+.etp-wiz-topbar { display:flex; justify-content:space-between; align-items:center; padding:16px 5vw; position:sticky; top:0; z-index:20; flex-wrap:wrap; gap:8px; background:rgba(10,10,20,0.55); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
 .etp-wiz-brand { color:var(--etp-pink); font-size:15px; letter-spacing:0.1em; text-shadow:1px 1px 0 #000; }
 .etp-wiz-step-lab { color:#fff; font-size:15px; text-shadow:1px 1px 0 #000; }
 .etp-wiz-close { background:var(--etp-navy); color:#fff; border:2px solid #000; padding:5px 12px; font-family:'VT323',monospace; font-size:14px; cursor:pointer; }
@@ -2454,7 +2500,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .etp-wiz-glabel { color:var(--etp-yellow); font-size:14px; letter-spacing:0.08em; text-transform:uppercase; display:block; margin-bottom:8px; text-shadow:1px 1px 0 #000; }
 .etp-wiz-opts { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
 .etp-wiz-opts.two { grid-template-columns:1fr 1fr; }
-.etp-wiz-opt { background:var(--etp-navy); border:2px solid #000; padding:14px 8px; text-align:center; cursor:pointer; color:var(--etp-cream); transition:0.15s; }
+.etp-wiz-opt { background:var(--etp-navy); border:2px solid #000; padding:14px 8px; text-align:center; cursor:pointer; color:var(--etp-cream); transition:0.15s; display:block; }
+.etp-wiz-opt .sr-radio { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.etp-wiz-opt:focus-within { outline:2px solid var(--etp-yellow); outline-offset:2px; }
 .etp-wiz-opt:hover { background:var(--etp-navy2); }
 .etp-wiz-opt.big { padding:22px 14px; }
 .etp-wiz-opt .ic { font-size:26px; display:block; margin-bottom:6px; }
@@ -2781,7 +2829,8 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
     <div class="sala-header">
         <span class="sala-code">3D · MODA DIGITAL · CLO3D · BLENDER · IA</span>
-        <h1 class="sala-title">La Cámara<br><em style="color:var(--sapphire);">Oscura</em></h1>
+        <h2 class="sala-title">La Cámara<br><em style="color:var(--sapphire);">Oscura</em></h2>
+        <span class="sala-func-subtitle">Digital Fashion · 3D/CLO3D</span>
         <p class="sala-desc">Donde la forma se disuelve y la identidad resiste. Patronaje y prototipado 100% digital — CLO3D, Blender y DAZ 3D — aplicados a colecciones conceptuales y editoriales.</p>
     </div>
 
@@ -2789,6 +2838,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <!-- ══ CD_01: VITRIOL ══ -->
     <div class="hab" id="hab-vitriol" data-tag="BEATRIZ CASTRO">
         <div class="hab-header hab-banner" onclick="focusHab('hab-vitriol')">
+            <span class="hab-cat-badge">Experimental</span>
             <img loading="lazy" class="hab-banner-img" src="fotos/VITRIOL.png" alt="VITRIOL — Where Form Dissolves and Identity Resists">
             <div class="hab-banner-scrim"></div>
             <div class="hab-banner-content">
@@ -2801,6 +2851,12 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         </div>
         <div class="hab-content">
             <div class="vit-room">
+                <div class="proj-summary">
+                    <div class="proj-summary-item"><span class="proj-summary-key">Rol</span><p class="proj-summary-val">Dirección de escultura 3D, de concepto a render final</p></div>
+                    <div class="proj-summary-item"><span class="proj-summary-key">Herramientas</span><p class="proj-summary-val">Blender, ZBrush, IA generativa (Huyuan 3D)</p></div>
+                    <div class="proj-summary-item"><span class="proj-summary-key">Duración</span><p class="proj-summary-val">2019–2026 (desarrollo continuo)</p></div>
+                    <div class="proj-summary-item"><span class="proj-summary-key">Resultado</span><p class="proj-summary-val">Dos series escultóricas digitales completas (Morfología del Deseo, Morfología Omnisciente)</p></div>
+                </div>
 
                 <!-- ══ HERO: IMAGEN PRINCIPAL + VIDEO ══ -->
 
@@ -3067,6 +3123,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <!-- ══ CD_02: EVOLVER SKIN — FEATURED ══ -->
     <div class="hab featured-hab" id="hab-evolver" data-tag="BEATRIZ CASTRO">
         <div class="hab-header hab-banner" onclick="focusHab('hab-evolver')">
+            <span class="hab-cat-badge">Experimental</span>
             <img loading="lazy" class="hab-banner-img" src="fotos/ChatGPT Image 20 nov 2025, 03_19_40.png" alt="EVOLVER SKIN — Cosmética Anatómica Inteligente">
             <div class="hab-banner-scrim"></div>
             <div class="hab-banner-content">
@@ -3079,6 +3136,12 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         </div>
         <div class="hab-content">
             <div class="ev-room">
+                <div class="proj-summary">
+                    <div class="proj-summary-item"><span class="proj-summary-key">Rol</span><p class="proj-summary-val">Concepto, diseño de producto digital y dirección de packaging</p></div>
+                    <div class="proj-summary-item"><span class="proj-summary-key">Herramientas</span><p class="proj-summary-val">CLO3D (prototipado), 3D rendering</p></div>
+                    <div class="proj-summary-item"><span class="proj-summary-key">Duración</span><p class="proj-summary-val">1 mes</p></div>
+                    <div class="proj-summary-item"><span class="proj-summary-key">Resultado</span><p class="proj-summary-val">Sistema conceptual de segunda piel digital — membrana biométrica protectora con identidad de packaging propia</p></div>
+                </div>
                 <div class="ev-hero">
                     <div class="ev-hero-img">
                         <img loading="lazy" src="fotos/ChatGPT Image 20 nov 2025, 03_19_40.png" alt="EVOLVER SKIN — Segunda piel digital" onerror="this.style.background='#100A06'">
@@ -3128,6 +3191,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <!-- ══ CD_04: FRACTUM ══ -->
     <div class="hab" id="hab-fractum" data-tag="BEATRIZ CASTRO">
         <div class="hab-header hab-banner" onclick="focusHab('hab-fractum')">
+            <span class="hab-cat-badge">Experimental</span>
             <img loading="lazy" class="hab-banner-img" src="fotos/FRACTUM/AMBIENTE/0002.png" alt="FRACTUM — 3D World & Garment Direction">
             <div class="hab-banner-scrim"></div>
             <div class="hab-banner-content">
@@ -3140,6 +3204,12 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         </div>
         <div class="hab-content">
             <div class="fr-room">
+                <div class="proj-summary">
+                    <div class="proj-summary-item"><span class="proj-summary-key">Rol</span><p class="proj-summary-val">Dirección de mundo 3D y vestuario, de narrativa a simulación final</p></div>
+                    <div class="proj-summary-item"><span class="proj-summary-key">Herramientas</span><p class="proj-summary-val">Blender, CLO3D</p></div>
+                    <div class="proj-summary-item"><span class="proj-summary-key">Duración</span><p class="proj-summary-val">1 mes y medio</p></div>
+                    <div class="proj-summary-item"><span class="proj-summary-key">Resultado</span><p class="proj-summary-val">Cortometraje narrativo de 4 escenas, entorno Blender completo y 2 vestuarios CLO3D</p></div>
+                </div>
 
                 <!-- VIDEO CLO3D 360° — activo -->
                 <div style="border-bottom:1px solid var(--fr-border);background:var(--fr-bg2);">
@@ -3269,19 +3339,19 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                     </div>
                     <div style="display:grid;grid-template-columns:repeat(4,1fr);">
                         <div style="overflow:hidden;aspect-ratio:16/9;background:var(--fr-bg2);position:relative;cursor:pointer;" onclick="frOpenScene(1)">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0002.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0002.png" alt="FRACTUM — Escena 01, Reacción: figura sola bajo foco cenital" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
                             <div style="position:absolute;bottom:0;left:0;right:0;padding:6px 10px;background:linear-gradient(to top,rgba(5,12,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:6px;color:var(--fr-lime);letter-spacing:0.2em;text-transform:uppercase;">01 · Reacción — VER FICHA →</div>
                         </div>
                         <div style="overflow:hidden;aspect-ratio:16/9;background:var(--fr-bg2);position:relative;border-left:1px solid var(--fr-border);cursor:pointer;" onclick="frOpenScene(2)">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0193.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0193.png" alt="FRACTUM — Escena 02, Escucha: figura entre raíces bioluminiscentes" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
                             <div style="position:absolute;bottom:0;left:0;right:0;padding:6px 10px;background:linear-gradient(to top,rgba(5,12,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:6px;color:var(--fr-lime);letter-spacing:0.2em;text-transform:uppercase;">02 · Escucha — VER FICHA →</div>
                         </div>
                         <div style="overflow:hidden;aspect-ratio:16/9;background:var(--fr-bg2);position:relative;border-left:1px solid var(--fr-border);cursor:pointer;" onclick="frOpenScene(3)">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0215.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0215.png" alt="FRACTUM — Escena 03, Juicio: figura duplicada por sombra y reflejo" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
                             <div style="position:absolute;bottom:0;left:0;right:0;padding:6px 10px;background:linear-gradient(to top,rgba(5,12,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:6px;color:var(--fr-lime);letter-spacing:0.2em;text-transform:uppercase;">03 · Juicio — VER FICHA →</div>
                         </div>
                         <div style="overflow:hidden;aspect-ratio:16/9;background:var(--fr-bg2);position:relative;border-left:1px solid var(--fr-border);cursor:pointer;" onclick="frOpenScene(4)">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0019.png" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0019.png" alt="FRACTUM — Escena 04, Decisión: figura donde todo se fractura para converger" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:contrast(1.1) brightness(0.75);transition:filter 0.4s;" onmouseover="this.style.filter='contrast(1.2) brightness(1)'" onmouseout="this.style.filter='contrast(1.1) brightness(0.75)'" onerror="this.style.background='#050C08'">
                             <div style="position:absolute;bottom:0;left:0;right:0;padding:6px 10px;background:linear-gradient(to top,rgba(5,12,8,0.9),transparent);font-family:'Roboto Mono',monospace;font-size:6px;color:var(--fr-lime);letter-spacing:0.2em;text-transform:uppercase;">04 · Decisión — VER FICHA →</div>
                         </div>
                     </div>
@@ -3291,7 +3361,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="fr-scene-modal-bg" id="fr-scene-1" onclick="frCloseScene(event,1)" style="position:fixed;inset:0;z-index:3000;background:rgba(5,12,8,0.92);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(8px);">
                     <div onclick="event.stopPropagation()" style="background:var(--fr-bg2);border:1px solid var(--fr-border);max-width:640px;width:100%;max-height:86vh;overflow-y:auto;">
                         <div style="position:relative;">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0002.png" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0002.png" alt="FRACTUM — Escena 01, Reacción: la conciencia nace del quiebre" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
                             <button onclick="frCloseScene(event,1)" style="position:absolute;top:14px;right:14px;font-family:'Roboto Mono',monospace;font-size:9px;color:#fff;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.3);padding:8px 12px;cursor:pointer;">✕ CERRAR</button>
                         </div>
                         <div style="padding:28px 32px;">
@@ -3309,7 +3379,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="fr-scene-modal-bg" id="fr-scene-2" onclick="frCloseScene(event,2)" style="position:fixed;inset:0;z-index:3000;background:rgba(5,12,8,0.92);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(8px);">
                     <div onclick="event.stopPropagation()" style="background:var(--fr-bg2);border:1px solid var(--fr-border);max-width:640px;width:100%;max-height:86vh;overflow-y:auto;">
                         <div style="position:relative;">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0193.png" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0193.png" alt="FRACTUM — Escena 02, Escucha: el cuerpo roto y el yo incompleto" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
                             <button onclick="frCloseScene(event,2)" style="position:absolute;top:14px;right:14px;font-family:'Roboto Mono',monospace;font-size:9px;color:#fff;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.3);padding:8px 12px;cursor:pointer;">✕ CERRAR</button>
                         </div>
                         <div style="padding:28px 32px;">
@@ -3327,7 +3397,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="fr-scene-modal-bg" id="fr-scene-3" onclick="frCloseScene(event,3)" style="position:fixed;inset:0;z-index:3000;background:rgba(5,12,8,0.92);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(8px);">
                     <div onclick="event.stopPropagation()" style="background:var(--fr-bg2);border:1px solid var(--fr-border);max-width:640px;width:100%;max-height:86vh;overflow-y:auto;">
                         <div style="position:relative;">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0215.png" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0215.png" alt="FRACTUM — Escena 03, Juicio: ética, culpa y elección" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
                             <button onclick="frCloseScene(event,3)" style="position:absolute;top:14px;right:14px;font-family:'Roboto Mono',monospace;font-size:9px;color:#fff;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.3);padding:8px 12px;cursor:pointer;">✕ CERRAR</button>
                         </div>
                         <div style="padding:28px 32px;">
@@ -3345,7 +3415,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="fr-scene-modal-bg" id="fr-scene-4" onclick="frCloseScene(event,4)" style="position:fixed;inset:0;z-index:3000;background:rgba(5,12,8,0.92);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(8px);">
                     <div onclick="event.stopPropagation()" style="background:var(--fr-bg2);border:1px solid var(--fr-border);max-width:640px;width:100%;max-height:86vh;overflow-y:auto;">
                         <div style="position:relative;">
-                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0019.png" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+                            <img loading="lazy" src="fotos/FRACTUM/AMBIENTE/0019.png" alt="FRACTUM — Escena 04, Decisión" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
                             <button onclick="frCloseScene(event,4)" style="position:absolute;top:14px;right:14px;font-family:'Roboto Mono',monospace;font-size:9px;color:#fff;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.3);padding:8px 12px;cursor:pointer;">✕ CERRAR</button>
                         </div>
                         <div style="padding:28px 32px;">
@@ -3376,6 +3446,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
     <!-- ══ CD_06: ESCHATON.EXE ══ -->
     <div class="hab" id="hab-eschaton" data-tag="BEATRIZ CASTRO">
         <div class="hab-header hab-banner" onclick="focusHab('hab-eschaton')">
+            <span class="hab-cat-badge">Experimental</span>
             <img loading="lazy" class="hab-banner-img" src="fotos/Look4_Default Colorway.png" alt="ESCHATON.EXE — El Programa Final del Alma">
             <div class="hab-banner-scrim"></div>
             <div class="hab-banner-content">
@@ -3388,6 +3459,12 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         </div>
         <div class="hab-content">
             <div class="es-room">
+                <div class="proj-summary">
+                    <div class="proj-summary-item"><span class="proj-summary-key">Rol</span><p class="proj-summary-val">Concepto narrativo, worldbuilding y patronaje digital de vestuario completo</p></div>
+                    <div class="proj-summary-item"><span class="proj-summary-key">Herramientas</span><p class="proj-summary-val">CLO3D</p></div>
+                    <div class="proj-summary-item"><span class="proj-summary-key">Duración</span><p class="proj-summary-val">Proyecto de máster, IED Madrid</p></div>
+                    <div class="proj-summary-item"><span class="proj-summary-key">Resultado</span><p class="proj-summary-val">3 universos narrativos y colección de vestuario digital CLO3D completa</p></div>
+                </div>
                 <div class="es-narrative">
                     <div class="es-universe">
                         <span class="es-uni-num">I</span>
@@ -3449,12 +3526,19 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 <div class="view room-view" id="sobre-mi">
     <div class="sala-header">
         <span class="sala-code">IDENTIDAD · EXPERIENCIA · HERRAMIENTAS</span>
-        <h1 class="sala-title">Beatriz<br><em style="color:var(--sapphire);">Castro</em></h1>
+        <h2 class="sala-title">Beatriz<br><em style="color:var(--sapphire);">Castro</em></h2>
     </div>
 
     <!-- BIO HERO -->
     <div style="max-width:780px;margin:0 0 60px;padding-bottom:60px;border-bottom:1px solid rgba(74, 141, 238, 0.1);">
         <span class="sobre-role-tag">Madrid · Santo Domingo · Womenswear</span>
+
+        <p class="sobre-intro-text">Fashion Product Developer especializada en womenswear, patronaje industrial y desarrollo de producto 3D.</p>
+        <p class="sobre-intro-text">Mi trabajo conecta la construcción física de la prenda con el desarrollo de producto digital, combinando patronaje industrial, desarrollo de producto y flujos de trabajo 3D con CLO3D.</p>
+        <p class="sobre-intro-text">Tengo experiencia en desarrollo de patrones, escalado, marcada, prototipado y producción, así como en el desarrollo de conceptos de moda digital, prendas virtuales y experiencias de moda interactivas.</p>
+        <p class="sobre-intro-text">Mi enfoque está entre el desarrollo técnico y la dirección creativa: me interesa entender cómo se construye una prenda, cómo se ajusta al cuerpo, cómo puede desarrollarse de forma más eficiente, y cómo ese mismo producto puede evolucionar hacia una experiencia digital.</p>
+        <p class="sobre-intro-text">Trabajo reciente incluye desarrollo de patrones industriales, marcada de alta eficiencia y escalado (Mayle Vázquez), y Enter The Palace — un concepto de producto y experiencia digital impulsado por datos de mercado para Bershka SS26, construido sobre patronaje industrial, prototipado en CLO3D y una experiencia física + digital integrada, desarrollado durante mi Máster en Moda Digital en IED Madrid.</p>
+        <span class="sobre-intro-competencies">TAMBIÉN: Fashion Strategy &amp; Management · Creative Direction</span>
 
         <div style="margin-top:36px;padding:24px;border:1px solid rgba(29,158,117,0.2);background:rgba(29,158,117,0.03);">
             <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:#1D9E75;letter-spacing:0.3em;text-transform:uppercase;display:block;margin-bottom:10px;">● DISPONIBLE</span>
@@ -3537,7 +3621,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 ═══════════════════════════════════════════ -->
 <div class="view room-view" id="contacto">
     <div class="contacto-header">
-        <h1 class="contacto-title">Hablemos<br><em>de tu proyecto.</em></h1>
+        <h2 class="contacto-title">Hablemos<br><em>de tu proyecto.</em></h2>
     </div>
 
     <div class="contacto-grid">
@@ -3579,6 +3663,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 </div>
                 <button class="c-form-btn" onclick="sendContactForm()">ENVIAR MENSAJE →</button>
                 <p id="cf-status" style="font-family:'Roboto Mono',monospace;font-size:9px;color:var(--amber);margin-top:12px;opacity:0;transition:opacity 0.3s;"></p>
+                <p style="font-family:'Roboto Mono',monospace;font-size:8px;opacity:0.4;margin-top:14px;">Tu mensaje se envía directamente a mi correo — no se almacena en ningún servidor.</p>
             </div>
         </div>
 
@@ -3642,13 +3727,15 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 
     <div class="sala-header">
         <span class="sala-code">INSIGNIA · BERSHKA · SS26 · IED MADRID</span>
-        <h1 class="sala-title">Enter The<br><em style="color:var(--sapphire);">Palace</em></h1>
+        <h2 class="sala-title">Enter The<br><em style="color:var(--sapphire);">Palace</em></h2>
+        <span class="sala-func-subtitle">Master Project · Product + Digital Experience</span>
         <p class="sala-desc">Proyecto insignia: dirección creativa, patronaje técnico y campaña completa para una colaboración conceptual con Bershka, del cuerpo digital al físico.</p>
     </div>
 
     <!-- ══ ENTER THE PALACE — SS26 · Bershka · IED Madrid — Proyecto insignia, entrada propia ══ -->
     <div class="hab" id="hab-etp" data-tag="BEATRIZ CASTRO">
         <div class="hab-header hab-banner" onclick="focusHab('hab-etp')">
+            <span class="hab-cat-badge">Master Project</span>
             <img loading="lazy" class="hab-banner-img" src="sala-enter-the-palace/assets/AVATARES/look-frente.png" alt="Enter The Palace — Bershka SS26">
             <div class="hab-banner-scrim"></div>
             <div class="hab-banner-content">
@@ -3665,6 +3752,13 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <!-- AVISO — debe verse antes que cualquier otro texto del proyecto -->
                 <div style="background:var(--etp-yellow);border-bottom:3px solid #000;padding:18px 6vw;">
                     <p style="font-family:'VT323',monospace;font-size:15px;line-height:1.5;color:#000;max-width:820px;">⚠ AVISO — Proyecto conceptual desarrollado de forma independiente durante el Máster en Moda Digital de IED. No es un encargo oficial de Bershka ni representa una posición de la marca — es un ejercicio de análisis y propuesta de producto.</p>
+                </div>
+
+                <div class="proj-summary">
+                    <div class="proj-summary-item"><span class="proj-summary-key">Rol</span><p class="proj-summary-val">Idea, dirección creativa y patronaje (avatares y concepto, junto a Luisana Sánchez)</p></div>
+                    <div class="proj-summary-item"><span class="proj-summary-key">Herramientas</span><p class="proj-summary-val">CLO3D, patronaje industrial, diseño de experiencia digital</p></div>
+                    <div class="proj-summary-item"><span class="proj-summary-key">Duración</span><p class="proj-summary-val">Máster en Moda Digital, IED Madrid</p></div>
+                    <div class="proj-summary-item"><span class="proj-summary-key">Resultado</span><p class="proj-summary-val">Colección y campaña completas, más un concepto de experiencia física + digital integrada para Bershka SS26</p></div>
                 </div>
 
                 <!-- CAMPAÑA HERO — abre la sala, foto real de campaña sin cortar -->
@@ -3706,6 +3800,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                         <div class="etp-stat"><span class="etp-stat-num">52%</span><span class="etp-stat-lab">de las mujeres en España ha tenido dificultad para encontrar su talla</span></div>
                         <div class="etp-stat"><span class="etp-stat-num">84%</span><span class="etp-stat-lab">cree que la oferta actual de tallas podría mejorar</span></div>
                     </div>
+                    <span style="font-family:'Roboto Mono',monospace;font-size:8px;opacity:0.5;display:block;margin-top:10px;">Fuentes: estudios de industria sobre devoluciones y talla en e-commerce de moda (Vogue Business, Statista, encuestas de consumo España/UE), recopilados durante la investigación del proyecto.</span>
                 </div>
 
                 <!-- 03 — EL PERFIL PROTAGONISTA -->
@@ -3750,7 +3845,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                             <div class="etp-spec-card-detail">Redistribuyen el volumen al busto y la cadera con holgura controlada, sin rigidez.</div>
                         </div>
                     </div>
-                    <p class="etp-p" style="max-width:820px;margin-top:16px;">El sistema se aplicó a 5 looks por drop, desde el denim del Look 01 "The Foundation" hasta el mix final del Look 05 "Total Palace Glitch" — sin gap de cintura en ningún punto del cuerpo, en ninguna talla.</p>
+                    <p class="etp-p" style="max-width:820px;margin-top:16px;">El sistema se aplicó a 5 looks por drop, desde el denim del Look 01 "The Foundation" hasta el mix final del Look 05 "Total Palace Glitch" — diseñado para minimizar el waist gap en las tallas evaluadas.</p>
 
                     <div class="etp-grid" style="grid-template-columns:repeat(3,1fr);margin-top:22px;">
                         <div class="etp-card"><img loading="lazy" src="sala-enter-the-palace/assets/shop/prod-01-falda-metal.png" alt="Minifalda Metalizada — CLO3D" style="object-fit:contain;background:var(--etp-navy);padding:4%;box-sizing:border-box;"><div class="etp-card-cap">MINIFALDA METALIZADA</div></div>
@@ -3775,8 +3870,9 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="etp-sec alt">
                     <div class="etp-sec-head">
                         <span class="etp-eyebrow" style="font-size:13px;">07 · EXPERIENCIA FÍSICA Y DIGITAL</span>
+                        <span style="font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:0.15em;text-transform:uppercase;color:var(--etp-yellow);border:1px solid var(--etp-yellow);padding:3px 9px;margin-left:10px;">Sistema propuesto · Conceptual customer journey</span>
                     </div>
-                    <p class="etp-p" style="max-width:820px;margin-bottom:8px;">Tienda y digital sin fisuras: lo que pasa en TikTok se vive en tienda, el avatar de la app se mide en el espejo. Cada escaneo de cuerpo alimenta el patronaje de la temporada siguiente.</p>
+                    <p class="etp-p" style="max-width:820px;margin-bottom:8px;">Tienda y digital sin fisuras: lo que pasa en TikTok se vive en tienda, el avatar de la app se mide en el espejo. Cada escaneo de cuerpo alimentaría el patronaje de la temporada siguiente.</p>
 
                     <div class="etp-flow">
                         <div class="etp-flow-step">
@@ -3907,6 +4003,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         <div class="etp-wiz-bubble" style="width:150px;height:150px;bottom:5%;right:4%;"></div>
 
         <div class="etp-wiz-topbar">
+            <button class="etp-wiz-close" style="position:static;" onclick="etpCloseWizard(); navTo('lobby');">← VOLVER AL PORTFOLIO</button>
             <span class="etp-wiz-brand">ENTER THE PALACE · SS26</span>
             <span class="etp-wiz-step-lab" id="etp-step-lab">PASO 1 DE 3</span>
             <button class="etp-wiz-close" onclick="etpCloseWizard()">✕ CERRAR</button>
@@ -3932,7 +4029,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <!-- PASO 1 -->
             <div class="etp-wiz-step" id="etp-step-1" style="display:none;">
                 <h2 class="etp-wiz-title">¿Cómo quieres<br>tu avatar?</h2>
-                <p class="etp-wiz-sub">??? elige tu camino en el Palace</p>
+                <p class="etp-wiz-sub">[ ??? ] DECODIFICANDO TU CAMINO EN EL PALACE</p>
                 <div class="etp-wiz-opts two">
                     <div class="etp-wiz-opt big" data-group="modo" data-value="Personalizado" onclick="etpSelect(this)"><span class="ic">🎮</span><span class="lab">CONSTRUIR DESDE CERO</span><span class="sub">Personalizado</span></div>
                     <div class="etp-wiz-opt big" data-group="modo" data-value="Bershka SS26" onclick="etpSelect(this)"><span class="ic">✦</span><span class="lab">ELEGIR UNO YA HECHO</span><span class="sub">Bershka SS26</span></div>
@@ -3943,7 +4040,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <!-- PASO 2: ELIGE TU AVATAR — 7 avatares reales, dos estilos -->
             <div class="etp-wiz-step" id="etp-step-2" style="display:none;">
                 <h2 class="etp-wiz-title">Elige tu<br>avatar</h2>
-                <p class="etp-wiz-sub">??? este es el que va en la web</p>
+                <p class="etp-wiz-sub">[ ??? ] ESTE AVATAR ES EL QUE VA A LA WEB</p>
                 <div class="etp-stabs">
                     <div class="etp-stab on" onclick="etpFilterAvatars('anime',this)">PIXEL ANIME</div>
                     <div class="etp-stab" onclick="etpFilterAvatars('3d',this)">DOLL 3D</div>
@@ -3962,21 +4059,24 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <!-- PASO 3: CUERPO + MEDIDAS REALES (busto/cintura/cadera en cm) -->
             <div class="etp-wiz-step" id="etp-step-3" style="display:none;">
                 <h2 class="etp-wiz-title">Cuerpo +<br>medidas</h2>
-                <p class="etp-wiz-sub">??? tú pones las reglas</p>
+                <p class="etp-wiz-sub">[ ??? ] TÚ PONES LAS REGLAS</p>
 
                 <div class="etp-wiz-group">
                     <span class="etp-wiz-glabel">▶ Tipo de cuerpo</span>
                     <div class="etp-wiz-opts">
-                        <div class="etp-wiz-opt" data-group="cuerpo" data-value="Diamante" onclick="etpSelect(this)"><span class="ic">💎</span><span class="lab">DIAMANTE</span></div>
-                        <div class="etp-wiz-opt" data-group="cuerpo" data-value="Reloj de Arena" onclick="etpSelect(this)"><span class="ic">⏳</span><span class="lab">RELOJ ARENA</span></div>
-                        <div class="etp-wiz-opt" data-group="cuerpo" data-value="Manzana" onclick="etpSelect(this)"><span class="ic">🍎</span><span class="lab">MANZANA</span></div>
-                        <div class="etp-wiz-opt" data-group="cuerpo" data-value="Pera" onclick="etpSelect(this)"><span class="ic">🍐</span><span class="lab">PERA</span></div>
-                        <div class="etp-wiz-opt" data-group="cuerpo" data-value="Triángulo" onclick="etpSelect(this)"><span class="ic">▲</span><span class="lab">TRIÁNGULO</span></div>
-                        <div class="etp-wiz-opt" data-group="cuerpo" data-value="Triángulo Inv." onclick="etpSelect(this)"><span class="ic">▼</span><span class="lab">TRIÁNG. INV.</span></div>
-                        <div class="etp-wiz-opt" data-group="cuerpo" data-value="Rectángulo" onclick="etpSelect(this)"><span class="ic">▭</span><span class="lab">RECTÁNGULO</span></div>
-                        <div class="etp-wiz-opt" data-group="cuerpo" data-value="Óvalo" onclick="etpSelect(this)"><span class="ic">◯</span><span class="lab">ÓVALO</span></div>
+                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Diamante" onclick="etpSelect(this)"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Diamante"><span class="ic">💎</span><span class="lab">DIAMANTE</span></label>
+                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Reloj de Arena" onclick="etpSelect(this)"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Reloj de Arena"><span class="ic">⏳</span><span class="lab">RELOJ ARENA</span></label>
+                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Manzana" onclick="etpSelect(this)"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Manzana"><span class="ic">🍎</span><span class="lab">MANZANA</span></label>
+                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Pera" onclick="etpSelect(this)"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Pera"><span class="ic">🍐</span><span class="lab">PERA</span></label>
+                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Triángulo" onclick="etpSelect(this)"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Triángulo"><span class="ic">▲</span><span class="lab">TRIÁNGULO</span></label>
+                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Triángulo Inv." onclick="etpSelect(this)"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Triángulo Inv."><span class="ic">▼</span><span class="lab">TRIÁNG. INV.</span></label>
+                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Rectángulo" onclick="etpSelect(this)"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Rectángulo"><span class="ic">▭</span><span class="lab">RECTÁNGULO</span></label>
+                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Óvalo" onclick="etpSelect(this)"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Óvalo"><span class="ic">◯</span><span class="lab">ÓVALO</span></label>
                     </div>
                 </div>
+
+                <p style="font-family:'Roboto Mono',monospace;font-size:8px;opacity:0.5;margin-bottom:10px;">Prototipo académico — tus medidas no se almacenan ni se envían a ningún servidor, solo se usan para mostrar tu talla dentro de esta demo.</p>
+                <button type="button" onclick="etpUseDemoData()" style="font-family:'VT323',monospace;font-size:14px;background:var(--etp-navy);color:#fff;border:2px solid #000;padding:6px 14px;cursor:pointer;margin-bottom:14px;">⚡ USAR DATOS DE EJEMPLO — ver el concepto sin poner mis medidas</button>
 
                 <div class="etp-wiz-group">
                     <span class="etp-wiz-glabel">▶ Tus medidas — nada de XS o XXL, tu número real</span>
@@ -4034,7 +4134,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <!-- PASO 4 -->
             <div class="etp-wiz-step" id="etp-step-4" style="display:none;">
                 <h2 class="etp-wiz-title">Tu nombre<br>en el Palace</h2>
-                <p class="etp-wiz-sub">??? nada es casualidad</p>
+                <p class="etp-wiz-sub">[ ??? ] NADA ES CASUALIDAD</p>
                 <span class="etp-wiz-glabel">▶ Cómo te llama el Palace</span>
                 <input class="etp-wiz-input" id="etp-name" maxlength="12" placeholder="TU NOMBRE..." oninput="etpUpdateSummary()" style="width:100%;">
                 <div class="etp-wiz-summary" id="etp-summary"></div>
@@ -4122,6 +4222,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             </div>
             <div class="etp-shop-search"><input type="text" placeholder="BUSCAR AQUÍ"></div>
             <button class="etp-shop-login" id="etp-shop-login-btn" onclick="etpShopToggleGate()">👤 INICIAR SESIÓN</button>
+            <button class="etp-shop-login" style="background:#111;color:#fff;" onclick="etpCloseShop(); navTo('lobby');">← PORTFOLIO</button>
             <button class="etp-shop-close" onclick="etpCloseShop()">✕</button>
         </div>
 
@@ -5179,6 +5280,17 @@ function etpCampaignStart() {
         }
     }, 40);
 }
+function etpUseDemoData() {
+    const bodyOpt = document.querySelector('.etp-wiz-opt[data-group="cuerpo"][data-value="Reloj de Arena"]');
+    if (bodyOpt) etpSelect(bodyOpt);
+    const alturaOpt = document.querySelector('.etp-wiz-opt[data-group="altura"][data-value="Media"]');
+    if (alturaOpt) etpSelect(alturaOpt);
+    document.getElementById('m_busto').value = '94';
+    document.getElementById('m_cintura').value = '74';
+    document.getElementById('m_cadera').value = '102';
+    document.getElementById('m_bajobusto').value = '80';
+    etpUpdateSummary();
+}
 function etpSelect(el) {
     const group = el.dataset.group;
     document.querySelectorAll('.etp-wiz-opt[data-group="' + group + '"]').forEach(o => o.classList.remove('selected'));
@@ -5319,10 +5431,10 @@ function navigateToTag(tag, e) {
 // ── INIT ──
 // ── PROYECTOS DESTACADOS — uno por sala, vía etiqueta destacado:true en los datos (no hardcodeado) ──
 const FEATURED_PROJECTS = [
+    { destacado: true, sala: 'enter-the-palace', salaLabel: 'Enter The Palace', name: 'Enter The Palace', img: 'sala-enter-the-palace/assets/AVATARES/look-frente.png', hab: 'hab-etp', modal: null },
     { destacado: true, sala: 'oficio', salaLabel: 'La Corte', name: 'Vestido "Santo Domingo"', img: 'fotos/santo-domingo-dress.png', hab: 'hab-mayle', modal: 'mayle-modal-1' },
     { destacado: true, sala: 'vision', salaLabel: 'La Exposición', name: 'Homenaje a Oscar de la Renta', img: 'fotos/oscardelarenta.png', hab: 'hab-oscar', modal: null },
     { destacado: true, sala: 'mundos-content', salaLabel: 'La Cámara Oscura', name: 'FRACTUM', img: 'fotos/FRACTUM/LOOK 2/FINAL DE LOS FINALITOS_Default Colorway_121.png', hab: 'hab-fractum', modal: null },
-    { destacado: true, sala: 'enter-the-palace', salaLabel: 'Enter The Palace', name: 'Enter The Palace', img: 'sala-enter-the-palace/assets/AVATARES/look-frente.png', hab: 'hab-etp', modal: null },
 ];
 function goToFeatured(i) {
     const p = FEATURED_PROJECTS[i];
