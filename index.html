@@ -146,6 +146,13 @@ html, body {
     margin-top: 8px; letter-spacing: 0.15em;
 }
 
+/* PITCH — línea de valor bajo los tags del hero */
+.l-pitch {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300;
+    font-size: clamp(12px, 1.4vw, 15px); color: var(--matter-light); opacity: 0.75;
+    line-height: 1.4; margin-top: 10px; max-width: 480px; display: block;
+}
+
 /* LOBBY FOOTER — franja inferior con drag hint + novedades */
 .l-footer {
     position: relative; flex-shrink: 0; z-index: 10;
@@ -872,6 +879,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 <nav id="bottom-nav">
     <a class="bnav-item" onclick="navTo('enter-the-palace');focusHab('hab-etp');" data-nav="enter-the-palace" style="color:#fdff00;">✦ Enter The Palace <span style="opacity:0.4;font-size:6px;">MASTER PROJECT</span></a>
     <a class="bnav-item" onclick="navTo('oficio')" data-nav="oficio">I · La Corte <span style="opacity:0.4;font-size:6px;">PRODUCT DEVELOPMENT</span></a>
+    <a class="bnav-item" onclick="navTo('tecnico-3d')" data-nav="tecnico-3d">IV · Patronaje Digital <span style="opacity:0.4;font-size:6px;">TECHNICAL & 3D</span></a>
     <a class="bnav-item" onclick="navTo('vision')" data-nav="vision">II · La Exposición <span style="opacity:0.4;font-size:6px;">FASHION DESIGN</span></a>
     <a class="bnav-item" onclick="navTo('mundos-content')" data-nav="mundos-content">III · La Cámara <span style="opacity:0.4;font-size:6px;">DIGITAL & CREATIVE WORLDBUILDING</span></a>
     <a class="bnav-item" onclick="navTo('sobre-mi')" data-nav="sobre-mi">Sobre mí</a>
@@ -894,6 +902,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <span style="font-family:'Roboto Mono',monospace;font-size:10px;color:var(--matter-light);opacity:0.5;letter-spacing:0.05em;display:block;margin-bottom:6px;">Del patrón físico al avatar digital — sin renunciar a ninguno.</span>
             <span class="l-tagline">Fashion Product Developer</span>
             <span class="l-bio">Industrial Patternmaking + 3D/CLO3D · Womenswear</span>
+            <span class="l-pitch">"Reduzco muestra física y valido decisiones de producto con datos — del patrón industrial al prototipo digital en CLO3D."</span>
             <span style="font-family:'Roboto Mono',monospace;font-size:8px;color:var(--sapphire);opacity:0.5;letter-spacing:0.25em;display:block;margin-top:6px;">SANTO DOMINGO · MADRID</span>
             <span class="l-available">● Disponible para proyectos</span>
         </div>
@@ -1223,181 +1232,6 @@ textarea.c-form-input { resize: none; min-height: 100px; }
         </div>
     </div>
 
-    <!-- ══ HAB: PATRONAJE DIGITAL — CLO3D + Illustrator (identidad "blueprint", propia y separada de Mayle) ══ -->
-    <!-- Oculto: sin proyectos reales materializados en prenda física todavía. Se reactiva cuando Beatriz suba proyectos que sí lo estén. -->
-    <div class="hab" id="hab-patronaje-digital" data-tag="BEATRIZ CASTRO" style="display:none;">
-        <div class="hab-header hab-banner" onclick="focusHab('hab-patronaje-digital')">
-            <img loading="lazy" class="hab-banner-img" src="fotos/look4-default-colorway.png" alt="Patronaje Digital — CLO3D">
-            <div class="hab-banner-scrim"></div>
-            <div class="hab-banner-content">
-                <div>
-                    <span class="hab-banner-code" style="color:var(--pd-cyan);">PATRONAJE DIGITAL · CLO3D · ILLUSTRATOR TÉCNICO</span>
-                    <h2 class="hab-banner-title" style="font-family:'Roboto Mono',monospace;font-weight:400;letter-spacing:0.02em;">Patronaje Digital</h2>
-                </div>
-                <span class="hab-banner-arrow">VER PROYECTO →</span>
-            </div>
-        </div>
-        <div class="hab-content">
-            <div class="pd-room">
-                <!-- INTRO ROL + HERRAMIENTAS -->
-                <div class="pd-intro">
-                    <div>
-                        <span class="pd-role-label">Rol · Proceso</span>
-                        <p class="pd-role-text">Patronaje y prototipado 100% digital: modelado de prendas y simulación de caída de tejido en CLO3D, y desarrollo de patrones planos y fichas técnicas en Adobe Illustrator. El proceso permite construir, ajustar y presentar una prenda completa antes de cortar una sola pieza de tela física.</p>
-                        <p class="pd-role-text" style="margin-top:12px;">Aplicado tanto a colecciones propias como a proyectos conceptuales y editoriales, combinando patronaje técnico con dirección creativa 3D.</p>
-                    </div>
-                    <div>
-                        <span class="pd-role-label">Herramientas</span>
-                        <div class="pd-tools">
-                            <span class="pd-tool-pill">CLO3D</span>
-                            <span class="pd-tool-pill">Adobe Illustrator</span>
-                            <span class="pd-tool-pill">Patronaje 3D</span>
-                            <span class="pd-tool-pill">Simulación de Tejido</span>
-                            <span class="pd-tool-pill">Fichas Técnicas</span>
-                            <span class="pd-tool-pill">Prototipado Virtual</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- GRID DE PROYECTOS — click abre SOLO ese proyecto a pantalla completa, misma mecánica que las habitaciones -->
-                <div class="pd-grid" id="pd-project-grid">
-                    <!-- EXCHATON = ESCHATON.EXE -->
-                    <div class="pd-card render" onclick="pdFocusProject('hab-eschaton')">
-                        <div class="pd-card-img-wrap">
-                            <img loading="lazy" class="pd-card-img" src="fotos/look4-default-colorway.png" alt="ESCHATON.EXE — look CLO3D">
-                            <div class="pd-card-overlay">
-                                <p class="pd-overlay-title">EXCHATON</p>
-                                <div class="pd-overlay-metrics">
-                                    <span class="pd-metric-pill">3 universos · CLO3D</span>
-                                </div>
-                                <div class="pd-card-cta">VER FICHAS TÉCNICAS →</div>
-                            </div>
-                        </div>
-                        <div class="pd-card-meta">
-                            <span class="pd-card-code">Ver en La Cámara Oscura</span>
-                            <div class="pd-card-name">EXCHATON</div>
-                            <div class="pd-card-tags"><span class="pd-card-tag">ESCHATON.EXE</span><span class="pd-card-tag">CLO3D</span><span class="pd-card-tag">Colección Completa</span></div>
-                        </div>
-                    </div>
-                    <!-- FRACTUM -->
-                    <div class="pd-card render" onclick="pdFocusProject('hab-fractum')">
-                        <div class="pd-card-img-wrap">
-                            <img loading="lazy" class="pd-card-img" src="fotos/FRACTUM/LOOK 2/final-de-los-finalitos-default-colorway-121.png" alt="FRACTUM — vestuario CLO3D">
-                            <div class="pd-card-overlay">
-                                <p class="pd-overlay-title">FRACTUM</p>
-                                <div class="pd-overlay-metrics">
-                                    <span class="pd-metric-pill">2 vestuarios · CLO3D + Blender</span>
-                                </div>
-                                <div class="pd-card-cta">VER FICHAS TÉCNICAS →</div>
-                            </div>
-                        </div>
-                        <div class="pd-card-meta">
-                            <span class="pd-card-code">Ver en La Cámara Oscura</span>
-                            <div class="pd-card-name">FRACTUM</div>
-                            <div class="pd-card-tags"><span class="pd-card-tag">2 Vestuarios</span><span class="pd-card-tag">CLO3D</span><span class="pd-card-tag">Blender</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PANELES DE PROYECTO — solo uno visible a la vez, el resto (incluida la grilla de arriba) desaparece -->
-                <div class="pd-project-panel" id="pd-proj-hab-eschaton" style="display:none;">
-                    <button class="pd-panel-back" onclick="pdBackToGrid()">← VOLVER</button>
-                    <div class="pd-section-head">
-                        <span class="pd-section-eyebrow">Patronaje 3D</span>
-                        <h3 class="pd-section-title">ESCHATON.EXE</h3>
-                    </div>
-                    <div class="pd-grid" id="pd-garment-grid-hab-eschaton"></div>
-                    <button class="pd-panel-full-btn" onclick="navTo('mundos-content');focusHab('hab-eschaton');">VER PROYECTO COMPLETO →</button>
-                </div>
-                <div class="pd-project-panel" id="pd-proj-hab-fractum" style="display:none;">
-                    <button class="pd-panel-back" onclick="pdBackToGrid()">← VOLVER</button>
-                    <div class="pd-section-head">
-                        <span class="pd-section-eyebrow">Patronaje 3D</span>
-                        <h3 class="pd-section-title">FRACTUM</h3>
-                    </div>
-                    <div class="pd-grid" id="pd-garment-grid-hab-fractum"></div>
-                    <button class="pd-panel-full-btn" onclick="navTo('mundos-content');focusHab('hab-fractum');">VER PROYECTO COMPLETO →</button>
-                </div>
-                <!-- FICHA TÉCNICA — FRACTUM Look 1: frente + espalda juntos; renders de detalle pendientes de integrar -->
-                <div class="pd-modal-bg" id="pd-fractum-look1-ficha" onclick="closePdFractumLook1Ficha(event)">
-                    <div class="pd-modal pd-ficha-tecnica-modal">
-                        <div class="pd-modal-info" style="grid-column:1/-1;">
-                            <button class="pd-modal-close" onclick="document.getElementById('pd-fractum-look1-ficha').classList.remove('open')">✕ CERRAR</button>
-                            <span class="pd-modal-code">FRACTUM · Ficha Técnica</span>
-                            <h3 class="pd-modal-title">Look 1</h3>
-
-                            <div class="pd-ficha-main">
-                                <div class="pd-ficha-main-item render">
-                                    <img loading="lazy" class="render" src="fotos/FRACTUM/LOOK1/eragon-clothing-68.png" alt="Look completo">
-                                    <span class="pd-ficha-lab">Look Completo</span>
-                                </div>
-                                <div class="pd-ficha-main-item">
-                                    <img loading="lazy" src="fotos/FRACTUM/LOOK1/eragon-clothing.png" alt="Detalle bordado" style="aspect-ratio:0.707;">
-                                    <span class="pd-ficha-lab">Detalle Bordado</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pd-modal-bg" id="pd-fractum-look2-ficha" onclick="closePdFractumLook2Ficha(event)">
-                    <div class="pd-modal pd-ficha-tecnica-modal">
-                        <div class="pd-modal-info" style="grid-column:1/-1;">
-                            <button class="pd-modal-close" onclick="document.getElementById('pd-fractum-look2-ficha').classList.remove('open')">✕ CERRAR</button>
-                            <span class="pd-modal-code">FRACTUM · Ficha Técnica</span>
-                            <h3 class="pd-modal-title">Look 2</h3>
-
-                            <div class="pd-ficha-main">
-                                <div class="pd-ficha-main-item">
-                                    <img loading="lazy" class="render" src="fotos/FRACTUM/LOOK 2/final-de-los-finalitos-default-colorway-121.png" alt="Look frontal">
-                                    <span class="pd-ficha-lab">Frontal</span>
-                                </div>
-                                <div class="pd-ficha-main-item">
-                                    <img loading="lazy" class="render" src="fotos/FRACTUM/LOOK 2/final-de-los-finalitos-default-colorway-253.png" alt="Look espalda">
-                                    <span class="pd-ficha-lab">Espalda</span>
-                                </div>
-                            </div>
-                            <div class="pd-ficha-main-item large" style="margin-top:14px;">
-                                <img loading="lazy" src="fotos/FRACTUM/LOOK 2/clothing-2.png" alt="Detalle arnés" style="aspect-ratio:0.707;">
-                                <span class="pd-ficha-lab">Detalle Arnés</span>
-                            </div>
-
-                            <span class="pd-modal-subtitle" style="margin-top:20px;">Video</span>
-                            <div class="pd-ficha-video-wrap">
-                                <video id="pd-fractum-l2-video" preload="metadata" playsinline poster="fotos/FRACTUM/LOOK 2/final-de-los-finalitos-default-colorway-121.png">
-                                    <source src="fotos/FRACTUM/LOOK 2/final-de-los-finalitos-default-colorway-0.mp4" type="video/mp4">
-                                </video>
-                                <div class="pd-ficha-video-controls">
-                                    <button onclick="pdToggleVideoPlay('pd-fractum-l2-video', this)">▶ REPRODUCIR</button>
-                                    <button onclick="document.getElementById('pd-fractum-l2-video').requestFullscreen()">⛶ PANTALLA COMPLETA</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- VENTANA EMERGENTE — ficha técnica de la prenda (misma mecánica que .mayle-modal) -->
-                <!-- Anidada dentro de #hab-patronaje-digital para heredar las variables --pd-* (colores blueprint) -->
-                <div class="pd-modal-bg" id="pd-garment-modal" onclick="closePdGarmentModal(event)">
-                    <div class="pd-modal">
-                        <div class="pd-modal-img-col"><img loading="lazy" id="pd-garment-modal-img" src="" alt=""></div>
-                        <div class="pd-modal-info">
-                            <button class="pd-modal-close" onclick="document.getElementById('pd-garment-modal').classList.remove('open')">✕ CERRAR</button>
-                            <span class="pd-modal-code" id="pd-garment-modal-code">Patronaje Digital · CLO3D</span>
-                            <h3 class="pd-modal-title" id="pd-garment-modal-name"></h3>
-                            <div class="pd-modal-subtitle">Ficha Técnica</div>
-                            <div id="pd-garment-modal-ficha"></div>
-                            <div class="pd-modal-tags">
-                                <button class="pd-tool-pill" id="pd-garment-modal-cta" style="cursor:pointer;background:rgba(52,232,204,0.05);">VER PROYECTO COMPLETO →</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
     <!-- ══ HAB: LEONEL LIRIO — Editorial narrativo ══ -->
     <div class="hab" id="hab-leonel" data-tag="BEATRIZ CASTRO">
         <div class="hab-header hab-banner" onclick="focusHab('hab-leonel')">
@@ -1615,6 +1449,193 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                         <div class="ed-gallery-item"><img loading="lazy" src="fotos/elisa.jpg" alt="Elisa Morato — RW 2024"></div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SALA: TECHNICAL & 3D DEVELOPMENT
+═══════════════════════════════════════════ -->
+<section class="view room-view" id="tecnico-3d">
+    <div class="sala-header">
+        <span class="sala-code">CLO3D · PATRONAJE 3D · ILLUSTRATOR TÉCNICO</span>
+        <h2 class="sala-title">Technical &<br><em style="color:var(--sapphire);">3D Development</em></h2>
+        <span class="sala-func-subtitle">Technical Design · Patronaje Digital</span>
+        <p class="sala-desc">El puente entre el patrón físico y el prototipo digital. Modelado de prendas, simulación de tejido y fichas técnicas 100% en CLO3D e Illustrator — sin cortar una sola pieza de tela.</p>
+    </div>
+    <div class="habs-back-bar" onclick="resetHabs()">← Volver a la lista</div>
+
+    <!-- ══ HAB: PATRONAJE DIGITAL — CLO3D + Illustrator (identidad "blueprint", propia y separada de Mayle) ══ -->
+    <div class="hab" id="hab-patronaje-digital" data-tag="BEATRIZ CASTRO">
+        <div class="hab-header hab-banner" onclick="focusHab('hab-patronaje-digital')">
+            <img loading="lazy" class="hab-banner-img" src="fotos/look4-default-colorway.png" alt="Patronaje Digital — CLO3D">
+            <div class="hab-banner-scrim"></div>
+            <div class="hab-banner-content">
+                <div>
+                    <span class="hab-banner-code" style="color:var(--pd-cyan);">PATRONAJE DIGITAL · CLO3D · ILLUSTRATOR TÉCNICO</span>
+                    <h2 class="hab-banner-title" style="font-family:'Roboto Mono',monospace;font-weight:400;letter-spacing:0.02em;">Patronaje Digital</h2>
+                </div>
+                <span class="hab-banner-arrow">VER PROYECTO →</span>
+            </div>
+        </div>
+        <div class="hab-content">
+            <div class="pd-room">
+                <!-- INTRO ROL + HERRAMIENTAS -->
+                <div class="pd-intro">
+                    <div>
+                        <span class="pd-role-label">Rol · Proceso</span>
+                        <p class="pd-role-text">Patronaje y prototipado 100% digital: modelado de prendas y simulación de caída de tejido en CLO3D, y desarrollo de patrones planos y fichas técnicas en Adobe Illustrator. El proceso permite construir, ajustar y presentar una prenda completa antes de cortar una sola pieza de tela física.</p>
+                        <p class="pd-role-text" style="margin-top:12px;">Aplicado tanto a colecciones propias como a proyectos conceptuales y editoriales, combinando patronaje técnico con dirección creativa 3D.</p>
+                    </div>
+                    <div>
+                        <span class="pd-role-label">Herramientas</span>
+                        <div class="pd-tools">
+                            <span class="pd-tool-pill">CLO3D</span>
+                            <span class="pd-tool-pill">Adobe Illustrator</span>
+                            <span class="pd-tool-pill">Patronaje 3D</span>
+                            <span class="pd-tool-pill">Simulación de Tejido</span>
+                            <span class="pd-tool-pill">Fichas Técnicas</span>
+                            <span class="pd-tool-pill">Prototipado Virtual</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GRID DE PROYECTOS — click abre SOLO ese proyecto a pantalla completa, misma mecánica que las habitaciones -->
+                <div class="pd-grid" id="pd-project-grid">
+                    <!-- EXCHATON = ESCHATON.EXE -->
+                    <div class="pd-card render" onclick="pdFocusProject('hab-eschaton')">
+                        <div class="pd-card-img-wrap">
+                            <img loading="lazy" class="pd-card-img" src="fotos/look4-default-colorway.png" alt="ESCHATON.EXE — look CLO3D">
+                            <div class="pd-card-overlay">
+                                <p class="pd-overlay-title">EXCHATON</p>
+                                <div class="pd-overlay-metrics">
+                                    <span class="pd-metric-pill">3 universos · CLO3D</span>
+                                </div>
+                                <div class="pd-card-cta">VER FICHAS TÉCNICAS →</div>
+                            </div>
+                        </div>
+                        <div class="pd-card-meta">
+                            <span class="pd-card-code">Ver en La Cámara Oscura</span>
+                            <div class="pd-card-name">EXCHATON</div>
+                            <div class="pd-card-tags"><span class="pd-card-tag">ESCHATON.EXE</span><span class="pd-card-tag">CLO3D</span><span class="pd-card-tag">Colección Completa</span></div>
+                        </div>
+                    </div>
+                    <!-- FRACTUM -->
+                    <div class="pd-card render" onclick="pdFocusProject('hab-fractum')">
+                        <div class="pd-card-img-wrap">
+                            <img loading="lazy" class="pd-card-img" src="fotos/FRACTUM/LOOK 2/final-de-los-finalitos-default-colorway-121.png" alt="FRACTUM — vestuario CLO3D">
+                            <div class="pd-card-overlay">
+                                <p class="pd-overlay-title">FRACTUM</p>
+                                <div class="pd-overlay-metrics">
+                                    <span class="pd-metric-pill">2 vestuarios · CLO3D + Blender</span>
+                                </div>
+                                <div class="pd-card-cta">VER FICHAS TÉCNICAS →</div>
+                            </div>
+                        </div>
+                        <div class="pd-card-meta">
+                            <span class="pd-card-code">Ver en La Cámara Oscura</span>
+                            <div class="pd-card-name">FRACTUM</div>
+                            <div class="pd-card-tags"><span class="pd-card-tag">2 Vestuarios</span><span class="pd-card-tag">CLO3D</span><span class="pd-card-tag">Blender</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANELES DE PROYECTO — solo uno visible a la vez, el resto (incluida la grilla de arriba) desaparece -->
+                <div class="pd-project-panel" id="pd-proj-hab-eschaton" style="display:none;">
+                    <button class="pd-panel-back" onclick="pdBackToGrid()">← VOLVER</button>
+                    <div class="pd-section-head">
+                        <span class="pd-section-eyebrow">Patronaje 3D</span>
+                        <h3 class="pd-section-title">ESCHATON.EXE</h3>
+                    </div>
+                    <div class="pd-grid" id="pd-garment-grid-hab-eschaton"></div>
+                    <button class="pd-panel-full-btn" onclick="navTo('mundos-content');focusHab('hab-eschaton');">VER PROYECTO COMPLETO →</button>
+                </div>
+                <div class="pd-project-panel" id="pd-proj-hab-fractum" style="display:none;">
+                    <button class="pd-panel-back" onclick="pdBackToGrid()">← VOLVER</button>
+                    <div class="pd-section-head">
+                        <span class="pd-section-eyebrow">Patronaje 3D</span>
+                        <h3 class="pd-section-title">FRACTUM</h3>
+                    </div>
+                    <div class="pd-grid" id="pd-garment-grid-hab-fractum"></div>
+                    <button class="pd-panel-full-btn" onclick="navTo('mundos-content');focusHab('hab-fractum');">VER PROYECTO COMPLETO →</button>
+                </div>
+                <!-- FICHA TÉCNICA — FRACTUM Look 1: frente + espalda juntos; renders de detalle pendientes de integrar -->
+                <div class="pd-modal-bg" id="pd-fractum-look1-ficha" onclick="closePdFractumLook1Ficha(event)">
+                    <div class="pd-modal pd-ficha-tecnica-modal">
+                        <div class="pd-modal-info" style="grid-column:1/-1;">
+                            <button class="pd-modal-close" onclick="document.getElementById('pd-fractum-look1-ficha').classList.remove('open')">✕ CERRAR</button>
+                            <span class="pd-modal-code">FRACTUM · Ficha Técnica</span>
+                            <h3 class="pd-modal-title">Look 1</h3>
+
+                            <div class="pd-ficha-main">
+                                <div class="pd-ficha-main-item render">
+                                    <img loading="lazy" class="render" src="fotos/FRACTUM/LOOK1/eragon-clothing-68.png" alt="Look completo">
+                                    <span class="pd-ficha-lab">Look Completo</span>
+                                </div>
+                                <div class="pd-ficha-main-item">
+                                    <img loading="lazy" src="fotos/FRACTUM/LOOK1/eragon-clothing.png" alt="Detalle bordado" style="aspect-ratio:0.707;">
+                                    <span class="pd-ficha-lab">Detalle Bordado</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pd-modal-bg" id="pd-fractum-look2-ficha" onclick="closePdFractumLook2Ficha(event)">
+                    <div class="pd-modal pd-ficha-tecnica-modal">
+                        <div class="pd-modal-info" style="grid-column:1/-1;">
+                            <button class="pd-modal-close" onclick="document.getElementById('pd-fractum-look2-ficha').classList.remove('open')">✕ CERRAR</button>
+                            <span class="pd-modal-code">FRACTUM · Ficha Técnica</span>
+                            <h3 class="pd-modal-title">Look 2</h3>
+
+                            <div class="pd-ficha-main">
+                                <div class="pd-ficha-main-item">
+                                    <img loading="lazy" class="render" src="fotos/FRACTUM/LOOK 2/final-de-los-finalitos-default-colorway-121.png" alt="Look frontal">
+                                    <span class="pd-ficha-lab">Frontal</span>
+                                </div>
+                                <div class="pd-ficha-main-item">
+                                    <img loading="lazy" class="render" src="fotos/FRACTUM/LOOK 2/final-de-los-finalitos-default-colorway-253.png" alt="Look espalda">
+                                    <span class="pd-ficha-lab">Espalda</span>
+                                </div>
+                            </div>
+                            <div class="pd-ficha-main-item large" style="margin-top:14px;">
+                                <img loading="lazy" src="fotos/FRACTUM/LOOK 2/clothing-2.png" alt="Detalle arnés" style="aspect-ratio:0.707;">
+                                <span class="pd-ficha-lab">Detalle Arnés</span>
+                            </div>
+
+                            <span class="pd-modal-subtitle" style="margin-top:20px;">Video</span>
+                            <div class="pd-ficha-video-wrap">
+                                <video id="pd-fractum-l2-video" preload="metadata" playsinline poster="fotos/FRACTUM/LOOK 2/final-de-los-finalitos-default-colorway-121.png">
+                                    <source src="fotos/FRACTUM/LOOK 2/final-de-los-finalitos-default-colorway-0.mp4" type="video/mp4">
+                                </video>
+                                <div class="pd-ficha-video-controls">
+                                    <button onclick="pdToggleVideoPlay('pd-fractum-l2-video', this)">▶ REPRODUCIR</button>
+                                    <button onclick="document.getElementById('pd-fractum-l2-video').requestFullscreen()">⛶ PANTALLA COMPLETA</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VENTANA EMERGENTE — ficha técnica de la prenda (misma mecánica que .mayle-modal) -->
+                <!-- Anidada dentro de #hab-patronaje-digital para heredar las variables --pd-* (colores blueprint) -->
+                <div class="pd-modal-bg" id="pd-garment-modal" onclick="closePdGarmentModal(event)">
+                    <div class="pd-modal">
+                        <div class="pd-modal-img-col"><img loading="lazy" id="pd-garment-modal-img" src="" alt=""></div>
+                        <div class="pd-modal-info">
+                            <button class="pd-modal-close" onclick="document.getElementById('pd-garment-modal').classList.remove('open')">✕ CERRAR</button>
+                            <span class="pd-modal-code" id="pd-garment-modal-code">Patronaje Digital · CLO3D</span>
+                            <h3 class="pd-modal-title" id="pd-garment-modal-name"></h3>
+                            <div class="pd-modal-subtitle">Ficha Técnica</div>
+                            <div id="pd-garment-modal-ficha"></div>
+                            <div class="pd-modal-tags">
+                                <button class="pd-tool-pill" id="pd-garment-modal-cta" style="cursor:pointer;background:rgba(52,232,204,0.05);">VER PROYECTO COMPLETO →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -2571,6 +2592,7 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 /* tabs de filtro (todos / pixel anime / doll 3d) */
 .etp-stabs { display:flex; gap:8px; justify-content:center; margin-bottom:16px; flex-wrap:wrap; }
 .etp-stab { font-family:'Press Start 2P',monospace; font-size:9px; padding:9px 14px; border:2px solid rgba(255,255,255,0.3); color:rgba(255,255,255,0.6); background:rgba(0,0,0,0.25); cursor:pointer; }
+.etp-stab:focus-visible { outline:2px solid var(--etp-yellow); outline-offset:2px; }
 .etp-stab.on { background:var(--etp-pink); border-color:#000; color:#000; box-shadow:3px 3px 0 #000; }
 
 /* avatar picker — tarjetas con imagen real */
@@ -2820,21 +2842,6 @@ textarea.c-form-input { resize: none; min-height: 100px; }
 .etp-shop-companion-reopen img { width:100%; height:100%; object-fit:cover; object-position:top center; }
 @media (max-width:600px){ .etp-shop-companion-av{ width:130px; height:195px; } }
 </style>
-
-<!-- HERO VIDEO SALA III -->
-<section class="room-hero view" id="mundos">
-    <div class="room-hero-bg">
-        <video preload="none" loop muted playsinline poster="fotos/vitriol.png">
-            <source src="fotos/portada-vitrial.mp4" type="video/mp4">
-        </video>
-    </div>
-    <div class="hero-content">
-        <span style="font-family:'Roboto Mono',monospace;color:var(--amber);letter-spacing:0.5em;font-size:9px;text-transform:uppercase;display:block;margin-bottom:20px;">3D · DIGITAL FASHION · EXPERIMENTAL</span>
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(48px,10vw,120px);line-height:0.85;margin-bottom:24px;">La Cámara<br><em>Oscura</em></h2>
-        <p style="opacity:0.7;font-size:14px;max-width:480px;line-height:1.8;font-weight:300;">Donde la forma se disuelve y la identidad resiste. CLO3D · Blender · DAZ 3D · Digital Product Design.</p>
-        <a class="hero-scroll-trigger" onclick="navTo('mundos-content')">DESCENDER AL ARCHIVO ↓</a>
-    </div>
-</section>
 
 <section class="view room-view camara-view" id="mundos-content">
     <div class="habs-back-bar" onclick="resetHabs()">← Volver a la lista</div>
@@ -4087,17 +4094,17 @@ textarea.c-form-input { resize: none; min-height: 100px; }
             <div class="etp-wiz-step" id="etp-step-2" style="display:none;">
                 <h2 class="etp-wiz-title">Elige tu<br>avatar</h2>
                 <p class="etp-wiz-sub">SYSTEM > ESTE AVATAR ES EL QUE VA A LA WEB</p>
-                <div class="etp-stabs">
-                    <div class="etp-stab on" onclick="etpFilterAvatars('anime',this)">PIXEL ANIME</div>
-                    <div class="etp-stab" onclick="etpFilterAvatars('3d',this)">DOLL 3D</div>
+                <div class="etp-stabs" role="tablist" aria-label="Estilo de avatar">
+                    <div class="etp-stab on" onclick="etpFilterAvatars('anime',this)" aria-label="Estilo de avatar: Pixel Anime">PIXEL ANIME</div>
+                    <div class="etp-stab" onclick="etpFilterAvatars('3d',this)" aria-label="Estilo de avatar: Doll 3D">DOLL 3D</div>
                 </div>
                 <div class="etp-wiz-opts" style="grid-template-columns:repeat(3,1fr);" id="etp-avatar-grid">
-                    <div class="etp-wiz-opt av" data-group="avatar" data-style="3d" data-value="FUR HAT GIRL" data-img="sala-enter-the-palace/assets/kiosk/avatar-doll-1.png" onclick="etpSelect(this)" style="display:none;"><img loading="lazy" src="sala-enter-the-palace/assets/kiosk/avatar-doll-1.png" alt="Fur Hat Girl"><span class="lab">FUR HAT GIRL</span></div>
-                    <div class="etp-wiz-opt av" data-group="avatar" data-style="3d" data-value="DARK PALACE" data-img="sala-enter-the-palace/assets/kiosk/avatar-doll-2.png" onclick="etpSelect(this)" style="display:none;"><img loading="lazy" src="sala-enter-the-palace/assets/kiosk/avatar-doll-2.png" alt="Dark Palace"><span class="lab">DARK PALACE</span></div>
-                    <div class="etp-wiz-opt av" data-group="avatar" data-style="3d" data-value="BLONDE DOLL" data-img="sala-enter-the-palace/assets/kiosk/avatar-doll-3.png" onclick="etpSelect(this)" style="display:none;"><img loading="lazy" src="sala-enter-the-palace/assets/kiosk/avatar-doll-3.png" alt="Blonde Doll"><span class="lab">BLONDE DOLL</span></div>
-                    <div class="etp-wiz-opt av" data-group="avatar" data-style="anime" data-value="PIXEL QUEEN" data-img="sala-enter-the-palace/assets/kiosk/avatar-anime-2.png" onclick="etpSelect(this)"><img loading="lazy" src="sala-enter-the-palace/assets/kiosk/avatar-anime-2.png" alt="Pixel Queen"><span class="lab">PIXEL QUEEN</span></div>
-                    <div class="etp-wiz-opt av" data-group="avatar" data-style="anime" data-value="PIXEL GIRL" data-img="sala-enter-the-palace/assets/kiosk/avatar-anime-3.png" onclick="etpSelect(this)"><img loading="lazy" src="sala-enter-the-palace/assets/kiosk/avatar-anime-3.png" alt="Pixel Girl"><span class="lab">PIXEL GIRL</span></div>
-                    <div class="etp-wiz-opt av" data-group="avatar" data-style="anime" data-value="HEART GIRL" data-img="sala-enter-the-palace/assets/kiosk/avatar-anime-4.png" onclick="etpSelect(this)"><img loading="lazy" src="sala-enter-the-palace/assets/kiosk/avatar-anime-4.png" alt="Heart Girl"><span class="lab">HEART GIRL</span></div>
+                    <div class="etp-wiz-opt av" data-group="avatar" data-style="3d" data-value="FUR HAT GIRL" data-img="sala-enter-the-palace/assets/kiosk/avatar-doll-1.png" onclick="etpSelect(this)" style="display:none;" aria-label="Avatar: Fur Hat Girl"><img loading="lazy" src="sala-enter-the-palace/assets/kiosk/avatar-doll-1.png" alt="Fur Hat Girl"><span class="lab">FUR HAT GIRL</span></div>
+                    <div class="etp-wiz-opt av" data-group="avatar" data-style="3d" data-value="DARK PALACE" data-img="sala-enter-the-palace/assets/kiosk/avatar-doll-2.png" onclick="etpSelect(this)" style="display:none;" aria-label="Avatar: Dark Palace"><img loading="lazy" src="sala-enter-the-palace/assets/kiosk/avatar-doll-2.png" alt="Dark Palace"><span class="lab">DARK PALACE</span></div>
+                    <div class="etp-wiz-opt av" data-group="avatar" data-style="3d" data-value="BLONDE DOLL" data-img="sala-enter-the-palace/assets/kiosk/avatar-doll-3.png" onclick="etpSelect(this)" style="display:none;" aria-label="Avatar: Blonde Doll"><img loading="lazy" src="sala-enter-the-palace/assets/kiosk/avatar-doll-3.png" alt="Blonde Doll"><span class="lab">BLONDE DOLL</span></div>
+                    <div class="etp-wiz-opt av" data-group="avatar" data-style="anime" data-value="PIXEL QUEEN" data-img="sala-enter-the-palace/assets/kiosk/avatar-anime-2.png" onclick="etpSelect(this)" aria-label="Avatar: Pixel Queen"><img loading="lazy" src="sala-enter-the-palace/assets/kiosk/avatar-anime-2.png" alt="Pixel Queen"><span class="lab">PIXEL QUEEN</span></div>
+                    <div class="etp-wiz-opt av" data-group="avatar" data-style="anime" data-value="PIXEL GIRL" data-img="sala-enter-the-palace/assets/kiosk/avatar-anime-3.png" onclick="etpSelect(this)" aria-label="Avatar: Pixel Girl"><img loading="lazy" src="sala-enter-the-palace/assets/kiosk/avatar-anime-3.png" alt="Pixel Girl"><span class="lab">PIXEL GIRL</span></div>
+                    <div class="etp-wiz-opt av" data-group="avatar" data-style="anime" data-value="HEART GIRL" data-img="sala-enter-the-palace/assets/kiosk/avatar-anime-4.png" onclick="etpSelect(this)" aria-label="Avatar: Heart Girl"><img loading="lazy" src="sala-enter-the-palace/assets/kiosk/avatar-anime-4.png" alt="Heart Girl"><span class="lab">HEART GIRL</span></div>
                 </div>
                 <div class="etp-wiz-nav"><button class="etp-btn outline" onclick="etpGoStep(1)">← ATRÁS</button><button class="etp-btn" onclick="etpGoStep(3)">CONTINUAR →</button></div>
             </div>
@@ -4110,14 +4117,14 @@ textarea.c-form-input { resize: none; min-height: 100px; }
                 <div class="etp-wiz-group">
                     <span class="etp-wiz-glabel">▶ Tipo de cuerpo</span>
                     <div class="etp-wiz-opts">
-                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Diamante" onclick="etpSelect(this)"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Diamante"><span class="ic">💎</span><span class="lab">DIAMANTE</span></label>
-                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Reloj de Arena" onclick="etpSelect(this)"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Reloj de Arena"><span class="ic">⏳</span><span class="lab">RELOJ ARENA</span></label>
-                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Manzana" onclick="etpSelect(this)"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Manzana"><span class="ic">🍎</span><span class="lab">MANZANA</span></label>
-                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Pera" onclick="etpSelect(this)"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Pera"><span class="ic">🍐</span><span class="lab">PERA</span></label>
-                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Triángulo" onclick="etpSelect(this)"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Triángulo"><span class="ic">▲</span><span class="lab">TRIÁNGULO</span></label>
-                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Triángulo Inv." onclick="etpSelect(this)"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Triángulo Inv."><span class="ic">▼</span><span class="lab">TRIÁNG. INV.</span></label>
-                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Rectángulo" onclick="etpSelect(this)"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Rectángulo"><span class="ic">▭</span><span class="lab">RECTÁNGULO</span></label>
-                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Óvalo" onclick="etpSelect(this)"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Óvalo"><span class="ic">◯</span><span class="lab">ÓVALO</span></label>
+                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Diamante" onclick="etpSelect(this)" aria-label="Tipo de cuerpo: Diamante"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Diamante"><span class="ic" aria-hidden="true">💎</span><span class="lab">DIAMANTE</span></label>
+                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Reloj de Arena" onclick="etpSelect(this)" aria-label="Tipo de cuerpo: Reloj de Arena"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Reloj de Arena"><span class="ic" aria-hidden="true">⏳</span><span class="lab">RELOJ ARENA</span></label>
+                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Manzana" onclick="etpSelect(this)" aria-label="Tipo de cuerpo: Manzana"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Manzana"><span class="ic" aria-hidden="true">🍎</span><span class="lab">MANZANA</span></label>
+                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Pera" onclick="etpSelect(this)" aria-label="Tipo de cuerpo: Pera"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Pera"><span class="ic" aria-hidden="true">🍐</span><span class="lab">PERA</span></label>
+                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Triángulo" onclick="etpSelect(this)" aria-label="Tipo de cuerpo: Triángulo"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Triángulo"><span class="ic" aria-hidden="true">▲</span><span class="lab">TRIÁNGULO</span></label>
+                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Triángulo Inv." onclick="etpSelect(this)" aria-label="Tipo de cuerpo: Triángulo Invertido"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Triángulo Inv."><span class="ic" aria-hidden="true">▼</span><span class="lab">TRIÁNG. INV.</span></label>
+                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Rectángulo" onclick="etpSelect(this)" aria-label="Tipo de cuerpo: Rectángulo"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Rectángulo"><span class="ic" aria-hidden="true">▭</span><span class="lab">RECTÁNGULO</span></label>
+                        <label class="etp-wiz-opt" data-group="cuerpo" data-value="Óvalo" onclick="etpSelect(this)" aria-label="Tipo de cuerpo: Óvalo"><input type="radio" name="etp-cuerpo" class="sr-radio" value="Óvalo"><span class="ic" aria-hidden="true">◯</span><span class="lab">ÓVALO</span></label>
                     </div>
                 </div>
 
@@ -5352,8 +5359,12 @@ function etpUseDemoData() {
 }
 function etpSelect(el) {
     const group = el.dataset.group;
-    document.querySelectorAll('.etp-wiz-opt[data-group="' + group + '"]').forEach(o => o.classList.remove('selected'));
+    document.querySelectorAll('.etp-wiz-opt[data-group="' + group + '"]').forEach(o => {
+        o.classList.remove('selected');
+        if (o.tagName !== 'LABEL') o.setAttribute('aria-pressed', 'false');
+    });
     el.classList.add('selected');
+    if (el.tagName !== 'LABEL') el.setAttribute('aria-pressed', 'true');
     etpState[group] = el.dataset.value;
     if (group === 'avatar') {
         etpState.avatarImg = el.dataset.img;
@@ -5362,12 +5373,39 @@ function etpSelect(el) {
     etpUpdateSummary();
 }
 function etpFilterAvatars(style, tabEl) {
-    document.querySelectorAll('.etp-stab').forEach(t => t.classList.remove('on'));
+    document.querySelectorAll('.etp-stab').forEach(t => { t.classList.remove('on'); t.setAttribute('aria-selected', 'false'); });
     tabEl.classList.add('on');
+    tabEl.setAttribute('aria-selected', 'true');
     document.querySelectorAll('#etp-avatar-grid .etp-wiz-opt.av').forEach(card => {
         card.style.display = (style === 'all' || card.dataset.style === style) ? '' : 'none';
     });
 }
+
+// ── ACCESIBILIDAD DEL WIZARD — opciones sin <input> nativo necesitan tabindex/role/teclado propios ──
+const ETP_WIZ_GROUP_LABELS = { modo: 'Modo de creación', avatar: 'Avatar', altura: 'Altura', zapato: 'Talla de zapato' };
+function etpMakeKeyboardActivatable(el, role, pressedAttr) {
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('role', role);
+    if (pressedAttr) el.setAttribute(pressedAttr, el.classList.contains('selected') || el.classList.contains('on') ? 'true' : 'false');
+    if (!el.hasAttribute('aria-label')) {
+        const group = el.dataset.group;
+        el.setAttribute('aria-label', (ETP_WIZ_GROUP_LABELS[group] || group) + ': ' + el.dataset.value);
+    }
+    el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+            e.preventDefault();
+            el.click();
+        }
+    });
+}
+document.querySelectorAll('.etp-wiz-opt').forEach(el => {
+    if (el.tagName === 'LABEL') return; // ya es <label> con <input type="radio"> nativo, accesible por teclado
+    etpMakeKeyboardActivatable(el, 'button', 'aria-pressed');
+});
+document.querySelectorAll('.etp-stab').forEach(el => {
+    el.setAttribute('role', 'tab');
+    etpMakeKeyboardActivatable(el, 'tab', 'aria-selected');
+});
 function etpGoStep(n) {
     etpShowOnly(n);
     document.getElementById('etp-step-lab').textContent = 'PASO ' + n + ' DE 4';
