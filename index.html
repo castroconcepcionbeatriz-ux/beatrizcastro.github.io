@@ -4508,6 +4508,7 @@ function navTo(id) {
         currentView = id;
         to.scrollTop = 0;
         isLocked = false;
+        syncHashToState();
     }, 400);
 }
 
@@ -4636,10 +4637,56 @@ function focusHab(id) {
         target.classList.add('focused');
         setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
     }
+    syncHashToState();
 }
 function resetHabs() {
     document.querySelectorAll('.hab.focused').forEach(h => h.classList.remove('focused'));
+    syncHashToState();
 }
+
+// ── DEEP LINKING POR PROYECTO (hash de URL, sin páginas nuevas) ──
+const DEEP_LINK_MAP = {
+    'enter-the-palace':           { view: 'enter-the-palace', hab: 'hab-etp' },
+    'mayle-vazquez':               { view: 'oficio',          hab: 'hab-mayle' },
+    'leonel-lirio':                 { view: 'oficio',          hab: 'hab-leonel' },
+    'elisa-morato':                 { view: 'oficio',          hab: 'hab-eliza' },
+    'patronaje-digital':            { view: 'tecnico-3d',      hab: 'hab-patronaje-digital' },
+    'homenaje-oscar-de-la-renta':   { view: 'vision',          hab: 'hab-oscar' },
+    'mami-quiero-ser-adulta':       { view: 'vision',          hab: 'hab-infantil' },
+    'pretty-color':                  { view: 'vision',          hab: 'hab-concurso' },
+    'look-lite':                     { view: 'vision',          hab: 'hab-propio' },
+    'vitriol':                        { view: 'mundos-content', hab: 'hab-vitriol' },
+    'evolver-skin':                   { view: 'mundos-content', hab: 'hab-evolver' },
+    'fractum':                        { view: 'mundos-content', hab: 'hab-fractum' },
+    'eschaton-exe':                   { view: 'mundos-content', hab: 'hab-eschaton' },
+};
+const DEEP_LINK_REVERSE = {};
+Object.keys(DEEP_LINK_MAP).forEach(slug => {
+    const t = DEEP_LINK_MAP[slug];
+    DEEP_LINK_REVERSE[t.view + '::' + t.hab] = slug;
+});
+const INITIAL_HASH = location.hash;
+
+function syncHashToState() {
+    const focused = document.querySelector('.hab.focused');
+    const slug = DEEP_LINK_REVERSE[currentView + '::' + (focused ? focused.id : '')];
+    const newHash = slug ? ('#' + slug) : '';
+    if (location.hash !== newHash) {
+        history.replaceState(null, '', newHash || (location.pathname + location.search));
+    }
+}
+
+function applyDeepLink(rawHash) {
+    const slug = (rawHash || '').replace(/^#/, '');
+    const target = DEEP_LINK_MAP[slug];
+    if (!target) return false;
+    navTo(target.view);
+    focusHab(target.hab);
+    return true;
+}
+// Nuestras propias actualizaciones de hash usan history.replaceState (no dispara 'hashchange');
+// este listener solo reacciona a cambios externos de hash (barra de direcciones, back/forward).
+window.addEventListener('hashchange', () => { applyDeepLink(location.hash); });
 
 // ── MODALES MAYLE ──
 function openMayleModal(id) { document.getElementById(id).classList.add('open'); }
@@ -5569,6 +5616,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupInfiniteNews();
     resetHabs();
     buildFeaturedProjects();
+    applyDeepLink(INITIAL_HASH);
 });
 
 // ── CIERRE CON ESC — cierra el modal/overlay abierto más al frente, uno por pulsación ──
